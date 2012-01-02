@@ -1,0 +1,56 @@
+<?php
+#**************************************************************************
+#  openSIS is a free student information system for public and non-public 
+#  schools from Open Solutions for Education, Inc. web: www.os4ed.com
+#
+#  openSIS is  web-based, open source, and comes packed with features that 
+#  include student demographic info, scheduling, grade book, attendance, 
+#  report cards, eligibility, transcripts, parent portal, 
+#  student portal and more.   
+#
+#  Visit the openSIS web site at http://www.opensis.com to learn more.
+#  If you have question regarding this system or the license, please send 
+#  an email to info@os4ed.com.
+#
+#  This program is released under the terms of the GNU General Public License as  
+#  published by the Free Software Foundation, version 2 of the License. 
+#  See license.txt.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#***************************************************************************************
+if($_REQUEST['modfunc']=='update'){
+
+if($_REQUEST['activity']){
+$TOTAL_COUNT=DBGet(DBQuery("SELECT COUNT(ACTIVITY_DAYS) AS TOTAL_COUNT FROM SYSTEM_PREFERENCE_MISC"));
+$TOTAL_COUNT=$TOTAL_COUNT[1]['TOTAL_COUNT'];
+if($TOTAL_COUNT==0 && $_REQUEST['activity']['ACTIVITY_DAYS']){
+DBQuery("INSERT INTO SYSTEM_PREFERENCE_MISC (ACTIVITY_DAYS) VALUES(".$_REQUEST['activity']['ACTIVITY_DAYS'].")");
+}else if($TOTAL_COUNT==1){
+$sql="UPDATE SYSTEM_PREFERENCE_MISC SET ";
+foreach($_REQUEST['activity'] as $column_name=>$value)
+					{
+					$sql .= "$column_name='".str_replace("\'","''",str_replace("`","''",$value))."',";
+
+}
+$sql= substr($sql,0,-1) ." WHERE 1=1";
+DBQuery($sql);
+}
+}
+unset($_REQUEST['activity']);
+}
+$activity_RET=DBGet(DBQuery("SELECT ACTIVITY_DAYS FROM SYSTEM_PREFERENCE_MISC LIMIT 1"));
+$activity=$activity_RET[1];
+echo "<FORM name=activity id=activity action=Modules.php?modname=$_REQUEST[modname]&modfunc=update&page_display=INACTIVITY method=POST>";
+echo '<table width="360px;" cellpadding="4">';
+echo '<tr><td width="90%" align="right">Maximum inactive days allowed before account is disabled:</td><td align="left">'.TextInput($activity['ACTIVITY_DAYS'],'activity[ACTIVITY_DAYS]','','class=cell_floating').'</td></tr>';
+echo '<tr><td colspan="2"></td></tr>';
+echo '<tr><td colspan="2"><CENTER>'.SubmitButton('Save','','class=btn_medium').'</CENTER></td></tr>';
+echo '</table>';
+echo '</FORM>';
