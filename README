@@ -3,15 +3,15 @@
 ####################################################################################
 
 Main Technologies
---------------------------
-Programming language : Java 1.7
-DB                                        : MySQL Community Server 5.5.20
-Framework                        : Vaadin 6.7.4 
-Build Tool                           : Maven 3.0.4
+-----------------
+Programming language	: Java 1.7
+DB			: MySQL Community Server 5.5.20
+Framework		: Vaadin 6.7.4 
+Build Tool		: Maven 3.0.4
 
 
 Other Technologies
----------------------------
+------------------
 Hibernate 4.0.1
 Spring 3.1.0.RELEASE 
 
