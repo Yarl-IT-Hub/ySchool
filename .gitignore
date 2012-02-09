@@ -5,3 +5,5 @@
 *.swp
 *.out
 Thumbs.db
+*.iml
+*.idea
