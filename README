@@ -6,13 +6,18 @@ Main Technologies
 -----------------
 Programming language	: Java 1.7
 DB			: MySQL Community Server 5.5.20
-Framework		: Vaadin 6.7.4 
 Build Tool		: Maven 3.0.4
 
 
-Other Technologies
-------------------
-Hibernate 4.0.1
-Spring 3.1.0.RELEASE 
+
+How to start
+------------
+
+1) Run mvn clean install from top of the project
+2) run mvn clean jetty:run within yschool main module
 
 
+NOTE
+----
+DB will be created on memory for testing purposes if you want to change it to MySQL
+make the change in the hibernate.cfg.xml and point it to your local MySQL server.

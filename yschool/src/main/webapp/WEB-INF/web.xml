@@ -5,6 +5,10 @@
 
     <display-name>ySchool</display-name>
 
+    <welcome-file-list>
+        <welcome-file>home.xhtml</welcome-file>
+    </welcome-file-list>
+
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>

@@ -94,7 +94,7 @@
     <hr/>
 
     <footer>
-        <p><![CDATA[&copy;]> Company 2012</p>
+        <p><![CDATA[&copy;]> ySchool 2012</p>
     </footer>
 
 </div><!--/.fluid-container-->
