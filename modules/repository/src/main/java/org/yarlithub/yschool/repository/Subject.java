@@ -12,13 +12,10 @@
  */
 package org.yarlithub.yschool.repository;
 
-import org.hibernate.Session;
-import org.joda.time.DateTime;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import java.util.List;
 
 /**
  * $LastChangedDate$
@@ -26,14 +23,13 @@ import java.util.List;
  * $LastChangedRevision$
  */
 @Entity
-@Table(name = "student")
-public class Student extends PersistentObject {
+@Table(name = "subject")
+public class Subject extends PersistentObject {
     
-    private String fname;
-    private String lname;
-    private DateTime dob;
-    private DateTime registrationDate;
-    private List<Grade> grades;
+    private String name;
+    private String marks;
+    private Status status;
+
 
     public void save() {
         HibernateUtil.getSessionFactory().getCurrentSession().save(this);
@@ -47,43 +43,27 @@ public class Student extends PersistentObject {
         HibernateUtil.getSessionFactory().getCurrentSession().delete(this);
     }
 
-    public String getFname() {
-        return fname;
+    public String getName() {
+        return name;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLname() {
-        return lname;
+    public String getMarks() {
+        return marks;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setMarks(String marks) {
+        this.marks = marks;
     }
 
-    public DateTime getDob() {
-        return dob;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setDob(DateTime dob) {
-        this.dob = dob;
-    }
-
-    public DateTime getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(DateTime registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public List<Grade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

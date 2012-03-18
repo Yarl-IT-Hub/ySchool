@@ -12,21 +12,39 @@
  */
 package org.yarlithub.yschool.action;
 
+import org.apache.log4j.Logger;
 import org.yarlithub.yschool.repository.Student;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  * $LastChangedDate$
  * $LastChangedBy$
  * $LastChangedRevision$
  */
-@ManagedBean
-@RequestScoped
+@ManagedBean(name="studentBean")
+@SessionScoped
 public class StudentBean {
-    
+
+    private static final Logger logger = Logger.getLogger(StudentBean.class);
+
+//    @ManagedProperty("student")
     private Student student;
+
+//    @PostConstruct
+//    private void init() {
+//        student = new Student();
+//    }
+
+    public void submit() {
+        logger.info("Saving student [" + student + "]");
+        System.out.println("=============");
+        student.save();
+    }
 
     public Student getStudent() {
         return student;

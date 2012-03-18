@@ -12,8 +12,6 @@
  */
 package org.yarlithub.yschool.repository;
 
-import org.hibernate.Session;
-import org.joda.time.DateTime;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 import javax.persistence.Entity;
@@ -26,14 +24,12 @@ import java.util.List;
  * $LastChangedRevision$
  */
 @Entity
-@Table(name = "student")
-public class Student extends PersistentObject {
+@Table(name = "grade")
+public class Grade extends PersistentObject {
     
-    private String fname;
-    private String lname;
-    private DateTime dob;
-    private DateTime registrationDate;
-    private List<Grade> grades;
+    private int classId;
+    private String className;
+    private List<Subject> subjects;
 
     public void save() {
         HibernateUtil.getSessionFactory().getCurrentSession().save(this);
@@ -47,43 +43,27 @@ public class Student extends PersistentObject {
         HibernateUtil.getSessionFactory().getCurrentSession().delete(this);
     }
 
-    public String getFname() {
-        return fname;
+    public int getClassId() {
+        return classId;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setClassId(int classId) {
+        this.classId = classId;
     }
 
-    public String getLname() {
-        return lname;
+    public String getClassName() {
+        return className;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
-    public DateTime getDob() {
-        return dob;
+    public List<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setDob(DateTime dob) {
-        this.dob = dob;
-    }
-
-    public DateTime getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(DateTime registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public List<Grade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(List<Grade> grades) {
-        this.grades = grades;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 }

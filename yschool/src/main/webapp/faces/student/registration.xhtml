@@ -10,8 +10,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
     <title>Simple JSF Facelets page</title>
@@ -23,6 +22,15 @@
     </script>
 
     <div class="span9">
+        <h:form>
+            <h:outputLabel value="#{msg.first_name}" for="fName"/>
+            <h:inputText id="fName" value="#{studentBean.student.fname}"/>
+
+            <h:outputLabel value="#{msg.last_name}" for="lName"/>
+            <h:inputText id="lName" value="#{studentBean.student.lname}"/>
+            <br/>
+            <h:commandButton type="submit" onclick="#{studentBean.submit}" value="#{msg.save}"/>
+        </h:form>
             <div class="row-fluid">
                 <div class="span4">
                     <h2><h:outputText value="#{msg.registration}"/></h2>

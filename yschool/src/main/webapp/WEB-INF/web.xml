@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="yschool" version="3.0">
 
     <display-name>ySchool</display-name>
 
     <welcome-file-list>
-        <welcome-file>home.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
     <context-param>
@@ -20,6 +22,10 @@
 
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.yarlithub.yschool.listener.InitializeListener</listener-class>
     </listener>
 
     <filter>
