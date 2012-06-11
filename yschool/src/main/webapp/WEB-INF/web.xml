@@ -15,6 +15,8 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+
+
     <context-param>
         <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
         <param-value>.xhtml</param-value>
@@ -28,23 +30,31 @@
         <listener-class>org.yarlithub.yschool.listener.InitializeListener</listener-class>
     </listener>
 
-    <filter>
-        <filter-name>sitemesh</filter-name>
-        <filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>sitemesh</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter>-->
+        <!--<filter-name>sitemesh</filter-name>-->
+        <!--<filter-class>org.sitemesh.config.ConfigurableSiteMeshFilter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+        <!--<filter-name>sitemesh</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>Faces Servlet</servlet-name>-->
+        <!--<url-pattern>/faces/*</url-pattern>-->
+    <!--</servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.faces</url-pattern>
     </servlet-mapping>
 
 </web-app>

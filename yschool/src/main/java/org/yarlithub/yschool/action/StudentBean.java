@@ -20,15 +20,17 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
 
 /**
  * $LastChangedDate$
  * $LastChangedBy$
  * $LastChangedRevision$
  */
-@ManagedBean(name="studentBean")
+//@ManagedBean(name="studentBean")
+@ManagedBean
 @SessionScoped
-public class StudentBean {
+public class StudentBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(StudentBean.class);
 
