@@ -76,7 +76,7 @@
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
                     <li class="nav-header">Student</li>
-                    <li id="student_search"><a href="#">Search</a></li>
+                    <li id="student_search"><a href="/yschool/faces/student/searchStudent.xhtml">Search</a></li>
                     <li id="student_register"><a href="/yschool/faces/student/registration.xhtml">Registration</a></li>
                     <li class="nav-header">Staff</li>
                     <li id="staff_search"><a href="#">Search</a></li>

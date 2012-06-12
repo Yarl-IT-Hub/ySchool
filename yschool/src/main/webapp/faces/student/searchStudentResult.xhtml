@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <title>Simple JSF Facelets page</title>
+    </head>
+    <body>
+    <f:view>
+        <h:form>
+            <h:outputLabel value="#{msg.first_name}" for="fName"/>
+            <h:outputText id="fName" value="#{studentBean.searchStudent.fname}"/>
+
+            <h:outputLabel value="#{msg.last_name}" for="lName"/>
+            <h:outputText id="lName" value="#{studentBean.searchStudent.lname}"/>    
+            
+            <h:outputLabel value="#{msg.dob}" for="dob"/>
+            <h:outputText id="dob" value="#{studentBean.searchStudent.dob}"/>  
+            
+            <h:outputLabel value="#{msg.registrationDate}" for="registrationDate"/>
+            <h:outputText id="registrationDate" value="#{studentBean.searchStudent.registrationDate}"/>  
+           </h:form> 
+     </f:view>       
+    
+    </body>
+</html>

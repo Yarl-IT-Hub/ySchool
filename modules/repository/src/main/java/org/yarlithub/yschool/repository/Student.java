@@ -54,7 +54,10 @@ public class Student extends PersistentObject {
     public void delete() {
         HibernateUtil.getCurrentSession().delete(this);
     }
-
+    public Object search(Student student) {
+        return HibernateUtil.getCurrentSession().load(student.getClass(), student.getClass());
+    }
+    
     public String getFname() {
         return fname;
     }

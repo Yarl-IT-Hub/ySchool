@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="faces/exam/search.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="faces/staff/search.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="faces/student/registration.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="faces/student/searchStudent.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="faces/student/searchStudentResult.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="faces/about/contactus.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="faces/ecraculer/search.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="faces/announcemt/add.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="faces/about/aboutus.xhtml" x="400" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

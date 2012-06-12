@@ -36,6 +36,7 @@ public class StudentBean implements Serializable {
 
 //    @ManagedProperty("student")
     public Student student = new Student();
+    private Student searchStudent;
 
     public StudentBean() {
         student = new Student();
@@ -56,5 +57,23 @@ public class StudentBean implements Serializable {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+    
+    public void search(){
+        setSearchStudent((Student) student.search(student));        
+    }
+
+    /**
+     * @return the searchStudent
+     */
+    public Student getSearchStudent() {
+        return searchStudent;
+    }
+
+    /**
+     * @param searchStudent the searchStudent to set
+     */
+    public void setSearchStudent(Student searchStudent) {
+        this.searchStudent = searchStudent;
     }
 }

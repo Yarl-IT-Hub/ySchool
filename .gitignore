@@ -7,3 +7,7 @@
 Thumbs.db
 *.iml
 *.idea
+/modules/repository/target/
+/modules/event-scheduling/target/
+/modules/reporting/target/
+/yschool/target/
