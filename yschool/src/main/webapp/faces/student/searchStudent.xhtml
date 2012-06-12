@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <script type="text/javascript">
+        makeLinkActive("student_search");
+    </script>
+
+    <div class="span9">
+        <h:form>
+            <h:outputLabel value="#{msg.first_name}" for="fName"/>
+            <h:inputText id="fName" value="#{studentBean.student.fname}"/>
+            <h:outputLabel value="#{msg.last_name}" for="lName"/>
+            <h:inputText id="lName" value="#{studentBean.student.lname}"/>
+            <br/>
+            <h:commandButton type="submit" action="#{studentBean.search}" value="#{msg.search}"/>
+        </h:form>
+            <div class="row-fluid">
+                <div class="span4">
+                    <h2><h:outputText value="#{msg.searchStudent}"/></h2>
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
+                        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem
+                        malesuada magna mollis euismod. Donec sed odio dui. </p>
+
+                </div><!--/span-->
+            </div><!--/row-->
+        </div>
+</h:body>
+</html>
