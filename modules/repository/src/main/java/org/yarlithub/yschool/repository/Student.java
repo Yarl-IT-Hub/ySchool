@@ -13,10 +13,12 @@
 package org.yarlithub.yschool.repository;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.joda.time.DateTime;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -28,23 +30,29 @@ import java.util.List;
 @Entity
 @Table(name = "student")
 public class Student extends PersistentObject {
-    
+
     private String fname;
     private String lname;
     private DateTime dob;
     private DateTime registrationDate;
+
+    @ManyToMany
     private List<Grade> grades;
 
+
     public void save() {
-        HibernateUtil.getSessionFactory().getCurrentSession().save(this);
+        Session currentSession = HibernateUtil.getCurrentSession();
+        Transaction transaction = currentSession.beginTransaction();
+//        currentSession.save(this);
+        transaction.commit();
     }
 
     public void update() {
-        HibernateUtil.getSessionFactory().getCurrentSession().update(this);
+        HibernateUtil.getCurrentSession().update(this);
     }
 
     public void delete() {
-        HibernateUtil.getSessionFactory().getCurrentSession().delete(this);
+        HibernateUtil.getCurrentSession().delete(this);
     }
 
     public String getFname() {

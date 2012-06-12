@@ -15,6 +15,7 @@ package org.yarlithub.yschool.repository;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -29,6 +30,8 @@ public class Grade extends PersistentObject {
     
     private int classId;
     private String className;
+
+    @ManyToMany
     private List<Subject> subjects;
 
     public void save() {

@@ -13,6 +13,7 @@
 package org.yarlithub.yschool.repository.util;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
@@ -41,5 +42,9 @@ public class HibernateUtil {
             }
         }
         return sessionFactory;
+    }
+
+    public static Session getCurrentSession() {
+        return getSessionFactory().getCurrentSession();
     }
 }

@@ -35,16 +35,18 @@ public class StudentBean implements Serializable {
     private static final Logger logger = Logger.getLogger(StudentBean.class);
 
 //    @ManagedProperty("student")
-    private Student student;
+    public Student student = new Student();
 
-//    @PostConstruct
+    public StudentBean() {
+        student = new Student();
+    }
+
+    //    @PostConstruct
 //    private void init() {
 //        student = new Student();
 //    }
 
     public void submit() {
-        logger.info("Saving student [" + student + "]");
-        System.out.println("=============");
         student.save();
     }
 
