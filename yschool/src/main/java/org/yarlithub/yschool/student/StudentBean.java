@@ -10,15 +10,12 @@
  *   property rights in these materials.
  *
  */
-package org.yarlithub.yschool.action;
+package org.yarlithub.yschool.student;
 
 import org.apache.log4j.Logger;
 import org.yarlithub.yschool.repository.Student;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
@@ -27,25 +24,18 @@ import java.io.Serializable;
  * $LastChangedBy$
  * $LastChangedRevision$
  */
-//@ManagedBean(name="studentBean")
 @ManagedBean
 @SessionScoped
 public class StudentBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(StudentBean.class);
 
-//    @ManagedProperty("student")
     public Student student = new Student();
     private Student searchStudent;
 
     public StudentBean() {
         student = new Student();
     }
-
-    //    @PostConstruct
-//    private void init() {
-//        student = new Student();
-//    }
 
     public void submit() {
         student.save();

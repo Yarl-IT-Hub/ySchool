@@ -13,7 +13,6 @@
 package org.yarlithub.yschool.repository;
 
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.joda.time.DateTime;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
@@ -41,10 +40,7 @@ public class Student extends PersistentObject {
 
 
     public void save() {
-        Session currentSession = HibernateUtil.getCurrentSession();
-        Transaction transaction = currentSession.beginTransaction();
-//        currentSession.save(this);
-        transaction.commit();
+        HibernateUtil.getCurrentSession().save(this);
     }
 
     public void update() {

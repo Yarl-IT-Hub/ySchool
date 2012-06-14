@@ -55,7 +55,7 @@
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
                     </archive>
-                    <archiveClasses>true</archiveClasses>
+                    <archiveClasses>false</archiveClasses>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
