@@ -20,6 +20,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import java.util.List;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import org.hibernate.criterion.Restrictions;
 
 /**
  * $LastChangedDate$
@@ -50,8 +53,13 @@ public class Student extends PersistentObject {
     public void delete() {
         HibernateUtil.getCurrentSession().delete(this);
     }
-    public Object search(Student student) {
-        return HibernateUtil.getCurrentSession().load(student.getClass(), student.getClass());
+    public List<Student> search() {    
+        System.out.print("+++++++++++++++++++====" + fname + "-" + lname);
+        return (List) HibernateUtil.getCurrentSession()
+                .createCriteria(Student.class)
+                .add(Restrictions.like(fname, this.getFname() +"%"))
+                .add(Restrictions.like(lname, this.getLname() +"%"))
+                .list();
     }
     
     public String getFname() {
@@ -93,4 +101,6 @@ public class Student extends PersistentObject {
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
     }
+
+
 }

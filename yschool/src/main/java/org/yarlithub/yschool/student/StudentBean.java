@@ -49,8 +49,12 @@ public class StudentBean implements Serializable {
         this.student = student;
     }
     
-    public void search(){
-        setSearchStudent((Student) student.search(student));        
+    public String search(){
+        
+        setSearchStudent((Student)student.search().get(0));
+        System.out.println("================Searching student=============");
+        //setSearchStudent((Student) student.search(student));    
+        return "searchStudentResult";
     }
 
     /**
