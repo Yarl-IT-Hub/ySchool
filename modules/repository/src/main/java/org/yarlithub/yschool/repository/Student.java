@@ -60,6 +60,10 @@ public class Student extends PersistentObject {
                 //.add(Restrictions.like(lname, this.getLname() +"%"))
                 .list();
     }
+
+    public List<Student> searchStudentByLastName(String studentsLastName) {
+        return HibernateUtil.getCurrentSession().createQuery("from Student  where lname = ?").setString(0, studentsLastName).list();
+    }
     
     public String getFname() {
         return fname;
