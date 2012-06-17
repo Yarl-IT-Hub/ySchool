@@ -56,6 +56,7 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand" href="#">ySchool</a>
+
             <div class="nav-collapse">
                 <ul class="nav">
                     <li class="active"><a href="#">Home</a></li>
@@ -63,11 +64,11 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
-            </div><!--/.nav-collapse -->
+            </div>
+            <!--/.nav-collapse -->
         </div>
     </div>
 </div>
-
 
 
 <div class="container-fluid">
@@ -75,21 +76,32 @@
         <div class="span3">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Student</li>
-                    <li id="student_search"><a href="/yschool/faces/student/searchStudent.xhtml">Search</a></li>
-                    <li id="student_register"><a href="/yschool/faces/student/registration.xhtml">Registration</a></li>
-                    <li class="nav-header">Staff</li>
-                    <li id="staff_search"><a href="#">Search</a></li>
-                    <li id="staff_register"><a href="#">Registration</a></li>
-                    <li class="nav-header">Exam</li>
-                    <li id="exam_search"><a href="#">Search</a></li>
-                    <li id="exam_new"><a href="#">New Exam</a></li>
+                    <li class="nav-header">Manage</li>
+                    <li id="student" class="active"><a href="/yschool/faces/student/student.xhtml">Student</a></li>
+                    <li><a href="#">Staff</a></li>
+                    <li><a href="parent.html">Parents</a></li>
+                    <li><a href="#">Admin users</a></li>
+                    <li class="nav-header">Assign</li>
+                    <li><a href="#">Teachers to classes</a></li>
+                    <li id="add-student-to-class"><a href="/yschool/faces/student/add-student-class.xhtml">Add students to class</a></li>
+                    <li><a href="#">Assign subjects to Students</a></li>
+                    <li><a href="#">Marks Management</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="nav-header">Configure</li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">School notifications</a></li>
+                    <li><a href="#">Manage time table</a></li>
                 </ul>
-            </div><!--/.well -->
-        </div><!--/span-->
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->
         <sitemesh:write property='body'/>
 
-    </div><!--/row-->
+    </div>
+    <!--/row-->
 
     <hr/>
 
@@ -97,8 +109,8 @@
         <p><![CDATA[&copy;]> ySchool 2012</p>
     </footer>
 
-</div><!--/.fluid-container-->
-
+</div>
+<!--/.fluid-container-->
 
 
 <!-- Le javascript

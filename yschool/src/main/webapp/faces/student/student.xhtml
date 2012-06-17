@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <script type="text/javascript">
+        makeLinkActive("student");
+    </script>
+
+    <div class="span9">
+        <div class="row">
+            <div class="span9">
+                <h3>Manage Student</h3>
+
+                <div class="tabbable" style="margin-bottom: 9px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#1" data-toggle="tab"> Add Student</a></li>
+                        <li><a href="#2" data-toggle="tab">Search Student</a></li>
+                        <li><a href="#3" data-toggle="tab">Student Reports</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="1">
+                            <div class="progress">
+                                <div class="bar" style="width: 33%;"></div>
+                            </div>
+                            <form action="student-step-2.html" method="get" class="well">
+                                <fieldset>
+                                    <legend>Demographic Information</legend>
+                                    <label>Admission Number</label><input name="" type="text"/>
+                                    <label>Full Name</label><input name="" type="text"/>
+                                    <label>Name with intials</label><input name="" type="text"/>
+                                    <label>Date of Birth</label><input name="" type="text"/>
+                                    <label>Gender</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">Select</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                    <label>House</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">Define Later</option>
+                                        <option>Red</option>
+                                        <option>Yellow</option>
+                                        <option>Blue</option>
+                                    </select>
+
+                                    <legend>Account Information</legend>
+                                    <label>Username</label><input name="" type="text"/>
+                                    <label>Password</label><input name="input" type="text"/>
+                                    <label>Profile Picture</label><input name="" type="file"/>
+
+                                    <legend>Permanent Address</legend>
+                                    <label>Address line 1</label><input name="" type="text"/>
+                                    <label>Address line 2</label><input name="" type="text"/>
+                                    <label>City</label><input name="" type="text"/>
+                                    <label>Country</label><input name="" type="text"/>
+
+                                    <legend>Temprory Address</legend>
+                                    <label>Address line 1</label><input name="" type="text"/>
+                                    <label>Address line 2</label><input name="" type="text"/>
+                                    <label>City</label><input name="" type="text"/>
+                                    <label>Country</label><input name="" type="text"/>
+                                </fieldset>
+                                <button type="submit" class="btn btn-primary">Next</button>
+                            </form>
+
+                        </div>
+                        <div class="tab-pane" id="2">
+                            <legend>Search Student</legend>
+                            <form action="student-search-results.html" method="get" class="well">
+                                <fieldset>
+                                    <legend>Filter by demographic Information</legend>
+                                    <label>Admission Number</label><input name="" type="text"/>
+                                    <label>Full Name</label><input name="" type="text"/>
+                                    <label>Name with intials</label><input name="" type="text"/>
+                                    <label>Date of Birth</label><input name="" type="text"/>
+                                    <label>Gender</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">Select</option>
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                    <label>House</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">Undefined</option>
+                                        <option>Red</option>
+                                        <option>Yellow</option>
+                                        <option>Blue</option>
+                                    </select>
+                                    <label>Student Status</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">All</option>
+                                        <option>Left</option>
+                                        <option>Current Student</option>
+                                    </select>
+
+
+                                    <legend> Filter Account Information</legend>
+                                    <label>Username</label><input name="" type="text"/>
+
+                                    <legend> Filter Class Information</legend>
+                                    <label>Grade</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">All</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                    <label>Class</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">All</option>
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                    </select>
+                                    <label>Subject</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">All</option>
+                                        <option>Math</option>
+                                        <option>Tamil</option>
+                                        <option>English</option>
+                                    </select>
+                                    <label>In Calendar Year</label>
+                                    <select name="select" id="select">
+                                        <option selected="selected">2012</option>
+                                        <option>2011</option>
+                                        <option>2010</option>
+                                        <option>2009</option>
+                                    </select>
+
+                                </fieldset>
+                                <button type="submit" class="btn btn-primary">Search Students</button>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="3">
+                            <p>This is Section 3.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /tabbable -->
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

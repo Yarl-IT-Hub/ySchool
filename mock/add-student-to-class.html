@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en"><!-- InstanceBegin template="/Templates/admin.dwt" codeOutsideHTMLIsLocked="false" -->
+  <head>
+  <meta charset="utf-8">
+  <!-- InstanceBeginEditable name="doctitle" -->
+  <title>ySchool::</title>
+  <!-- InstanceEndEditable -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- Le styles -->
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  <!-- Le fav and touch icons -->
+<!-- InstanceBeginEditable name="head" --><!-- InstanceEndEditable --><!-- InstanceParam name="OptionalRegion1" type="boolean" value="false" --><!-- InstanceBeginEditable name="HeaderScripts" -->
+     <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+     <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+    <style type="text/css">
+        #profile_container {
+            width: 780px;
+            margin: 0 auto;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .profile {
+            background: #fff;
+            float: left;
+            padding: 5px;
+            margin: 5px;
+            cursor: move;
+            -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+            -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+            box-shadow: 0 1px 2px rgba(0,0,0,.5);
+            -webkit-border-radius: .5em;
+            -moz-border-radius: .5em;
+            border-radius: .5em;
+            z-index: 5;
+        }
+        .title {
+            display: block;
+            text-align: center;
+            font-size: 12px;
+            cursor: move;
+        }
+        .icart, .icart label {
+            cursor: e-resize;
+        }
+        .divrm {
+            text-align: right;
+        }
+        .remove {
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            position: relative;
+            top: -7px;
+        }
+        .remove:hover {
+            color: #999;
+        }
+        .clear {
+            clear: both;
+        }
+        #cart_container {
+            margin: 0 auto;
+            width: 780px;
+        }
+        #cart_title span {
+            background:#0088cc;
+            display: block;
+            float: left;
+            color: #fff;
+            font-size: 12px;
+            padding: 5px 10px;
+        }
+        #cart_toolbar {
+            overflow: hidden;
+            border: 1px solid #666;
+            height: 190px;
+            z-index: -2;
+            width: 780px;
+            background: #ffffff;
+        }
+        #cart_profiles {
+            height: 190px;
+            width: 483px;
+            position: relative;
+            padding: 0 0 0 2px;
+            z-index: 0;
+            cursor: e-resize;
+            border-width: 0 2px;
+        }
+        .back {
+        }
+        #pnavigate {
+            width: 760px;
+            margin: 0 auto;
+            border: 1px solid #666;
+            border-top-width: 0;
+            padding: 10px;
+            font-size: 12px;
+        }
+        #pnav_left {
+            float: left;
+        }
+        #pnav_left a {
+            padding: 4px 8px;
+            background: #fff;
+            text-decoration: none;
+            color:#0099cc;
+        }
+        #pnav_left a:hover {
+            background: #666;
+            color: #fff;
+        }
+        #pnav_right {
+            float: right;
+        }
+        .sptext {
+            background: #ffffff;
+            color: #666;
+        }
+        .count {
+            color: #0099cc;
+        }
+        .drop-active {
+            background: #ffff99;
+        }
+        .drop-hover {
+            background: #ffff66;
+        }
+    </style>
+    <script type="text/javascript">
+    var total_profiles = 0;
+	var showtext = " Student";
+    $(document).ready(function() {
+
+        $(".profile").draggable({
+            revert: true            
+        });
+        $("#cart_profiles").draggable({
+            axis: "x"
+        });
+
+        $("#cart_profiles").droppable({
+            accept: ".profile",
+            activeClass: "drop-active",
+            hoverClass: "drop-hover",
+            drop: function(event, ui) {
+                var profile = ui.draggable.html();
+                var profileid = ui.draggable.attr("id");
+                var html = '<div class="profile icart">';
+                html = html + '<div class="divrm">';
+                html = html + '<a onclick="remove(this)" class="remove '+profileid+'">&times;</a>';
+                html = html + '<div/>'+profile+'</div>';
+                $("#cart_profiles").append(html);
+
+                // update total profiles
+                total_profiles++;
+				if(total_profiles > 1 ) {
+					showtext = " Students";
+				}
+                $("#cprofile").html(total_profiles+showtext);
+
+                // expand cart profiles
+                if (total_profiles > 4) {
+                    $("#cart_profiles").animate({width: "+=120"}, 'slow');
+                }
+            }
+        });
+       
+
+        $("#btn_next").click(function() {
+            $("#cart_profiles").animate({left: "-=100"}, 100);
+            return false;
+        });
+        $("#btn_prev").click(function() {
+            $("#cart_profiles").animate({left: "+=100"}, 100);
+            return false;
+        });
+        $("#btn_clear").click(function() {
+            $("#cart_profiles").fadeOut("2000", function() {
+               $(this).html("").fadeIn("fast").css({left: 0});
+            });
+            $("#cprofile").html("0");
+            $("#cprice").html("$ 0");
+            total_profiles = 0;
+            return false;
+        });
+    });
+    function remove(el) {
+        $(el).hide();
+        $(el).parent().parent().effect("highlight", {color: "#ff0000"}, 1000);
+        $(el).parent().parent().fadeOut('1000');
+        setTimeout(function() {
+            $(el).parent().parent().remove();
+            // collapse cart profiles
+            if (total_profiles > 3) {
+                $("#cart_profiles").animate({width: "-=120"}, 'slow');
+            }
+        }, 1100);
+
+        // update total profile
+        total_profiles--;
+        $("#cprofile").html(total_profiles);
+
+    }
+    </script>
+
+
+<!-- InstanceEndEditable -->
+   
+</head>
+
+  <body>
+
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">School Name</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#about">Help</a></li>
+            </ul>
+            <ul class="nav pull-right">
+                  <li id="fat-menu" class="dropdown open">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">My Profile</a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Logout</a></li>
+                    </ul>
+                  </li>
+                </ul>
+            <form class="navbar-search pull-left">
+  				<input type="text" class="search-query" placeholder="Search">
+			</form>            
+            <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Manage</li>
+              <li class="active"><a href="student.html">Student</a></li>
+              <li><a href="#">Staff</a></li>
+              <li><a href="parent.html">Parents</a></li>
+              <li><a href="#">Admin users</a></li>
+              <li class="nav-header">Assign</li>
+              <li><a href="#">Teachers to classes</a></li>
+              <li><a href="add-student-to-class-selection.html">Add students to class</a></li>
+              <li><a href="#">Assign subjects to Students</a></li>
+              <li><a href="#">Marks Management</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li class="nav-header">Configure</li>
+              <li><a href="#">Subjects</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">School notifications</a></li>
+              <li><a href="#">Manage time table</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9"><!-- InstanceBeginEditable name="pagecontent" -->
+        <div class="row">
+          <div class="span9">
+            <h3>Add students to class</h3>
+            <div class="tabbable" style="margin-bottom: 9px;">
+ <div id="student" class="modal hide fade">
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal">x</a>
+              <h3>Aish [11000]</h3>
+              <div align="center"><img src="img/1.jpg"/>
+              </div>
+            </div>
+            <div class="modal-body">
+<table class="table table-bordered table-striped">
+  <tbody>
+    <tr>
+      <td>Class</td>
+      <td>Year 1 A</td>
+    </tr>
+    <tr>
+      <td>Name with Initials</td>
+      <td>Name Her</td>
+    </tr>    
+    <tr>
+      <td>Subjects</td>
+      <td>Math, Tamil, Cinema</td>
+    </tr>
+    <tr>
+      <td>Rest of Profile</td>
+      <td>To be added</td>
+    </tr>             
+  </tbody>
+</table>  
+            </div>
+            <div class="modal-footer">
+              <a href="#" class="btn" data-dismiss="modal">Close</a>
+            </div>
+          </div>  
+ <div class="alert alert-info">Applied search criteria: Grade : 10</div>                        
+      <div id="profile_container">
+          <div class="profile" id="i1">
+              <a href="#student" data-toggle="modal"><img src="img/1.jpg"/></a>
+              <label class="title">Aishwarya</label>
+          </div>
+          <div class="profile" id="i2">
+              <a href="#student" data-toggle="modal"><img src="img/2.jpg"/></a>
+              <label class="title"> God</label>
+          </div>
+          <div class="profile" id="i3">
+              <a href="#student" data-toggle="modal"><img src="img/3.jpg"/></a>
+              <label class="title">Hansika</label>
+          </div>
+          <div class="profile" id="i4">
+              <a href="#student" data-toggle="modal"><img src="img/4.jpg"/></a>
+              <label class="title">Angie</label>
+          </div>
+          <div class="profile" id="i5">
+              <img src="img/5.jpg"/>
+              <label class="title">Lara</label>
+          </div>
+          <div class="profile" id="i6">
+              <img src="img/6.jpg"/>
+              <label class="title">Bean</label>
+          </div>
+          <div class="profile" id="i7">
+              <img src="img/7.jpg"/>
+              <label class="title">Thalai</label>
+          </div>
+          <div class="profile" id="i8">
+              <img src="img/8.jpg"/>
+              <label class="title">Shruthi</label>
+          </div>
+          <div class="profile" id="i9">
+              <img src="img/9.jpg"/>
+              <label class="title">Simran</label>
+          </div>
+          <div class="profile" id="i10">
+              <img src="img/10.jpg"/>
+              <label class="title">23rd</label>
+          </div>
+          <div class="clear"></div>
+      </div>
+      <div id="cart_container">
+          <div id="cart_title">
+              <span> :: Drag and drop students selected to  Year 1 A ::</span>
+              <div class="clear"></div>
+          </div>
+<div id="cart_toolbar">
+              <div id="cart_profiles" class="back"></div>
+          </div>
+          <div id="pnavigate">
+              <div id="pnav_left">
+                  <a href="" id="btn_prev"><</a>
+                  <a href="" id="btn_next">></a>
+                  <a href="" id="btn_clear">Remove all students</a>
+              </div>
+              <div id="pnav_right">
+                  <span class="sptext">
+                      <label class="count" id="cprofile">0 Students</label>
+                  </span>
+              </div>
+              <div class="clear"></div>
+          </div>
+      </div>                
+                
+            </div>
+          </div>
+        </div>
+            <!-- /tabbable -->
+        <!-- InstanceEndEditable --></div>
+        <!--/span-->
+      </div><!--/row-->
+
+
+      <footer>
+        <p>&copy; ySchool - An open source project by Yarl IT Hub</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>   
+  <!-- InstanceBeginEditable name="scripts" -->
+  <!-- InstanceEndEditable --> 
+</body>
+<!-- InstanceEnd --></html>
