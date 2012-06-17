@@ -54,11 +54,10 @@ public class Student extends PersistentObject {
         HibernateUtil.getCurrentSession().delete(this);
     }
     public List<Student> search() {    
-        System.out.print("+++++++++++++++++++====" + fname + "-" + lname);
         return (List) HibernateUtil.getCurrentSession()
                 .createCriteria(Student.class)
-                .add(Restrictions.like(fname, this.getFname() +"%"))
-                .add(Restrictions.like(lname, this.getLname() +"%"))
+                //.add(Restrictions.like(fname, this.getFname() +"%"))
+                //.add(Restrictions.like(lname, this.getLname() +"%"))
                 .list();
     }
     

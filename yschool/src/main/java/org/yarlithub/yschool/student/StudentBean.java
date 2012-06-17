@@ -18,6 +18,7 @@ import org.yarlithub.yschool.repository.Student;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * $LastChangedDate$
@@ -31,10 +32,13 @@ public class StudentBean implements Serializable {
     private static final Logger logger = Logger.getLogger(StudentBean.class);
 
     public Student student = new Student();
-    private Student searchStudent;
+    private Student selectedStudent;
+    private List<Student> studentList;
 
     public StudentBean() {
         student = new Student();
+        selectedStudent = new Student();
+        
     }
 
     public void submit() {
@@ -49,25 +53,37 @@ public class StudentBean implements Serializable {
         this.student = student;
     }
     
-    public String search(){
-        
-        setSearchStudent((Student)student.search().get(0));
-        System.out.println("================Searching student=============");
-        //setSearchStudent((Student) student.search(student));    
-        return "searchStudentResult";
+    public String search(){        
+        setStudentList(student.search()); 
+        System.out.println("+++++++++++++++++No of students" + studentList.size());
+        return "searchStudentList";
     }
 
     /**
      * @return the searchStudent
      */
-    public Student getSearchStudent() {
-        return searchStudent;
+    public Student getSelectedStudent() {
+        return selectedStudent;
     }
 
     /**
      * @param searchStudent the searchStudent to set
      */
-    public void setSearchStudent(Student searchStudent) {
-        this.searchStudent = searchStudent;
+    public void setSelectedStudent(Student selectedStudent) {
+        this.selectedStudent = selectedStudent;
+    }
+
+    /**
+     * @return the studentList
+     */
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    /**
+     * @param studentList the studentList to set
+     */
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
     }
 }

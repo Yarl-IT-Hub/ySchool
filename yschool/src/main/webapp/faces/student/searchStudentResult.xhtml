@@ -19,16 +19,16 @@ and open the template in the editor.
     <div class="span9">    
         <h:form>
             <h:outputLabel value="#{msg.first_name}" for="fName"/>
-            <h:outputText id="fName" value="#{studentBean.searchStudent.fname}"/>
+            <h:outputText id="fName" value="#{studentBean.selectedStudent.fname}"/>
 
             <h:outputLabel value="#{msg.last_name}" for="lName"/>
-            <h:outputText id="lName" value="#{studentBean.searchStudent.lname}"/>    
+            <h:outputText id="lName" value="#{studentBean.selectedStudent.lname}"/>    
 
             <h:outputLabel value="#{msg.dob}" for="dob"/>
-            <h:outputText id="dob" value="#{studentBean.searchStudent.dob}"/>  
+            <h:outputText id="dob" value="#{studentBean.selectedStudent.dob}"/>  
 
             <h:outputLabel value="#{msg.registrationDate}" for="registrationDate"/>
-            <h:outputText id="registrationDate" value="#{studentBean.searchStudent.registrationDate}"/>  
+            <h:outputText id="registrationDate" value="#{studentBean.selectedStudent.registrationDate}"/>  
         </h:form> 
          
     </div>
