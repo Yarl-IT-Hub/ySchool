@@ -19,6 +19,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import org.hibernate.Transaction;
+import org.yarlithub.yschool.repository.Status;
+import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 /**
  * $LastChangedDate$
@@ -34,6 +37,8 @@ public class StudentBean implements Serializable {
     public Student student = new Student();
     private Student selectedStudent;
     private List<Student> studentList;
+    private List<Status> statusList;
+    
 
     public StudentBean() {
         student = new Student();
@@ -53,9 +58,10 @@ public class StudentBean implements Serializable {
         this.student = student;
     }
     
-    public String search(){        
-        setStudentList(student.search()); 
-        System.out.println("+++++++++++++++++No of students" + studentList.size());
+    public String search(){     
+        //final Transaction transaction = HibernateUtil.getCurrentSession().beginTransaction();
+        setStudentList(student.searchStudentByLastName(student.getFullName()));         
+        //transaction.commit();
         return "searchStudentList";
     }
 

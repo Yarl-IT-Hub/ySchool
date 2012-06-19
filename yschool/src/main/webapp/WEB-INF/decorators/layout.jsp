@@ -117,6 +117,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/yschool/js/jquery.js"></script>
+<script src="/yschool/js/jquery.dataTables.js"></script>
 <script src="/yschool/js/bootstrap-transition.js"></script>
 <script src="/yschool/js/bootstrap-alert.js"></script>
 <script src="/yschool/js/bootstrap-modal.js"></script>

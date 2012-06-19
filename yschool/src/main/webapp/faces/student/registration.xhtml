@@ -17,9 +17,9 @@
     <div class="span9">
         <h:form>
             <h:outputLabel value="#{msg.first_name}" for="fName"/>
-            <h:inputText id="fName" value="#{studentBean.student.fname}"/>
-            <h:outputLabel value="#{msg.last_name}" for="lName"/>
-            <h:inputText id="lName" value="#{studentBean.student.lname}"/>
+            <h:inputText id="fName" value="#{studentBean.student.fullName}"/>
+<!--            <h:outputLabel value="#{msg.last_name}" for="lName"/>
+            <h:inputText id="lName" value="#{studentBean.student.lname}"/>-->
             <br/>
             <h:commandButton type="submit" action="#{studentBean.submit}" value="#{msg.save}"/>
         </h:form>

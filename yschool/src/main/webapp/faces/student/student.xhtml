@@ -62,7 +62,7 @@
                                     <label>City</label><input name="" type="text"/>
                                     <label>Country</label><input name="" type="text"/>
 
-                                    <legend>Temprory Address</legend>
+                                    <legend>Temporary Address</legend>
                                     <label>Address line 1</label><input name="" type="text"/>
                                     <label>Address line 2</label><input name="" type="text"/>
                                     <label>City</label><input name="" type="text"/>
@@ -74,8 +74,35 @@
                         </div>
                         <div class="tab-pane" id="2">
                             <legend>Search Student</legend>
-                            <form action="student-search-results.html" method="get" class="well">
-                                <fieldset>
+                            <h:form  styleClass="well">
+                                <h:outputLabel value="#{msg.admissionNumber}" for="admissionNumber"/>
+                                <h:inputText id="admissionNumber" value="#{studentBean.student.admissionNumber}"/>
+                                <h:outputLabel value="#{msg.fullName}" for="fullName"/>
+                                <h:inputText id="fullName" value="#{studentBean.student.fullName}"/>   
+                                <h:outputLabel value="#{msg.nameWithInitials}" for="nameWithInitials"/>
+                                <h:inputText id="nameWithInitials" value="#{studentBean.student.nameWithInitials}"/>                                
+                                <h:outputLabel value="#{msg.gender}" for="gender"/>
+                                <h:inputText id="gender" value="#{studentBean.student.gender}"/>
+                                <h:outputLabel value="#{msg.house}" for="house"/>
+                                <h:inputText id="house" value="#{studentBean.student.house}"/>
+                                <h:outputLabel value="#{msg.studentStatus}" for="studentStatus"/>
+                                <h:inputText id="studentStatus" value="#{studentBean.student.studentStatus}"/>
+                                <h:outputLabel value="#{msg.userName}" for="userName"/>
+                                <h:inputText id="userName" value="#{studentBean.student.userName}"/>
+                                <h:outputLabel value="#{msg.grade}" for="grade"/>
+
+                                <h:outputLabel value="#{msg.class}" for="class"/>
+                                <h:inputText id="class" value="#{studentBean.student.division}"/>
+                                
+                                <h:outputLabel value="#{msg.subject}" for="subject"/>
+                                
+                                <h:outputLabel value="#{msg.calenderYear}" for="calenderYear"/>
+                                <h:inputText id="calenderYear" value="#{studentBean.student.calenderYear}"/>                              
+
+
+                                <br/>
+                                <h:commandButton type="submit" action="#{studentBean.search}" value="#{msg.search}" styleClass="btn btn-primary" />
+<!--                                <fieldset>
                                     <legend>Filter by demographic Information</legend>
                                     <label>Admission Number</label><input name="" type="text"/>
                                     <label>Full Name</label><input name="" type="text"/>
@@ -135,9 +162,10 @@
                                         <option>2009</option>
                                     </select>
 
-                                </fieldset>
-                                <button type="submit" class="btn btn-primary">Search Students</button>
-                            </form>
+                                </fieldset>-->
+                                
+                                
+                            </h:form>
                         </div>
                         <div class="tab-pane" id="3">
                             <p>This is Section 3.</p>
