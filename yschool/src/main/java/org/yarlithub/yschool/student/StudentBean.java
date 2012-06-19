@@ -37,7 +37,7 @@ public class StudentBean implements Serializable {
     public Student student = new Student();
     private Student selectedStudent;
     private List<Student> studentList;
-    private List<Status> statusList;
+    
     
 
     public StudentBean() {
@@ -59,9 +59,7 @@ public class StudentBean implements Serializable {
     }
     
     public String search(){     
-        //final Transaction transaction = HibernateUtil.getCurrentSession().beginTransaction();
-        setStudentList(student.searchStudentByLastName(student.getFullName()));         
-        //transaction.commit();
+        setStudentList(student.searchStudentByfullName(student.getFullName()));      
         return "searchStudentList";
     }
 

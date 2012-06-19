@@ -30,19 +30,18 @@ import java.util.List;
 @Table(name = "student")
 public class Student extends PersistentObject {
 
-//    private String fname;
-//    private String lname;
+
     private String admissionNumber;
     private String fullName;
     private String nameWithInitials;
     private DateTime dob;
-    private String gender;
-    private String house;
-    private String studentStatus;
+    private String gender;//TODO
+    private String house;//TODO
+    private String studentStatus;//TODO
     private String userName;
-    private String division;
+    private String division;//TODO
     private DateTime registrationDate;
-    private int calenderYear;
+    private int calenderYear;//TODO
 
     @ManyToMany
     private List<Grade> grades;
@@ -62,31 +61,12 @@ public class Student extends PersistentObject {
     public void delete() {
         HibernateUtil.getCurrentSession().delete(this);
     }
-//    public List<Student> search() {    
-//        return (List) HibernateUtil.getCurrentSession()
-//                .createQuery("from Student  where lname = ?").setString(0, this.getLname().trim()).list();
-//    }
 
-    public List<Student> searchStudentByLastName(String studentsLastName) {
-        return HibernateUtil.getCurrentSession().createQuery("from Student  where fullName = ?").setString(0, studentsLastName).list();
+
+    public List<Student> searchStudentByfullName(String studentsfullName) {
+        return HibernateUtil.getCurrentSession().createQuery("from Student  where fullName = ?").setString(0, studentsfullName).list();
     }
     
-//    public String getFname() {
-//        return fname;
-//    }
-//
-//    public void setFname(String fname) {
-//        this.fname = fname;
-//    }
-//
-//    public String getLname() {
-//        return lname;
-//    }
-//
-//    public void setLname(String lname) {
-//        this.lname = lname;
-//    }
-
     public DateTime getDob() {
         return dob;
     }

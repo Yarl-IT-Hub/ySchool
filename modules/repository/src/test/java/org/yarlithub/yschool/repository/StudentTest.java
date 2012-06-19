@@ -25,7 +25,7 @@ public class StudentTest {
     @Test
     public void testStudentSearch() {
         final Transaction transaction = HibernateUtil.getCurrentSession().beginTransaction();
-        final List<Student> test = new Student().searchStudentByLastName("Test");
+        final List<Student> test = new Student().searchStudentByfullName("Test");
         for (Student student : test) {
             System.out.println(student);
         }
