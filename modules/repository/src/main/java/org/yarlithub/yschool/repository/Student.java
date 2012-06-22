@@ -35,13 +35,13 @@ public class Student extends PersistentObject {
     private String fullName;
     private String nameWithInitials;
     private DateTime dob;
-    private String gender;//TODO
-    private String house;//TODO
-    private String studentStatus;//TODO
+    private String gender;
+    private String house;
+    private String studentStatus;
     private String userName;
     private String division;//TODO
     private DateTime registrationDate;
-    private int calenderYear;//TODO
+    private int calenderYear;
 
     @ManyToMany
     private List<Grade> grades;

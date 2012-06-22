@@ -158,6 +158,13 @@ public class StudentBean implements Serializable {
      * @return the calenderYearList
      */
     public List<SelectItem> getCalenderYearList() {
+        if(calenderYearList == null){
+           calenderYearList = new ArrayList<>();
+           calenderYearList.add(new SelectItem(2012));
+           calenderYearList.add(new SelectItem(2011));
+           calenderYearList.add(new SelectItem(2010));
+        }       
+        
         return calenderYearList;
     }
 
