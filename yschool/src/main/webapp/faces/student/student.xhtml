@@ -80,13 +80,18 @@
                                 <h:outputLabel value="#{msg.fullName}" for="fullName"/>
                                 <h:inputText id="fullName" value="#{studentBean.student.fullName}"/>   
                                 <h:outputLabel value="#{msg.nameWithInitials}" for="nameWithInitials"/>
-                                <h:inputText id="nameWithInitials" value="#{studentBean.student.nameWithInitials}"/>                                
+                                <h:inputText id="nameWithInitials" value="#{studentBean.student.nameWithInitials}"/>  
                                 <h:outputLabel value="#{msg.gender}" for="gender"/>
-                                <h:inputText id="gender" value="#{studentBean.student.gender}"/>
+                                <h:selectOneMenu value="#{studentBean.student.gender}">
+                                    <f:selectItems value="#{studentBean.genderList}"/>
+                                </h:selectOneMenu>
                                 <h:outputLabel value="#{msg.house}" for="house"/>
-                                <h:inputText id="house" value="#{studentBean.student.house}"/>
-                                <h:outputLabel value="#{msg.studentStatus}" for="studentStatus"/>
-                                <h:inputText id="studentStatus" value="#{studentBean.student.studentStatus}"/>                                
+                                <h:selectOneMenu id="house" value="#{studentBean.student.house}">
+                                    <f:selectItems value="#{studentBean.houseList}"/>
+                                </h:selectOneMenu>                                
+                                <h:selectOneMenu id="studentStatus" value="#{studentBean.student.studentStatus}" label="#{msg.studentStatus}">
+                                    <f:selectItems value="#{studentBean.studentStatusList}"/>
+                                </h:selectOneMenu>                               
                                 <h:outputLabel value="#{msg.filterAccountInfo}" />
                                 <h:outputLabel value="#{msg.userName}" for="userName"/>
                                 <h:inputText id="userName" value="#{studentBean.student.userName}"/>  
@@ -99,69 +104,7 @@
 
 
                                 <br/>
-                                <h:commandButton type="submit" action="#{studentBean.search}" value="#{msg.search}" styleClass="btn btn-primary" />
-<!--                                <fieldset>
-                                    <legend>Filter by demographic Information</legend>
-                                    <label>Admission Number</label><input name="" type="text"/>
-                                    <label>Full Name</label><input name="" type="text"/>
-                                    <label>Name with intials</label><input name="" type="text"/>
-                                    <label>Date of Birth</label><input name="" type="text"/>
-                                    <label>Gender</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">Select</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                    </select>
-                                    <label>House</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">Undefined</option>
-                                        <option>Red</option>
-                                        <option>Yellow</option>
-                                        <option>Blue</option>
-                                    </select>
-                                    <label>Student Status</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">All</option>
-                                        <option>Left</option>
-                                        <option>Current Student</option>
-                                    </select>
-
-
-                                    <legend> Filter Account Information</legend>
-                                    <label>Username</label><input name="" type="text"/>
-
-                                    <legend> Filter Class Information</legend>
-                                    <label>Grade</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">All</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                    <label>Class</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">All</option>
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                    </select>
-                                    <label>Subject</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">All</option>
-                                        <option>Math</option>
-                                        <option>Tamil</option>
-                                        <option>English</option>
-                                    </select>
-                                    <label>In Calendar Year</label>
-                                    <select name="select" id="select">
-                                        <option selected="selected">2012</option>
-                                        <option>2011</option>
-                                        <option>2010</option>
-                                        <option>2009</option>
-                                    </select>
-
-                                </fieldset>-->
-                                
+                                <h:commandButton type="submit" action="#{studentBean.search}" value="#{msg.search}" styleClass="btn btn-primary" />                                
                                 
                             </h:form>
                         </div>
