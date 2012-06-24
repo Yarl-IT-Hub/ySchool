@@ -19,6 +19,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.faces.model.SelectItem;
 import org.yarlithub.yschool.repository.House;
@@ -36,21 +37,23 @@ public class StudentBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(StudentBean.class);
 
-    public Student student = new Student();
+    public Student student;
     private Student selectedStudent;
     private List<Student> studentList;
-    private List<SelectItem> genderList;
-    private List<SelectItem> houseList;
-    private List<SelectItem> studentStatusList;
+    private List<SelectItem> genderList = Arrays.asList(new SelectItem("MALE"), new SelectItem("FEMALE"));
+    private List<SelectItem> houseList = Arrays.asList();
+    private List<SelectItem> studentStatusList = Arrays.asList(new SelectItem(Status.COMPLETED), new SelectItem(Status.PENDING), new SelectItem(Status.POSTPONED));
     private List<SelectItem> calenderYearList;
     
 
     public StudentBean() {
+        logger.info("initiation a new student bean");
         student = new Student();
         selectedStudent = new Student();        
     }
 
     public void submit() {
+        logger.info("saving student information [" + student + "]");
         student.save();
     }
 
@@ -62,7 +65,8 @@ public class StudentBean implements Serializable {
         this.student = student;
     }
     
-    public String search(){     
+    public String search(){
+        logger.info("search for student by full name[" + student.getFullName() + "]");
         setStudentList(student.searchStudentByfullName(student.getFullName()));      
         return "searchStudentList";
     }
@@ -99,11 +103,6 @@ public class StudentBean implements Serializable {
      * @return the genderList
      */
     public List<SelectItem> getGenderList() {
-        if(genderList == null){
-           genderList = new ArrayList<>();
-           genderList.add(new SelectItem("MALE"));
-           genderList.add(new SelectItem("FEMALE"));
-        }        
         return genderList;
     }
 
@@ -120,10 +119,10 @@ public class StudentBean implements Serializable {
     public List<SelectItem> getHouseList() {
         if(houseList == null){
            houseList = new ArrayList<>();
-           houseList.add(new SelectItem(House.BLUE));
-           houseList.add(new SelectItem(House.GREEN));
            houseList.add(new SelectItem(House.RED));
-        }        
+           houseList.add(new SelectItem(House.YELLOW));
+           houseList.add(new SelectItem(House.BLUE));
+        }
         return houseList;
     }
 
@@ -138,12 +137,6 @@ public class StudentBean implements Serializable {
      * @return the studentStatusList
      */
     public List<SelectItem> getStudentStatusList() {
-        if(studentStatusList == null){
-           studentStatusList = new ArrayList<>();
-           studentStatusList.add(new SelectItem(Status.COMPLETED));
-           studentStatusList.add(new SelectItem(Status.PENDING));
-           studentStatusList.add(new SelectItem(Status.POSTPONED));
-        }       
         return studentStatusList;
     }
 

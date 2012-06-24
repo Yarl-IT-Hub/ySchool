@@ -14,7 +14,7 @@ How to start
 ------------
 
 1) Run mvn clean install from top of the project
-2) run mvn clean jetty:run within yschool main module
+2) run mvn clean jetty:run-war within yschool main module
 
 
 NOTE

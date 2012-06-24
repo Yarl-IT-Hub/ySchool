@@ -10,6 +10,6 @@ package org.yarlithub.yschool.repository;
  */
 public enum House {
     RED,
-    BLUE,
-    GREEN    
+    YELLOW,
+    BLUE
 }

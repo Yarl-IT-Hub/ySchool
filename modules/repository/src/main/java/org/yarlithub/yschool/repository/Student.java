@@ -231,5 +231,24 @@ public class Student extends PersistentObject {
         this.calenderYear = calenderYear;
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Student");
+        sb.append("{admissionNumber='").append(admissionNumber).append('\'');
+        sb.append(", fullName='").append(fullName).append('\'');
+        sb.append(", nameWithInitials='").append(nameWithInitials).append('\'');
+        sb.append(", dob=").append(dob);
+        sb.append(", gender='").append(gender).append('\'');
+        sb.append(", house='").append(house).append('\'');
+        sb.append(", studentStatus='").append(studentStatus).append('\'');
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", division='").append(division).append('\'');
+        sb.append(", registrationDate=").append(registrationDate);
+        sb.append(", calenderYear=").append(calenderYear);
+        sb.append(", grades=").append(grades);
+        sb.append(", subject=").append(subject);
+        sb.append('}');
+        return sb.toString();
+    }
 }
