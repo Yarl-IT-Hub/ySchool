@@ -28,18 +28,15 @@
         makeLinkActive("student_search");
     </script>
     <h:form>
-    <div class="span9">
-        <h:dataTable id="studentDetails" value="#{studentBean.studentList}" var="student"  cellpadding="0" cellspacing="0" border="0" styleClass="display" rowClasses="gradeC" width="100%">
+    <div class="span9">        
                     
                 <h:column >                    
-                    <f:facet name="header">#{msg.id}</f:facet>     
-                     <h:commandLink value="#{student.id}" action="searchStudentResult">
-                        <f:setPropertyActionListener target="#{studentBean.selectedStudent}" value="#{student}"/>
-                    </h:commandLink>                               
+                    <f:facet name="header">#{msg.id}</f:facet>    
+                    <h:outputText value="#{student.id}"></h:outputText>                                                  
                 </h:column>
                     
                 <h:column>                    
-                    <f:facet name="header">#{msg.full.name}</f:facet>
+                    <f:facet name="header">#{msg.full_name}</f:facet>
                     <h:outputText value="#{student.fullName}"></h:outputText>                                        
                 </h:column>          
 
@@ -50,11 +47,9 @@
                 </h:column>
 
                 <h:column>
-                    <f:facet name="header">#{msg.registration.date}</f:facet>
+                    <f:facet name="header">#{msg.registration_date}</f:facet>
                     <h:outputText value="#{student.registrationDate}"></h:outputText>    		
-                </h:column>
-
-            </h:dataTable>
+                </h:column>            
 
         </div>
     </h:form>

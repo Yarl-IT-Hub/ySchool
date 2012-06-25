@@ -38,7 +38,7 @@ public class StudentBean implements Serializable {
     private static final Logger logger = Logger.getLogger(StudentBean.class);
 
     public Student student;
-    private Student selectedStudent;
+    //private Student selectedStudent;
     private List<Student> studentList;
     private List<SelectItem> genderList = Arrays.asList(new SelectItem("MALE"), new SelectItem("FEMALE"));
     private List<SelectItem> houseList = Arrays.asList();
@@ -49,7 +49,7 @@ public class StudentBean implements Serializable {
     public StudentBean() {
         logger.info("initiation a new student bean");
         student = new Student();
-        selectedStudent = new Student();        
+//        selectedStudent = new Student();        
     }
 
     public void submit() {
@@ -71,19 +71,19 @@ public class StudentBean implements Serializable {
         return "searchStudentList";
     }
 
-    /**
-     * @return the searchStudent
-     */
-    public Student getSelectedStudent() {
-        return selectedStudent;
-    }
-
-    /**
-     * @param searchStudent the searchStudent to set
-     */
-    public void setSelectedStudent(Student selectedStudent) {
-        this.selectedStudent = selectedStudent;
-    }
+//    /**
+//     * @return the searchStudent
+//     */
+//    public Student getSelectedStudent() {
+//        return selectedStudent;
+//    }
+//
+//    /**
+//     * @param searchStudent the searchStudent to set
+//     */
+//    public void setSelectedStudent(Student selectedStudent) {
+//        this.selectedStudent = selectedStudent;
+//    }
 
     /**
      * @return the studentList

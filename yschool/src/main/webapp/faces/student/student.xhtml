@@ -33,8 +33,8 @@
                             <h:form class="well">
                                 <fieldset>
                                     <legend>#{msg.demographics}</legend>
-                                    <label>#{msg.admission.number}</label><input name="" type="text"/>
-                                    <label>#{msg.full.name}</label><input name="" type="text"/>
+                                    <label>#{msg.admission_number}</label><input name="" type="text"/>
+                                    <label>#{msg.full_name}</label><input name="" type="text"/>
                                     <label>#{msg.dob}</label><input name="" type="text"/>
                                     <h:outputLabel value="#{msg.gender}" for="add-gender"/>
                                     <h:selectOneMenu value="#{studentBean.student.gender}" id="add-gender">
@@ -45,8 +45,8 @@
                                         <f:selectItems value="#{studentBean.houseList}"/>
                                     </h:selectOneMenu>
 
-                                    <legend>#{msg.account.information}</legend>
-                                    <label>#{msg.user.name}</label><input name="" type="text"/>
+                                    <legend>#{msg.account_information}</legend>
+                                    <label>#{msg.user_name}</label><input name="" type="text"/>
                                     <label>#{msg.password}</label><input name="input" type="text"/>
                                     <label>Profile Picture</label><input name="" type="file"/>
 
@@ -69,11 +69,11 @@
                         <div class="tab-pane" id="2">
                             <legend>Search Student</legend>
                             <h:form  styleClass="well">
-                                <h:outputLabel value="#{msg. admission.number }" for="admissionNumber"/>
+                                <h:outputLabel value="#{msg.admission_number}" for="admissionNumber"/>
                                 <h:inputText id="admissionNumber" value="#{studentBean.student.admissionNumber}"/>
-                                <h:outputLabel value="#{msg. full.name }" for="fullName"/>
+                                <h:outputLabel value="#{msg. full_name }" for="fullName"/>
                                 <h:inputText id="fullName" value="#{studentBean.student.fullName}"/>   
-                                <h:outputLabel value="#{msg. name.with.initials }" for="nameWithInitials"/>
+                                <h:outputLabel value="#{msg. name_with_initials }" for="nameWithInitials"/>
                                 <h:inputText id="nameWithInitials" value="#{studentBean.student.nameWithInitials}"/>  
                                 <h:outputLabel value="#{msg.gender}" for="gender"/>
                                 <h:selectOneMenu value="#{studentBean.student.gender}">
@@ -82,18 +82,19 @@
                                 <h:outputLabel value="#{msg.house}" for="house"/>
                                 <h:selectOneMenu id="house" value="#{studentBean.student.house}">
                                     <f:selectItems value="#{studentBean.houseList}"/>
-                                </h:selectOneMenu>                                
-                                <h:selectOneMenu id="studentStatus" value="#{studentBean.student.studentStatus}" label="#{msg. student.status }">
+                                </h:selectOneMenu> 
+                                <h:outputLabel value="#{msg.student_status}" for="studentStatus"/>
+                                <h:selectOneMenu id="studentStatus" value="#{studentBean.student.studentStatus}" >
                                     <f:selectItems value="#{studentBean.studentStatusList}"/>
                                 </h:selectOneMenu>                               
-                                <h:outputLabel value="#{msg.filter.account.info }" />
-                                <h:outputLabel value="#{msg.user.name }" for="userName"/>
+                                <h:outputLabel value="#{msg.filter_account_info }" />
+                                <h:outputLabel value="#{msg.user_name }" for="userName"/>
                                 <h:inputText id="userName" value="#{studentBean.student.userName}"/>  
-                                <h:outputLabel value="#{msg.filter.class.info }" />
+                                <h:outputLabel value="#{msg.filter_class_info }" />
                                 <h:outputLabel value="#{msg.class}" for="class"/>
                                 <h:inputText id="class" value="#{studentBean.student.division}"/>
                                 <h:outputLabel value="#{msg.subject}" for="subject"/>
-                                <h:outputLabel value="#{msg. calender.year }" for="calenderYear"/>
+                                <h:outputLabel value="#{msg. calender_year }" for="calenderYear"/>
                                 <h:inputText id="calenderYear" value="#{studentBean.student.calenderYear}"/>
                                 <br/>
                                 <h:commandButton type="submit" action="#{studentBean.search}" value="#{msg.search}" styleClass="btn btn-primary" />                                
