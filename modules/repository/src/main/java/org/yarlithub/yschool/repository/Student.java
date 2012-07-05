@@ -42,6 +42,8 @@ public class Student extends PersistentObject {
     private String division;//TODO
     private DateTime registrationDate;
     private int calenderYear;
+    //private int grade;
+    
 
     @ManyToMany
     private List<Grade> grades;
@@ -66,6 +68,8 @@ public class Student extends PersistentObject {
     public List<Student> searchStudentByfullName(String studentsfullName) {
         return HibernateUtil.getCurrentSession().createQuery("from Student  where fullName = ?").setString(0, studentsfullName).list();
     }
+    
+
     
     public DateTime getDob() {
         return dob;
@@ -251,4 +255,6 @@ public class Student extends PersistentObject {
         sb.append('}');
         return sb.toString();
     }
+
+
 }

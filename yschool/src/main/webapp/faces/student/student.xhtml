@@ -44,6 +44,9 @@
                                     <h:selectOneMenu id="add-house" value="#{studentBean.student.house}">
                                         <f:selectItems value="#{studentBean.houseList}"/>
                                     </h:selectOneMenu>
+                                    <h:selectManyListbox>
+                                        <f:selectItems value="#{studentBean.gradeList}"/>
+                                    </h:selectManyListbox>
 
                                     <legend>#{msg.account_information}</legend>
                                     <label>#{msg.user_name}</label><input name="" type="text"/>
@@ -91,6 +94,7 @@
                                 <h:outputLabel value="#{msg.user_name }" for="userName"/>
                                 <h:inputText id="userName" value="#{studentBean.student.userName}"/>  
                                 <h:outputLabel value="#{msg.filter_class_info }" />
+                                
                                 <h:outputLabel value="#{msg.class}" for="class"/>
                                 <h:inputText id="class" value="#{studentBean.student.division}"/>
                                 <h:outputLabel value="#{msg.subject}" for="subject"/>
