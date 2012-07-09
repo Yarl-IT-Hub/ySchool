@@ -31,11 +31,12 @@
                                 <div class="bar" style="width: 33%;"></div>
                             </div>
                             <h:form class="well">
+                                 <h:message for="#{null}" errorStyle="color : red;" infoStyle="color : green"/>
                                 <fieldset>
                                     <legend>#{msg.demographics}</legend>
-                                    <label>#{msg.admission_number}</label><input name="" type="text"/>
-                                    <label>#{msg.full_name}</label><input name="" type="text"/>
-                                    <label>#{msg.dob}</label><input name="" type="text"/>
+                                    <label>#{msg.admission_number}</label> <h:inputText id="add-adNo" value="" required="true" requiredMessage=" Admission No is required"/>  <h:message for="add-adNo" errorStyle="color : red" />
+                                    <label>#{msg.full_name}</label><h:inputText id="add-name" value="" required="true" requiredMessage=" Name is required"/>  <h:message for="add-name" errorStyle="color : red" />
+                                    <label>#{msg.dob}</label><h:inputText id="add-dob" value="" required="true" requiredMessage=" Date of birth is required"/>  <h:message for="add-dob" errorStyle="color : red" />
                                     <h:outputLabel value="#{msg.gender}" for="add-gender"/>
                                     <h:selectOneMenu value="#{studentBean.student.gender}" id="add-gender">
                                         <f:selectItems value="#{studentBean.genderList}"/>
@@ -49,15 +50,15 @@
                                     </h:selectManyListbox>
 
                                     <legend>#{msg.account_information}</legend>
-                                    <label>#{msg.user_name}</label><input name="" type="text"/>
-                                    <label>#{msg.password}</label><input name="input" type="text"/>
+                                    <label>#{msg.user_name}</label><h:inputText id="add-username" value="" required="true" requiredMessage=" User Name is required"/>  <h:message for="add-username" errorStyle="color : red" />
+                                    <label>#{msg.password}</label><h:inputText id="add-pwd" value="" required="true" requiredMessage=" Password is required"/>  <h:message for="add-pwd" errorStyle="color : red" />
                                     <label>Profile Picture</label><input name="" type="file"/>
 
                                     <legend>Permanent Address</legend>
-                                    <label>Address line 1</label><input name="" type="text"/>
-                                    <label>Address line 2</label><input name="" type="text"/>
-                                    <label>City</label><input name="" type="text"/>
-                                    <label>Country</label><input name="" type="text"/>
+                                    <label>Address line 1</label><h:inputText id="add-add1" value="" required="true" requiredMessage=" Address is required"/>  <h:message for="add-add1" errorStyle="color : red" />
+                                    <label>Address line 2</label><h:inputText id="add-add2" value="" required="true" requiredMessage=" Address is required"/>  <h:message for="add-add2" errorStyle="color : red" />
+                                    <label>City</label><h:inputText id="add-city" value="" required="true" requiredMessage=" City is required"/>  <h:message for="add-city" errorStyle="color : red" />
+                                    <label>Country</label><h:inputText id="add-country" value="" required="true" requiredMessage=" Country is required"/>  <h:message for="add-country" errorStyle="color : red" />
 
                                     <legend>Temporary Address</legend>
                                     <label>Address line 1</label><input name="" type="text"/>
@@ -65,7 +66,8 @@
                                     <label>City</label><input name="" type="text"/>
                                     <label>Country</label><input name="" type="text"/>
                                 </fieldset>
-                                <button type="submit" class="btn btn-primary">Next</button>
+                           <!--     <button type="submit" class="btn btn-primary">Next</button> -->
+                           <h:commandButton  value="Next"  />
                             </h:form>
 
                         </div>
