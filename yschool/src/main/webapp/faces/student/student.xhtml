@@ -31,40 +31,83 @@
                                 <div class="bar" style="width: 33%;"></div>
                             </div>
                             <h:form class="well">
-                                 <h:message for="#{null}" errorStyle="color : red;" infoStyle="color : green"/>
                                 <fieldset>
                                     <legend>#{msg.demographics}</legend>
-                                    <label>#{msg.admission_number}</label> <h:inputText id="add-adNo" value="" required="true" requiredMessage=" Admission No is required"/>  <h:message for="add-adNo" errorStyle="color : red" />
-                                    <label>#{msg.full_name}</label><h:inputText id="add-name" value="" required="true" requiredMessage=" Name is required"/>  <h:message for="add-name" errorStyle="color : red" />
-                                    <label>#{msg.dob}</label><h:inputText id="add-dob" value="" required="true" requiredMessage=" Date of birth is required"/>  <h:message for="add-dob" errorStyle="color : red" />
+                                    
+                                    <label>#{msg.admission_number}</label>
+                                    <h:inputText id="add-adNo" value="#{studentBean.createdStudent.admissionNumber}" required="true" requiredMessage=" Admission No is required">
+                                        <f:validateLength minimum="6" maximum="6" />
+                                    </h:inputText>
+                                     <h:message for="add-adNo" errorStyle="color : red" />
+
+                                    
+                                    <label>#{msg.full_name}</label>
+                                    <h:inputText id="add-name" value="#{studentBean.createdStudent.fullName}" required="true" requiredMessage=" Name is required">  
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                     <h:message for="add-name" errorStyle="color : red" />
+                                    
+                                     <label>#{msg.dob}</label>
+                                     <h:inputText id="add-dob" value="#{studentBean.createdStudent.dob}" required="true" requiredMessage=" Date of birth is required">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                                     </h:inputText>
+                                        <h:message for="add-dob" errorStyle="color : red" />
+                                        
                                     <h:outputLabel value="#{msg.gender}" for="add-gender"/>
                                     <h:selectOneMenu value="#{studentBean.student.gender}" id="add-gender">
                                         <f:selectItems value="#{studentBean.genderList}"/>
                                     </h:selectOneMenu>
+                                    
                                     <h:outputLabel value="#{msg.house}" for="add-house"/>
                                     <h:selectOneMenu id="add-house" value="#{studentBean.student.house}">
                                         <f:selectItems value="#{studentBean.houseList}"/>
                                     </h:selectOneMenu>
+                                    
+                                    <h:selectManyListbox>
+                                        <f:selectItems value="#{studentBean.gradeList}"/>
+                                    </h:selectManyListbox>
 
                                     <legend>#{msg.account_information}</legend>
-                                    <label>#{msg.user_name}</label><h:inputText id="add-username" value="" required="true" requiredMessage=" User Name is required"/>  <h:message for="add-username" errorStyle="color : red" />
-                                    <label>#{msg.password}</label><h:inputText id="add-pwd" value="" required="true" requiredMessage=" Password is required"/>  <h:message for="add-pwd" errorStyle="color : red" />
+                                    
+                                    <label>#{msg.user_name}</label>
+                                    <h:inputText id="add-username" value="#{studentBean.createdStudent.userName}" required="true" requiredMessage=" User Name is required"> 
+                                        
+                                    </h:inputText>
+                                    <h:message for="add-username" errorStyle="color : red" />
+                                    
+                                    
+                                    <label>#{msg.password}</label>
+                                    <h:inputSecret id="add-pwd" value="#{studentBean.createdStudent.password}" required="true" requiredMessage=" Password is required">
+                                        <f:validateLength minimum="8" maximum="15"/>
+                                    </h:inputSecret>
+                                    <h:message for="add-pwd" errorStyle="color : red" />
+                                    
                                     <label>Profile Picture</label><input name="" type="file"/>
-
+                                    
                                     <legend>Permanent Address</legend>
-                                    <label>Address line 1</label><h:inputText id="add-add1" value="" required="true" requiredMessage=" Address is required"/>  <h:message for="add-add1" errorStyle="color : red" />
-                                    <label>Address line 2</label><h:inputText id="add-add2" value="" required="true" requiredMessage=" Address is required"/>  <h:message for="add-add2" errorStyle="color : red" />
-                                    <label>City</label><h:inputText id="add-city" value="" required="true" requiredMessage=" City is required"/>  <h:message for="add-city" errorStyle="color : red" />
-                                    <label>Country</label><h:inputText id="add-country" value="" required="true" requiredMessage=" Country is required"/>  <h:message for="add-country" errorStyle="color : red" />
+                                    <label>Address line 1</label>
+                                    <h:inputText id="add-add1" value="#{studentBean.createdStudent.addressLine1}" required="true" requiredMessage=" Address is required"/> 
+                                    <h:message for="add-add1" errorStyle="color : red" />
+                                    
+                                    <label>Address line 2</label>
+                                    <h:inputText id="add-add2" value="#{studentBean.createdStudent.addressLine2}" required="true" requiredMessage=" Address is required"/> 
+                                    <h:message for="add-add2" errorStyle="color : red" />
+                                    
+                                    <label>City</label>
+                                    <h:inputText id="add-city" value="#{studentBean.createdStudent.city}" required="true" requiredMessage=" City is required"/>  
+                                    <h:message for="add-city" errorStyle="color : red" />
+                                    
+                                    <label>Country</label>
+                                    <h:inputText id="add-country" value="#{studentBean.createdStudent.country}" required="true" requiredMessage=" Country is required"/>  
+                                    <h:message for="add-country" errorStyle="color : red" />
 
                                     <legend>Temporary Address</legend>
-                                    <label>Address line 1</label><input name="" type="text"/>
-                                    <label>Address line 2</label><input name="" type="text"/>
-                                    <label>City</label><input name="" type="text"/>
-                                    <label>Country</label><input name="" type="text"/>
+                                    <label>Address line 1</label><h:inputText id="add-tmp-add1" value="#{studentBean.createdStudent.tempaddressLine1}"/>  
+                                    <label>Address line 2</label><h:inputText id="add-tmp-add2" value="#{studentBean.createdStudent.tempaddressLine2}"/> 
+                                    <label>Country</label><h:inputText id="add-tmp-country" value="#{studentBean.createdStudent.tempcountry}"/>
                                 </fieldset>
-                           <!--     <button type="submit" class="btn btn-primary">Next</button> -->
-                           <h:commandButton  value="Next"  />
+                                <h:commandButton value="Next" type="submit"/>
                             </h:form>
 
                         </div>
@@ -93,6 +136,7 @@
                                 <h:outputLabel value="#{msg.user_name }" for="userName"/>
                                 <h:inputText id="userName" value="#{studentBean.student.userName}"/>  
                                 <h:outputLabel value="#{msg.filter_class_info }" />
+                                
                                 <h:outputLabel value="#{msg.class}" for="class"/>
                                 <h:inputText id="class" value="#{studentBean.student.division}"/>
                                 <h:outputLabel value="#{msg.subject}" for="subject"/>

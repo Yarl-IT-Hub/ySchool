@@ -12,18 +12,19 @@
  */
 package org.yarlithub.yschool.student;
 
-import org.apache.log4j.Logger;
-import org.yarlithub.yschool.repository.Student;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import org.apache.log4j.Logger;
 import org.yarlithub.yschool.repository.House;
 import org.yarlithub.yschool.repository.Status;
+import org.yarlithub.yschool.repository.Student;
 
 
 /**
@@ -36,25 +37,33 @@ import org.yarlithub.yschool.repository.Status;
 public class StudentBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(StudentBean.class);
+    
+    //private PreLoadData data ;
 
     public Student student;
     //private Student selectedStudent;
+    private Student createdStudent;
     private List<Student> studentList;
     private List<SelectItem> genderList = Arrays.asList(new SelectItem("MALE"), new SelectItem("FEMALE"));
     private List<SelectItem> houseList = Arrays.asList();
     private List<SelectItem> studentStatusList = Arrays.asList(new SelectItem(Status.COMPLETED), new SelectItem(Status.PENDING), new SelectItem(Status.POSTPONED));
-    private List<SelectItem> calenderYearList;
+    private List<SelectItem> calenderYearList,gradeList,divisionList,mediumList,subjectList;
     
 
     public StudentBean() {
         logger.info("initiation a new student bean");
         student = new Student();
-//        selectedStudent = new Student();        
+        createdStudent=new Student();
+        //loadInitData();
+      
     }
 
     public void submit() {
         logger.info("saving student information [" + student + "]");
+          FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "New Student successfully inserted.", null));
         student.save();
+      
     }
 
     public Student getStudent() {
@@ -70,20 +79,6 @@ public class StudentBean implements Serializable {
         setStudentList(student.searchStudentByfullName(student.getFullName()));      
         return "searchStudentList";
     }
-
-//    /**
-//     * @return the searchStudent
-//     */
-//    public Student getSelectedStudent() {
-//        return selectedStudent;
-//    }
-//
-//    /**
-//     * @param searchStudent the searchStudent to set
-//     */
-//    public void setSelectedStudent(Student selectedStudent) {
-//        this.selectedStudent = selectedStudent;
-//    }
 
     /**
      * @return the studentList
@@ -166,5 +161,82 @@ public class StudentBean implements Serializable {
      */
     public void setCalenderYearList(List<SelectItem> calenderYearList) {
         this.calenderYearList = calenderYearList;
+    } 
+    
+//    public void loadInitData(){
+//        data.setDataType("PRE_GRADE");
+//        data.setDataList(Arrays.asList("1","2","3","4","5"));        
+//        data.save();
+//        
+//        setGradeList((List<SelectItem>) data.loadData("PRE_GRADE"));
+//        setMediumList((List<SelectItem>) data.loadData("PRE_MEDIUM"));
+//        setSubjectList((List<SelectItem>) data.loadData("PRE_SUBJECT"));
+//        setDivisionList((List<SelectItem>) data.loadData("PRE_DIVISION"));
+//    }
+
+    /**
+     * @return the gradeList
+     */
+    public List<SelectItem> getGradeList() {
+        return gradeList;
     }
+
+    /**
+     * @param gradeList the gradeList to set
+     */
+    public void setGradeList(List<SelectItem> gradeList) {
+        this.gradeList = gradeList;
+    }
+
+    /**
+     * @return the divisionList
+     */
+    public List<SelectItem> getDivisionList() {
+        return divisionList;
+    }
+
+    /**
+     * @param divisionList the divisionList to set
+     */
+    public void setDivisionList(List<SelectItem> divisionList) {
+        this.divisionList = divisionList;
+    }
+
+    /**
+     * @return the mediumList
+     */
+    public List<SelectItem> getMediumList() {
+        return mediumList;
+    }
+
+    /**
+     * @param mediumList the mediumList to set
+     */
+    public void setMediumList(List<SelectItem> mediumList) {
+        this.mediumList = mediumList;
+    }
+
+    /**
+     * @return the subjectList
+     */
+    public List<SelectItem> getSubjectList() {
+        return subjectList;
+    }
+
+    /**
+     * @param subjectList the subjectList to set
+     */
+    public void setSubjectList(List<SelectItem> subjectList) {
+        this.subjectList = subjectList;
+    }
+
+    public Student getCreatedStudent() {
+        return createdStudent;
+    }
+
+    public void setCreatedStudent(Student createdStudent) {
+        this.createdStudent = createdStudent;
+    }
+    
+    
 }
