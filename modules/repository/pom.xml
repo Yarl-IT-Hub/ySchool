@@ -51,12 +51,6 @@
             <artifactId>hsqldb</artifactId>
             <version>2.2.8</version>
         </dependency>
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>2.1.7</version>
-            <scope>provided</scope>
-        </dependency>
         <!--<dependency>-->
             <!--<groupId>joda-time</groupId>-->
             <!--<artifactId>joda-time-hibernate</artifactId>-->
