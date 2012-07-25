@@ -12,19 +12,22 @@
  */
 package org.yarlithub.yschool.student;
 
-import org.apache.log4j.Logger;
-import org.yarlithub.yschool.repository.Student;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import org.apache.log4j.Logger;
 import org.yarlithub.yschool.repository.House;
-import org.yarlithub.yschool.repository.PreLoadData;
+import org.yarlithub.yschool.service.InitialDateLoaderService;
 import org.yarlithub.yschool.repository.Status;
+import org.yarlithub.yschool.repository.Student;
 
 
 /**
@@ -37,29 +40,34 @@ import org.yarlithub.yschool.repository.Status;
 public class StudentBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(StudentBean.class);
-    
-    private PreLoadData data ;
+
+//    @ManagedProperty(value = "#{initialDateLoaderService}")
+    private transient InitialDateLoaderService initialDateLoaderService;
 
     public Student student;
-    //private Student selectedStudent;
     private List<Student> studentList;
     private List<SelectItem> genderList = Arrays.asList(new SelectItem("MALE"), new SelectItem("FEMALE"));
     private List<SelectItem> houseList = Arrays.asList();
     private List<SelectItem> studentStatusList = Arrays.asList(new SelectItem(Status.COMPLETED), new SelectItem(Status.PENDING), new SelectItem(Status.POSTPONED));
     private List<SelectItem> calenderYearList,gradeList,divisionList,mediumList,subjectList;
-    
 
     public StudentBean() {
         logger.info("initiation a new student bean");
         student = new Student();
-        data = new PreLoadData();
+    }
+
+    @PostConstruct
+    public void init() {
+        initialDateLoaderService = new InitialDateLoaderService();
         loadInitData();
-      
     }
 
     public void submit() {
         logger.info("saving student information [" + student + "]");
+          FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "New Student successfully inserted.", null));
         student.save();
+      
     }
 
     public Student getStudent() {
@@ -160,14 +168,12 @@ public class StudentBean implements Serializable {
     } 
     
     public void loadInitData(){
-        data.setDataType("PRE_GRADE");
-        data.setDataList(Arrays.asList("1","2","3","4","5"));        
-        data.save();
-        
-        setGradeList((List<SelectItem>) data.loadData("PRE_GRADE"));
-        setMediumList((List<SelectItem>) data.loadData("PRE_MEDIUM"));
-        setSubjectList((List<SelectItem>) data.loadData("PRE_SUBJECT"));
-        setDivisionList((List<SelectItem>) data.loadData("PRE_DIVISION"));
+        initialDateLoaderService.setDataType("PRE_GRADE");
+        initialDateLoaderService.setDataList(Arrays.asList("1", "2", "3", "4", "5"));
+        setGradeList((List<SelectItem>) initialDateLoaderService.loadData("PRE_GRADE"));
+        setMediumList((List<SelectItem>) initialDateLoaderService.loadData("PRE_MEDIUM"));
+        setSubjectList((List<SelectItem>) initialDateLoaderService.loadData("PRE_SUBJECT"));
+        setDivisionList((List<SelectItem>) initialDateLoaderService.loadData("PRE_DIVISION"));
     }
 
     /**
@@ -224,5 +230,9 @@ public class StudentBean implements Serializable {
      */
     public void setSubjectList(List<SelectItem> subjectList) {
         this.subjectList = subjectList;
+    }
+
+    public void setInitialDateLoaderService(InitialDateLoaderService initialDateLoaderService) {
+        this.initialDateLoaderService = initialDateLoaderService;
     }
 }

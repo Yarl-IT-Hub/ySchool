@@ -12,13 +12,13 @@
  */
 package org.yarlithub.yschool.repository;
 
-import org.joda.time.DateTime;
-import org.yarlithub.yschool.repository.util.HibernateUtil;
-
+import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.List;
+import org.joda.time.DateTime;
+import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 
 /**
@@ -34,11 +34,20 @@ public class Student extends PersistentObject {
     private String admissionNumber;
     private String fullName;
     private String nameWithInitials;
-    private DateTime dob;
+    private Date dob;
+    private String addressLine1; // new
+    private String addressLine2; // new
+    private String city;
+    private String country;
+    private String tempaddressLine1;
+    private String tempaddressLine2;
+    private String tempcountry;
+    
     private String gender;
     private String house;
     private String studentStatus;
     private String userName;
+    private String password;
     private String division;//TODO
     private DateTime registrationDate;
     private int calenderYear;
@@ -68,14 +77,12 @@ public class Student extends PersistentObject {
     public List<Student> searchStudentByfullName(String studentsfullName) {
         return HibernateUtil.getCurrentSession().createQuery("from Student  where fullName = ?").setString(0, studentsfullName).list();
     }
-    
 
-    
-    public DateTime getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(DateTime dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -235,6 +242,74 @@ public class Student extends PersistentObject {
         this.calenderYear = calenderYear;
     }
 
+    
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTempaddressLine1() {
+        return tempaddressLine1;
+    }
+
+    public void setTempaddressLine1(String tempaddressLine1) {
+        this.tempaddressLine1 = tempaddressLine1;
+    }
+
+    public String getTempaddressLine2() {
+        return tempaddressLine2;
+    }
+
+    public void setTempaddressLine2(String tempaddressLine2) {
+        this.tempaddressLine2 = tempaddressLine2;
+    }
+
+    public String getTempcountry() {
+        return tempcountry;
+    }
+
+    public void setTempcountry(String tempcountry) {
+        this.tempcountry = tempcountry;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+   
+    
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
@@ -255,6 +330,4 @@ public class Student extends PersistentObject {
         sb.append('}');
         return sb.toString();
     }
-
-
 }
