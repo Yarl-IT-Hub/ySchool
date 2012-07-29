@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <script type="text/javascript">
+        makeLinkActive("staff");
+    </script>
+
+    <div class="span9">
+        <div class="row">
+            <div class="span9">
+                <h3>Manage Staff</h3>
+
+                <div class="tabbable" style="margin-bottom: 9px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#1" data-toggle="tab"> Add Staff</a></li>
+                        <li><a href="#2" data-toggle="tab">Search Staff</a></li>
+                        
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="1">
+                            <div class="progress">
+                                <div class="bar" style="width: 33%;"></div>
+                            </div>
+                            <h:form class="well">
+                                <fieldset>
+                                    <legend>#{msg.demographics}</legend>
+                                    
+                                    <label>#{msg.staff_id}</label>
+                                    <h:inputText id="add-sId" value="#{staffBean.staff.staffId}" required="true" requiredMessage=" Staff id is required">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                        <h:message for="add-sId" errorStyle="color : red" />
+                                                                        
+                                    <label>#{msg.full_name}</label>
+                                    <h:inputText id="add-name" value="#{staffBean.staff.fullName}" required="true" requiredMessage=" Name is required">  
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                        <h:message for="add-name" errorStyle="color : red" />
+                                    
+                                     <label>#{msg.dob}</label>
+                                     <h:inputText id="add-dob" value="#{staffBean.staff.dob}" required="true" requiredMessage=" Date of birth is required">
+                                         <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                                     </h:inputText>
+                                        <h:message for="add-dob" errorStyle="color : red" />
+                                        
+                                    <h:outputLabel value="#{msg.gender}" for="add-gender"/>
+                                    <h:selectOneMenu value="#{staffBean.staff.gender}" id="add-gender">
+                                        <f:selectItems value="#{studentBean.genderList}"/>
+                                    </h:selectOneMenu>
+                                    
+                                    <h:outputLabel value="#{msg.type}" for="add-type"/>
+                                    <h:selectOneMenu id="add-type" value="#{staffBean.staff.type}">
+                                        <f:selectItems value="#{staffBean.typeList}"/>
+                                    </h:selectOneMenu>
+                                    
+                                    <h:outputLabel value="#{msg.qualification}" for="add-qualification"/>
+                                    <h:inputTextarea id="add-qualification" value="#{staffBean.staff.qualification}" required="true" requiredMessage="">
+                                         <f:validateRequired/>
+                                    </h:inputTextarea>
+                                        <h:message for="add-qualification" errorStyle="color : red" />
+                                    
+                                    <label>#{msg.tp}</label>
+                                    <h:inputText id="tp" value="#{staffBean.staff.tp}"/>
+                                    
+                                    <label>#{msg.email}</label>
+                                    <h:inputText id="email" value="#{staffBean.staff.email}"/>
+                                       
+                                    <legend>#{msg.account_information}</legend>
+                                    
+                                    <label>#{msg.user_name}</label>
+                                    <h:inputText id="add-username" value="#{staffBean.staff.userName}" required="true" requiredMessage=" User Name is required"> 
+                                        
+                                    </h:inputText>
+                                    <h:message for="add-username" errorStyle="color : red" />
+                                    
+                                    
+                                    <label>#{msg.password}</label>
+                                    <h:inputSecret id="add-pwd" value="#{staffBean.staff.password}" required="true" requiredMessage=" Password is required">
+                                        <f:validateLength minimum="8" maximum="15"/>
+                                    </h:inputSecret>
+                                    <h:message for="add-pwd" errorStyle="color : red" />
+                                    
+                                    <label>Profile Picture</label><input name="" type="file"/>
+                                    
+                                    <legend>Permanent Address</legend>
+                                    <label>Address line 1</label>
+                                    <h:inputText id="add-add1" value="#{staffBean.staff.addressLine1}" required="true" requiredMessage=" Address is required"/> 
+                                    <h:message for="add-add1" errorStyle="color : red" />
+                                    
+                                    <label>Address line 2</label>
+                                    <h:inputText id="add-add2" value="#{staffBean.staff.addressLine2}" required="true" requiredMessage=" Address is required"/> 
+                                    <h:message for="add-add2" errorStyle="color : red" />
+                                    
+                                    <label>City</label>
+                                    <h:inputText id="add-city" value="#{staffBean.staff.city}" required="true" requiredMessage=" City is required"/>  
+                                    <h:message for="add-city" errorStyle="color : red" />
+                                    
+                                    <label>Country</label>
+                                    <h:inputText id="add-country" value="#{staffBean.staff.country}" required="true" requiredMessage=" Country is required"/>  
+                                    <h:message for="add-country" errorStyle="color : red" />
+
+                                    <legend>Temporary Address</legend>
+                                    <label>Address line 1</label><h:inputText id="add-tmp-add1" value="#{staffBean.staff.tempaddressLine1}"/>  
+                                    <label>Address line 2</label><h:inputText id="add-tmp-add2" value="#{staffBean.staff.tempaddressLine2}"/> 
+                                    <label>Country</label><h:inputText id="add-tmp-country" value="#{staffBean.staff.tempcountry}"/>
+                                </fieldset>
+                                
+                                <h:commandButton value="#{msg.save}" type="submit"  class="btn btn-primary" action="#{staffBean.submit}"/>
+                            </h:form>
+
+                        </div>
+                        <div class="tab-pane" id="2">
+                            <legend>Search Staff</legend>
+                            <h:form  styleClass="well">
+                                <h:outputLabel value="#{msg.staff_id}" for="admissionNumber"/>
+                                <h:inputText id="staffId" value="#{staffBean.staff.staffId}"/>
+                                
+                                <h:outputLabel value="#{msg. full_name }" for="fullName"/>
+                                <h:inputText id="fullName" value="#{staffBean.staff.fullName}"/>   
+                                
+                                
+                                <h:outputLabel value="#{msg.gender}" for="gender"/>
+                                <h:selectOneMenu value="#{staffBean.staff.gender}">
+                                    <f:selectItems value="#{staffBean.genderList}"/>
+                                </h:selectOneMenu>
+                                
+                                <h:outputLabel value="#{msg.type}" for="type"/>
+                                <h:selectOneMenu id="house" value="#{staffBean.staff.type}">
+                                    <f:selectItems value="#{staffBean.typeList}"/>
+                                </h:selectOneMenu>   
+                                
+                                <h:outputLabel value="#{msg.user_name}" for="username"/>
+                                <h:inputText id="username" value="#{staffBean.staff.userName}"/>
+                                
+                                <h:commandButton type="submit" action="#{staffBean.search}" value="#{msg.search}" styleClass="btn btn-primary" />                                
+                                
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /tabbable -->
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

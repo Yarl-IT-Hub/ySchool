@@ -28,5 +28,6 @@
         <mapping class="org.yarlithub.yschool.repository.Student"/>
         <mapping class="org.yarlithub.yschool.repository.Subject"/>
         <mapping class="org.yarlithub.yschool.repository.Grade"/>
+        <mapping class="org.yarlithub.yschool.repository.Staff"/>
     </session-factory>
 </hibernate-configuration>
