@@ -28,10 +28,11 @@
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.26</version>
-                <!--<configuration>-->
+                <configuration>
+                    <contextPath>/yschool</contextPath>
                     <!--<classesDirectory>${basedir}/target/yschool/WEB-INF/lib/</classesDirectory>-->
                     <!--<webAppSourceDirectory>${basedir}/target/yschool</webAppSourceDirectory>-->
-                <!--</configuration>-->
+                </configuration>
                 <executions>
                     <execution>
                         <id>start-jetty</id>
