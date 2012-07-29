@@ -19,7 +19,7 @@
             <div class="span9">
                 <h3>Add students to class</h3>
 
-                <form action="add-student-to-class.html" method="get" class="well">
+                <form action="add-student-to-class.xhtml" method="get" class="well">
                     <fieldset>
                         <legend>Filter Students</legend>
                         <label>Gender</label>
@@ -88,7 +88,7 @@
                             <option>2009</option>
                         </select>
                     </fieldset>
-                    <button type="submit" class="btn btn-primary">Search Students</button>
+                    <h:commandButton action="#{searchStudentBean.selectStudent}" value="#{msg.search_student}" class="btn btn-primary"/>                  
                 </form>
             </div>
         </div>

@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link href="/yschool/css/bootstrap.css" rel="stylesheet"></link>
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+        </style>
+        <script type="text/javascript" src="/yschool/js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="/yschool/js/jquery-ui-1.8.18.custom.min.js"></script>
+    </h:head>
+    <h:body>
+
+        <style type="text/css">
+            #profile_container {
+                width: 780px;
+                margin: 0 auto;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            .profile {
+                background: #fff;
+                float: left;
+                padding: 5px;
+                margin: 5px;
+                cursor: move;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+                -moz-box-shadow: 0 1px 2px rgba(0,0,0,.5);
+                box-shadow: 0 1px 2px rgba(0,0,0,.5);
+                -webkit-border-radius: .5em;
+                -moz-border-radius: .5em;
+                border-radius: .5em;
+                z-index: 5;
+            }
+            .title {
+                display: block;
+                text-align: center;
+                font-size: 12px;
+                cursor: move;
+            }
+            .icart, .icart label {
+                cursor: e-resize;
+            }
+            .divrm {
+                text-align: right;
+            }
+            .remove {
+                text-decoration: none;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 12px;
+                position: relative;
+                top: -7px;
+            }
+            .remove:hover {
+                color: #999;
+            }
+            .clear {
+                clear: both;
+            }
+            #cart_container {
+                margin: 0 auto;
+                width: 780px;
+            }
+            #cart_title span {
+                background:#0088cc;
+                display: block;
+                float: left;
+                color: #fff;
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+            #cart_toolbar {
+                overflow: hidden;
+                border: 1px solid #666;
+                height: 190px;
+                z-index: -2;
+                width: 780px;
+                background: #ffffff;
+            }
+            #cart_profiles {
+                height: 190px;
+                width: 483px;
+                position: relative;
+                padding: 0 0 0 2px;
+                z-index: 0;
+                cursor: e-resize;
+                border-width: 0 2px;
+            }
+            .back {
+            }
+            #pnavigate {
+                width: 760px;
+                margin: 0 auto;
+                border: 1px solid #666;
+                border-top-width: 0;
+                padding: 10px;
+                font-size: 12px;
+            }
+            #pnav_left {
+                float: left;
+            }
+            #pnav_left a {
+                padding: 4px 8px;
+                background: #fff;
+                text-decoration: none;
+                color:#0099cc;
+            }
+            #pnav_left a:hover {
+                background: #666;
+                color: #fff;
+            }
+            #pnav_right {
+                float: right;
+            }
+            .sptext {
+                background: #ffffff;
+                color: #666;
+            }
+            .count {
+                color: #0099cc;
+            }
+            .drop-active {
+                background: #ffff99;
+            }
+            .drop-hover {
+                background: #ffff66;
+            }
+        </style>
+        <script type="text/javascript">
+            
+            
+            var total_profiles = 0;
+            var showtext = " Student";
+            $(document).ready(function() {
+
+                $(".profile").draggable({
+                    revert: true            
+                });
+                $("#cart_profiles").draggable({
+                    axis: "x"
+                });
+
+                $("#cart_profiles").droppable({
+                    accept: ".profile",
+                    activeClass: "drop-active",
+                    hoverClass: "drop-hover",
+                    drop: function(event, ui) {
+                        var profile = ui.draggable.html();
+                        var profileid = ui.draggable.attr("id");
+                        var html = '&lt;div class="profile icart"&gt;';
+                        html = html + '&lt;div class="divrm" &gt;';
+                        html = html + '&lt;a onclick="remove(this)" class="remove '+profileid+'"&gt;&times;&lt;/a&gt;';
+                        html = html + '&lt;div/&gt;'+profile+'&lt;/div&gt;';
+                        $("#cart_profiles").append(html);
+
+                        // update total profiles
+                        total_profiles++;
+                        if(total_profiles > 1 ) {
+                            showtext = " Students";
+                        }
+                        $("#cprofile").html(total_profiles+showtext);
+
+                        // expand cart profiles
+                        if (total_profiles > 4) {
+                            $("#cart_profiles").animate({
+                                width: "+=120"
+                            }, 'slow');
+                        }
+                    }
+                });
+       
+
+                $("#btn_next").click(function() {
+                    $("#cart_profiles").animate({
+                        left: "-=100"
+                    }, 100);
+                    return false;
+                });
+                $("#btn_prev").click(function() {
+                    $("#cart_profiles").animate({
+                        left: "+=100"
+                    }, 100);
+                    return false;
+                });
+                $("#btn_clear").click(function() {
+                    $("#cart_profiles").fadeOut("2000", function() {
+                        $(this).html("").fadeIn("fast").css({
+                            left: 0
+                        });
+                    });
+                    $("#cprofile").html("0");
+                    $("#cprice").html("$ 0");
+                    total_profiles = 0;
+                    return false;
+                });
+            });
+            function remove(el) {
+                $(el).hide();
+                $(el).parent().parent().effect("highlight", {
+                    color: "#ff0000"
+                }, 1000);
+                $(el).parent().parent().fadeOut('1000');
+                setTimeout(function() {
+                    $(el).parent().parent().remove();
+                    // collapse cart profiles
+                    if (total_profiles > 3) {
+                        $("#cart_profiles").animate({
+                            width: "-=120"
+                        }, 'slow');
+                    }
+                }, 1100);
+
+                // update total profile
+                total_profiles--;
+                $("#cprofile").html(total_profiles);
+
+            }
+    
+        </script>
+
+
+
+        <div class="span9"><!-- InstanceBeginEditable name="pagecontent" -->
+            <div class="row">
+                <div class="span9">
+                    <h3>Add students to class</h3>
+                    <div class="tabbable" style="margin-bottom: 9px;">
+                        <div id="student" class="modal hide fade">
+                            <div class="modal-header">
+                                <a class="close" data-dismiss="modal">x</a>
+                                <h3>Aish [11000]</h3>
+                                <div align="center"><img src="/yschool/img/mock/1.jpg"/>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td>Class</td>
+                                            <td>Year 1 A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name with Initials</td>
+                                            <td>Name Her</td>
+                                        </tr>    
+                                        <tr>
+                                            <td>Subjects</td>
+                                            <td>Math, Tamil, Cinema</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Rest of Profile</td>
+                                            <td>To be added</td>
+                                        </tr>             
+                                    </tbody>
+                                </table>  
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn" data-dismiss="modal">Close</a>
+                            </div>
+                        </div>  
+
+                        <div class="alert alert-info">Applied search criteria: Grade : 10</div> 
+
+
+
+                        <div id="profile_container">
+
+                            <c:forEach items="#{searchStudentBean.selectStudentList}" var="student">                               
+
+                                <div class="profile" id="i1">
+                                    <a href="#student" data-toggle="modal"><img src="/yschool/img/mock/1.jpg"/></a><br/>
+                                    <h:outputText value="#{student.fullName}"/><br/>
+                                    <h:outputText value="#{student.admissionNumber}"/><br/> 
+                                </div>
+                                
+                                                               
+                            </c:forEach>                           
+
+                            <div class="clear"></div>
+                        </div>
+                        <div id="cart_container">
+                            <div id="cart_title">
+                                <span> :: Drag and drop students selected to  Year 1 A ::</span>
+                                <div class="clear"></div>
+                            </div>
+                            <div id="cart_toolbar">
+                                <div id="cart_profiles" class="back"></div>
+                            </div>
+                            <div id="pnavigate">
+                                <div id="pnav_left">
+                                    <a href="" id="btn_prev"></a>
+                                    <a href="" id="btn_next"></a>
+                                    <a href="" id="btn_clear">Remove all students</a>
+                                </div>
+                                <div id="pnav_right">
+                                    <span class="sptext">
+                                        <label class="count" id="cprofile">0 Students</label>
+                                    </span>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>                
+
+                    </div>
+                </div>
+            </div>
+            <!-- /tabbable -->
+            <!-- InstanceEndEditable --></div>
+
+    </h:body>
+</html>
+
