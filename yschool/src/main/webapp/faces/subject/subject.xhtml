@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+    <script type="text/javascript">
+        makeLinkActive("subject");
+    </script>
+
+    <div class="span9">
+        <div class="row">
+            <div class="span9">
+                <h3>Manage subject</h3>
+
+                <div class="tabbable" style="margin-bottom: 9px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#1" data-toggle="tab"> Add Subject</a></li>
+                        <li><a href="#2" data-toggle="tab">Search Subject</a></li>
+						<li><a href="#3" data-toggle="tab">Quick Subject</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="1">
+                            <div class="progress">
+                                <div class="bar" style="width: 33%;"></div>
+                            </div>
+                                          <h:form class="well">
+										  <h:message for="#{null}" errorStyle="color : red;" infoStyle="color : green"/>      
+                                <fieldset>
+                                    <legend>#{msg.demographics}</legend>
+                                    
+                                    <label>#{msg.subject}</label>
+                                    <h:inputText id="sub_name" value="#{subjectBean.subject.name}" required="true" requiredMessage=" Subject Name is required">
+                                     <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                     <h:message for="sub_name" errorStyle="color : red" />
+
+                                    
+                                    <label>#{msg.year}</label>
+                                    <h:inputText id="add-year" value="#{subjectBean.subject.year}" required="true" requiredMessage=" Year is required">                                     
+                                     </h:inputText>
+                                     <h:message for="add-year" errorStyle="color : red" />
+                                    
+                                     <label>#{msg.medium}</label>
+                                     <h:inputText id="add-medium" value="#{subjectBean.subject.medium}" required="true" requiredMessage=" Medium is required">
+									 <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                      <h:message for="add-medium" errorStyle="color : red" />
+                                        
+                                 </fieldset>
+                                <h:commandButton type="submit" action="#{subjectBean.submit}" value="#{msg.save}" styleClass="btn btn-primary"/>
+                            </h:form>
+           </div>
+                        <div class="tab-pane" id="2">
+						 <div class="progress">
+                                <div class="bar" style="width: 66%;"></div>
+                            </div>
+                            <legend>Search Subject</legend>
+            <h:form class="well">							
+            <h:outputLabel value="#{msg.subject}" for="sName"/>
+            <h:inputText id="sName" value="#{subjectBean.subject.name}"/>
+            <h:commandButton type="submit" action="#{subjectBean.search}" value="#{msg.search}" styleClass="btn btn-primary"/>
+        </h:form>
+            <div class="row-fluid">
+                <div class="span4">
+                                  
+               </div><!--/span-->
+            </div><!--/row-->
+                            
+                        </div>
+                        	<div class="tab-pane" id="3">
+						 <div class="progress">
+                                <div class="bar" style="width: 99%;"></div>
+                            </div>
+                            <legend>Quick Search</legend>
+							 <h:form class="well"><label>Subject: </label><h:inputText value="#{subjectBean.subject.name}" > 
+                            <f:ajax event="keyup" render="subjectDetails" listener="#{subjectBean.quickSearch}"/> 
+                            </h:inputText> 
+						<h:dataTable id="subjectDetails" value="#{subjectBean.subjectList}" var="subject"  cellpadding="0" cellspacing="0" border="0" styleClass="display" rowClasses="gradeC" width="100%">
+               <h:column>
+                   <f:facet name="header">#{msg.subject}</f:facet>     
+                     <h:commandLink value="#{subject.name}" action="searchSubjectResult">
+                       <f:setPropertyActionListener target="#{subjectBean.subject}" value="#{subject}"/>
+                    </h:commandLink>			   
+                                                
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{msg.year}</f:facet>
+                    <h:outputText value="#{subject.year}">
+                    </h:outputText>    		                                            
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">#{msg.medium}</f:facet>
+                    <h:outputText value="#{subject.medium}"></h:outputText>    		
+                </h:column>
+
+            </h:dataTable></h:form>
+                        </div>					
+                    </div>
+                </div>
+                <!-- /tabbable -->
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>

@@ -12,6 +12,7 @@
  */
 package org.yarlithub.yschool.repository;
 
+import java.util.List;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 import javax.persistence.Entity;
@@ -27,8 +28,8 @@ import javax.persistence.Table;
 public class Subject extends PersistentObject {
     
     private String name;
-    private String marks;
-    private Status status;
+    private String year;
+    private String medium;
 
 
     public void save() {
@@ -42,8 +43,23 @@ public class Subject extends PersistentObject {
     public void delete() {
         HibernateUtil.getSessionFactory().getCurrentSession().delete(this);
     }
+ public List<Subject> searchSubjectByname(String subjectname) {
+        
+if("".equals(subjectname) || subjectname ==null){
+			return "";
+FacesContext.getCurrentInstance().addMessage(null, 
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Please type the subject name!", null));
+		}
+else{
+				
+return HibernateUtil.getCurrentSession().createQuery("from Subject  where name = ?").setString(0, subjectname).list();
+    }
+}
+public List<Subject> searchSubjectBystartname(String subjectname) {
 
-    public String getName() {
+        return HibernateUtil.getCurrentSession().createQuery("from Subject  where name = ?").setString(0, subjectname).list();
+    }
+	    public String getName() {
         return name;
     }
 
@@ -51,19 +67,19 @@ public class Subject extends PersistentObject {
         this.name = name;
     }
 
-    public String getMarks() {
-        return marks;
+  public String getYear() {
+        return year;
     }
 
-    public void setMarks(String marks) {
-        this.marks = marks;
+    public void setYear(String year) {
+        this.year = year;
     }
 
-    public Status getStatus() {
-        return status;
+    public String getMedium() {
+        return medium;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setMedium(String medium) {
+        this.medium = medium;
     }
 }

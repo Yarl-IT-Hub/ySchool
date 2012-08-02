@@ -78,6 +78,7 @@
                 <ul class="nav nav-list">
                     <li class="nav-header">Manage</li>
                     <li id="student"><a href="/yschool/faces/student/student.xhtml">Student</a></li>
+                    <li id="subject"><a href="/yschool/faces/subject/subject.xhtml">Subject</a></li>
                     <li><a href="#">Staff</a></li>
                     <li><a href="parent.html">Parents</a></li>
                     <li><a href="#">Admin users</a></li>
@@ -89,7 +90,6 @@
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                     <li class="nav-header">Configure</li>
-                    <li><a href="#">Subjects</a></li>
                     <li><a href="#">Terms</a></li>
                     <li><a href="#">School notifications</a></li>
                     <li><a href="#">Manage time table</a></li>
