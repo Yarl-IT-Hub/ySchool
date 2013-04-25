@@ -25,9 +25,11 @@
         <property name="hibernate.current_session_context_class">thread</property>
 
         <mapping package="org.yarlithub.yschool.repository"/>
+        <mapping class="org.yarlithub.yschool.repository.Medium"/>
         <mapping class="org.yarlithub.yschool.repository.Student"/>
         <mapping class="org.yarlithub.yschool.repository.Subject"/>
         <mapping class="org.yarlithub.yschool.repository.Grade"/>
         <mapping class="org.yarlithub.yschool.repository.Staff"/>
+        <mapping class="org.yarlithub.yschool.repository.Parent"/>
     </session-factory>
 </hibernate-configuration>
