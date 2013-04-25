@@ -38,7 +38,7 @@ public class ParentBean implements Serializable {
     public Parent parent;
     private List<Parent> parentList;
     private List<String> genderList = Arrays.asList("Male", "Female");
-    private List<String> professionList,emailList;
+    private List<String> professionList,emailList,commentList;
     private List<Integer> mobileNoList;
 
     public ParentBean() {
@@ -118,6 +118,14 @@ public class ParentBean implements Serializable {
 
     public void setEmailList(List<String> emailList) {
         this.emailList = emailList;
+    }
+
+    public List<String> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<String> commentList) {
+        this.commentList = commentList;
     }
 
     public void setInitialDateLoaderUtil(InitialDateLoaderUtil initialDateLoaderUtil) {
