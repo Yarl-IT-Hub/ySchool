@@ -38,8 +38,6 @@ public class ParentBean implements Serializable {
     public Parent parent;
     private List<Parent> parentList;
     private List<String> genderList = Arrays.asList("Male", "Female");
-    private List<String> professionList,emailList,commentList;
-    private List<Integer> mobileNoList;
 
     public ParentBean() {
         logger.info("initiating a new parent bean");
@@ -94,38 +92,6 @@ public class ParentBean implements Serializable {
      */
     public void setGenderList(List<String> genderList) {
         this.genderList = genderList;
-    }
-
-    public List<String> getProfessionList() {
-        return professionList;
-    }
-
-    public void setProfessionList(List<String> professionList) {
-        this.professionList = professionList;
-    }
-
-    public List<Integer> getMobileNoList() {
-        return mobileNoList;
-    }
-
-    public void setMobileNoList(List<Integer> mobileNoList) {
-        this.mobileNoList = mobileNoList;
-    }
-
-    public List<String> getEmailList() {
-        return emailList;
-    }
-
-    public void setEmailList(List<String> emailList) {
-        this.emailList = emailList;
-    }
-
-    public List<String> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<String> commentList) {
-        this.commentList = commentList;
     }
 
     public void setInitialDateLoaderUtil(InitialDateLoaderUtil initialDateLoaderUtil) {

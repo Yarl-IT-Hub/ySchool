@@ -20,7 +20,7 @@ public class ParentTest {
     public void setUp() throws Exception {
 
         final Parent parent = new Parent();
-        parent.setFullName("TestParent");
+  //      parent.setFullName("TestParent");
 
 
         final Transaction transaction = HibernateUtil.getCurrentSession().beginTransaction();

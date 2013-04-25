@@ -20,7 +20,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "parent")
-public class Parent {
+public class Parent extends PersistentObject{
 
     //unique identifier for parent like admission no. for student.
     private String parentIdentifier;
@@ -39,7 +39,7 @@ public class Parent {
     private String profession;
     private String comment;
     private String email;
-    private int mobileNo;
+    private Integer mobileNo;
     private String userName;
     private String password;
 
@@ -60,6 +60,30 @@ public class Parent {
         return HibernateUtil.getCurrentSession().createQuery("from Parent  where fullName = ?").setString(0, parentsfullName).list();
     }
 
+    public String getParentIdentifier() {
+        return parentIdentifier;
+    }
+
+    public void setParentIdentifier(String parentIdentifier) {
+        this.parentIdentifier = parentIdentifier;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getNameWithInitials() {
+        return nameWithInitials;
+    }
+
+    public void setNameWithInitials(String nameWithInitials) {
+        this.nameWithInitials = nameWithInitials;
+    }
+
     public Date getDob() {
         return dob;
     }
@@ -68,136 +92,56 @@ public class Parent {
         this.dob = dob;
     }
 
-    /**
-     * @return the parentIdentifier
-     */
-    public String getparentIdentifier() {
-        return parentIdentifier;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    /**
-     * @param parentIdentifier the admissionNumber to set
-     */
-    public void setparentIdentifier(String parentIdentifier) {
-        this.parentIdentifier = parentIdentifier;
-    }
-
-    /**
-     * @return the fullName
-     */
-    public String getFullName() {
-        return fullName;
-    }
-
-    /**
-     * @param fullName the fullName to set
-     */
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    /**
-     * @return the nameWithInitials
-     */
-    public String getNameWithInitials() {
-        return nameWithInitials;
-    }
-
-    /**
-     * @param nameWithInitials the nameWithInitials to set
-     */
-    public void setNameWithInitials(String nameWithInitials) {
-        this.nameWithInitials = nameWithInitials;
-    }
-
-    /**
-     * @return the gender
-     */
     public String getGender() {
         return gender;
     }
 
-    /**
-     * @param gender the gender to set
-     */
     public void setGender(String gender) {
         this.gender = gender;
     }
 
-    /**
-     * @return the profession
-     */
     public String getProfession() {
         return profession;
     }
 
-    /**
-     * @param profession the profession to set
-     */
     public void setProfession(String profession) {
         this.profession = profession;
     }
 
-    /**
-     * @return the comment
-     */
     public String getComment() {
         return comment;
     }
 
-    /**
-     * @param comment the studentStatus to set
-     */
     public void setComment(String comment) {
         this.comment = comment;
     }
 
-    /**
-     * @return the userName
-     */
-    public String getUserName() {
-        return userName;
-    }
-
-    /**
-     * @param userName the userName to set
-     */
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    /**
-     * @return the email
-     */
     public String getEmail() {
         return email;
     }
 
-    /**
-     * @param email the email to set
-     */
     public void setEmail(String email) {
         this.email = email;
     }
 
-
-    /**
-     * @return the mobileno
-     */
-    public int getMobileNo() {
+    public Integer getMobileNo() {
         return mobileNo;
     }
 
-    /**
-     * @param mobileNo the mobileNo to set
-     */
-    public void setCalenderYear(int mobileNo) {
+    public void setMobileNo(Integer mobileNo) {
         this.mobileNo = mobileNo;
     }
 
+    public String getUserName() {
+        return userName;
+    }
 
-    public String getAddressLine1() {
-        return addressLine1;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setAddressLine1(String addressLine1) {

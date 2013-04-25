@@ -58,25 +58,21 @@
                                         <f:selectItems value="#{parentBean.genderList}"/>
                                     </h:selectOneMenu>
 
-                                    <h:outputLabel value="#{msg.profession}" for="add-house"/>
-                                    <h:selectOneMenu id="add-profession" value="#{parentBean.parent.profession}">
-                                        <f:selectItems value="#{parentBean.professionList}"/>
-                                    </h:selectOneMenu>
+                                    <label>#{msg.profession}</label>
+                                    <h:inputText id="add-profession" value="#{parentBean.parent.profession}" required="true" requiredMessage=" Profession is required"/>
+                                    <h:message for="add-profession" errorStyle="color : red" />
 
-                                    <h:outputLabel value="#{msg.comment}" for="add-comment"/>
-                                    <h:selectOneMenu id="add-comment" value="#{parentBean.parent.comment}">
-                                        <f:selectItems value="#{parentBean.commentList}"/>
-                                    </h:selectOneMenu>
+                                    <label>#{msg.email}</label>
+                                    <h:inputText id="add-email" value="#{parentBean.parent.email}" required="true" requiredMessage=" Email address is required"/>
+                                    <h:message for="add-email" errorStyle="color : red" />
 
-                                    <h:outputLabel value="#{msg.email}" for="add-email"/>
-                                    <h:selectOneMenu id="add-email" value="#{parentBean.parent.email}">
-                                        <f:selectItems value="#{parentBean.emailList}"/>
-                                    </h:selectOneMenu>
+                                    <label>#{msg.mobile_no}</label>
+                                    <h:inputText id="add-mobileno" value="#{parentBean.parent.mobileNo}" required="true" requiredMessage=" Mobile Number is required"/>
+                                    <h:message for="add-mobileno" errorStyle="color : red" />
 
-                                    <h:outputLabel value="#{msg.mobile_no}" for="add-mobileno"/>
-                                    <h:selectOneMenu id="add-mobileno" value="#{parentBean.parent.mobileNo}">
-                                        <f:selectItems value="#{parentBean.mobileNoList}"/>
-                                    </h:selectOneMenu>
+                                    <label>#{msg.comment}</label>
+                                    <h:inputText id="add-comment" value="#{parentBean.parent.comment}" />
+                                    <h:message for="add-comment" errorStyle="color : red" />
 
                                     <legend>#{msg.account_information}</legend>
 
@@ -117,7 +113,7 @@
                                     <label>Address line 2</label><h:inputText id="add-tmp-add2" value="#{parentBean.parent.tempaddressLine2}"/>
                                     <label>Country</label><h:inputText id="add-tmp-country" value="#{parentBean.parent.tempcountry}"/>
                                 </fieldset>
-                                <h:commandButton type="submit"  action="#{studentBean.submit}" value="#{msg.save}" class="btn btn-primary"/>
+                                <h:commandButton type="submit"  action="#{parentBean.submit}" value="#{msg.save}" class="btn btn-primary"/>
                             </h:form>
 
                         </div>
