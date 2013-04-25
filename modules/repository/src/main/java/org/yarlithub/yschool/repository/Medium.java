@@ -8,7 +8,7 @@ import java.util.List;
 
 @NamedQueries({
         @NamedQuery(
-                name = "findAllMediums",
+                name = "Medium.all",
                 query = "from Medium"
         )
 })
@@ -75,7 +75,7 @@ public class Medium implements Serializable {
     }
 
     public static List<Medium> findAll() {
-        return HibernateUtil.getCurrentSession().getNamedQuery("findAllMediums").list();
+        return HibernateUtil.getCurrentSession().getNamedQuery("Medium.all").list();
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Medium implements Serializable {
                 '}';
     }
 
-    public String description() {
+    public String getDescription() {
         return language.id();
     }
 }

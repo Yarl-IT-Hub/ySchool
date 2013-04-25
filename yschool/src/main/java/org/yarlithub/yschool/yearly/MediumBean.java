@@ -4,12 +4,12 @@ import org.yarlithub.yschool.repository.Medium;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import java.io.Serializable;
 import java.util.List;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class MediumBean implements Serializable {
     private List<Medium> availableMediums;
 
