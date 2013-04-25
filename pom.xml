@@ -20,7 +20,6 @@
         <module>modules/reporting</module>
         <module>modules/repository</module>
         <module>modules/user-management</module>
-        <module>yschool</module>
     </modules>
 
     <dependencies>

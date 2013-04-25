@@ -63,7 +63,10 @@
                     <li class="nav-header">Main menu</li>
                     <li><a href="/yschool">Back to main configurations</a></li>
                     <li class="nav-header">Configure</li>
-                    <li id="add-student-to-class"><a href="/yschool/faces/yearly/medium.xhtml">Medium</a></li>
+                    <li id="medium"><a href="/yschool/faces/yearly/medium.xhtml">Medium</a></li>
+                    <li id="subjects"><a href="/yschool/faces/yearly/subjects.xhtml">Subjects</a></li>
+                    <li id="classes-to-grades"><a href="/yschool/faces/yearly/classes-to-grades.xhtml">Assign Classes to Grades</a></li>
+                    <li id="subjects-to-classes"><a href="/yschool/faces/yearly/subjects-to-classes.xhtml">Assign Subjects to Classes</a></li>
                 </ul>
             </div>
             <!--/.well -->
