@@ -30,8 +30,6 @@
                 <version>6.1.26</version>
                 <configuration>
                     <contextPath>/yschool</contextPath>
-                    <!--<classesDirectory>${basedir}/target/yschool/WEB-INF/lib/</classesDirectory>-->
-                    <!--<webAppSourceDirectory>${basedir}/target/yschool</webAppSourceDirectory>-->
                 </configuration>
                 <executions>
                     <execution>
@@ -41,7 +39,7 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <scanIntervalSeconds>0</scanIntervalSeconds>
+                            <scanIntervalSeconds>10</scanIntervalSeconds>
                             <daemon>true</daemon>
                         </configuration>
                     </execution>

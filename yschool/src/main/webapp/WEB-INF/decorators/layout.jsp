@@ -1,20 +1,3 @@
-<%--
-    (C) Copyright 2012-2013 hSenid Software International (Pvt) Limited.
-    All Rights Reserved.
- 
-    These materials are unpublished, proprietary, confidential source code of
-    hSenid Software International (Pvt) Limited and constitute a TRADE SECRET
-    of hSenid Software International (Pvt) Limited.
- 
-    hSenid Software International (Pvt) Limited retains all title to and intellectual
-    property rights in these materials.
- 
-   $LastChangedDate$
-   $LastChangedBy$
-   $LastChangedRevision$
---%>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -89,6 +72,7 @@
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                     <li class="nav-header">Configure</li>
+                    <a href="/yschool/faces/yearly/yearly-index.xhtml">Yearly Configurations</a>
                     <li><a href="#">Subjects</a></li>
                     <li><a href="#">Terms</a></li>
                     <li><a href="#">School notifications</a></li>
