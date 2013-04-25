@@ -11,11 +11,7 @@ public class StudentTest {
 
     @Before
     public void setUp() throws Exception {
-
         final Student student = new Student();
-//        student.setFname("Fname");
-//        student.setLname("Test");
-
         final Transaction transaction = HibernateUtil.getCurrentSession().beginTransaction();
         student.save();
         transaction.commit();
