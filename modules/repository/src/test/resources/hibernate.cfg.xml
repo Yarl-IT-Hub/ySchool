@@ -30,6 +30,6 @@
         <mapping class="org.yarlithub.yschool.repository.Subject"/>
         <mapping class="org.yarlithub.yschool.repository.Grade"/>
         <mapping class="org.yarlithub.yschool.repository.Staff"/>
-        <mapping class="org.yarlithub.yschool.repository.Staff"/>
+        <mapping class="org.yarlithub.yschool.repository.Parent"/>
     </session-factory>
 </hibernate-configuration>
