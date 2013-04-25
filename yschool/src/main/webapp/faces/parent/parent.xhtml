@@ -34,24 +34,27 @@
                                     <legend>#{msg.account_information}</legend>
 
                                     <label>#{msg.parent_identifier}</label>
-                                    <h:inputText id="add-adNo" value="#{parentBean.parent.parentIdentifier}" required="true" requiredMessage=" Parent Identifier is required">
-                                        <f:validateLength minimum="6" maximum="6" />
+                                    <h:inputText id="add-adNo" value="#{parentBean.parent.parentIdentifier}"
+                                                 required="true" requiredMessage=" Parent Identifier is required">
+                                        <f:validateLength minimum="6" maximum="6"/>
                                     </h:inputText>
-                                    <h:message for="add-adNo" errorStyle="color : red" />
+                                    <h:message for="add-adNo" errorStyle="color : red"/>
 
 
                                     <label>#{msg.full_name}</label>
-                                    <h:inputText id="add-name" value="#{parentBean.parent.fullName}" required="true" requiredMessage=" Name is required">
+                                    <h:inputText id="add-name" value="#{parentBean.parent.fullName}" required="true"
+                                                 requiredMessage=" Name is required">
                                         <f:validateRequired/>
-                                        <f:validateLength maximum="50" />
+                                        <f:validateLength maximum="50"/>
                                     </h:inputText>
-                                    <h:message for="add-name" errorStyle="color : red" />
+                                    <h:message for="add-name" errorStyle="color : red"/>
 
                                     <label>#{msg.dob}</label>
-                                    <h:inputText id="add-dob" value="#{parentBean.parent.dob}" required="true" requiredMessage=" Date of birth is required">
+                                    <h:inputText id="add-dob" value="#{parentBean.parent.dob}" required="true"
+                                                 requiredMessage=" Date of birth is required">
                                         <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                                     </h:inputText>
-                                    <h:message for="add-dob" errorStyle="color : red" />
+                                    <h:message for="add-dob" errorStyle="color : red"/>
 
                                     <h:outputLabel value="#{msg.gender}" for="add-gender"/>
                                     <h:selectOneMenu value="#{parentBean.parent.gender}" id="add-gender">
@@ -59,61 +62,79 @@
                                     </h:selectOneMenu>
 
                                     <label>#{msg.profession}</label>
-                                    <h:inputText id="add-profession" value="#{parentBean.parent.profession}" required="true" requiredMessage=" Profession is required"/>
-                                    <h:message for="add-profession" errorStyle="color : red" />
+                                    <h:inputText id="add-profession" value="#{parentBean.parent.profession}"
+                                                 required="true" requiredMessage=" Profession is required"/>
+                                    <h:message for="add-profession" errorStyle="color : red"/>
 
                                     <label>#{msg.email}</label>
-                                    <h:inputText id="add-email" value="#{parentBean.parent.email}" required="true" requiredMessage=" Email address is required"/>
-                                    <h:message for="add-email" errorStyle="color : red" />
+                                    <h:inputText id="add-email" value="#{parentBean.parent.email}" required="true"
+                                                 requiredMessage=" Email address is required">
+                                        <f:validator validatorId="emailAddressValidator"/>
+                                    </h:inputText>
+                                    <h:message for="add-email" errorStyle="color : red"/>
 
                                     <label>#{msg.mobile_no}</label>
-                                    <h:inputText id="add-mobileno" value="#{parentBean.parent.mobileNo}" required="true" requiredMessage=" Mobile Number is required"/>
-                                    <h:message for="add-mobileno" errorStyle="color : red" />
+                                    <h:inputText id="add-mobileno" value="#{parentBean.parent.mobileNo}" required="true"
+                                                 requiredMessage=" Mobile Number is required">
+                                        <f:validateLength minimum="10" maximum="10"/>
+                                        <f:convertNumber type="number"/>
+                                    </h:inputText>
+                                    <h:message for="add-mobileno" errorStyle="color : red"/>
 
                                     <label>#{msg.comment}</label>
-                                    <h:inputText id="add-comment" value="#{parentBean.parent.comment}" />
-                                    <h:message for="add-comment" errorStyle="color : red" />
+                                    <h:inputText id="add-comment" value="#{parentBean.parent.comment}"/>
+                                    <h:message for="add-comment" errorStyle="color : red"/>
 
                                     <legend>#{msg.account_information}</legend>
 
                                     <label>#{msg.user_name}</label>
-                                    <h:inputText id="add-username" value="#{parentBean.parent.userName}" required="true" requiredMessage=" User Name is required">
-
+                                    <h:inputText id="add-username" value="#{parentBean.parent.userName}" required="true"
+                                                 requiredMessage=" User Name is required">
+                                        <f:validateLength minimum="6"/>
                                     </h:inputText>
-                                    <h:message for="add-username" errorStyle="color : red" />
+                                    <h:message for="add-username" errorStyle="color : red"/>
 
 
                                     <label>#{msg.password}</label>
-                                    <h:inputSecret id="add-pwd" value="#{parentBean.parent.password}" required="true" requiredMessage=" Password is required">
+                                    <h:inputSecret id="add-pwd" value="#{parentBean.parent.password}" required="true"
+                                                   requiredMessage=" Password is required">
                                         <f:validateLength minimum="8" maximum="15"/>
                                     </h:inputSecret>
-                                    <h:message for="add-pwd" errorStyle="color : red" />
+                                    <h:message for="add-pwd" errorStyle="color : red"/>
 
                                     <label>Profile Picture</label><input name="" type="file"/>
 
                                     <legend>Permanent Address</legend>
                                     <label>Address line 1</label>
-                                    <h:inputText id="add-add1" value="#{parentBean.parent.addressLine1}" required="true" requiredMessage=" Address is required"/>
-                                    <h:message for="add-add1" errorStyle="color : red" />
+                                    <h:inputText id="add-add1" value="#{parentBean.parent.addressLine1}" required="true"
+                                                 requiredMessage=" Address is required"/>
+                                    <h:message for="add-add1" errorStyle="color : red"/>
 
                                     <label>Address line 2</label>
-                                    <h:inputText id="add-add2" value="#{parentBean.parent.addressLine2}" required="true" requiredMessage=" Address is required"/>
-                                    <h:message for="add-add2" errorStyle="color : red" />
+                                    <h:inputText id="add-add2" value="#{parentBean.parent.addressLine2}" required="true"
+                                                 requiredMessage=" Address is required"/>
+                                    <h:message for="add-add2" errorStyle="color : red"/>
 
                                     <label>City</label>
-                                    <h:inputText id="add-city" value="#{parentBean.parent.city}" required="true" requiredMessage=" City is required"/>
-                                    <h:message for="add-city" errorStyle="color : red" />
+                                    <h:inputText id="add-city" value="#{parentBean.parent.city}" required="true"
+                                                 requiredMessage=" City is required"/>
+                                    <h:message for="add-city" errorStyle="color : red"/>
 
                                     <label>Country</label>
-                                    <h:inputText id="add-country" value="#{parentBean.parent.country}" required="true" requiredMessage=" Country is required"/>
-                                    <h:message for="add-country" errorStyle="color : red" />
+                                    <h:inputText id="add-country" value="#{parentBean.parent.country}" required="true"
+                                                 requiredMessage=" Country is required"/>
+                                    <h:message for="add-country" errorStyle="color : red"/>
 
                                     <legend>Temporary Address</legend>
-                                    <label>Address line 1</label><h:inputText id="add-tmp-add1" value="#{parentBean.parent.tempaddressLine1}"/>
-                                    <label>Address line 2</label><h:inputText id="add-tmp-add2" value="#{parentBean.parent.tempaddressLine2}"/>
-                                    <label>Country</label><h:inputText id="add-tmp-country" value="#{parentBean.parent.tempcountry}"/>
+                                    <label>Address line 1</label>
+                                    <h:inputText id="add-tmp-add1" value="#{parentBean.parent.tempaddressLine1}"/>
+                                    <label>Address line 2</label>
+                                    <h:inputText id="add-tmp-add2" value="#{parentBean.parent.tempaddressLine2}"/>
+                                    <label>Country</label>
+                                    <h:inputText id="add-tmp-country" value="#{parentBean.parent.tempcountry}"/>
                                 </fieldset>
-                                <h:commandButton type="submit"  action="#{parentBean.submit}" value="#{msg.save}" class="btn btn-primary"/>
+                                <h:commandButton type="submit" action="#{parentBean.submit}" value="#{msg.save}"
+                                                 class="btn btn-primary"/>
                             </h:form>
 
                         </div>
@@ -121,7 +142,7 @@
                             <legend>Search Parent</legend>
 
                         </div>
-                      </div>
+                    </div>
                 </div>
                 <!-- /tabbable -->
             </div>
