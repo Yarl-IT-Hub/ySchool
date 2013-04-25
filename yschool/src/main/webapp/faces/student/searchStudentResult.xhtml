@@ -28,30 +28,28 @@
         makeLinkActive("student_search");
     </script>
     <h:form>
-    <div class="span9">        
-                    
-                <h:column >                    
-                    <f:facet name="header">#{msg.id}</f:facet>    
-                    <h:outputText value="#{student.id}"></h:outputText>                                                  
-                </h:column>
-                    
-                <h:column>                    
-                    <f:facet name="header">#{msg.full_name}</f:facet>
-                    <h:outputText value="#{student.fullName}"></h:outputText>                                        
-                </h:column>          
+    <div class="table">
+        <h:column>
+            <f:facet name="header">#{msg.id}</f:facet>
+            <h:outputText value="#{student.id}"></h:outputText>
+        </h:column>
 
-                <h:column>
-                    <f:facet name="header">#{msg.dob}</f:facet>
-                    <h:outputText value="#{student.dob}">
-                    </h:outputText>    		                                            
-                </h:column>
+        <h:column>
+            <f:facet name="header">#{msg.full_name}</f:facet>
+            <h:outputText value="#{student.fullName}"></h:outputText>
+        </h:column>
 
-                <h:column>
-                    <f:facet name="header">#{msg.registration_date}</f:facet>
-                    <h:outputText value="#{student.registrationDate}"></h:outputText>    		
-                </h:column>            
+        <h:column>
+            <f:facet name="header">#{msg.dob}</f:facet>
+            <h:outputText value="#{student.dob}">
+            </h:outputText>
+        </h:column>
 
-        </div>
+        <h:column>
+            <f:facet name="header">#{msg.registration_date}</f:facet>
+            <h:outputText value="#{student.registrationDate}"></h:outputText>
+        </h:column>
+    </div>
     </h:form>
 </h:body>
 </html>

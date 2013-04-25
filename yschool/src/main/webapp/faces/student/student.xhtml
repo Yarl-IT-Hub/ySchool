@@ -106,7 +106,7 @@
                                     <label>Address line 2</label><h:inputText id="add-tmp-add2" value="#{studentBean.student.tempaddressLine2}"/> 
                                     <label>Country</label><h:inputText id="add-tmp-country" value="#{studentBean.student.tempcountry}"/>
                                 </fieldset>
-                                <h:commandButton value="Next" type="submit"  class="btn btn-primary"/>
+                                <h:commandButton type="submit"  action="#{studentBean.submit}" value="#{msg.save}" class="btn btn-primary"/>
                             </h:form>
 
                         </div>

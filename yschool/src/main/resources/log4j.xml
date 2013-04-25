@@ -26,6 +26,11 @@
 		<appender-ref ref="console" />
 	</category>
 
+    <category name="org.hibernate.tool.hbm2ddl">
+        <priority value="debug" />
+        <appender-ref ref="console"/>
+    </category>
+
 	<root>
 		<priority value="debug" />
 		<!--<appender-ref ref="info" />-->
