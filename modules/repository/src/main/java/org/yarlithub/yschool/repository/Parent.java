@@ -1,5 +1,15 @@
 package org.yarlithub.yschool.repository;
 
+import org.joda.time.DateTime;
+import org.yarlithub.yschool.repository.util.HibernateUtil;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jaykrish
@@ -7,5 +17,265 @@ package org.yarlithub.yschool.repository;
  * Time: 1:18 PM
  * To change this template use File | Settings | File Templates.
  */
+
+@Entity
+@Table(name = "parent")
 public class Parent {
+
+    //unique identifier for parent like admission no. for student.
+    private String parentIdentifier;
+    private String fullName;
+    private String nameWithInitials;
+    private Date dob;
+    private String addressLine1; // new
+    private String addressLine2; // new
+    private String city;
+    private String country;
+    private String tempaddressLine1;
+    private String tempaddressLine2;
+    private String tempcountry;
+
+    private String gender;
+    private String profession;
+    private String comment;
+    private String email;
+    private int mobileNo;
+    private String userName;
+    private String password;
+
+
+    public void save() {
+        HibernateUtil.getCurrentSession().save(this);
+    }
+
+    public void update() {
+        HibernateUtil.getCurrentSession().update(this);
+    }
+
+    public void delete() {
+        HibernateUtil.getCurrentSession().delete(this);
+    }
+
+    public List<Parent> searchParentByfullName(String parentsfullName) {
+        return HibernateUtil.getCurrentSession().createQuery("from Parent  where fullName = ?").setString(0, parentsfullName).list();
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * @return the parentIdentifier
+     */
+    public String getparentIdentifier() {
+        return parentIdentifier;
+    }
+
+    /**
+     * @param parentIdentifier the admissionNumber to set
+     */
+    public void setparentIdentifier(String parentIdentifier) {
+        this.parentIdentifier = parentIdentifier;
+    }
+
+    /**
+     * @return the fullName
+     */
+    public String getFullName() {
+        return fullName;
+    }
+
+    /**
+     * @param fullName the fullName to set
+     */
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    /**
+     * @return the nameWithInitials
+     */
+    public String getNameWithInitials() {
+        return nameWithInitials;
+    }
+
+    /**
+     * @param nameWithInitials the nameWithInitials to set
+     */
+    public void setNameWithInitials(String nameWithInitials) {
+        this.nameWithInitials = nameWithInitials;
+    }
+
+    /**
+     * @return the gender
+     */
+    public String getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender the gender to set
+     */
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    /**
+     * @return the profession
+     */
+    public String getProfession() {
+        return profession;
+    }
+
+    /**
+     * @param profession the profession to set
+     */
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    /**
+     * @return the comment
+     */
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * @param comment the studentStatus to set
+     */
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * @param userName the userName to set
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    /**
+     * @return the mobileno
+     */
+    public int getMobileNo() {
+        return mobileNo;
+    }
+
+    /**
+     * @param mobileNo the mobileNo to set
+     */
+    public void setCalenderYear(int mobileNo) {
+        this.mobileNo = mobileNo;
+    }
+
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getTempaddressLine1() {
+        return tempaddressLine1;
+    }
+
+    public void setTempaddressLine1(String tempaddressLine1) {
+        this.tempaddressLine1 = tempaddressLine1;
+    }
+
+    public String getTempaddressLine2() {
+        return tempaddressLine2;
+    }
+
+    public void setTempaddressLine2(String tempaddressLine2) {
+        this.tempaddressLine2 = tempaddressLine2;
+    }
+
+    public String getTempcountry() {
+        return tempcountry;
+    }
+
+    public void setTempcountry(String tempcountry) {
+        this.tempcountry = tempcountry;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Parent");
+        sb.append("{parentIdentifier='").append(parentIdentifier).append('\'');
+        sb.append(", fullName='").append(fullName).append('\'');
+        sb.append(", nameWithInitials='").append(nameWithInitials).append('\'');
+        sb.append(", dob=").append(dob);
+        sb.append(", gender='").append(gender).append('\'');
+        sb.append(", profession='").append(profession).append('\'');
+        sb.append(", comment='").append(comment).append('\'');
+        sb.append(", userName='").append(userName).append('\'');
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", mobileNo=").append(mobileNo);
+        sb.append('}');
+        return sb.toString();
+    }
 }

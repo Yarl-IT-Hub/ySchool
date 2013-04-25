@@ -79,7 +79,7 @@
                     <li class="nav-header">Manage</li>
                     <li id="student"><a href="/yschool/faces/student/student.xhtml">Student</a></li>
                     <li><a href="/yschool/faces/staff/staff.xhtml">Staff</a></li>
-                    <li><a href="parent.html">Parents</a></li>
+                    <li id= "parent"><a href="/yschool/faces/student/parent.xhtml">Parents</a></li>
                     <li><a href="#">Admin users</a></li>
                     <li class="nav-header">Assign</li>
                     <li><a href="#">Teachers to classes</a></li>
