@@ -49,7 +49,7 @@ public class StudentBean implements Serializable {
     private List<String> genderList = Arrays.asList("Male", "Female");
     private List<String> houseList;
     private List<Status> studentStatusList = Arrays.asList(Status.COMPLETED, Status.PENDING, Status.POSTPONED);
-    private List<String> calenderYearList,gradeList,divisionList,mediumList,subjectList;
+    private List<String> calenderYearList, gradeList, divisionList, mediumList, subjectList;
 
     public StudentBean() {
         logger.info("initiation a new student bean");
@@ -64,10 +64,10 @@ public class StudentBean implements Serializable {
 
     public void submit() {
         logger.info("saving student information [" + student + "]");
-          FacesContext.getCurrentInstance().addMessage(null, 
+        FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "New Student successfully inserted.", null));
         student.save();
-      
+
     }
 
     public Student getStudent() {
@@ -77,10 +77,10 @@ public class StudentBean implements Serializable {
     public void setStudent(Student student) {
         this.student = student;
     }
-    
-    public String search(){
+
+    public String search() {
         logger.info("search for student by full name[" + student.getFullName() + "]");
-        setStudentList(student.searchStudentByfullName(student.getFullName()));      
+        setStudentList(student.searchStudentByfullName(student.getFullName()));
         return "searchStudentList";
     }
 
@@ -116,11 +116,11 @@ public class StudentBean implements Serializable {
      * @return the houseList
      */
     public List<String> getHouseList() {
-        if(houseList == null){
-           houseList = new ArrayList<>();
-           houseList.add(House.RED.name());
-           houseList.add(House.YELLOW.name());
-           houseList.add(House.BLUE.name());
+        if (houseList == null) {
+            houseList = new ArrayList<>();
+            houseList.add(House.RED.name());
+            houseList.add(House.YELLOW.name());
+            houseList.add(House.BLUE.name());
         }
         return houseList;
     }
@@ -150,13 +150,13 @@ public class StudentBean implements Serializable {
      * @return the calenderYearList
      */
     public List<String> getCalenderYearList() {
-        if(calenderYearList == null){
-           calenderYearList = new ArrayList<>();
-           calenderYearList.add("2012");
-           calenderYearList.add("2011");
-           calenderYearList.add("2010");
-        }       
-        
+        if (calenderYearList == null) {
+            calenderYearList = new ArrayList<>();
+            calenderYearList.add("2012");
+            calenderYearList.add("2011");
+            calenderYearList.add("2010");
+        }
+
         return calenderYearList;
     }
 
@@ -165,9 +165,9 @@ public class StudentBean implements Serializable {
      */
     public void setCalenderYearList(List<String> calenderYearList) {
         this.calenderYearList = calenderYearList;
-    } 
-    
-    public void loadInitData(){
+    }
+
+    public void loadInitData() {
         System.out.println(initialDateLoaderUtil);
         setGradeList(initialDateLoaderUtil.loadData("PRE_GRADE"));
         setMediumList(initialDateLoaderUtil.loadData("PRE_MEDIUM"));

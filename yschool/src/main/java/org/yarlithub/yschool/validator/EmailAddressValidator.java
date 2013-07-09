@@ -1,6 +1,5 @@
 package org.yarlithub.yschool.validator;
 
-import javax.faces.validator.FacesValidator;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -14,7 +13,7 @@ import javax.faces.validator.ValidatorException;
  * Date: 4/25/13
  * Time: 5:37 PM
  * To change this template use File | Settings | File Templates.
- *
+ * <p/>
  * Description: A custom email address validator.
  */
 

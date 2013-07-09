@@ -1,5 +1,7 @@
 <sitemesh>
 
-    <mapping path="/*" decorator="/WEB-INF/decorators/layout.jsp"/>
     <mapping path="/faces/yearly/*" decorator="/WEB-INF/decorators/yearly-layout.jsp"/>
+    <mapping path="/faces/setup/*" decorator="/WEB-INF/decorators/setup-layout.jsp"/>
+    <mapping path="/*" decorator="/WEB-INF/decorators/layout.jsp"/>
+
 </sitemesh>

@@ -59,15 +59,23 @@
         <div class="span3">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Main menu</li>
-                    <li><a href="/yschool">Back to main configurations</a></li>
+                    <li class="nav-header">Manage</li>
+                    <li id="student"><a href="/yschool/faces/student/student.xhtml">Student</a></li>
+                    <li><a href="/yschool/faces/staff/staff.xhtml">Staff</a></li>
+                    <li id="parent"><a href="/yschool/faces/parent/parent.xhtml">Parents</a></li>
+                    <li><a href="#">Admin users</a></li>
+                    <li class="nav-header">Assign</li>
+                    <li><a href="#">Teachers to classes</a></li>
+                    <li id="add-student-to-class"><a href="/yschool/faces/student/add-student-class.xhtml">Add students
+                        to class</a></li>
+                    <li><a href="#">Assign subjects to Students</a></li>
+                    <li><a href="#">Marks Management</a></li>
                     <li class="nav-header">Configure</li>
-                    <li id="medium"><a href="/yschool/faces/yearly/medium.xhtml">Medium</a></li>
-                    <li id="subjects"><a href="/yschool/faces/yearly/subjects.xhtml">Subjects</a></li>
-                    <li id="classes-to-grades"><a href="/yschool/faces/yearly/classes-to-grades.xhtml">Assign Classes to
-                        Grades</a></li>
-                    <li id="subjects-to-classes"><a href="/yschool/faces/yearly/subjects-to-classes.xhtml">Assign
-                        Subjects to Classes</a></li>
+                    <a href="/yschool/faces/yearly/yearly-index.xhtml">Yearly Configurations</a>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">School notifications</a></li>
+                    <li><a href="#">Manage time table</a></li>
                 </ul>
             </div>
             <!--/.well -->

@@ -38,9 +38,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `yschool_lite`.`Class`
+-- Table `yschool_lite`.`Classroom`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Class` (
+CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Classroom` (
   `idClass` INT NOT NULL ,
   `year` YEAR NOT NULL ,
   `grade` INT NOT NULL ,
@@ -96,7 +96,7 @@ CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Class_Subject` (
   INDEX `fk_Class_has_Subject_Class1_idx` (`Class_idClass` ASC) ,
   CONSTRAINT `fk_Class_has_Subject_Class1`
     FOREIGN KEY (`Class_idClass` )
-    REFERENCES `yschool_lite`.`Class` (`idClass` )
+    REFERENCES `yschool_lite`.`Classroom` (`idClass` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Class_has_Subject_Subject1`
@@ -162,7 +162,7 @@ CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Class_Student` (
   INDEX `fk_Class_has_Student_Class1_idx` (`Class_idClass` ASC) ,
   CONSTRAINT `fk_Class_has_Student_Class1`
     FOREIGN KEY (`Class_idClass` )
-    REFERENCES `yschool_lite`.`Class` (`idClass` )
+    REFERENCES `yschool_lite`.`Classroom` (`idClass` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Class_has_Student_Student1`
@@ -208,7 +208,7 @@ CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Class_Staff` (
   INDEX `fk_Class_has_Staff_Subject1_idx` (`Subject_idSubject` ASC) ,
   CONSTRAINT `fk_Class_has_Staff_Class1`
     FOREIGN KEY (`Class_idClass` )
-    REFERENCES `yschool_lite`.`Class` (`idClass` )
+    REFERENCES `yschool_lite`.`Classroom` (`idClass` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Class_has_Staff_Staff1`

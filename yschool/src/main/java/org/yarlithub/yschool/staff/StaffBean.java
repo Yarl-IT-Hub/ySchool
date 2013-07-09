@@ -13,11 +13,8 @@
 package org.yarlithub.yschool.staff;
 
 import org.apache.log4j.Logger;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import org.yarlithub.yschool.repository.Staff;
+import org.yarlithub.yschool.util.InitialDateLoaderUtil;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -25,16 +22,18 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.yarlithub.yschool.util.InitialDateLoaderUtil;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- *
  * @author Vanaja
  */
 @ManagedBean
 @SessionScoped
 public class StaffBean implements Serializable {
-private static final Logger logger = Logger.getLogger(StaffBean.class);
+    private static final Logger logger = Logger.getLogger(StaffBean.class);
 
     @ManagedProperty(value = "#{initialDateLoaderUtil}")
     private InitialDateLoaderUtil initialDateLoaderUtil;
@@ -43,7 +42,7 @@ private static final Logger logger = Logger.getLogger(StaffBean.class);
     private List<Staff> staffList;
     private List<String> genderList = Arrays.asList("Male", "Female");
     private List<String> typeList;
-    
+
     private List<String> calenderYearList;
 
     public StaffBean() {
@@ -59,19 +58,19 @@ private static final Logger logger = Logger.getLogger(StaffBean.class);
 
     public void submit() {
         logger.info("saving staff information [" + staff + "]");
-          FacesContext.getCurrentInstance().addMessage(null, 
+        FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "New Staff successfully inserted.", null));
         staff.save();
-      
+
     }
-    
-    public String search(){
+
+    public String search() {
         logger.info("search for staff by full name[" + staff.getFullName() + "]");
         setStaffList(staff.searchStaffByfullName(staff.getFullName()));
-              
+
         return "searchStaffList";
     }
-    
+
     public Staff getStaff() {
         return staff;
     }
@@ -79,7 +78,7 @@ private static final Logger logger = Logger.getLogger(StaffBean.class);
     public void setStaff(Staff staff) {
         this.staff = staff;
     }
-     
+
     public List<Staff> getStaffList() {
         return staffList;
     }
@@ -97,11 +96,11 @@ private static final Logger logger = Logger.getLogger(StaffBean.class);
     }
 
     public List<String> getTypeList() {
-        if(typeList == null){
-           typeList = new ArrayList<>();
-           typeList.add("Principal");
-           typeList.add("Teachers");
-           typeList.add("Non accademy");
+        if (typeList == null) {
+            typeList = new ArrayList<>();
+            typeList.add("Principal");
+            typeList.add("Teachers");
+            typeList.add("Non accademy");
         }
         return typeList;
     }
@@ -111,21 +110,21 @@ private static final Logger logger = Logger.getLogger(StaffBean.class);
     }
 
     public List<String> getCalenderYearList() {
-        if(calenderYearList == null){
-           calenderYearList = new ArrayList<>();
-           calenderYearList.add("2012");
-           calenderYearList.add("2013");
-           calenderYearList.add("2014");
-        }       
-        
+        if (calenderYearList == null) {
+            calenderYearList = new ArrayList<>();
+            calenderYearList.add("2012");
+            calenderYearList.add("2013");
+            calenderYearList.add("2014");
+        }
+
         return calenderYearList;
     }
 
     public void setCalenderYearList(List<String> calenderYearList) {
         this.calenderYearList = calenderYearList;
-    } 
-    
-    public void loadInitData(){
+    }
+
+    public void loadInitData() {
         System.out.println(initialDateLoaderUtil);
     }
 

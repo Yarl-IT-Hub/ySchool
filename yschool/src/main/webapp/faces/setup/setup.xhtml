@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Simple JSF Facelets page</title>
+</h:head>
+
+<h:body>
+
+
+    <div class="span9">
+        <div class="row">
+            <div class="span9">
+                <h3>Setup Up ySchool....</h3>
+
+                <div class="tabbable" style="margin-bottom: 9px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#1" data-toggle="tab">Setup User</a></li>
+                        <li><a href="#2" data-toggle="tab">School</a></li>
+                        <li><a href="#3" data-toggle="tab">Classes</a></li>
+                        <li><a href="#4" data-toggle="tab">Subjects</a></li>
+                        <li><a href="#5" data-toggle="tab">Staffs</a></li>
+                        <li><a href="#6" data-toggle="tab">Students</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="1">
+                            <div class="progress">
+                                <div class="bar" style="width: 16%;"></div>
+                            </div>
+                            <h:form class="well">
+                                <fieldset>
+                                    <legend>Create a ySchool user...</legend>
+
+                                    <label>Username</label>
+                                    <h:inputText id="add-name" value="" required="true"
+                                                 requiredMessage=" Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="add-name" errorStyle="color : red"/>
+                                    <label>Role</label>
+                                    <h:inputText id="add-role" value="" required="true"
+                                                 requiredMessage=" Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="add-role" errorStyle="color : red"/>
+                                    <label>Password</label>
+                                    <h:inputText id="add-pwd" value="" required="true"
+                                                 requiredMessage=" Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="add-pwd" errorStyle="color : red"/>
+                                    <label>Confirm Password</label>
+                                    <h:inputText id="confirm-pwd" value="" required="true"
+                                                 requiredMessage=" Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="confirm-pwd" errorStyle="color : red"/>
+                               </fieldset>
+                                <h:commandButton type="submit" action="#2" value="Next"
+                                                 class="btn btn-primary"/>
+                            </h:form>
+                        </div>
+
+
+
+                        <div class="tab-pane" id="2">
+                             <div class="progress">
+                                <div class="bar" style="width: 32%;"></div>
+                             </div>
+                            <h:form class="well">
+                                <fieldset>
+                                    <legend>Initialize your School with ySchool...</legend>
+                                    <label>School name</label>
+                                    <h:inputText id="school-name" value="" required="true"
+                                                 requiredMessage=" Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-name" errorStyle="color : red"/>
+                                    <label>Address</label>
+                                    <h:inputText id="school-address" value="" required="true"
+                                                 requiredMessage=" School address is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-address" errorStyle="color : red"/>
+                                    <label>Zone</label>
+                                    <h:inputText id="school-zone" value="" required="true"
+                                                 requiredMessage=" School zone is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-zone" errorStyle="color : red"/>
+                                    <label>District</label>
+                                    <h:inputText id="school-district" value="" required="true"
+                                                 requiredMessage=" School district is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-district" errorStyle="color : red"/>
+                                    <label>Province</label>
+                                    <h:inputText id="school-province" value="" required="true"
+                                                 requiredMessage=" School province is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-province" errorStyle="color : red"/>
+
+                               </fieldset>
+                                <h:commandButton type="submit" action="#1" value="Back"
+                                                 class="btn btn-primary"/>
+                                <h:commandButton type="submit" action="3" value="Next"
+                                                 class="btn btn-primary"/>
+                            </h:form>
+                        </div>
+
+
+
+                        <div class="tab-pane" id="3">
+                             <div class="progress">
+                                <div class="bar" style="width: 50%;"></div>
+                             </div>
+                             <h:form class="well">
+                                      <fieldset>
+                                        <legend>Initialize Grades and Divisions...</legend>
+                                        <label>Fill the <a href="">Grade Initializing Template</a> and upload it here</label>
+                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                                 requiredMessage=" Select file">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                        </h:inputText>
+                                        <h:commandButton type="submit" action="#3" value="Browse"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                      <fieldset>
+                                         <h:commandButton type="submit" action="#3" value="Submit"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                        <h:commandButton type="submit" action="#2" value="Back"
+                                                 class="btn btn-primary"/>
+                                        <h:commandButton type="submit" action="#4" value="Next"
+                                                 class="btn btn-primary"/>
+                             </h:form>
+                        </div>
+
+
+
+                        <div class="tab-pane" id="4">
+                             <div class="progress">
+                                <div class="bar" style="width: 66%;"></div>
+                             </div>
+                             <h:form class="well">
+                                      <fieldset>
+                                        <legend>Initialize Subjects...</legend>
+                                         <label>Fill the <a href="">Subject Initializing Template</a> and upload it here</label>
+                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                                 requiredMessage=" Select file">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                        </h:inputText>
+                                        <h:commandButton type="submit" action="#3" value="Browse"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                      <fieldset>
+                                         <h:commandButton type="submit" action="#3" value="Submit"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                        <h:commandButton type="submit" action="#3" value="Back"
+                                                 class="btn btn-primary"/>
+                                        <h:commandButton type="submit" action="#5" value="Next"
+                                                 class="btn btn-primary"/>
+                             </h:form>
+                        </div>
+
+
+
+                         <div class="tab-pane" id="5">
+                             <div class="progress">
+                                <div class="bar" style="width: 83%;"></div>
+                             </div>
+                             <h:form class="well">
+                                      <fieldset>
+                                        <legend>Initialize Staffs...</legend>
+                                         <label>Fill the <a href="">Staff Initializing Template</a> and upload it here</label>
+                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                                 requiredMessage=" Select file">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                        </h:inputText>
+                                        <h:commandButton type="submit" action="#3" value="Browse"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                      <fieldset>
+                                         <h:commandButton type="submit" action="#3" value="Submit"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                        <h:commandButton type="submit" action="#4" value="Back"
+                                                 class="btn btn-primary"/>
+                                        <h:commandButton type="submit" action="#6" value="Next"
+                                                 class="btn btn-primary"/>
+                             </h:form>
+                        </div>
+
+                        <div class="tab-pane" id="6">
+                             <div class="progress">
+                                <div class="bar" style="width: 100%;"></div>
+                             </div>
+                             <h:form class="well">
+                                      <fieldset>
+                                        <legend>Initialize Students...</legend>
+                                         <label>Fill the <a href="">Student Initializing Template</a> and upload it here</label>
+                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                                 requiredMessage=" Select file">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                        </h:inputText>
+                                        <h:commandButton type="submit" action="#3" value="Browse"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                      <fieldset>
+                                         <h:commandButton type="submit" action="#3" value="Submit"
+                                                 class="btn btn-primary"/>
+                                      </fieldset>
+                                        <h:commandButton type="submit" action="#5" value="Back"
+                                                 class="btn btn-primary"/>
+                                        <h:commandButton type="submit" action="#6" value="Next"
+                                                 class="btn btn-primary"/>
+                             </h:form>
+                        </div>
+
+                    </div>
+                    <!--tab-content-->
+                </div>
+                <!--tabbable-->
+            </div>
+            <!--span9-->
+        </div>
+        <!--row-->
+    </div>
+    <!--span9-->
+
+</h:body>
+</html>

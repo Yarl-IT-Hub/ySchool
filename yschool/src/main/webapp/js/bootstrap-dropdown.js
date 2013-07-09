@@ -18,75 +18,73 @@
  * ============================================================ */
 
 
-!function( $ ){
+!function ($) {
 
-  "use strict"
+    "use strict"
 
- /* DROPDOWN CLASS DEFINITION
-  * ========================= */
+    /* DROPDOWN CLASS DEFINITION
+     * ========================= */
 
-  var toggle = '[data-toggle="dropdown"]'
-    , Dropdown = function ( element ) {
-        var $el = $(element).on('click.dropdown.data-api', this.toggle)
-        $('html').on('click.dropdown.data-api', function () {
-          $el.parent().removeClass('open')
-        })
-      }
+    var toggle = '[data-toggle="dropdown"]'
+        , Dropdown = function (element) {
+            var $el = $(element).on('click.dropdown.data-api', this.toggle)
+            $('html').on('click.dropdown.data-api', function () {
+                $el.parent().removeClass('open')
+            })
+        }
 
-  Dropdown.prototype = {
+    Dropdown.prototype = {
 
-    constructor: Dropdown
+        constructor:Dropdown, toggle:function (e) {
+            var $this = $(this)
+                , selector = $this.attr('data-target')
+                , $parent
+                , isActive
 
-  , toggle: function ( e ) {
-      var $this = $(this)
-        , selector = $this.attr('data-target')
-        , $parent
-        , isActive
+            if (!selector) {
+                selector = $this.attr('href')
+                selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+            }
 
-      if (!selector) {
-        selector = $this.attr('href')
-        selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
-      }
+            $parent = $(selector)
+            $parent.length || ($parent = $this.parent())
 
-      $parent = $(selector)
-      $parent.length || ($parent = $this.parent())
+            isActive = $parent.hasClass('open')
 
-      isActive = $parent.hasClass('open')
+            clearMenus()
+            !isActive && $parent.toggleClass('open')
 
-      clearMenus()
-      !isActive && $parent.toggleClass('open')
+            return false
+        }
 
-      return false
     }
 
-  }
-
-  function clearMenus() {
-    $(toggle).parent().removeClass('open')
-  }
+    function clearMenus() {
+        $(toggle).parent().removeClass('open')
+    }
 
 
-  /* DROPDOWN PLUGIN DEFINITION
-   * ========================== */
+    /* DROPDOWN PLUGIN DEFINITION
+     * ========================== */
 
-  $.fn.dropdown = function ( option ) {
-    return this.each(function () {
-      var $this = $(this)
-        , data = $this.data('dropdown')
-      if (!data) $this.data('dropdown', (data = new Dropdown(this)))
-      if (typeof option == 'string') data[option].call($this)
+    $.fn.dropdown = function (option) {
+        return this.each(function () {
+            var $this = $(this)
+                , data = $this.data('dropdown')
+            if (!data) $this.data('dropdown', (data = new Dropdown(this)))
+            if (typeof option == 'string') data[option].call($this)
+        })
+    }
+
+    $.fn.dropdown.Constructor = Dropdown
+
+
+    /* APPLY TO STANDARD DROPDOWN ELEMENTS
+     * =================================== */
+
+    $(function () {
+        $('html').on('click.dropdown.data-api', clearMenus)
+        $('body').on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
     })
-  }
 
-  $.fn.dropdown.Constructor = Dropdown
-
-
-  /* APPLY TO STANDARD DROPDOWN ELEMENTS
-   * =================================== */
-
-  $(function () {
-    $('html').on('click.dropdown.data-api', clearMenus)
-    $('body').on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
-  })
-
-}( window.jQuery )
+}(window.jQuery)

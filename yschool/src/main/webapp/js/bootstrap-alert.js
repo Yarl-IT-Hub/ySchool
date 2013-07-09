@@ -18,74 +18,72 @@
  * ========================================================== */
 
 
-!function( $ ){
+!function ($) {
 
-  "use strict"
+    "use strict"
 
- /* ALERT CLASS DEFINITION
-  * ====================== */
+    /* ALERT CLASS DEFINITION
+     * ====================== */
 
-  var dismiss = '[data-dismiss="alert"]'
-    , Alert = function ( el ) {
-        $(el).on('click', dismiss, this.close)
-      }
+    var dismiss = '[data-dismiss="alert"]'
+        , Alert = function (el) {
+            $(el).on('click', dismiss, this.close)
+        }
 
-  Alert.prototype = {
+    Alert.prototype = {
 
-    constructor: Alert
+        constructor:Alert, close:function (e) {
+            var $this = $(this)
+                , selector = $this.attr('data-target')
+                , $parent
 
-  , close: function ( e ) {
-      var $this = $(this)
-        , selector = $this.attr('data-target')
-        , $parent
+            if (!selector) {
+                selector = $this.attr('href')
+                selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+            }
 
-      if (!selector) {
-        selector = $this.attr('href')
-        selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
-      }
+            $parent = $(selector)
+            $parent.trigger('close')
 
-      $parent = $(selector)
-      $parent.trigger('close')
+            e && e.preventDefault()
 
-      e && e.preventDefault()
+            $parent.length || ($parent = $this.hasClass('alert') ? $this : $this.parent())
 
-      $parent.length || ($parent = $this.hasClass('alert') ? $this : $this.parent())
+            $parent.removeClass('in')
 
-      $parent.removeClass('in')
+            function removeElement() {
+                $parent.remove()
+                $parent.trigger('closed')
+            }
 
-      function removeElement() {
-        $parent.remove()
-        $parent.trigger('closed')
-      }
+            $.support.transition && $parent.hasClass('fade') ?
+                $parent.on($.support.transition.end, removeElement) :
+                removeElement()
+        }
 
-      $.support.transition && $parent.hasClass('fade') ?
-        $parent.on($.support.transition.end, removeElement) :
-        removeElement()
     }
 
-  }
+
+    /* ALERT PLUGIN DEFINITION
+     * ======================= */
+
+    $.fn.alert = function (option) {
+        return this.each(function () {
+            var $this = $(this)
+                , data = $this.data('alert')
+            if (!data) $this.data('alert', (data = new Alert(this)))
+            if (typeof option == 'string') data[option].call($this)
+        })
+    }
+
+    $.fn.alert.Constructor = Alert
 
 
- /* ALERT PLUGIN DEFINITION
-  * ======================= */
+    /* ALERT DATA-API
+     * ============== */
 
-  $.fn.alert = function ( option ) {
-    return this.each(function () {
-      var $this = $(this)
-        , data = $this.data('alert')
-      if (!data) $this.data('alert', (data = new Alert(this)))
-      if (typeof option == 'string') data[option].call($this)
+    $(function () {
+        $('body').on('click.alert.data-api', dismiss, Alert.prototype.close)
     })
-  }
 
-  $.fn.alert.Constructor = Alert
-
-
- /* ALERT DATA-API
-  * ============== */
-
-  $(function () {
-    $('body').on('click.alert.data-api', dismiss, Alert.prototype.close)
-  })
-
-}( window.jQuery )
+}(window.jQuery)

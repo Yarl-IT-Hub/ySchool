@@ -4,12 +4,12 @@
  */
 package org.yarlithub.yschool.util;
 
-import java.util.Arrays;
-import java.util.List;
+import org.apache.log4j.Logger;
+
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-
-import org.apache.log4j.Logger;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author dell

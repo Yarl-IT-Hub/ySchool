@@ -46,7 +46,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+                <p class="navbar-text pull-right">Welcome to ySchool</p>
             </div>
             <!--/.nav-collapse -->
         </div>
@@ -57,31 +57,19 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="span3">
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Main menu</li>
-                    <li><a href="/yschool">Back to main configurations</a></li>
-                    <li class="nav-header">Configure</li>
-                    <li id="medium"><a href="/yschool/faces/yearly/medium.xhtml">Medium</a></li>
-                    <li id="subjects"><a href="/yschool/faces/yearly/subjects.xhtml">Subjects</a></li>
-                    <li id="classes-to-grades"><a href="/yschool/faces/yearly/classes-to-grades.xhtml">Assign Classes to
-                        Grades</a></li>
-                    <li id="subjects-to-classes"><a href="/yschool/faces/yearly/subjects-to-classes.xhtml">Assign
-                        Subjects to Classes</a></li>
-                </ul>
-            </div>
+
             <!--/.well -->
         </div>
         <!--/span-->
-        <sitemesh:write property='body'/>
 
+        <sitemesh:write property='body'/>
     </div>
     <!--/row-->
 
     <hr/>
 
     <footer>
-        <p><![CDATA[&copy;]> ySchool 2012</p>
+        <p><![CDATA[&copy;]> ySchool 2013</p>
     </footer>
 
 </div>

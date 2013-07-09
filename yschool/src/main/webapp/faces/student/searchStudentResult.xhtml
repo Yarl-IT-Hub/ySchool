@@ -6,21 +6,21 @@
       xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-    	
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<!--		<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico" />-->
-		
-		<title>Filter Student</title>
-		<style type="text/css" title="currentStyle">
-			@import "/yschool/css/demo_page.css";
-			@import "/yschool/css/demo_table.css";
-		</style>		
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-                        $('#studentDetails').dataTable();
-                        } );
-		</script>
-	
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <!--		<link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/media/images/favicon.ico" />-->
+
+    <title>Filter Student</title>
+    <style type="text/css" title="currentStyle">
+        @import "/yschool/css/demo_page.css";
+        @import "/yschool/css/demo_table.css";
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            $('#studentDetails').dataTable();
+        });
+    </script>
+
 </h:head>
 
 <h:body>
@@ -28,28 +28,28 @@
         makeLinkActive("student_search");
     </script>
     <h:form>
-    <div class="table">
-        <h:column>
-            <f:facet name="header">#{msg.id}</f:facet>
-            <h:outputText value="#{student.id}"></h:outputText>
-        </h:column>
+        <div class="table">
+            <h:column>
+                <f:facet name="header">#{msg.id}</f:facet>
+                <h:outputText value="#{student.id}"></h:outputText>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">#{msg.full_name}</f:facet>
-            <h:outputText value="#{student.fullName}"></h:outputText>
-        </h:column>
+            <h:column>
+                <f:facet name="header">#{msg.full_name}</f:facet>
+                <h:outputText value="#{student.fullName}"></h:outputText>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">#{msg.dob}</f:facet>
-            <h:outputText value="#{student.dob}">
-            </h:outputText>
-        </h:column>
+            <h:column>
+                <f:facet name="header">#{msg.dob}</f:facet>
+                <h:outputText value="#{student.dob}">
+                </h:outputText>
+            </h:column>
 
-        <h:column>
-            <f:facet name="header">#{msg.registration_date}</f:facet>
-            <h:outputText value="#{student.registrationDate}"></h:outputText>
-        </h:column>
-    </div>
+            <h:column>
+                <f:facet name="header">#{msg.registration_date}</f:facet>
+                <h:outputText value="#{student.registrationDate}"></h:outputText>
+            </h:column>
+        </div>
     </h:form>
 </h:body>
 </html>

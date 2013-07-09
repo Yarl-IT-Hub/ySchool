@@ -19,7 +19,6 @@ import org.sitemesh.webapp.contentfilter.HttpServletRequestFilterable;
 import org.yarlithub.yschool.repository.util.HibernateUtil;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -31,7 +30,6 @@ public class DBTransactionFilter implements Filter {
 
     private static final Logger logger = Logger.getLogger(DBTransactionFilter.class);
     public static final String CURRENT_SESSION = "current-hibernate-session";
-
 
 
     @Override

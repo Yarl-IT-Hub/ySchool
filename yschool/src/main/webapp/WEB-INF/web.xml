@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          id="yschool" version="3.0">
@@ -16,8 +15,8 @@
         <param-value>Development</param-value>
     </context-param>
     <!--<context-param>-->
-        <!--<param-name>com.sun.faces.injectionProvider</param-name>-->
-        <!--<param-value>com.sun.faces.vendor.WebContainerInjectionProvider</param-value>-->
+    <!--<param-name>com.sun.faces.injectionProvider</param-name>-->
+    <!--<param-value>com.sun.faces.vendor.WebContainerInjectionProvider</param-value>-->
     <!--</context-param>-->
 
 

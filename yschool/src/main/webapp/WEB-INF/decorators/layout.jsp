@@ -46,7 +46,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+                <p class="navbar-text pull-right">Welcome to <a href="#">ySchool</a></p>
             </div>
             <!--/.nav-collapse -->
         </div>
@@ -56,30 +56,8 @@
 
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span3">
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Manage</li>
-                    <li id="student"><a href="/yschool/faces/student/student.xhtml">Student</a></li>
-                    <li><a href="/yschool/faces/staff/staff.xhtml">Staff</a></li>
-                    <li id= "parent"><a href="/yschool/faces/parent/parent.xhtml">Parents</a></li>
-                    <li><a href="#">Admin users</a></li>
-                    <li class="nav-header">Assign</li>
-                    <li><a href="#">Teachers to classes</a></li>
-                    <li id="add-student-to-class"><a href="/yschool/faces/student/add-student-class.xhtml">Add students to class</a></li>
-                    <li><a href="#">Assign subjects to Students</a></li>
-                    <li><a href="#">Marks Management</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
-                    <li class="nav-header">Configure</li>
-                    <a href="/yschool/faces/yearly/yearly-index.xhtml">Yearly Configurations</a>
-                    <li><a href="#">Subjects</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">School notifications</a></li>
-                    <li><a href="#">Manage time table</a></li>
-                </ul>
-            </div>
-            <!--/.well -->
+        <div class="span1">
+
         </div>
         <!--/span-->
         <sitemesh:write property='body'/>

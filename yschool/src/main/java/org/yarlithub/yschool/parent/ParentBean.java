@@ -1,20 +1,15 @@
 package org.yarlithub.yschool.parent;
 
 import org.apache.log4j.Logger;
-import org.yarlithub.yschool.repository.House;
 import org.yarlithub.yschool.repository.Parent;
-import org.yarlithub.yschool.repository.Status;
-import org.yarlithub.yschool.repository.Student;
 import org.yarlithub.yschool.util.InitialDateLoaderUtil;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -60,7 +55,7 @@ public class ParentBean implements Serializable {
         this.parent = parent;
     }
 
-    public String search(){
+    public String search() {
         logger.info("search for parent by full name[" + parent.getFullName() + "]");
         setParentList(parent.searchParentByfullName(parent.getFullName()));
         return "searchParentList";
