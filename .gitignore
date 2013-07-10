@@ -7,6 +7,9 @@
 Thumbs.db
 *.iml
 *.idea
+*.classpath
+*.project
+*.settings/
 /yschool/target/
 /modules/repository/target/
 /modules/repository_lite/target/
