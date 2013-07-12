@@ -68,7 +68,7 @@
     <hr/>
 
     <footer>
-        <p><![CDATA[&copy;]> ySchool 2012</p>
+        <p><![CDATA[&copy;]> ySchool 2013</p>
     </footer>
 
 </div>

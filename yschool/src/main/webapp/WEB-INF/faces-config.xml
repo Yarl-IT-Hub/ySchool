@@ -11,4 +11,37 @@
         </resource-bundle>
     </application>
 
+    <!--Navigation-rules and managed-beans are handled by graphical navigation editing with intelliJ IDEA editor 12
+Please don't edit it manually as it cause tracing page navigation more complex.-JayKrish
+-->
+
+    <managed-bean>
+        <display-name>setup</display-name>
+        <managed-bean-name>setup</managed-bean-name>
+        <managed-bean-class>org.yarlithub.yschool.setup.SetupBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+
+
+    <navigation-rule>
+        <description>from index page to first time ySchool setup page</description>
+        <display-name>indexTOsetup</display-name>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/faces/setup/setup.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>setupTOhome</display-name>
+        <from-view-id>/faces/setup/setup.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/faces/home/myhome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

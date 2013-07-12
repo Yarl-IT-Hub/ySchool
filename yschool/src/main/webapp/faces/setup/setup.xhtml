@@ -37,28 +37,28 @@
                                     <legend>Create a ySchool user...</legend>
 
                                     <label>Username</label>
-                                    <h:inputText id="add-name" value="" required="true"
+                                    <h:inputText id="add-name" value="" required="false"
                                                  requiredMessage=" Name is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="add-name" errorStyle="color : red"/>
                                     <label>Role</label>
-                                    <h:inputText id="add-role" value="" required="true"
+                                    <h:inputText id="add-role" value="" required="false"
                                                  requiredMessage=" Name is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="add-role" errorStyle="color : red"/>
                                     <label>Password</label>
-                                    <h:inputText id="add-pwd" value="" required="true"
+                                    <h:inputText id="add-pwd" value="" required="false"
                                                  requiredMessage=" Name is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="add-pwd" errorStyle="color : red"/>
                                     <label>Confirm Password</label>
-                                    <h:inputText id="confirm-pwd" value="" required="true"
+                                    <h:inputText id="confirm-pwd" value="" required="false"
                                                  requiredMessage=" Name is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
@@ -80,35 +80,35 @@
                                 <fieldset>
                                     <legend>Initialize your School with ySchool...</legend>
                                     <label>School name</label>
-                                    <h:inputText id="school-name" value="" required="true"
+                                    <h:inputText id="school-name" value="" required="false"
                                                  requiredMessage=" Name is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="school-name" errorStyle="color : red"/>
                                     <label>Address</label>
-                                    <h:inputText id="school-address" value="" required="true"
+                                    <h:inputText id="school-address" value="" required="false"
                                                  requiredMessage=" School address is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="school-address" errorStyle="color : red"/>
                                     <label>Zone</label>
-                                    <h:inputText id="school-zone" value="" required="true"
+                                    <h:inputText id="school-zone" value="" required="false"
                                                  requiredMessage=" School zone is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="school-zone" errorStyle="color : red"/>
                                     <label>District</label>
-                                    <h:inputText id="school-district" value="" required="true"
+                                    <h:inputText id="school-district" value="" required="false"
                                                  requiredMessage=" School district is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
                                     </h:inputText>
                                     <h:message for="school-district" errorStyle="color : red"/>
                                     <label>Province</label>
-                                    <h:inputText id="school-province" value="" required="true"
+                                    <h:inputText id="school-province" value="" required="false"
                                                  requiredMessage=" School province is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50"/>
@@ -133,10 +133,10 @@
                                       <fieldset>
                                         <legend>Initialize Grades and Divisions...</legend>
                                         <label>Fill the <a href="">Grade Initializing Template</a> and upload it here</label>
-                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                        <h:inputText id="choose-grade-file" value="" required="false"
                                                  requiredMessage=" Select file">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
+                                        <!--f:validateRequired/>
+                                        <f:validateLength maximum="50"/-->
                                         </h:inputText>
                                         <h:commandButton type="submit" action="#3" value="Browse"
                                                  class="btn btn-primary"/>
@@ -162,10 +162,10 @@
                                       <fieldset>
                                         <legend>Initialize Subjects...</legend>
                                          <label>Fill the <a href="">Subject Initializing Template</a> and upload it here</label>
-                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                        <h:inputText id="choose-grade-file" value="" required="false"
                                                  requiredMessage=" Select file">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
+                                        <!--f:validateRequired/>
+                                        <f:validateLength maximum="50"/-->
                                         </h:inputText>
                                         <h:commandButton type="submit" action="#3" value="Browse"
                                                  class="btn btn-primary"/>
@@ -191,10 +191,10 @@
                                       <fieldset>
                                         <legend>Initialize Staffs...</legend>
                                          <label>Fill the <a href="">Staff Initializing Template</a> and upload it here</label>
-                                        <h:inputText id="choose-grade-file" value="" required="true"
+                                        <h:inputText id="choose-grade-file" value="#{setupBean.teststr}" required="false"
                                                  requiredMessage=" Select file">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
+                                        <!--f:validateRequired/>
+                                        <f:validateLength maximum="50"/-->
                                         </h:inputText>
                                         <h:commandButton type="submit" action="#3" value="Browse"
                                                  class="btn btn-primary"/>
@@ -218,10 +218,10 @@
                                       <fieldset>
                                         <legend>Initialize Students...</legend>
                                          <label>Fill the <a href="">Student Initializing Template</a> and upload it here</label>
-                                        <h:inputText id="choose-grade-file" value="" required="true"
-                                                 requiredMessage=" Select file">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
+                                        <h:inputText id="choose-grade-file" value="#{setupBean.teststr}" required="false"
+                                                 requiredMessage="Select file">
+                                        <!--f:validateRequired/>
+                                        <f:validateLength maximum="50"/-->
                                         </h:inputText>
                                         <h:commandButton type="submit" action="#3" value="Browse"
                                                  class="btn btn-primary"/>
@@ -232,7 +232,7 @@
                                       </fieldset>
                                         <h:commandButton type="submit" action="#5" value="Back"
                                                  class="btn btn-primary"/>
-                                        <h:commandButton type="submit" action="#6" value="Next"
+                                        <h:commandButton type="submit" action="success" value="Finish"
                                                  class="btn btn-primary"/>
                              </h:form>
                         </div>
