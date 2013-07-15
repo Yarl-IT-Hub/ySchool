@@ -20,6 +20,7 @@
         <module>modules/reporting</module>
         <module>modules/repository</module>
         <module>modules/user-management</module>
+        <module>modules/lite_repo</module>
     </modules>
 
     <dependencies>
