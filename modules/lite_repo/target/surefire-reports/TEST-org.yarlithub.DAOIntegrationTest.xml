@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="6.839" errors="1" skipped="0" tests="3" name="org.yarlithub.DAOIntegrationTest">
+<testsuite failures="0" time="12.325" errors="1" skipped="0" tests="2" name="org.yarlithub.DAOIntegrationTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/local/java/jdk1.7.0_17/jre/lib/i386"/>
@@ -59,9 +59,8 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.608" classname="org.yarlithub.DAOIntegrationTest" name="testPreCleanDBFirstPass"/>
-  <testcase time="0.054" classname="org.yarlithub.DAOIntegrationTest" name="testPreCleanDBFinalPass"/>
-  <testcase time="0.117" classname="org.apache.maven.surefire.junit4.JUnit4Provider" name="org.yarlithub.DAOIntegrationTest">
+  <testcase time="0.519" classname="org.yarlithub.DAOIntegrationTest" name="testPreCleanDBFinalPass"/>
+  <testcase time="0.527" classname="org.apache.maven.surefire.junit4.JUnit4Provider" name="org.yarlithub.DAOIntegrationTest">
     <error message="org/junit/Assume$AssumptionViolatedException" type="java.lang.NoClassDefFoundError">java.lang.NoClassDefFoundError: org/junit/Assume$AssumptionViolatedException
 	at org.springframework.test.context.junit4.SpringMethodRoadie.runTestMethod(SpringMethodRoadie.java:240)
 	at org.springframework.test.context.junit4.SpringMethodRoadie$RunBeforesThenTestThenAfters.run(SpringMethodRoadie.java:333)

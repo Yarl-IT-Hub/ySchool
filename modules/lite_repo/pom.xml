@@ -151,15 +151,23 @@
 
 		</dependency>
 
-
-		<dependency>
+<!--Couldn't find felees on any maven repo, thus added from system, check the next dependency-->
+		<!--<dependency>
 			<groupId>com.felees</groupId>
 			<artifactId>hbnpojogen-persistence</artifactId>
-			<!-- <version>1.4.32</version> --> <version>1.4.4</version>
-		</dependency>
+			&lt;!&ndash; <version>1.4.32</version> &ndash;&gt; <version> 1.4.32</version>
+		</dependency>-->
+
+        <dependency>
+            <groupId>com.felees</groupId>
+            <artifactId>hbnpojogen-persistence</artifactId>
+            <version> 1.4.4</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/resources/hbnPojoGenArtifactsandDocs/hbnpojogen-persistence-1.4.4.jar</systemPath>
+        </dependency>
 
 
-		<dependency>
+        <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.6.0</version>
@@ -178,9 +186,11 @@
 			<version>1.2.16</version>
 			<scope>test</scope>
 		</dependency>
- 
- 
-		<!-- -->
+
+
+
+<!--/home/kana/yschool/ySchool/modules/lite_repo/src/main/resources/hbnPojoGenArtifactsandDocs/hbnpojogen-persistence-1.4.4.jar-->
+		<!-- -->        <!-- Dont remove the previous comment, the $dependencies would be loaded there while generating POJOs-->
 		
 	</dependencies>
 
