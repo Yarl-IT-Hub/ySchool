@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: org.yarlithub.DAOIntegrationTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 6.839 sec <<< FAILURE!
-org.yarlithub.DAOIntegrationTest  Time elapsed: 0.117 sec  <<< ERROR!
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 12.326 sec <<< FAILURE!
+org.yarlithub.DAOIntegrationTest  Time elapsed: 0.527 sec  <<< ERROR!
 java.lang.NoClassDefFoundError: org/junit/Assume$AssumptionViolatedException
 	at org.springframework.test.context.junit4.SpringMethodRoadie.runTestMethod(SpringMethodRoadie.java:240)
 	at org.springframework.test.context.junit4.SpringMethodRoadie$RunBeforesThenTestThenAfters.run(SpringMethodRoadie.java:333)

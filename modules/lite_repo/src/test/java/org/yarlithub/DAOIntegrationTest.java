@@ -30,7 +30,7 @@ public class DAOIntegrationTest {
 	public void testPreCleanDBFirstPass() {
 		// We'll ignore any exceptions in this pass to give time for the custom exec to execute too 
 		// (+ clear out any DB loops)
-	
+
 		try{HibernateYschoolLiteDaoFactory.getMarksDao().getQuery("delete from Marks").executeUpdate(); } catch (Exception e) { /* do nothing */ }
 		try{HibernateYschoolLiteDaoFactory.getExamDao().getQuery("delete from Exam").executeUpdate(); } catch (Exception e) { /* do nothing */ }
 		try{HibernateYschoolLiteDaoFactory.getClassSubjectDao().getQuery("delete from ClassSubject").executeUpdate(); } catch (Exception e) { /* do nothing */ }
@@ -53,7 +53,7 @@ public class DAOIntegrationTest {
 	@Test
 	@Transactional
 	public void testPreCleanDBFinalPass() {
-	
+
 		HibernateYschoolLiteDaoFactory.getMarksDao().getQuery("delete from Marks").executeUpdate();
 		HibernateYschoolLiteDaoFactory.getExamDao().getQuery("delete from Exam").executeUpdate();
 		HibernateYschoolLiteDaoFactory.getClassSubjectDao().getQuery("delete from ClassSubject").executeUpdate();
