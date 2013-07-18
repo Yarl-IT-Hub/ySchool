@@ -24,24 +24,22 @@ import java.lang.String;
 public class SetupBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(SetupBean.class);
-
+    //string to test initial development of setup.xhtml file
+    public String teststr;
     @ManagedProperty(value = "#{initialDateLoaderUtil}")
     private InitialDateLoaderUtil initialDateLoaderUtil;
 
-    public String teststr;
+    public SetupBean() {
+        logger.info("initiating a new setup bean");
+
+    }
+
     public String getTeststr() {
         return teststr;
     }
 
     public void setTeststr(String teststr) {
         this.teststr = teststr;
-    }
-
-
-
-    public SetupBean() {
-        logger.info("initiating a new setup bean");
-
     }
 
     public void enterSetup() {

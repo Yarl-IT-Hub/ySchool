@@ -16,8 +16,8 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
 -->
 
     <managed-bean>
-        <display-name>setup</display-name>
-        <managed-bean-name>setup</managed-bean-name>
+        <display-name>setupBean</display-name>
+        <managed-bean-name>setupBean</managed-bean-name>
         <managed-bean-class>org.yarlithub.yschool.setup.SetupBean</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
