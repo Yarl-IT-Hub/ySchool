@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -50,7 +52,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	/** Field mapping. */
 	private Date date;
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private Set<Marks> markss = new HashSet<Marks>();
 
@@ -155,6 +157,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idexam", nullable = false  )
 	public Integer getId() {
