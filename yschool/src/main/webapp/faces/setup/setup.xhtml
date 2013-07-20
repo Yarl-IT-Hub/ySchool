@@ -7,157 +7,227 @@
 
 <h:head>
     <title>Simple JSF Facelets page</title>
-    <script type="text/javascript" language="javascript" src="/js/yschool/setup/setup.js"  />
+    <script type="text/javascript" language="javascript" src="/js/yschool/setup/setup.js"/>
 
 </h:head>
 
 <h:body>
 
 
-    <div class="span9">
-        <div class="row">
-            <div class="span9">
-                <h3>Setup Up ySchool....</h3>
+<div class="span8 offset2">
+<div class="hero-unit">
+<h2>Setup Up ySchool....</h2>
 
-                <div class="tabbable" style="margin-bottom: 9px;">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#1" data-toggle="tab">Setup User</a></li>
-                        <li><a href="#2" data-toggle="tab">Setup School</a></li>
-                        <li><a href="#3" data-toggle="tab">Start ySchool</a></li>
-                    </ul>
-                    <div class="tab-content">
+<div class="tabbable" style="margin-bottom: 9px;">
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#1" data-toggle="tab">Setup User</a></li>
+    <li><a href="#2" data-toggle="tab">Setup School</a></li>
+    <li><a href="#3" data-toggle="tab">Start ySchool</a></li>
+</ul>
+<div class="tab-content">
 
-                        <div class="tab-pane active" id="1">
-                            <div class="progress">
-                                <div class="bar" style="width: 33%;"></div>
-                            </div>
-                            <h:form class="well">
-                                <fieldset>
-                                    <legend>Create a ySchool user...</legend>
-
-                                    <label>Username</label>
-                                    <h:inputText id="add-name" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" Name is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="add-name" errorStyle="color : red"/>
-                                    <label>Role</label>
-                                    <h:inputText id="add-role" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" Name is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="add-role" errorStyle="color : red"/>
-                                    <label>Password</label>
-                                    <h:inputText id="add-pwd" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" Name is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="add-pwd" errorStyle="color : red"/>
-                                    <label>Confirm Password</label>
-                                    <h:inputText id="confirm-pwd" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" Name is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="confirm-pwd" errorStyle="color : red"/>
-                                </fieldset>
-                                <h:commandButton id = "next1" type="submit"  value="Next"
-                                                 class="btn btn-primary"/>
-                            </h:form>
-                        </div>
-
-                        <div class="tab-pane" id="2">
-                            <div class="progress">
-                                <div class="bar" style="width: 66%;"></div>
-                            </div>
-                            <h:form class="well">
-                                <fieldset>
-                                    <legend>Initialize your School with ySchool...</legend>
-                                    <label>School name</label>
-                                    <h:inputText id="school-name" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" Name is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="school-name" errorStyle="color : red"/>
-                                    <label>Address</label>
-                                    <h:inputText id="school-address" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" School address is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="school-address" errorStyle="color : red"/>
-                                    <label>Zone</label>
-                                    <h:inputText id="school-zone" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" School zone is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="school-zone" errorStyle="color : red"/>
-                                    <label>District</label>
-                                    <h:inputText id="school-district" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" School district is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="school-district" errorStyle="color : red"/>
-                                    <label>Province</label>
-                                    <h:inputText id="school-province" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" School province is required">
-                                        <f:validateRequired/>
-                                        <f:validateLength maximum="50"/>
-                                    </h:inputText>
-                                    <h:message for="school-province" errorStyle="color : red"/>
-
-                                </fieldset>
-                                <h:commandButton type="submit" action="#1" value="Back"
-                                                 class="btn btn-primary"/>
-                                <h:commandButton type="submit" action="3" value="Next"
-                                                 class="btn btn-primary"/>
-                            </h:form>
-                        </div>
-
-                        <div class="tab-pane" id="3">
-                            <div class="progress">
-                                <div class="bar" style="width: 100%;"></div>
-                            </div>
-                            <h:form class="well">
-                                <fieldset>
-                                    <legend>You are about to start ySchool now...</legend>
-                                    <label>Fill the <a
-                                            href="">ySchool Initializing Document</a> and upload it here</label>
-                                    <h:inputText id="choose-initialize-file" value="#{setupBean.teststr}" required="false"
-                                                 requiredMessage=" Select file">
-                                        <!--f:validateRequired/>
-                                        <f:validateLength maximum="50"/-->
-                                    </h:inputText>
-                                    <h:commandButton type="submit" action="#3" value="Browse"
-                                                     class="btn btn-primary"/>
-                                </fieldset>
-                                <fieldset>
-                                    <h:commandButton type="submit" action="#3" value="Submit"
-                                                     class="btn btn-primary"/>
-                                </fieldset>
-                                <h:commandButton type="submit" action="#2" value="Back"
-                                                 class="btn btn-primary"/>
-                                <h:commandButton type="submit" action="success" value="Finish"
-                                                 class="btn btn-primary"/>
-                            </h:form>
-                        </div>
-
-                    </div>
-                    <!--tab-content-->
-                </div>
-                <!--tabbable-->
-            </div>
-            <!--span9-->
+    <div class="tab-pane active" id="1">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 33%;"></div>
         </div>
-        <!--row-->
+        <h:form class="form-horizontal">
+            <fieldset>
+                <legend>Create a ySchool user...</legend>
+
+                <div class="control-group">
+                    <label class="control-label" for="add-name">User Name</label>
+
+                    <div class="controls">
+                        <h:inputText id="add-name" styleClass="input-xlarge"
+                                     value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" Name is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputText>
+                        <h:message for="add-name" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="add-role">User Role</label>
+
+                    <div class="controls">
+                        <h:selectOneMenu id="add-role"
+                                         value="#{setupBean.teststr}">
+                            <f:selectItem id="item1" itemLabel="Admin" itemValue="1"/>
+                            <f:selectItem id="item2" itemLabel="Staff" itemValue="2"/>
+                            <f:selectItem id="item3" itemLabel="Student" itemValue="3"/>
+                            <f:selectItem id="item4" itemLabel="yUser" itemValue="4"/>
+
+                        </h:selectOneMenu>
+                        <h:message for="add-role" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="add-pwd">Password</label>
+
+                    <div class="controls">
+                        <h:inputSecret id="add-pwd" value="#{setupBean.teststr}" required="false"
+                                       requiredMessage=" Name is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputSecret>
+                        <h:message for="add-pwd" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">Confirm Password</label>
+
+                    <div class="controls">
+                        <h:inputSecret id="confirm-pwd" value="#{setupBean.teststr}" required="false"
+                                       requiredMessage=" Name is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputSecret>
+                        <h:message for="confirm-pwd" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <h:commandButton id="next1" type="submit" value="Next"
+                                     class="btn btn-primary"/>
+                </div>
+            </fieldset>
+        </h:form>
     </div>
-    <!--span9-->
+
+
+    <div class="tab-pane" id="2">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 66%;"></div>
+        </div>
+        <h:form class="form-horizontal">
+            <fieldset>
+                <legend>Initialize your School with ySchool...</legend>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">School Name</label>
+
+                    <div class="controls">
+                        <h:inputText id="school-name" value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" Name is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputText>
+                        <h:message for="school-name" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">Address</label>
+
+                    <div class="controls">
+                        <h:inputText id="school-address" value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" School address is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputText>
+                        <h:message for="school-address" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">Zone</label>
+
+                    <div class="controls">
+                        <h:inputText id="school-zone" value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" School zone is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputText>
+                        <h:message for="school-zone" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">District</label>
+
+                    <div class="controls">
+                        <h:inputText id="school-district" value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" School district is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputText>
+                        <h:message for="school-district" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">Province</label>
+
+                    <div class="controls">
+                        <h:inputText id="school-province" value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" School province is required">
+                            <f:validateRequired/>
+                            <f:validateLength maximum="50"/>
+                        </h:inputText>
+                        <h:message for="school-province" errorStyle="color : red"/>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <h:commandButton type="submit" action="#1" value="Back"
+                                     class="btn"/>
+                    <h:commandButton type="submit" action="3" value="Next"
+                                     class="btn btn-primary"/>
+                </div>
+            </fieldset>
+        </h:form>
+    </div>
+
+
+    <div class="tab-pane" id="3">
+        <div class="progress progress-striped active">
+            <div class="bar" style="width: 90%;"></div>
+        </div>
+        <h:form class="form-horizontal">
+            <fieldset>
+                <legend>You are about to start ySchool now...</legend>
+
+                <div class="control-group">
+                    <label class="control-label" for="confirm-pwd">Fill the <a
+                            href="">ySchool Initializing Document</a> and upload it here</label>
+
+                    <div class="controls">
+
+                        <h:inputText id="choose-initialize-file" value="#{setupBean.teststr}" required="false"
+                                     requiredMessage=" Select file" type="file">
+                            <!--f:validateRequired/>
+
+                            <f:validateLength maximum="50"/-->
+                        </h:inputText>
+                        <h:commandButton type="submit" action="#3" value="Browse"
+                                         class="btn btn-primary"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+
+                <div class="form-actions">
+                    <h:commandButton type="submit" action="#2" value="Back"
+                                     class="btn btn"/>
+                    <h:commandButton type="submit" action="success" value="Finish"
+                                     class="btn btn-primary"/>
+                </div>
+            </fieldset>
+        </h:form>
+    </div>
+
+</div>
+<!--tab-content-->
+</div>
+<!--tabbable-->
+</div>
+<!--hero-unit-->
+</div>
+<!--span8-->
 
 </h:body>
 </html>

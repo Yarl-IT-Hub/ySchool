@@ -11,7 +11,7 @@
         </resource-bundle>
     </application>
 
-    <!--Navigation-rules and managed-beans are handled by graphical navigation editing with intelliJ IDEA editor 12
+    <!--Navigation-rules and managed-beans are handled by graphical navigation editing with intelliJ IDEA editor 12.1.4 commercial version
 Please don't edit it manually as it cause tracing page navigation more complex.-JayKrish
 -->
 
