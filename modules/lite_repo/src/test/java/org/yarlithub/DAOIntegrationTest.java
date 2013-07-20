@@ -82,8 +82,6 @@ public class DAOIntegrationTest {
 
 	 	DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 		Classroom Classroom = YschoolLiteDataPoolFactory.getClassroom();
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStaffDao().saveOrUpdate(Classroom.getClassTeacher());
 		dataLayerYschoolLite.saveOrUpdate(Classroom);
 
 		Integer ClassroomId = Classroom.getId();
@@ -99,13 +97,9 @@ public class DAOIntegrationTest {
 		// null equals check
 		Assert.assertFalse(copy.equals(null));
 		
-		Assert.assertEquals(copy.getClassStaffs(), Classroom.getClassStaffs());
-		Assert.assertEquals(copy.getClassStudents(), Classroom.getClassStudents());
-		Assert.assertEquals(copy.getClassSubjects(), Classroom.getClassSubjects());
 		Assert.assertEquals(copy.getClassTeacher().getId(), Classroom.getClassTeacher().getId());
 		Assert.assertEquals(copy.getDivision(), Classroom.getDivision());
 		Assert.assertEquals(copy.getGrade(), Classroom.getGrade());
-		Assert.assertEquals(copy.getId(), Classroom.getId());
 		Assert.assertEquals(new java.text.SimpleDateFormat("dd/MM/yyyy").format(copy.getYear().getTime()), new java.text.SimpleDateFormat("dd/MM/yyyy").format(Classroom.getYear().getTime()));
 		// tests for coverage completeness
 		Assert.assertFalse(Classroom.toString().equals(""));
@@ -129,8 +123,6 @@ public class DAOIntegrationTest {
 
 	 	DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 		ClassStaff ClassStaff = YschoolLiteDataPoolFactory.getClassStaff();
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStaffDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.Classroom)((org.yarlithub.yschool.model.obj.yschoolLite.ClassStaffPK)ClassStaff.getId()).getClassIdclass()).getClassTeacher());
 		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
 		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassroomDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassStaffPK)ClassStaff.getId()).getClassIdclass());
 		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
@@ -176,8 +168,6 @@ public class DAOIntegrationTest {
 	 	DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 		ClassStudent ClassStudent = YschoolLiteDataPoolFactory.getClassStudent();
 		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStaffDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.Classroom)((org.yarlithub.yschool.model.obj.yschoolLite.ClassStudentPK)ClassStudent.getId()).getClassIdclass()).getClassTeacher());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
 		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassroomDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassStudentPK)ClassStudent.getId()).getClassIdclass());
 		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
 		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStudentDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassStudentPK)ClassStudent.getId()).getStudentIdstudent());
@@ -219,12 +209,6 @@ public class DAOIntegrationTest {
 
 	 	DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 		ClassSubject ClassSubject = YschoolLiteDataPoolFactory.getClassSubject();
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStaffDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.Classroom)ClassSubject.getClassIdclass()).getClassTeacher());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassroomDao().saveOrUpdate(ClassSubject.getClassIdclass());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getSubjectDao().saveOrUpdate(ClassSubject.getSubjectIdsubject());
 		dataLayerYschoolLite.saveOrUpdate(ClassSubject);
 
 		Integer ClassSubjectId = ClassSubject.getId();
@@ -241,8 +225,6 @@ public class DAOIntegrationTest {
 		Assert.assertFalse(copy.equals(null));
 		
 		Assert.assertEquals(copy.getClassIdclass().getId(), ClassSubject.getClassIdclass().getId());
-		Assert.assertEquals(copy.getExams(), ClassSubject.getExams());
-		Assert.assertEquals(copy.getId(), ClassSubject.getId());
 		Assert.assertEquals(copy.getSubjectIdsubject().getId(), ClassSubject.getSubjectIdsubject().getId());
 		// tests for coverage completeness
 		Assert.assertFalse(ClassSubject.toString().equals(""));
@@ -266,14 +248,6 @@ public class DAOIntegrationTest {
 
 	 	DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 		Exam Exam = YschoolLiteDataPoolFactory.getExam();
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStaffDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.Classroom)((org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject)Exam.getClassSubjectIdclassSubject()).getClassIdclass()).getClassTeacher());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassroomDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject)Exam.getClassSubjectIdclassSubject()).getClassIdclass());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getSubjectDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject)Exam.getClassSubjectIdclassSubject()).getSubjectIdsubject());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassSubjectDao().saveOrUpdate(Exam.getClassSubjectIdclassSubject());
 		dataLayerYschoolLite.saveOrUpdate(Exam);
 
 		Integer ExamId = Exam.getId();
@@ -291,8 +265,6 @@ public class DAOIntegrationTest {
 		
 		Assert.assertEquals(copy.getClassSubjectIdclassSubject().getId(), Exam.getClassSubjectIdclassSubject().getId());
 		Assert.assertEquals(new java.text.SimpleDateFormat("dd/MM/yyyy").format(copy.getDate().getTime()), new java.text.SimpleDateFormat("dd/MM/yyyy").format(Exam.getDate().getTime()));
-		Assert.assertEquals(copy.getId(), Exam.getId());
-		Assert.assertEquals(copy.getMarkss(), Exam.getMarkss());
 		Assert.assertEquals(copy.getTerm(), Exam.getTerm());
 		Assert.assertEquals(copy.getType(), Exam.getType());
 		Assert.assertEquals(new java.text.SimpleDateFormat("dd/MM/yyyy").format(copy.getYear().getTime()), new java.text.SimpleDateFormat("dd/MM/yyyy").format(Exam.getYear().getTime()));
@@ -318,18 +290,6 @@ public class DAOIntegrationTest {
 
 	 	DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 		Marks Marks = YschoolLiteDataPoolFactory.getMarks();
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStaffDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.Classroom)((org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject)((org.yarlithub.yschool.model.obj.yschoolLite.Exam)Marks.getExamIdexam()).getClassSubjectIdclassSubject()).getClassIdclass()).getClassTeacher());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassroomDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject)((org.yarlithub.yschool.model.obj.yschoolLite.Exam)Marks.getExamIdexam()).getClassSubjectIdclassSubject()).getClassIdclass());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getSubjectDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject)((org.yarlithub.yschool.model.obj.yschoolLite.Exam)Marks.getExamIdexam()).getClassSubjectIdclassSubject()).getSubjectIdsubject());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getClassSubjectDao().saveOrUpdate(((org.yarlithub.yschool.model.obj.yschoolLite.Exam)Marks.getExamIdexam()).getClassSubjectIdclassSubject());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getExamDao().saveOrUpdate(Marks.getExamIdexam());
-		// Cascading on this property was switched off from config (or requires hbn bug workaround). Performing manual cascade.
-		org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory.getStudentDao().saveOrUpdate(Marks.getStudentIdstudent());
 		dataLayerYschoolLite.saveOrUpdate(Marks);
 
 		Integer MarksId = Marks.getId();
@@ -346,7 +306,6 @@ public class DAOIntegrationTest {
 		Assert.assertFalse(copy.equals(null));
 		
 		Assert.assertEquals(copy.getExamIdexam().getId(), Marks.getExamIdexam().getId());
-		Assert.assertEquals(copy.getId(), Marks.getId());
 		Assert.assertEquals(copy.getMarks(), Marks.getMarks(), 0.1);
 		Assert.assertEquals(copy.getStudentIdstudent().getId(), Marks.getStudentIdstudent().getId());
 		// tests for coverage completeness
@@ -388,7 +347,6 @@ public class DAOIntegrationTest {
 		
 		Assert.assertEquals(copy.getAddress(), School.getAddress());
 		Assert.assertEquals(copy.getDistrict(), School.getDistrict());
-		Assert.assertEquals(copy.getId(), School.getId());
 		Assert.assertEquals(copy.getName(), School.getName());
 		Assert.assertEquals(copy.getProvince(), School.getProvince());
 		Assert.assertEquals(copy.getZone(), School.getZone());
@@ -429,11 +387,7 @@ public class DAOIntegrationTest {
 		// null equals check
 		Assert.assertFalse(copy.equals(null));
 		
-		Assert.assertEquals(copy.getClassrooms(), Staff.getClassrooms());
-		Assert.assertEquals(copy.getClassStaffs(), Staff.getClassStaffs());
-		Assert.assertEquals(copy.getId(), Staff.getId());
 		Assert.assertEquals(copy.getName(), Staff.getName());
-		Assert.assertEquals(copy.getSchools(), Staff.getSchools());
 		Assert.assertEquals(copy.getType(), Staff.getType());
 		// tests for coverage completeness
 		Assert.assertFalse(Staff.toString().equals(""));
@@ -474,16 +428,12 @@ public class DAOIntegrationTest {
 		
 		Assert.assertEquals(copy.getAddmisionNo(), Student.getAddmisionNo());
 		Assert.assertEquals(copy.getAddress(), Student.getAddress());
-		Assert.assertEquals(copy.getClassStudents(), Student.getClassStudents());
 		Assert.assertEquals(new java.text.SimpleDateFormat("dd/MM/yyyy").format(copy.getDob().getTime()), new java.text.SimpleDateFormat("dd/MM/yyyy").format(Student.getDob().getTime()));
 		Assert.assertEquals(copy.getFullName(), Student.getFullName());
 		Assert.assertEquals(copy.getGender(), Student.getGender());
-		Assert.assertEquals(copy.getId(), Student.getId());
-		Assert.assertEquals(copy.getMarkss(), Student.getMarkss());
 		Assert.assertEquals(copy.getName(), Student.getName());
 		Assert.assertEquals(copy.getNameWtInitial(), Student.getNameWtInitial());
 		Assert.assertEquals(copy.getPhoto(), Student.getPhoto());
-		Assert.assertEquals(copy.getStudentHasOptionalsubjects(), Student.getStudentHasOptionalsubjects());
 		// tests for coverage completeness
 		Assert.assertFalse(Student.toString().equals(""));
 		Assert.assertEquals(copy, copy.clone());
@@ -563,12 +513,8 @@ public class DAOIntegrationTest {
 		// null equals check
 		Assert.assertFalse(copy.equals(null));
 		
-		Assert.assertEquals(copy.getClassStaffs(), Subject.getClassStaffs());
-		Assert.assertEquals(copy.getClassSubjects(), Subject.getClassSubjects());
-		Assert.assertEquals(copy.getId(), Subject.getId());
 		Assert.assertEquals(copy.getIsoptional(), Subject.getIsoptional());
 		Assert.assertEquals(copy.getName(), Subject.getName());
-		Assert.assertEquals(copy.getStudentHasOptionalsubjects(), Subject.getStudentHasOptionalsubjects());
 		// tests for coverage completeness
 		Assert.assertFalse(Subject.toString().equals(""));
 		Assert.assertEquals(copy, copy.clone());
@@ -607,7 +553,6 @@ public class DAOIntegrationTest {
 		Assert.assertFalse(copy.equals(null));
 		
 		Assert.assertEquals(copy.getEmail(), user.getEmail());
-		Assert.assertEquals(copy.getId(), user.getId());
 		Assert.assertEquals(copy.getPassword(), user.getPassword());
 		Assert.assertEquals(copy.getUserName(), user.getUserName());
 		Assert.assertEquals(copy.getUserRole(), user.getUserRole());

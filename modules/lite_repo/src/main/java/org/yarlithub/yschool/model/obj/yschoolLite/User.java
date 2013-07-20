@@ -8,6 +8,8 @@ import java.util.WeakHashMap;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -39,7 +41,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	/** Field mapping. */
 	private String email;
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private String password;
 	/** Field mapping. */
@@ -114,6 +116,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "iduser", nullable = false  )
 	public Integer getId() {
