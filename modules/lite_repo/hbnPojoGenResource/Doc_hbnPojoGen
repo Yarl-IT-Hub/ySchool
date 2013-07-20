@@ -1,0 +1,45 @@
+Hibenate Pojo Generation with HibernatePojoGenerator [1]
+
+Steps:
+1.The project is cloned from github [2]
+
+2. Edited the pom.vm inside hbnpojogen / hbnpojogen-core / src / main / resources / templates
+   Removed $dependencies as it enforces at least one via <! [CDATA]> in yschoolHib.xml
+   Changed versions for apache felees (hard-coded 1.4.32 or can go with 1.4.4) and net.sf.ehcache (from 1.6.1 to 2.6.6 because the older version wasn't available in repositories)
+
+
+3. set the yschool_hib.xml which inside pojoGeneration directory
+
+4. generated Pojo classes, DAO, tests etc via terminal, command "java -jar hbnpojogen-core-1.4.32-jar-with-dependencies.jar yschool_hib.xml"
+
+
+Issues
+
+1.  <dependency>
+    	<groupId>com.felees</groupId>
+   		<artifactId>hbnpojogen-persistence</artifactId>
+   		<!-- <version>1.4.32</version> --> <version> 1.4.32</version>
+    </dependency>
+
+  The artifact is missing in maven repositories thus maven could n't resolve it.
+
+   As a temporary solution the jar is downloaded (or built from the cloned project) and manually added to the local repository, .m2
+
+          Resources: 1.4.4 can be downloaded from here [3]
+
+                       both 1.4.4 and 1.4.3 are in this directory
+
+
+          Manual addition: It can be done via the following command or the manual pasting inside /home/kana/.m2/repository/com/felees/hbnpojogen-persistence
+                             mvn install:install-file -Dfile=$PATH\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen -Dversion=1.4.4 -Dpackaging=jar
+
+
+
+
+Links Referred
+
+[1] http://hibernatepojoge.sourceforge.net/
+
+[2] https://github.com/wwadge/hbnpojogen
+
+[3] http://en.sourceforge.jp/frs/g_redir.php?m=ncu&f=/hibernatepojoge/hibernatepojoge/hbnpojogen/hbnpojogen-persistence-1.4.4.jar
