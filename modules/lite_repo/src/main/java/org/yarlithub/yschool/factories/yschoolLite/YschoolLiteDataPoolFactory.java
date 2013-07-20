@@ -63,7 +63,6 @@ public class YschoolLiteDataPoolFactory {
 		}
         classroom.setDivision(BasicDataGenerator.generateRandomStringChar(1));
         classroom.setGrade(BasicDataGenerator.generateRandomInt());
-        classroom.setId(BasicDataGenerator.generateRandomInt());
         classroom.setYear(BasicDataGenerator.generateDate());
 
         return classroom;
@@ -175,7 +174,6 @@ public class YschoolLiteDataPoolFactory {
 		if (classIdclass != null) {
 			classIdclass.addClassSubject (classSubject);
 		}
-        classSubject.setId(BasicDataGenerator.generateRandomInt());
 		if (subjectIdsubject != null) {
 			subjectIdsubject.addClassSubject (classSubject);
 		}
@@ -207,7 +205,6 @@ public class YschoolLiteDataPoolFactory {
 			classSubjectIdclassSubject.addExam (exam);
 		}
         exam.setDate(BasicDataGenerator.generateDate());
-        exam.setId(BasicDataGenerator.generateRandomInt());
         exam.setTerm(BasicDataGenerator.generateRandomInt());
         exam.setType(BasicDataGenerator.generateRandomInt());
         exam.setYear(BasicDataGenerator.generateDate());
@@ -239,7 +236,6 @@ public class YschoolLiteDataPoolFactory {
 		if (examIdexam != null) {
 			examIdexam.addMarks (marks);
 		}
-        marks.setId(BasicDataGenerator.generateRandomInt());
         marks.setMarks(BasicDataGenerator.generateRandomDouble());
 		if (studentIdstudent != null) {
 			studentIdstudent.addMarks (marks);
@@ -270,7 +266,6 @@ public class YschoolLiteDataPoolFactory {
         School school = new School();     
         school.setAddress(BasicDataGenerator.generateRandomString(45));
         school.setDistrict(BasicDataGenerator.generateRandomString(45));
-        school.setId(BasicDataGenerator.generateRandomInt());
         school.setName(BasicDataGenerator.generateRandomString(45));
 		if (principal != null) {
 			principal.addSchool (school);
@@ -289,7 +284,6 @@ public class YschoolLiteDataPoolFactory {
 
         Staff staff = new Staff();    
         
-        staff.setId(BasicDataGenerator.generateRandomInt());
         staff.setName(BasicDataGenerator.generateRandomString(45));
         staff.setType(BasicDataGenerator.generateRandomInt());
 
@@ -309,7 +303,6 @@ public class YschoolLiteDataPoolFactory {
         student.setDob(BasicDataGenerator.generateDate());
         student.setFullName(BasicDataGenerator.generateRandomString(45));
         student.setGender(BasicDataGenerator.generateRandomStringChar(1));
-        student.setId(BasicDataGenerator.generateRandomInt());
         student.setName(BasicDataGenerator.generateRandomString(45));
         student.setNameWtInitial(BasicDataGenerator.generateRandomString(45));
         student.setPhoto(BasicDataGenerator.generateRandomBinary(2147483647));
@@ -365,7 +358,6 @@ public class YschoolLiteDataPoolFactory {
 
         Subject subject = new Subject();    
         
-        subject.setId(BasicDataGenerator.generateRandomInt());
         subject.setIsoptional(BasicDataGenerator.generateRandomBinary(1));
         subject.setName(BasicDataGenerator.generateRandomString(45));
 
@@ -381,7 +373,6 @@ public class YschoolLiteDataPoolFactory {
         User user = new User();    
         
         user.setEmail(BasicDataGenerator.generateRandomString(45));
-        user.setId(BasicDataGenerator.generateRandomInt());
         user.setPassword(BasicDataGenerator.generateRandomString(45));
         user.setUserName(BasicDataGenerator.generateRandomString(45));
         user.setUserRole((byte)(BasicDataGenerator.generateRandomTinyInt()));

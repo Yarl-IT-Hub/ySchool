@@ -10,6 +10,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -45,7 +47,7 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
 	/** Field mapping. */
 	private String district;
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private String name;
 	/** Field mapping. */
@@ -138,6 +140,7 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idschool", nullable = false  )
 	public Integer getId() {

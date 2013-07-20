@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -50,7 +52,7 @@ public class ClassSubject implements Cloneable, Serializable, IPojoGenEntity, IC
 	private Set<Exam> exams = new HashSet<Exam>();
 
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private Subject subjectIdsubject;
 	/**
@@ -151,6 +153,7 @@ public class ClassSubject implements Cloneable, Serializable, IPojoGenEntity, IC
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idclass_subject", nullable = false  )
 	public Integer getId() {

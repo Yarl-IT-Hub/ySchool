@@ -14,6 +14,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -60,7 +62,7 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	/** Field mapping. */
 	private String gender;
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private Set<Marks> markss = new HashSet<Marks>();
 
@@ -251,6 +253,7 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idstudent", nullable = false  )
 	public Integer getId() {

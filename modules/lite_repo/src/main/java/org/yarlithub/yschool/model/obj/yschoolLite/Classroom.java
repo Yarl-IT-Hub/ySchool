@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -63,7 +65,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	/** Field mapping. */
 	private Integer grade;
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private Date year;
 	/**
@@ -273,6 +275,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idclass", nullable = false  )
 	public Integer getId() {
