@@ -9,7 +9,7 @@ USE `yschool_lite` ;
 -- Table `yschool_lite`.`Staff`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Staff` (
-  `idStaff` INT NOT NULL ,
+  `idStaff` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NULL ,
   `type` INT NULL ,
   PRIMARY KEY (`idStaff`) )
@@ -20,7 +20,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`School`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`School` (
-  `idSchool` INT NOT NULL ,
+  `idSchool` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
   `principal` INT NULL ,
   `address` VARCHAR(45) NULL ,
@@ -41,7 +41,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`Classroom`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Classroom` (
-  `idClass` INT NOT NULL ,
+  `idClass` INT NOT NULL AUTO_INCREMENT ,
   `year` YEAR NOT NULL ,
   `grade` INT NOT NULL ,
   `division` CHAR NOT NULL ,
@@ -60,7 +60,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`Subject`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Subject` (
-  `idSubject` INT NOT NULL ,
+  `idSubject` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
   `isOptional` BINARY NULL ,
   PRIMARY KEY (`idSubject`) )
@@ -71,7 +71,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`Student`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Student` (
-  `idStudent` INT NOT NULL ,
+  `idStudent` INT NOT NULL AUTO_INCREMENT ,
   `addmision_no` VARCHAR(45) NOT NULL ,
   `name` VARCHAR(45) NOT NULL ,
   `full_name` VARCHAR(45) NULL ,
@@ -88,7 +88,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`Class_Subject`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Class_Subject` (
-  `idClass_Subject` INT NOT NULL ,
+  `idClass_Subject` INT NOT NULL AUTO_INCREMENT ,
   `Class_idClass` INT NOT NULL ,
   `Subject_idSubject` INT NOT NULL ,
   PRIMARY KEY (`idClass_Subject`) ,
@@ -111,7 +111,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`Exam`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Exam` (
-  `idExam` INT NOT NULL ,
+  `idExam` INT NOT NULL AUTO_INCREMENT ,
   `type` INT NOT NULL ,
   `date` DATE NOT NULL ,
   `term` INT NOT NULL ,
@@ -131,7 +131,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`Marks`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Marks` (
-  `idMarks` INT NOT NULL ,
+  `idMarks` INT NOT NULL AUTO_INCREMENT ,
   `Exam_idExam` INT NOT NULL ,
   `Student_idStudent` INT NOT NULL ,
   `marks` FLOAT NULL ,
@@ -228,7 +228,7 @@ ENGINE = InnoDB;
 -- Table `yschool_lite`.`user`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`user` (
-  `iduser` INT NOT NULL ,
+  `iduser` INT NOT NULL AUTO_INCREMENT ,
   `user_name` VARCHAR(45) NOT NULL ,
   `user_role` TINYINT NOT NULL ,
   `email` VARCHAR(45) NULL ,
