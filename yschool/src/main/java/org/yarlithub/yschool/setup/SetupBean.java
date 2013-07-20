@@ -33,7 +33,6 @@ public class SetupBean implements Serializable {
         logger.info("initiating a new setup bean");
 
     }
-
     public String getTeststr() {
         return teststr;
     }
