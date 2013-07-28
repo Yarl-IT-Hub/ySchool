@@ -17,14 +17,66 @@
 </h:head>
 
 <h:body>
-    <div class="span12">
+    <div class="span8 offset2">
         <div class="hero-unit">
             <h1><h:outputText value="#{msg.yschool}"/></h1>
 
             <p><h:outputText value="#{msg.intro}"/></p>
+
             <h:form>
-                <h:commandButton action="success" value="Setup ySchool now" class="btn btn-primary"/>
+                <div id="login-model" class="modal hide fade in" style="display: none; ">
+                    <div class="modal-header">
+                        <a class="close" data-dismiss="modal">×</a>
+
+                        <h3>LogIn to ySchool</h3>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="control-group">
+                            <label class="control-label" for="uname">User name</label>
+
+                            <div class="controls">
+                                <h:inputText id="uname" value="#{loginBean.teststr}" required="false"
+                                             requiredMessage=" User name is required">
+
+                                </h:inputText>
+                                <h:message for="uname" errorStyle="color : red"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="upwd">Password</label>
+
+                            <div class="controls">
+                                <h:inputText id="upwd" value="#{loginBean.teststr}" required="false"
+                                             requiredMessage=" Password is required">
+
+                                </h:inputText>
+                                <h:message for="upwd" errorStyle="color : red"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <h:commandButton class="btn btn-success" action="login" value="Log In"/>
+                        <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+                <!--/Model-->
+
             </h:form>
+
+            <h:form>
+                <!--<h:commandButton data-toggle="modal" action="success" value="Log In" class="btn btn-primary btn-large"/>-->
+                <!--<button><a  href="#login-model" class="btn btn-primary btn-large">Lon In</a></button>-->
+                <a data-toggle="modal" align="center" href="#login-model" class="btn btn-primary btn-large">
+                    <Button  class="btn btn-primary btn-large"> Log In </Button>
+
+                </a>
+
+                <h:commandButton  align="center" action="setup" value="Setup ySchool now" class="btn btn-primary btn-large"/>
+            </h:form>
+           <!--<h:commandButton align="center" data-toggle="modal" action="#login-model" value="Log In" class="btn btn-primary btn-large"/>-->
+            <!--<p><a data-toggle="modal" align="center" href="#login-model" class="btn btn-primary btn-large">Lon In</a></p>-->
         </div>
 
     </div>

@@ -42,9 +42,9 @@
 
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li class="active"><a href="/yschool/faces/home/myhome.xhtml">Home</a></li>
+                    <li><a href="/yschool/faces/about/aboutus.xhtml">About</a></li>
+                    <li><a href="/yschool/faces/about/contactus.xhtml">Contact</a></li>
                 </ul>
                 <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
             </div>
@@ -56,21 +56,7 @@
 
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span3">
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header" id="home"><a href="/yschool/faces/home/myhome.xhtml">Home</a></li>
-                    <li class="nav-header" id = "exam"><a href="/yschool/faces/exam/exams.xhtml">Exams</a></li>
-                    <li class="nav-header" id = "student"><a href="/yschool/faces/student/students.xhtml">Students</a></li>
-                    <li class="nav-header" id = "staff"><a href="/yschool/faces/staff/staffs.xhtml">Staffs</a></li>
-                    <li class="nav-header" id = "class"><a href="/yschool/faces/class/classes.xhtml">Classes</a></li>
-                    <li class="nav-header" id = "subject"><a href="/yschool/faces/subject/subjects.xhtml">Subjects</a></li>
-                    <li class="nav-header" id = "school"><a href="/yschool/faces/school/schools.xhtml">School</a></li>
-                </ul>
-            </div>
-            <!--/.well -->
-        </div>
-        <!--/span-->
+
         <sitemesh:write property='body'/>
 
     </div>

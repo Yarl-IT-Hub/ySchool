@@ -38,17 +38,30 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">ySchool</a>
+            <a class="brand" href="#">ySchool Home</a>
 
             <div class="nav-collapse">
                 <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a href="#">StartUp </a></li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            Welcome to ySchool
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li> <a href = "#"> Log In </a></li>
+                        </ul>
+                    </li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <p class="navbar-text pull-right">Welcome to <a href="#">ySchool</a></p>
             </div>
             <!--/.nav-collapse -->
+
         </div>
     </div>
 </div>

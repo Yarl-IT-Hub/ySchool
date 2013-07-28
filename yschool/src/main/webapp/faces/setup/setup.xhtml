@@ -20,7 +20,7 @@
 
 <div class="tabbable" style="margin-bottom: 9px;">
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#1" data-toggle="tab">Setup User</a></li>
+    <li><a href="#1" data-toggle="tab">Setup User</a></li>
     <li><a href="#2" data-toggle="tab">Setup School</a></li>
     <li><a href="#3" data-toggle="tab">Start ySchool</a></li>
 </ul>
@@ -91,8 +91,9 @@
                 </div>
 
                 <div class="form-actions">
-                    <h:commandButton id="next1" type="submit" value="Next"
-                                     class="btn btn-primary"/>
+                    <a href="#2" data-toggle="tab">
+                        <Button class="btn btn-primary btn-large"> Next</Button>
+                    </a>
                 </div>
             </fieldset>
         </h:form>
@@ -173,10 +174,12 @@
                 </div>
 
                 <div class="form-actions">
-                    <h:commandButton type="submit" action="#1" value="Back"
-                                     class="btn"/>
-                    <h:commandButton type="submit" action="3" value="Next"
-                                     class="btn btn-primary"/>
+                    <a href="#1" data-toggle="tab">
+                        <Button class="btn btn-primary btn-large"> Back</Button>
+                    </a>
+                    <a href="#3" data-toggle="tab">
+                        <Button class="btn btn-primary btn-large"> Next</Button>
+                    </a>
                 </div>
             </fieldset>
         </h:form>
@@ -211,10 +214,11 @@
             <fieldset>
 
                 <div class="form-actions">
-                    <h:commandButton type="submit" action="#2" value="Back"
-                                     class="btn btn"/>
+                    <a href="#2" data-toggle="tab">
+                        <Button class="btn btn-primary btn-large"> Back</Button>
+                    </a>
                     <h:commandButton type="submit" action="success" value="Finish"
-                                     class="btn btn-primary"/>
+                                     class="btn btn-primary btn-large"/>
                 </div>
             </fieldset>
         </h:form>

@@ -26,11 +26,16 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
 
     <navigation-rule>
         <description>from index page to first time ySchool setup page</description>
-        <display-name>indexTOsetup</display-name>
+        <display-name>index</display-name>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>success</from-outcome>
+            <from-outcome>setup</from-outcome>
             <to-view-id>/faces/setup/setup.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/faces/home/myhome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
