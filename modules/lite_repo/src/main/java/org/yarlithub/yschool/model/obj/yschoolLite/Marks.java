@@ -27,7 +27,7 @@ import org.yarlithub.yschool.model.obj.yschoolLite.iface.IMarks;
  */
 
 @Entity
-@Table(name = "Marks", catalog = "yschool_lite", schema = "public")
+@Table(name = "Marks", schema = "yschool_lite")
 public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 
 	/** Serial Version UID. */

@@ -1,7 +1,7 @@
-package org.yarlithub.yschool.parent;
+package org.yarlithub.yschool.web.parent;
 
 import org.apache.log4j.Logger;
-import org.yarlithub.yschool.util.InitialDateLoaderUtil;
+import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -22,7 +22,7 @@ import java.io.Serializable;
 @SessionScoped
 public class UserBean implements Serializable {
 
-    private static final Logger logger = Logger.getLogger(ParentBean.class);
+    private static final Logger logger = Logger.getLogger(UserBean.class);
 
     @ManagedProperty(value = "#{initialDateLoaderUtil}")
     private InitialDateLoaderUtil initialDateLoaderUtil;

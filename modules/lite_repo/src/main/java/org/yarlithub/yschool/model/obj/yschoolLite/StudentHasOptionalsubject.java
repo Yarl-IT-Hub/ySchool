@@ -16,7 +16,7 @@ import org.yarlithub.yschool.model.obj.yschoolLite.iface.IStudentHasOptionalsubj
  */
 
 @Entity
-@Table(name = "Student_has_OptionalSubject", catalog = "yschool_lite", schema = "public")
+@Table(name = "Student_has_OptionalSubject", schema = "yschool_lite")
 public class StudentHasOptionalsubject implements Cloneable, Serializable, IPojoGenEntity, IStudentHasOptionalsubject {
 
 	/** Serial Version UID. */

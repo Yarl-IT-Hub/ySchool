@@ -34,7 +34,7 @@ import org.yarlithub.yschool.model.obj.yschoolLite.iface.IClassroom;
  */
 
 @Entity
-@Table(name = "Classroom", catalog = "yschool_lite", schema = "public")
+@Table(name = "Classroom", schema = "yschool_lite")
 public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClassroom {
 
 	/** Serial Version UID. */

@@ -16,7 +16,7 @@ import org.yarlithub.yschool.model.obj.yschoolLite.iface.IClassStaff;
  */
 
 @Entity
-@Table(name = "Class_Staff", catalog = "yschool_lite", schema = "public")
+@Table(name = "Class_Staff", schema = "yschool_lite")
 public class ClassStaff implements Cloneable, Serializable, IPojoGenEntity, IClassStaff {
 
 	/** Serial Version UID. */

@@ -16,7 +16,7 @@ import org.yarlithub.yschool.model.obj.yschoolLite.iface.IClassStudent;
  */
 
 @Entity
-@Table(name = "Class_Student", catalog = "yschool_lite", schema = "public")
+@Table(name = "Class_Student", schema = "yschool_lite")
 public class ClassStudent implements Cloneable, Serializable, IPojoGenEntity, IClassStudent {
 
 	/** Serial Version UID. */

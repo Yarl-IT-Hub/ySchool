@@ -1,7 +1,7 @@
-package org.yarlithub.yschool.setup;
+package org.yarlithub.yschool.web.setup;
 
 import org.apache.log4j.Logger;
-import org.yarlithub.yschool.util.InitialDateLoaderUtil;
+import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -21,15 +21,15 @@ import java.lang.String;
 
 @ManagedBean
 @SessionScoped
-public class LoginBean implements Serializable {
+public class SetupBean implements Serializable {
 
-    private static final Logger logger = Logger.getLogger(LoginBean.class);
+    private static final Logger logger = Logger.getLogger(SetupBean.class);
     //string to test initial development of setup.xhtml file
     public String teststr;
     @ManagedProperty(value = "#{initialDateLoaderUtil}")
     private InitialDateLoaderUtil initialDateLoaderUtil;
 
-    public LoginBean() {
+    public SetupBean() {
         logger.info("initiating a new setup bean");
 
     }
@@ -41,7 +41,7 @@ public class LoginBean implements Serializable {
         this.teststr = teststr;
     }
 
-    public void login() {
+    public void enterSetup() {
         logger.info("Entering into first time ySchool setup");
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "setting up now.", null));

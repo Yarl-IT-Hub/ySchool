@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.validator;
+package org.yarlithub.yschool.web.validator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;

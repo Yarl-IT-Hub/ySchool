@@ -9,20 +9,14 @@
             <base-name>messages.messages</base-name>
             <var>msg</var>
         </resource-bundle>
+               <el-resolver>
+                    org.springframework.web.jsf.el.SpringBeanFacesELResolver
+                </el-resolver>
     </application>
 
     <!--Navigation-rules and managed-beans are handled by graphical navigation editing with intelliJ IDEA editor 12.1.4 commercial version
 Please don't edit it manually as it cause tracing page navigation more complex.-JayKrish
 -->
-
-    <managed-bean>
-        <display-name>setupBean</display-name>
-        <managed-bean-name>setupBean</managed-bean-name>
-        <managed-bean-class>org.yarlithub.yschool.setup.SetupBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
-
-
 
     <navigation-rule>
         <description>from index page to first time ySchool setup page</description>

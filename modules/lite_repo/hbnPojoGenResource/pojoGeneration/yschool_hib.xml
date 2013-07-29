@@ -3,12 +3,13 @@
 
  	<dbType>MYSQL</dbType>
 	<driver>com.mysql.jdbc.Driver</driver>
-      	<jdbcConnectionString>jdbc:mysql://127.0.0.1/yschool_lite</jdbcConnectionString>
+    <jdbcConnectionString>jdbc:mysql://127.0.0.1/yschool_lite</jdbcConnectionString>
 	<databaseIP>localhost</databaseIP>
-	<databaseCatalog>yschool_lite</databaseCatalog>
+    <databaseSchema>yschool_lite</databaseSchema>
 	<databaseUsername>root</databaseUsername>
 	<databasePassword></databasePassword>
-	<sourceTarget>/home/kana/yschool/ySchool/modules/lite_repo</sourceTarget>
+    <!--add YOUR_PATH and remove comment bellow-->
+    <!--<sourceTarget>YOUR_PATH\ySchool\modules\lite_repo</sourceTarget>-->
 	<projectName>yschool</projectName>
 	<topLevel>org.yarlithub</topLevel>
 	<libPath>libs</libPath>

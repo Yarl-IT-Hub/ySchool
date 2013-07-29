@@ -36,7 +36,7 @@
                             <label class="control-label" for="uname">User name</label>
 
                             <div class="controls">
-                                <h:inputText id="uname" value="#{loginBean.teststr}" required="false"
+                                <h:inputText id="uname" value="#{loginBean.username}" required="false"
                                              requiredMessage=" User name is required">
 
                                 </h:inputText>
@@ -47,7 +47,7 @@
                             <label class="control-label" for="upwd">Password</label>
 
                             <div class="controls">
-                                <h:inputText id="upwd" value="#{loginBean.teststr}" required="false"
+                                <h:inputText id="upwd" value="#{loginBean.password}" required="false"
                                              requiredMessage=" Password is required">
 
                                 </h:inputText>
@@ -57,7 +57,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <h:commandButton class="btn btn-success" action="login" value="Log In"/>
+                        <h:commandButton class="btn btn-success" action="#{loginBean.login}" value="Log In"/>
                         <a href="#" class="btn" data-dismiss="modal">Cancel</a>
                     </div>
                 </div>
