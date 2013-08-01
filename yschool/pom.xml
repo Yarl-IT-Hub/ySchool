@@ -119,13 +119,6 @@
             <version>13.0.1</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.felees</groupId>
-            <artifactId>hbnpojogen</artifactId>
-            <version>1.4.4</version>
-        </dependency>
-
         <dependency>
             <groupId>org.yarlithub.yschool</groupId>
             <artifactId>lite_repo</artifactId>
