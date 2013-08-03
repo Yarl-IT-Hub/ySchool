@@ -31,7 +31,7 @@ Issues
 
 
           Manual addition: It can be done via the following command or the manual pasting inside $HOME Dirctory-> /.m2/repository/com/felees/hbnpojogen-persistence
-                             mvn install:install-file -Dfile=$PATH\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen -Dversion=1.4.4 -Dpackaging=jar
+                             mvn install:install-file -Dfile=modules\lite_repo\hbnPojoGenResource\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar
 
 
 
