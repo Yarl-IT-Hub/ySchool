@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+              http://www.springframework.org/schema/context
+              http://www.springframework.org/schema/context/spring-context-2.5.xsd
+              http://www.springframework.org/schema/tx
+              http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" autowire="autodetect">
+        <property name="dataSource">
+            <ref local="dataSource" />
+        </property>
+    </bean>
+    <bean id="persistenceManager" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+
+    <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
+        <property name="ignoreResourceNotFound"><value>true</value></property>   <!--  In the properties file, override the items you need in this format:
+    -->
+        <property name="location">
+            <!--  You may use file:d:/temp/db.properties etc here -->
+            <value>classpath:yschool.db.properties</value>
+        </property>
+    </bean>
+
+
+
+
+    <!-- C3P0 Configuration -->
+    <bean id="mainDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/yschool_lite" />
+        <property name="user" value="root"/>
+        <property name="password" value=""/>
+        <property name="idleConnectionTestPeriod" value="60"/>
+        <property name="maxIdleTime" value="240"/>
+        <property name="maxPoolSize" value="20"/>
+        <property name="minPoolSize" value="10"/>
+        <property name="initialPoolSize" value="10"/>
+        <property name="maxStatements" value="100"/>
+        <property name="acquireIncrement" value="3"/>
+        <property name="autoCommitOnClose" value="true"/>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy">
+        <property name="targetDataSource">
+            <ref local="mainDataSource" />
+        </property>
+    </bean>
+
+    <!-- Hibernate SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" autowire="autodetect">
+        <property name="dataSource" ref="dataSource" />
+
+
+        <property name="packagesToScan">
+            <list>
+                <value>org.yarlithub.yschool.**.*</value>
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Switch on transactions -->
+    <tx:annotation-driven />
+
+    <context:component-scan base-package="org.yarlithub.yschool"/>
+</beans>
