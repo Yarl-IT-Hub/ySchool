@@ -12,7 +12,4 @@ Thumbs.db
 *.settings/
 /yschool/target/
 /modules/repository/target/
-/modules/lite_repo/target/
-/modules/event-scheduling/target/
-/modules/reporting/target/
-/modules/user-management/target/
+/modules/setup/target/
