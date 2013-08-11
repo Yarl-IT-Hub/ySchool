@@ -46,7 +46,7 @@
                     <li><a href="/yschool/faces/about/aboutus.xhtml">About</a></li>
                     <li><a href="/yschool/faces/about/contactus.xhtml">Contact</a></li>
                 </ul>
-                <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+                <p class="navbar-text pull-right">Logged in as <a href="#">userName</a></p>
             </div>
             <!--/.nav-collapse -->
         </div>

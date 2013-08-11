@@ -1,20 +1,17 @@
 package org.yarlithub.yschool.web.setup;
 
 import org.apache.log4j.Logger;
-import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
-import org.yarlithub.yschool.service.SetupService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.service.SetupService;
+import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
-import java.lang.String;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,18 +22,16 @@ import java.lang.String;
  */
 
 @ManagedBean
-@Scope(value="request")
+@Scope(value = "request")
 @Controller
 public class LoginBean implements Serializable {
 
     private static final Logger logger = Logger.getLogger(LoginBean.class);
-
+    //string to test initial development of setup.xhtml file
+    public String userName;
+    public String password;
     @Autowired
     private SetupService setupService;
-
-    //string to test initial development of setup.xhtml file
-    public String username;
-    public String password;
     @ManagedProperty(value = "#{initialDateLoaderUtil}")
     private InitialDateLoaderUtil initialDateLoaderUtil;
 
@@ -45,12 +40,12 @@ public class LoginBean implements Serializable {
 
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -66,7 +61,8 @@ public class LoginBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "setting up now.", null));
 
-        setupService.createSetup(username, password);
+
+        setupService.logIn(userName, password);
         return "login";
     }
 

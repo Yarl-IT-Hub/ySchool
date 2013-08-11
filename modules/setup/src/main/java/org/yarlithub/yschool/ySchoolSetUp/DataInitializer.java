@@ -2,12 +2,14 @@ package org.yarlithub.yschool.ySchoolSetUp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yarlithub.yschool.services.data.DataLayerYschoolLite;
-import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
+import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory;
 import org.yarlithub.yschool.factories.yschoolLite.YschoolLiteDataPoolFactory;
 import org.yarlithub.yschool.model.dao.yschoolLite.UserDao;
 import org.yarlithub.yschool.model.obj.yschoolLite.User;
+import org.yarlithub.yschool.services.data.DataLayerYschoolLite;
+import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jayrksih
@@ -15,11 +17,19 @@ import org.yarlithub.yschool.model.obj.yschoolLite.User;
  * Time: 11:00 PM
  * To change this template use File | Settings | File Templates.
  */
-public class SpreadSheetToDB {
-    private static final Logger logger = LoggerFactory.getLogger(SpreadSheetToDB.class);
-    public boolean initializeySchool(String initDoc){
+public class DataInitializer {
+    private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
 
-//
+    /**
+     * Takes the ySchool initialization document and enter the initial data into database.
+     *
+     * @param initDoc Path of the yschool initialization document in users local macnine
+     * @return True or False according to success or failure of processing and entering the initial data
+     */
+
+    public boolean initializeySchoolData(String initDoc) {
+
+//        //TODO: Kana use the following sample to process your work.
 //        DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
 //        UserDao userDao = HibernateYschoolLiteDaoFactory.getUserDao();
 //
@@ -33,6 +43,6 @@ public class SpreadSheetToDB {
 //        userDao.save(user);
 //        dataLayerYschoolLite.flushSession();
         logger.debug("Successfuly created a setup {}, {}", "controller", "controller");
-             return true;
+        return true;
     }
 }

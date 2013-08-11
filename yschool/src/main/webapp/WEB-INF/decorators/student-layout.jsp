@@ -46,7 +46,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+                <p class="navbar-text pull-right">Logged in as <a href="#">userName</a></p>
             </div>
             <!--/.nav-collapse -->
         </div>

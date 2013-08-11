@@ -78,10 +78,10 @@
                                     <legend>#{msg.account_information}</legend>
                                     
                                     <label>#{msg.user_name}</label>
-                                    <h:inputText id="add-username" value="#{staffBean.staff.userName}" required="true" requiredMessage=" User Name is required"> 
+                                    <h:inputText id="add-userName" value="#{staffBean.staff.userName}" required="true" requiredMessage=" User Name is required">
                                         
                                     </h:inputText>
-                                    <h:message for="add-username" errorStyle="color : red" />
+                                    <h:message for="add-userName" errorStyle="color : red" />
                                     
                                     
                                     <label>#{msg.password}</label>
@@ -139,8 +139,8 @@
                                     <f:selectItems value="#{staffBean.typeList}"/>
                                 </h:selectOneMenu>   
                                 
-                                <h:outputLabel value="#{msg.user_name}" for="username"/>
-                                <h:inputText id="username" value="#{staffBean.staff.userName}"/>
+                                <h:outputLabel value="#{msg.user_name}" for="userName"/>
+                                <h:inputText id="userName" value="#{staffBean.staff.userName}"/>
                                 
                                 <h:commandButton type="submit" action="#{staffBean.search}" value="#{msg.search}" styleClass="btn btn-primary" />                                
                                 
