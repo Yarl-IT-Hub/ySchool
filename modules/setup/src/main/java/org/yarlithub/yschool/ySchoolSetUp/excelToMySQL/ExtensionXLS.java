@@ -14,7 +14,7 @@ import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class ExtensionXLS implements InputFileSteamToDatabase {
+public class ExtensionXLS implements InputFileStreamToDatabase {
 
     @Override
     public void writeToDataBase(FileInputStream fileInputStream) {

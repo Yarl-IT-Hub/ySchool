@@ -1,15 +1,15 @@
 package org.yarlithub.yschool.ySchoolSetUp.contextHandler;
 
-import org.yarlithub.yschool.ySchoolSetUp.excelToMySQL.InputFileSteamToDatabase;
+import org.yarlithub.yschool.ySchoolSetUp.excelToMySQL.InputFileStreamToDatabase;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class ContextHandler {
 
-	InputFileSteamToDatabase inputStreamToDatabase;
+	InputFileStreamToDatabase inputStreamToDatabase;
 
-	public ContextHandler(InputFileSteamToDatabase excelToDatabase) {
+	public ContextHandler(InputFileStreamToDatabase excelToDatabase) {
 		this.inputStreamToDatabase = excelToDatabase;
 	}
 

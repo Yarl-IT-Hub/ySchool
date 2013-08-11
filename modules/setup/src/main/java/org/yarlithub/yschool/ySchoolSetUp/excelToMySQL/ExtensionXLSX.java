@@ -14,7 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 
-public class ExtensionXLSX implements InputFileSteamToDatabase {
+public class ExtensionXLSX implements InputFileStreamToDatabase {
   //  private File excelfile;
 
     public ExtensionXLSX() {
