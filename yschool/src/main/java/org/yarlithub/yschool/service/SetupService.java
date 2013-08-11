@@ -1,6 +1,7 @@
 package org.yarlithub.yschool.service;
 
 
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.schoolSetUp.SchoolInitializer;
 import org.yarlithub.yschool.userSetUP.UserIntializer;
 import org.yarlithub.yschool.ySchoolSetUp.DataInitializer;
+
+import java.io.IOException;
 
 /**
  * TODO description
@@ -31,7 +34,7 @@ public class SetupService {
      */
     @Transactional
     public boolean ySchoolSetUP(String userName, String usereMail, String password, String schoolName, String schoolAddress,
-                                String schoolZone, String schoolDistrict, String schoolProvience, String initDocPath) {
+                                String schoolZone, String schoolDistrict, String schoolProvience, UploadedFile initFile) {
         logger.debug("Starting to create a setup {}, {}", userName, password);
 
         /**
@@ -48,8 +51,15 @@ public class SetupService {
         /**
          *   TODO description
          */
-        DataInitializer spreadSheetToDB = new DataInitializer();
-        boolean isDataInit = spreadSheetToDB.initializeySchoolData(initDocPath);
+        FileUploader fileUploader = new FileUploader();
+        try {
+            byte[] byteInitFile = fileUploader.upload(initFile);
+            DataInitializer spreadSheetToDB = new DataInitializer();
+            boolean isDataInit = spreadSheetToDB.initializeySchoolData(byteInitFile);
+        } catch (IOException e) {
+            logger.debug("File upload error {}", e.toString());
+        }
+
 
         logger.debug("Successfuly created a setup {}", userName);
         //TODO check success/failure
