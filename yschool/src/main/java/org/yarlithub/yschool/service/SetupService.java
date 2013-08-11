@@ -1,6 +1,7 @@
 package org.yarlithub.yschool.service;
 
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,9 @@ import org.yarlithub.yschool.schoolSetUp.SchoolInitializer;
 import org.yarlithub.yschool.userSetUP.UserIntializer;
 import org.yarlithub.yschool.ySchoolSetUp.DataInitializer;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
@@ -51,15 +55,23 @@ public class SetupService {
         /**
          *   TODO description
          */
-        FileUploader fileUploader = new FileUploader();
-        try {
-            byte[] byteInitFile = fileUploader.upload(initFile);
-            DataInitializer spreadSheetToDB = new DataInitializer();
-            boolean isDataInit = spreadSheetToDB.initializeySchoolData(byteInitFile);
-        } catch (IOException e) {
-            logger.debug("File upload error {}", e.toString());
-        }
 
+        FileUploader fileUploader = new FileUploader();
+        FileInputStream initFileInputStream = null;
+        try {
+            String initFileName = FilenameUtils.getName(initFile.getName());
+            File dataFile = new File(initFileName);
+            FileOutputStream fos = new FileOutputStream(dataFile);
+            fos.write(initFile.getBytes());
+            fos.flush();
+            fos.close();
+            FileInputStream fileInputStream=new FileInputStream(dataFile.getAbsolutePath());
+
+            DataInitializer spreadSheetToDB = new DataInitializer();
+            boolean isDataInit = spreadSheetToDB.initializeySchoolData(fileInputStream, initFileName);
+        } catch (IOException e) {
+            logger.debug("Sent to setup module Error");
+        }
 
         logger.debug("Successfuly created a setup {}", userName);
         //TODO check success/failure
