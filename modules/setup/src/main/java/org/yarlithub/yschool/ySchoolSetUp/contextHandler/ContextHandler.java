@@ -1,6 +1,6 @@
 package org.yarlithub.yschool.ySchoolSetUp.contextHandler;
 
-import org.yarlithub.yschool.ySchoolSetUp.excelToMySQL.InputFileStreamToDatabase;
+import org.yarlithub.yschool.ySchoolSetUp.inputStreamToDB.InputFileStreamToDatabase;
 
 import java.io.FileInputStream;
 import java.io.IOException;
