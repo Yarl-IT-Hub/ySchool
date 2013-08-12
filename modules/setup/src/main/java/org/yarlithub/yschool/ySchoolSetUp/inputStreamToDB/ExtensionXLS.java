@@ -1,8 +1,9 @@
-package org.yarlithub.yschool.ySchoolSetUp.excelToMySQL;
+package org.yarlithub.yschool.ySchoolSetUp.inputStreamToDB;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory;
 import org.yarlithub.yschool.factories.yschoolLite.YschoolLiteDataPoolFactory;
 import org.yarlithub.yschool.model.dao.yschoolLite.StudentDao;
@@ -13,20 +14,30 @@ import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-
-public class ExtensionXLSX implements InputFileStreamToDatabase {
-  //  private File excelfile;
-
-    public ExtensionXLSX() {
-       // this.excelfile = excelFile;
-    }
+public class ExtensionXLS implements InputFileStreamToDatabase {
 
     @Override
-    public void writeToDataBase(FileInputStream fileInputStream) throws IOException {
+    public void writeToDataBase(FileInputStream fileInputStream) {
 
 
-        XSSFWorkbook wb = new XSSFWorkbook(fileInputStream);
-        XSSFSheet sheet = wb.getSheetAt(0);
+        FileInputStream excelInputStream = null;
+
+        excelInputStream = fileInputStream;
+
+
+        POIFSFileSystem fs = null;
+        try {
+            fs = new POIFSFileSystem(excelInputStream);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        HSSFWorkbook wb = null;
+        try {
+            wb = new HSSFWorkbook(fs);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        HSSFSheet sheet = wb.getSheetAt(0);
         Row row;
 
         for (int i = 1; i <= sheet.getLastRowNum(); i++) {
@@ -53,7 +64,6 @@ public class ExtensionXLSX implements InputFileStreamToDatabase {
 
 
     }
-
 
 
 }
