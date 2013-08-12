@@ -1,6 +1,5 @@
-package org.yarlithub.yschool.ySchoolSetUp.excelToMySQL;
+package org.yarlithub.yschool.ySchoolSetUp.inputStreamToDB;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 

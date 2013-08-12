@@ -33,7 +33,7 @@ public class SetupService {
      * @param schoolZone
      * @param schoolDistrict
      * @param schoolProvience
-     * @param initDocPath
+     * @param initFile
      * @return
      */
     @Transactional
@@ -56,7 +56,7 @@ public class SetupService {
          *   TODO description
          */
 
-        FileUploader fileUploader = new FileUploader();
+
         FileInputStream initFileInputStream = null;
         try {
             String initFileName = FilenameUtils.getName(initFile.getName());

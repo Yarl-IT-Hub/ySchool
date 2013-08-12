@@ -3,8 +3,8 @@ package org.yarlithub.yschool.ySchoolSetUp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yarlithub.yschool.ySchoolSetUp.contextHandler.ContextHandler;
-import org.yarlithub.yschool.ySchoolSetUp.excelToMySQL.ExtensionXLS;
-import org.yarlithub.yschool.ySchoolSetUp.excelToMySQL.ExtensionXLSX;
+import org.yarlithub.yschool.ySchoolSetUp.inputStreamToDB.ExtensionXLS;
+import org.yarlithub.yschool.ySchoolSetUp.inputStreamToDB.ExtensionXLSX;
 
 import java.io.FileInputStream;
 import java.io.IOException;
