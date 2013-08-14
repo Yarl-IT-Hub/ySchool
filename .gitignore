@@ -14,3 +14,4 @@ Thumbs.db
 /modules/repository/target/
 /modules/setup/target/
 /docs/ySchool.mwb.bak
+/docs/*.bak
