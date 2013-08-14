@@ -42,21 +42,8 @@ public class SetupService {
         logger.debug("Starting to create a setup {}, {}", userName, password);
 
         /**
-         *  TODO description
-         */
-        UserIntializer userInitializer = new UserIntializer();
-        //TODO password encryption in service layer
-        boolean isUserInit = userInitializer.initializeySchoolUser(userName, usereMail, password, 1);
-        /**
-         *  TODO description
-         */
-        SchoolInitializer schoolInitializer = new SchoolInitializer();
-        boolean isSchoolInit = schoolInitializer.initializeSchool(schoolName, schoolAddress, schoolZone, schoolDistrict, schoolProvience);
-        /**
          *   TODO description
          */
-
-
         FileInputStream initFileInputStream = null;
         try {
             String initFileName = FilenameUtils.getName(initFile.getName());
@@ -65,7 +52,7 @@ public class SetupService {
             fos.write(initFile.getBytes());
             fos.flush();
             fos.close();
-            FileInputStream fileInputStream=new FileInputStream(dataFile.getAbsolutePath());
+            FileInputStream fileInputStream = new FileInputStream(dataFile.getAbsolutePath());
 
             DataInitializer spreadSheetToDB = new DataInitializer();
             boolean isDataInit = spreadSheetToDB.initializeySchoolData(fileInputStream, initFileName);
@@ -73,8 +60,21 @@ public class SetupService {
             logger.debug("Sent to setup module Error");
         }
 
+        /**
+         *  TODO description
+         */
+        SchoolInitializer schoolInitializer = new SchoolInitializer();
+        boolean isSchoolInit = schoolInitializer.initializeSchool(schoolName, schoolAddress, schoolZone, schoolDistrict, schoolProvience);
+
+        /**
+         *  TODO description
+         */
+        UserIntializer userInitializer = new UserIntializer();
+        //TODO password encryption in service layer
+        boolean isUserInit = userInitializer.initializeySchoolUser(userName, usereMail, password, 1);
+
         logger.debug("Successfuly created a setup {}", userName);
-        //TODO check success/failure
+        //TODO check success/failure in each steps.
         return true;
     }
 
