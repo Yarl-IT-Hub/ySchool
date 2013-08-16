@@ -1,4 +1,5 @@
 package org.yarlithub.yschool.model.obj.yschoolLite.iface;
+import org.yarlithub.yschool.model.obj.yschoolLite.UserRole;
 
 
 /** 
@@ -67,18 +68,18 @@ public interface IUser {
 	void setUserName(final String userName);
 
     /**
-     * Return the value associated with the column: userRole.
-	 * @return A Byte object (this.userRole)
+     * Return the value associated with the column: userRoleIduserRole.
+	 * @return A UserRole object (this.userRoleIduserRole)
 	 */
-	Byte getUserRole();
+	UserRole getUserRoleIduserRole();
 	
 
   
     /**  
-     * Set the value related to the column: userRole.
-	 * @param userRole the userRole value you wish to set
+     * Set the value related to the column: userRoleIduserRole.
+	 * @param userRoleIduserRole the userRoleIduserRole value you wish to set
 	 */
-	void setUserRole(final Byte userRole);
+	void setUserRoleIduserRole(final UserRole userRoleIduserRole);
 
 	// end of interface
 }

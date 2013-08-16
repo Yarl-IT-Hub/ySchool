@@ -3,20 +3,29 @@ package org.yarlithub.yschool.services.data;
 import java.io.Serializable;
 import org.yarlithub.yschool.factories.yschoolLite.*;
 import org.yarlithub.yschool.model.obj.yschoolLite.Classroom;
-import org.yarlithub.yschool.model.obj.yschoolLite.ClassStaff;
-import org.yarlithub.yschool.model.obj.yschoolLite.ClassStaffPK;
+import org.yarlithub.yschool.model.obj.yschoolLite.ClassroomHasStaffHasRole;
+import org.yarlithub.yschool.model.obj.yschoolLite.ClassroomHasStaffHasRolePK;
 import org.yarlithub.yschool.model.obj.yschoolLite.ClassStudent;
-import org.yarlithub.yschool.model.obj.yschoolLite.ClassStudentPK;
 import org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject;
+import org.yarlithub.yschool.model.obj.yschoolLite.ClassSubjectHasStaffHasRole;
+import org.yarlithub.yschool.model.obj.yschoolLite.ClassSubjectHasStaffHasRolePK;
 import org.yarlithub.yschool.model.obj.yschoolLite.Exam;
+import org.yarlithub.yschool.model.obj.yschoolLite.ExamType;
 import org.yarlithub.yschool.model.obj.yschoolLite.Marks;
+import org.yarlithub.yschool.model.obj.yschoolLite.Role;
 import org.yarlithub.yschool.model.obj.yschoolLite.School;
+import org.yarlithub.yschool.model.obj.yschoolLite.SchoolHasStaffHasRole;
+import org.yarlithub.yschool.model.obj.yschoolLite.SchoolHasStaffHasRolePK;
+import org.yarlithub.yschool.model.obj.yschoolLite.Section;
+import org.yarlithub.yschool.model.obj.yschoolLite.SectionHasStaffHasRole;
+import org.yarlithub.yschool.model.obj.yschoolLite.SectionHasStaffHasRolePK;
 import org.yarlithub.yschool.model.obj.yschoolLite.Staff;
+import org.yarlithub.yschool.model.obj.yschoolLite.StaffHasRole;
 import org.yarlithub.yschool.model.obj.yschoolLite.Student;
-import org.yarlithub.yschool.model.obj.yschoolLite.StudentHasOptionalsubject;
-import org.yarlithub.yschool.model.obj.yschoolLite.StudentHasOptionalsubjectPK;
+import org.yarlithub.yschool.model.obj.yschoolLite.StudentClassSubject;
 import org.yarlithub.yschool.model.obj.yschoolLite.Subject;
 import org.yarlithub.yschool.model.obj.yschoolLite.User;
+import org.yarlithub.yschool.model.obj.yschoolLite.UserRole;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -85,17 +94,25 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
     		if (daoMap == null) {
     			daoMap = new ConcurrentHashMap<Class<?>, GenericDAO<?, ?>>(); 
 	 	   		daoMap.put(Classroom.class, HibernateYschoolLiteDaoFactory.getClassroomDao());
-	 	   		daoMap.put(ClassStaff.class, HibernateYschoolLiteDaoFactory.getClassStaffDao());
+	 	   		daoMap.put(ClassroomHasStaffHasRole.class, HibernateYschoolLiteDaoFactory.getClassroomHasStaffHasRoleDao());
 	 	   		daoMap.put(ClassStudent.class, HibernateYschoolLiteDaoFactory.getClassStudentDao());
 	 	   		daoMap.put(ClassSubject.class, HibernateYschoolLiteDaoFactory.getClassSubjectDao());
+	 	   		daoMap.put(ClassSubjectHasStaffHasRole.class, HibernateYschoolLiteDaoFactory.getClassSubjectHasStaffHasRoleDao());
 	 	   		daoMap.put(Exam.class, HibernateYschoolLiteDaoFactory.getExamDao());
+	 	   		daoMap.put(ExamType.class, HibernateYschoolLiteDaoFactory.getExamTypeDao());
 	 	   		daoMap.put(Marks.class, HibernateYschoolLiteDaoFactory.getMarksDao());
+	 	   		daoMap.put(Role.class, HibernateYschoolLiteDaoFactory.getRoleDao());
 	 	   		daoMap.put(School.class, HibernateYschoolLiteDaoFactory.getSchoolDao());
+	 	   		daoMap.put(SchoolHasStaffHasRole.class, HibernateYschoolLiteDaoFactory.getSchoolHasStaffHasRoleDao());
+	 	   		daoMap.put(Section.class, HibernateYschoolLiteDaoFactory.getSectionDao());
+	 	   		daoMap.put(SectionHasStaffHasRole.class, HibernateYschoolLiteDaoFactory.getSectionHasStaffHasRoleDao());
 	 	   		daoMap.put(Staff.class, HibernateYschoolLiteDaoFactory.getStaffDao());
+	 	   		daoMap.put(StaffHasRole.class, HibernateYschoolLiteDaoFactory.getStaffHasRoleDao());
 	 	   		daoMap.put(Student.class, HibernateYschoolLiteDaoFactory.getStudentDao());
-	 	   		daoMap.put(StudentHasOptionalsubject.class, HibernateYschoolLiteDaoFactory.getStudentHasOptionalsubjectDao());
+	 	   		daoMap.put(StudentClassSubject.class, HibernateYschoolLiteDaoFactory.getStudentClassSubjectDao());
 	 	   		daoMap.put(Subject.class, HibernateYschoolLiteDaoFactory.getSubjectDao());
 	 	   		daoMap.put(User.class, HibernateYschoolLiteDaoFactory.getUserDao());
+	 	   		daoMap.put(UserRole.class, HibernateYschoolLiteDaoFactory.getUserRoleDao());
     		}
 		 }
 		if (persistentObject instanceof HibernateProxy) {
@@ -179,35 +196,35 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
     }  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (ClassStaff obj) directly
+     * Will load the object internally so consider using delete (ClassroomHasStaffHasRole obj) directly
      * @param id Identifier to delete
      */
-    public void deleteClassStaff(final ClassStaffPK id)  {
-        HibernateYschoolLiteDaoFactory.getClassStaffDao().delete(loadClassStaff(id));
+    public void deleteClassroomHasStaffHasRole(final ClassroomHasStaffHasRolePK id)  {
+        HibernateYschoolLiteDaoFactory.getClassroomHasStaffHasRoleDao().delete(loadClassroomHasStaffHasRole(id));
     }
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
-     * @return a ClassStaff object
+     * @return a ClassroomHasStaffHasRole object
      */
-    public ClassStaff loadClassStaff(final ClassStaffPK id) {
-        return HibernateYschoolLiteDaoFactory.getClassStaffDao().load(id);
+    public ClassroomHasStaffHasRole loadClassroomHasStaffHasRole(final ClassroomHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getClassroomHasStaffHasRoleDao().load(id);
     }
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     public ClassStaff getClassStaff(final ClassStaffPK id) {
-        return HibernateYschoolLiteDaoFactory.getClassStaffDao().get(id);
+     public ClassroomHasStaffHasRole getClassroomHasStaffHasRole(final ClassroomHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getClassroomHasStaffHasRoleDao().get(id);
     }  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (ClassStudent obj) directly
      * @param id Identifier to delete
      */
-    public void deleteClassStudent(final ClassStudentPK id)  {
+    public void deleteClassStudent(final String id)  {
         HibernateYschoolLiteDaoFactory.getClassStudentDao().delete(loadClassStudent(id));
     }
 	
@@ -216,7 +233,7 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
      * @param id Identifier to load
      * @return a ClassStudent object
      */
-    public ClassStudent loadClassStudent(final ClassStudentPK id) {
+    public ClassStudent loadClassStudent(final String id) {
         return HibernateYschoolLiteDaoFactory.getClassStudentDao().load(id);
     }
     /**
@@ -224,7 +241,7 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
      * @param id Id to load
      * @return An object of type T
      */
-     public ClassStudent getClassStudent(final ClassStudentPK id) {
+     public ClassStudent getClassStudent(final String id) {
         return HibernateYschoolLiteDaoFactory.getClassStudentDao().get(id);
     }  
 
@@ -254,6 +271,31 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
     }  
 
     /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (ClassSubjectHasStaffHasRole obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteClassSubjectHasStaffHasRole(final ClassSubjectHasStaffHasRolePK id)  {
+        HibernateYschoolLiteDaoFactory.getClassSubjectHasStaffHasRoleDao().delete(loadClassSubjectHasStaffHasRole(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a ClassSubjectHasStaffHasRole object
+     */
+    public ClassSubjectHasStaffHasRole loadClassSubjectHasStaffHasRole(final ClassSubjectHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getClassSubjectHasStaffHasRoleDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public ClassSubjectHasStaffHasRole getClassSubjectHasStaffHasRole(final ClassSubjectHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getClassSubjectHasStaffHasRoleDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Exam obj) directly
      * @param id Identifier to delete
      */
@@ -276,6 +318,31 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
      */
      public Exam getExam(final Integer id) {
         return HibernateYschoolLiteDaoFactory.getExamDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (ExamType obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteExamType(final Integer id)  {
+        HibernateYschoolLiteDaoFactory.getExamTypeDao().delete(loadExamType(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a ExamType object
+     */
+    public ExamType loadExamType(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getExamTypeDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public ExamType getExamType(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getExamTypeDao().get(id);
     }  
 
     /** Deletes an object of a given Id. 
@@ -304,6 +371,31 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
     }  
 
     /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Role obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteRole(final Integer id)  {
+        HibernateYschoolLiteDaoFactory.getRoleDao().delete(loadRole(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Role object
+     */
+    public Role loadRole(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getRoleDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public Role getRole(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getRoleDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (School obj) directly
      * @param id Identifier to delete
      */
@@ -326,6 +418,81 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
      */
      public School getSchool(final Integer id) {
         return HibernateYschoolLiteDaoFactory.getSchoolDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (SchoolHasStaffHasRole obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteSchoolHasStaffHasRole(final SchoolHasStaffHasRolePK id)  {
+        HibernateYschoolLiteDaoFactory.getSchoolHasStaffHasRoleDao().delete(loadSchoolHasStaffHasRole(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a SchoolHasStaffHasRole object
+     */
+    public SchoolHasStaffHasRole loadSchoolHasStaffHasRole(final SchoolHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getSchoolHasStaffHasRoleDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public SchoolHasStaffHasRole getSchoolHasStaffHasRole(final SchoolHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getSchoolHasStaffHasRoleDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Section obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteSection(final Integer id)  {
+        HibernateYschoolLiteDaoFactory.getSectionDao().delete(loadSection(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Section object
+     */
+    public Section loadSection(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getSectionDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public Section getSection(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getSectionDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (SectionHasStaffHasRole obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteSectionHasStaffHasRole(final SectionHasStaffHasRolePK id)  {
+        HibernateYschoolLiteDaoFactory.getSectionHasStaffHasRoleDao().delete(loadSectionHasStaffHasRole(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a SectionHasStaffHasRole object
+     */
+    public SectionHasStaffHasRole loadSectionHasStaffHasRole(final SectionHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getSectionHasStaffHasRoleDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public SectionHasStaffHasRole getSectionHasStaffHasRole(final SectionHasStaffHasRolePK id) {
+        return HibernateYschoolLiteDaoFactory.getSectionHasStaffHasRoleDao().get(id);
     }  
 
     /** Deletes an object of a given Id. 
@@ -354,6 +521,31 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
     }  
 
     /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (StaffHasRole obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteStaffHasRole(final Integer id)  {
+        HibernateYschoolLiteDaoFactory.getStaffHasRoleDao().delete(loadStaffHasRole(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a StaffHasRole object
+     */
+    public StaffHasRole loadStaffHasRole(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getStaffHasRoleDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public StaffHasRole getStaffHasRole(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getStaffHasRoleDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Student obj) directly
      * @param id Identifier to delete
      */
@@ -379,28 +571,28 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
     }  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (StudentHasOptionalsubject obj) directly
+     * Will load the object internally so consider using delete (StudentClassSubject obj) directly
      * @param id Identifier to delete
      */
-    public void deleteStudentHasOptionalsubject(final StudentHasOptionalsubjectPK id)  {
-        HibernateYschoolLiteDaoFactory.getStudentHasOptionalsubjectDao().delete(loadStudentHasOptionalsubject(id));
+    public void deleteStudentClassSubject(final Integer id)  {
+        HibernateYschoolLiteDaoFactory.getStudentClassSubjectDao().delete(loadStudentClassSubject(id));
     }
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
-     * @return a StudentHasOptionalsubject object
+     * @return a StudentClassSubject object
      */
-    public StudentHasOptionalsubject loadStudentHasOptionalsubject(final StudentHasOptionalsubjectPK id) {
-        return HibernateYschoolLiteDaoFactory.getStudentHasOptionalsubjectDao().load(id);
+    public StudentClassSubject loadStudentClassSubject(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getStudentClassSubjectDao().load(id);
     }
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     public StudentHasOptionalsubject getStudentHasOptionalsubject(final StudentHasOptionalsubjectPK id) {
-        return HibernateYschoolLiteDaoFactory.getStudentHasOptionalsubjectDao().get(id);
+     public StudentClassSubject getStudentClassSubject(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getStudentClassSubjectDao().get(id);
     }  
 
     /** Deletes an object of a given Id. 
@@ -451,6 +643,31 @@ public class DataLayerYschoolLiteImpl implements DataLayerYschoolLite {
      */
      public User getUser(final Integer id) {
         return HibernateYschoolLiteDaoFactory.getUserDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (UserRole obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteUserRole(final Integer id)  {
+        HibernateYschoolLiteDaoFactory.getUserRoleDao().delete(loadUserRole(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a UserRole object
+     */
+    public UserRole loadUserRole(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getUserRoleDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public UserRole getUserRole(final Integer id) {
+        return HibernateYschoolLiteDaoFactory.getUserRoleDao().get(id);
     }  
     /** Returns a singleton instance of this class.
      * @return an singleton instance

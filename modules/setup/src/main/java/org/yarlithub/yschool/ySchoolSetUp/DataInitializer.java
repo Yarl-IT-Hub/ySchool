@@ -1,13 +1,12 @@
 package org.yarlithub.yschool.ySchoolSetUp;
 
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yarlithub.yschool.ySchoolSetUp.Loader.ClassroomLoader;
+import org.yarlithub.yschool.Reader.Reader;
+import org.yarlithub.yschool.Reader.ReaderFactory;
 import org.yarlithub.yschool.ySchoolSetUp.Loader.SubjectLoader;
-import org.yarlithub.yschool.ySchoolSetUp.Reader.Reader;
-import org.yarlithub.yschool.ySchoolSetUp.Reader.ReaderFactory;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
@@ -24,19 +23,18 @@ public class DataInitializer {
     /**
      * Takes the ySchool initialization document and enter the initial data into database.
      *
-     * @param fileInputStream of the yschool initialization document in users local macnine
+     * @param uploadedFile of the yschool initialization document in users local macnine
      * @return True or False according to success or failure of processing and entering the initial data
      */
 
 
-    public boolean initializeySchoolData(FileInputStream fileInputStream, String fileName) throws IOException {
+    public boolean initializeySchoolData(UploadedFile uploadedFile) throws IOException {
 
         ReaderFactory readerFactory = new ReaderFactory();
-        Reader reader= readerFactory.getspreadSheetReader(fileInputStream,fileName);
+        Reader reader = readerFactory.getspreadSheetReader(uploadedFile);
 
         SubjectLoader subjectLoader = new SubjectLoader();
         subjectLoader.load(reader);
-
 
 
         return true;

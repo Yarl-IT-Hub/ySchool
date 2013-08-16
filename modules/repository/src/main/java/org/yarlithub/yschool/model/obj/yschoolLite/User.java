@@ -6,11 +6,15 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
@@ -27,7 +31,7 @@ import org.yarlithub.yschool.model.obj.yschoolLite.iface.IUser;
 public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009383L;
+	private static final long serialVersionUID = -559009374L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -47,7 +51,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	/** Field mapping. */
 	private String userName;
 	/** Field mapping. */
-	private Byte userRole;
+	private UserRole userRoleIduserRole;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -66,15 +70,15 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	 * @param id Integer object;
 	 * @param password String object;
 	 * @param userName String object;
-	 * @param userRole Byte object;
+	 * @param userRoleIduserRole UserRole object;
 	 */
 	public User(Integer id, String password, String userName, 					
-			Byte userRole) {
+			UserRole userRoleIduserRole) {
 
 		this.id = id;
 		this.password = password;
 		this.userName = userName;
-		this.userRole = userRole;
+		this.userRoleIduserRole = userRoleIduserRole;
 	}
 	
  
@@ -185,24 +189,26 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	}
 
     /**
-     * Return the value associated with the column: userRole.
-	 * @return A Byte object (this.userRole)
+     * Return the value associated with the column: userRoleIduserRole.
+	 * @return A UserRole object (this.userRoleIduserRole)
 	 */
+	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@Column( name = "user_role", nullable = false  )
-	public Byte getUserRole() {
-		return this.userRole;
+	@JoinColumn(name = "User_Role_idUser_Role", nullable = false )
+	public UserRole getUserRoleIduserRole() {
+		return this.userRoleIduserRole;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: userRole.
-	 * @param userRole the userRole value you wish to set
+     * Set the value related to the column: userRoleIduserRole.
+	 * @param userRoleIduserRole the userRoleIduserRole value you wish to set
 	 */
-	public void setUserRole(final Byte userRole) {
-		this.userRole = userRole;
+	public void setUserRoleIduserRole(final UserRole userRoleIduserRole) {
+		this.userRoleIduserRole = userRoleIduserRole;
 	}
 
 
@@ -220,7 +226,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 		copy.setId(this.getId());
 		copy.setPassword(this.getPassword());
 		copy.setUserName(this.getUserName());
-		copy.setUserRole(this.getUserRole());
+		copy.setUserRoleIduserRole(this.getUserRoleIduserRole());
 		return copy;
 	}
 	
@@ -238,7 +244,6 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("password: " + this.getPassword() + ", ");
 		sb.append("userName: " + this.getUserName() + ", ");
-		sb.append("userRole: " + this.getUserRole());
 		return sb.toString();		
 	}
 
@@ -287,7 +292,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 		result = result && (((getEmail() == null) && (that.getEmail() == null)) || (getEmail() != null && getEmail().equals(that.getEmail())));
 		result = result && (((getPassword() == null) && (that.getPassword() == null)) || (getPassword() != null && getPassword().equals(that.getPassword())));
 		result = result && (((getUserName() == null) && (that.getUserName() == null)) || (getUserName() != null && getUserName().equals(that.getUserName())));
-		result = result && (((getUserRole() == null) && (that.getUserRole() == null)) || (getUserRole() != null && getUserRole().equals(that.getUserRole())));
+		result = result && (((getUserRoleIduserRole() == null) && (that.getUserRoleIduserRole() == null)) || (getUserRoleIduserRole() != null && getUserRoleIduserRole().getId().equals(that.getUserRoleIduserRole().getId())));	
 		return result;
 	}
 	

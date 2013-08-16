@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Subject` (
   `idSubject` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
-  `isOptional` BINARY NULL ,
+  `isOptional` TINYINT(1) NULL ,
   PRIMARY KEY (`idSubject`) )
 ENGINE = InnoDB;
 
@@ -84,7 +84,7 @@ CREATE  TABLE IF NOT EXISTS `yschool_lite`.`Student` (
   `full_name` VARCHAR(45) NULL ,
   `name_wt_initial` VARCHAR(45) NULL ,
   `dob` DATE NULL ,
-  `gender` CHAR NULL ,
+  `gender` VARCHAR(10) NULL ,
   `address` VARCHAR(400) NULL ,
   `photo` LONGBLOB NULL ,
   PRIMARY KEY (`idStudent`) ,

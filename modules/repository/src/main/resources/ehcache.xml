@@ -1,172 +1,244 @@
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="ehcache.xsd"
-    updateCheck="false" monitoring="autodetect"
-    dynamicConfig="true">
+<!--<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+    <!--xsi:noNamespaceSchemaLocation="ehcache.xsd"-->
+    <!--updateCheck="false" monitoring="autodetect"-->
+    <!--dynamicConfig="true">-->
 
-  <!--
-    Sets the path to the directory where cache files are created.
+  <!--&lt;!&ndash;-->
+    <!--Sets the path to the directory where cache files are created.-->
 
-    If the path is a Java System Property it is replaced by its value in the
-    running VM.
+    <!--If the path is a Java System Property it is replaced by its value in the-->
+    <!--running VM.-->
 
-    The following properties are translated:
-    * user.home - User's home directory
-    * user.dir - User's current working directory
-    * java.io.tmpdir - Default temp file path
+    <!--The following properties are translated:-->
+    <!--* user.home - User's home directory-->
+    <!--* user.dir - User's current working directory-->
+    <!--* java.io.tmpdir - Default temp file path-->
 
-    Subdirectories can be specified below the property e.g. java.io.tmpdir/one
-    -->
-    <diskStore path="java.io.tmpdir"/>
+    <!--Subdirectories can be specified below the property e.g. java.io.tmpdir/one-->
+    <!--&ndash;&gt;-->
+    <!--<diskStore path="java.io.tmpdir"/>-->
 
- <!--
-    Mandatory Default Cache configuration. These settings will be applied to caches
-    created programmtically using CacheManager.add(String cacheName)
-    -->
-    <defaultCache
-            maxElementsInMemory="1000"
-            eternal="false"
-            timeToIdleSeconds="300"
-            timeToLiveSeconds="300"
-            overflowToDisk="false"
-            diskPersistent="false"
-            diskExpiryThreadIntervalSeconds="300"
-            />
-
-
-<!-- The unnamed query cache -->
-<cache
-    name="org.hibernate.cache.StandardQueryCache"
-    maxElementsInMemory="1000"
-    eternal="false"
-    timeToLiveSeconds="300"
-    overflowToDisk="false"
-/>
-
- <cache name="org.hibernate.cache.UpdateTimestampsCache"
-    maxElementsInMemory="5000" eternal="true" 
-    overflowToDisk="false" diskPersistent="false"
-     memoryStoreEvictionPolicy="LRU" />
+ <!--&lt;!&ndash;-->
+    <!--Mandatory Default Cache configuration. These settings will be applied to caches-->
+    <!--created programmtically using CacheManager.add(String cacheName)-->
+    <!--&ndash;&gt;-->
+    <!--<defaultCache-->
+            <!--maxElementsInMemory="1000"-->
+            <!--eternal="false"-->
+            <!--timeToIdleSeconds="300"-->
+            <!--timeToLiveSeconds="300"-->
+            <!--overflowToDisk="false"-->
+            <!--diskPersistent="false"-->
+            <!--diskExpiryThreadIntervalSeconds="300"-->
+            <!--/>-->
 
 
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.ClassStaff"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.ClassStaffPK"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.ClassStudent"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.ClassStudentPK"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.Classroom"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.Exam"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.Marks"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.School"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.Staff"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.Student"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.StudentHasOptionalsubject"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.StudentHasOptionalsubjectPK"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.Subject"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
-<cache
-    name="org.yarlithub.yschool.model.obj.yschoolLite.User"
-    maxElementsInMemory="5000"
-    eternal="false"
-    timeToIdleSeconds="300"
-    timeToLiveSeconds="600"
-    overflowToDisk="false"
-/>
+<!--&lt;!&ndash; The unnamed query cache &ndash;&gt;-->
+<!--<cache-->
+    <!--name="org.hibernate.cache.StandardQueryCache"-->
+    <!--maxElementsInMemory="1000"-->
+    <!--eternal="false"-->
+    <!--timeToLiveSeconds="300"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
 
-</ehcache>
+ <!--<cache name="org.hibernate.cache.UpdateTimestampsCache"-->
+    <!--maxElementsInMemory="5000" eternal="true" -->
+    <!--overflowToDisk="false" diskPersistent="false"-->
+     <!--memoryStoreEvictionPolicy="LRU" />-->
+
+
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ClassStudent"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ClassSubject"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ClassSubjectHasStaffHasRole"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ClassSubjectHasStaffHasRolePK"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Classroom"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ClassroomHasStaffHasRole"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ClassroomHasStaffHasRolePK"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Exam"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.ExamType"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Marks"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Role"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.School"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.SchoolHasStaffHasRole"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.SchoolHasStaffHasRolePK"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Section"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.SectionHasStaffHasRole"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.SectionHasStaffHasRolePK"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Staff"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.StaffHasRole"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Student"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.StudentClassSubject"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.Subject"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.User"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+<!--<cache-->
+    <!--name="org.yarlithub.yschool.model.obj.yschoolLite.UserRole"-->
+    <!--maxElementsInMemory="5000"-->
+    <!--eternal="false"-->
+    <!--timeToIdleSeconds="300"-->
+    <!--timeToLiveSeconds="600"-->
+    <!--overflowToDisk="false"-->
+<!--/>-->
+
+<!--</ehcache>-->

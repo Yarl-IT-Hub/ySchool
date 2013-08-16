@@ -18,6 +18,7 @@
     <modules>
         <module>modules/repository</module>
         <module>modules/setup</module>
+        <module>modules/spreadSheetReader</module>
     </modules>
 
     <dependencies>

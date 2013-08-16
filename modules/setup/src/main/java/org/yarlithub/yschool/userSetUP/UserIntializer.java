@@ -1,11 +1,13 @@
 package org.yarlithub.yschool.userSetUP;
 
+import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory;
 import org.yarlithub.yschool.factories.yschoolLite.YschoolLiteDataPoolFactory;
 import org.yarlithub.yschool.model.dao.yschoolLite.UserDao;
 import org.yarlithub.yschool.model.obj.yschoolLite.User;
+import org.yarlithub.yschool.model.obj.yschoolLite.UserRole;
 import org.yarlithub.yschool.services.data.DataLayerYschoolLite;
 import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
 
@@ -37,16 +39,27 @@ public class UserIntializer {
         logger.debug("Creating user {}", userName);
 
         DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
-        UserDao userDao = HibernateYschoolLiteDaoFactory.getUserDao();
-        User user = YschoolLiteDataPoolFactory.getUser();
+//        User user = YschoolLiteDataPoolFactory.getUser();
+//
+//        UserRole userRoleOBJ =DataLayerYschoolLiteImpl.getInstance().getUserRole(1);
+//
+//        user.setEmail(usereMail);
+//        user.setUserName(userName);
+//        user.setPassword(password);
+//        user.setUserRoleIduserRole(userRoleOBJ);
+//
+//        dataLayerYschoolLite.save(user);
+//        dataLayerYschoolLite.flushSession();
 
-        user.setEmail(usereMail);
-        user.setUserName(userName);
-        user.setPassword(password);
-        user.setUserRole((byte) 1);
+        String sql = "INSERT INTO user (user_name, email, password, User_Role_idUser_Role) VALUES (:user_name, :email, :password, :User_Role_idUser_Role)";
 
-        userDao.save(user);
-        dataLayerYschoolLite.flushSession();
+        SQLQuery insertQuery = dataLayerYschoolLite.createSQLQuery(sql);
+        insertQuery.setParameter("user_name",userName );
+        insertQuery.setParameter("email", usereMail);
+        //TODO: password encryption
+        insertQuery.setParameter("password", password);
+        insertQuery.setParameter("User_Role_idUser_Role", userRole);
+        int result1 = insertQuery.executeUpdate();
 
         logger.debug("Successfuly created user {}", userName);
         //TODO check success/failure

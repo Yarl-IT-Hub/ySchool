@@ -1,15 +1,11 @@
 package org.yarlithub.yschool.ySchoolSetUp.Loader;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory;
+
+import org.yarlithub.yschool.Reader.Reader;
 import org.yarlithub.yschool.factories.yschoolLite.YschoolLiteDataPoolFactory;
-import org.yarlithub.yschool.model.dao.yschoolLite.SubjectDao;
 import org.yarlithub.yschool.model.obj.yschoolLite.Subject;
 import org.yarlithub.yschool.services.data.DataLayerYschoolLite;
 import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
-import org.yarlithub.yschool.ySchoolSetUp.Reader.Reader;
-
-import java.nio.ByteBuffer;
 
 
 /**
@@ -27,28 +23,25 @@ public class SubjectLoader {
          * In initialization document 3th scheet is subjects information.
          */
         reader.setSheet(2);
-        Row row;
 
 
+        DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
         for (int i = 1; i <= reader.getLastRowNumber(); i++) {
-            row = reader.getRow(i);
+            reader.setRow(i);
 
+            String subjectName = reader.getStringCellValue(0);
+            int isOptional = reader.getNumericCellValue(1);
 
-            String subjectName = row.getCell(0).getStringCellValue();
-            int isOptional = (int) row.getCell(1).getNumericCellValue();
-
-            Byte[] isOptionalByte = new Byte[1];
-            isOptionalByte[0] = (byte) isOptional;
-
-            DataLayerYschoolLite dataLayerYschoolLite = DataLayerYschoolLiteImpl.getInstance();
-            SubjectDao subjectDao = HibernateYschoolLiteDaoFactory.getSubjectDao();
+            boolean isOptionalBool = false;
+            if (isOptional == 1) {
+                isOptionalBool = true;
+            }
 
             Subject subject = YschoolLiteDataPoolFactory.getSubject();
-
             subject.setName(subjectName);
-            subject.setIsoptional(isOptionalByte);
+            subject.setIsoptional(isOptionalBool);
 
-            subjectDao.save(subject);
+            dataLayerYschoolLite.save(subject);
             dataLayerYschoolLite.flushSession();
 
 

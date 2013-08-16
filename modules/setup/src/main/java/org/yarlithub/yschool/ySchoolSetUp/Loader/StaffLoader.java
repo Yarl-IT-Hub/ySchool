@@ -1,15 +1,6 @@
 package org.yarlithub.yschool.ySchoolSetUp.Loader;
 
-import org.apache.poi.ss.usermodel.Row;
-import org.yarlithub.yschool.factories.yschoolLite.HibernateYschoolLiteDaoFactory;
-import org.yarlithub.yschool.factories.yschoolLite.YschoolLiteDataPoolFactory;
-import org.yarlithub.yschool.model.dao.yschoolLite.ClassroomDao;
-import org.yarlithub.yschool.model.obj.yschoolLite.Classroom;
-import org.yarlithub.yschool.services.data.DataLayerYschoolLite;
-import org.yarlithub.yschool.services.data.DataLayerYschoolLiteImpl;
-import org.yarlithub.yschool.ySchoolSetUp.Reader.Reader;
-
-import java.util.Date;
+import org.yarlithub.yschool.Reader.Reader;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,21 +11,20 @@ import java.util.Date;
  */
 public class StaffLoader {
 
-    public boolean load(Reader reader){
+    public boolean load(Reader reader) {
 
         /**
          * In initialization document 4th scheet is class information.
          */
         reader.setSheet(3);
-        Row row;
 
 
         for (int i = 1; i <= reader.getLastRowNumber(); i++) {
-            row = reader.getRow(i);
+            reader.setRow(i);
 
-//            int grade = (int) row.getCell(0).getNumericCellValue();
-//            String division = row.getCell(1).getStringCellValue();
-//            int year = (int) row.getCell(2).getNumericCellValue();
+//            int grade = reader.getNumericCellValue(0);
+//            String division = reader.getStringCellValue(1);
+//            int year = reader.getNumericCellValue(2);
 //            Date date = new Date();
 //            date.setYear(year);
 //
