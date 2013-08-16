@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yarlithub.yschool.Reader.Reader;
 import org.yarlithub.yschool.Reader.ReaderFactory;
+import org.yarlithub.yschool.ySchoolSetUp.Loader.ClassroomLoader;
+import org.yarlithub.yschool.ySchoolSetUp.Loader.StaffLoader;
 import org.yarlithub.yschool.ySchoolSetUp.Loader.SubjectLoader;
 
 import java.io.IOException;
@@ -33,10 +35,16 @@ public class DataInitializer {
         ReaderFactory readerFactory = new ReaderFactory();
         Reader reader = readerFactory.getspreadSheetReader(uploadedFile);
 
+        ClassroomLoader classroomLoader = new ClassroomLoader();
+        classroomLoader.load(reader);
+
         SubjectLoader subjectLoader = new SubjectLoader();
         subjectLoader.load(reader);
 
+        StaffLoader staffLoader = new StaffLoader();
+        staffLoader.load(reader);
 
+        //TODO: check and return
         return true;
     }
 }
