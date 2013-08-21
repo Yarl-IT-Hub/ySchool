@@ -7,10 +7,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.factories.yschool.YschoolDataPoolFactory;
-import org.yarlithub.yschool.model.obj.yschool.UserRole;
-import org.yarlithub.yschool.services.data.DataLayerYschool;
-import org.yarlithub.yschool.services.data.DataLayerYschoolImpl;
+import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
+import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
 import static org.junit.Assert.assertEquals;
 

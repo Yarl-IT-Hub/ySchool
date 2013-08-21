@@ -1,11 +1,11 @@
 package org.yarlithub.yschool.setup.ySchoolSetUp.Loader;
 
 
-import org.yarlithub.yschool.Reader.Reader;
-import org.yarlithub.yschool.factories.yschool.YschoolDataPoolFactory;
-import org.yarlithub.yschool.model.obj.yschool.Subject;
-import org.yarlithub.yschool.services.data.DataLayerYschool;
-import org.yarlithub.yschool.services.data.DataLayerYschoolImpl;
+import org.yarlithub.yschool.spreadSheetReader.Reader;
+import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
+import org.yarlithub.yschool.repository.model.obj.yschool.Subject;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
 
 /**

@@ -49,7 +49,7 @@
 
 
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ClassStudent"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -57,7 +57,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ClassSubject"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -65,7 +65,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ClassSubjectHasStaffHasRole"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ClassSubjectHasStaffHasRole"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -73,7 +73,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ClassSubjectHasStaffHasRolePK"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ClassSubjectHasStaffHasRolePK"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -81,7 +81,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Classroom"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Classroom"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -89,7 +89,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ClassroomHasStaffHasRole"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -97,7 +97,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ClassroomHasStaffHasRolePK"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRolePK"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -105,7 +105,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Exam"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Exam"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -113,7 +113,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.ExamType"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.ExamType"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -121,7 +121,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Marks"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Marks"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -129,7 +129,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Role"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Role"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -137,7 +137,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.School"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.School"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -145,7 +145,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.SchoolHasStaffHasRole"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.SchoolHasStaffHasRole"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -153,7 +153,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.SchoolHasStaffHasRolePK"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.SchoolHasStaffHasRolePK"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -161,7 +161,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Section"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Section"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -169,7 +169,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.SectionHasStaffHasRole"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.SectionHasStaffHasRole"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -177,7 +177,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.SectionHasStaffHasRolePK"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.SectionHasStaffHasRolePK"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -185,7 +185,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Staff"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Staff"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -193,7 +193,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.StaffHasRole"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.StaffHasRole"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -201,7 +201,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Student"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Student"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -209,7 +209,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.StudentClassSubject"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.StudentClassSubject"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -217,7 +217,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.Subject"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.Subject"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -225,7 +225,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.User"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.User"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"
@@ -233,7 +233,7 @@
     overflowToDisk="false"
 />
 <cache
-    name="org.yarlithub.yschool.model.obj.yschool.UserRole"
+    name="org.yarlithub.yschool.repository.model.obj.yschool.UserRole"
     maxElementsInMemory="5000"
     eternal="false"
     timeToIdleSeconds="300"

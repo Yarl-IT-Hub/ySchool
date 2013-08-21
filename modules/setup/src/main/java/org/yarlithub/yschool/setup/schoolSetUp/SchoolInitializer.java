@@ -1,8 +1,8 @@
 package org.yarlithub.yschool.setup.schoolSetUp;
 
 import org.hibernate.SQLQuery;
-import org.yarlithub.yschool.services.data.DataLayerYschool;
-import org.yarlithub.yschool.services.data.DataLayerYschoolImpl;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 import org.yarlithub.yschool.setup.dataAccess.SetUpDBQueries;
 
 /**
