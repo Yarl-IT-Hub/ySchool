@@ -5,9 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.schoolSetUp.SchoolInitializer;
-import org.yarlithub.yschool.userSetUP.UserIntializer;
-import org.yarlithub.yschool.ySchoolSetUp.DataInitializer;
+import org.yarlithub.yschool.setup.schoolSetUp.SchoolInitializer;
+import org.yarlithub.yschool.setup.userSetUP.UserIntializer;
+import org.yarlithub.yschool.setup.ySchoolSetUp.DataInitializer;
 
 import java.io.IOException;
 

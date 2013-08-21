@@ -3,13 +3,13 @@
 
  	<dbType>MYSQL</dbType>
 	<driver>com.mysql.jdbc.Driver</driver>
-    <jdbcConnectionString>jdbc:mysql://127.0.0.1/yschool_lite</jdbcConnectionString>
+    <jdbcConnectionString>jdbc:mysql://127.0.0.1/yschool</jdbcConnectionString>
 	<databaseIP>localhost</databaseIP>
-    <databaseSchema>yschool_lite</databaseSchema>
+    <databaseSchema>yschool</databaseSchema>
 	<databaseUsername>root</databaseUsername>
 	<databasePassword></databasePassword>
     <!--add YOUR_PATH and remove comment bellow-->
-    <sourceTarget>F:\PROJECTS\</sourceTarget>
+    <!--<sourceTarget>F:\PROJECTS\yschoolnew\modules\repository</sourceTarget>-->
 	<projectName>yschool</projectName>
 	<topLevel>org.yarlithub</topLevel>
 	<libPath>libs</libPath>

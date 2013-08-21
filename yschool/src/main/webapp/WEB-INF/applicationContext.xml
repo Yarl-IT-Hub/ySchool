@@ -40,7 +40,7 @@
 	<bean id="mainDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
-		<property name="jdbcUrl" value="jdbc:mysql://localhost/yschool_lite" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost/yschool" />
         <property name="user" value="root"/>
         <property name="password" value=""/>
         <property name="idleConnectionTestPeriod" value="60"/>
