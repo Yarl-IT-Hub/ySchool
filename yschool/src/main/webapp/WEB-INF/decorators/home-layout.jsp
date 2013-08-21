@@ -38,17 +38,28 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">ySchool</a>
+            <a class="brand" href="#">ySchool Home</a>
 
             <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="/yschool/faces/home/myhome.xhtml">Home</a></li>
-                    <li><a href="/yschool/faces/about/aboutus.xhtml">About</a></li>
-                    <li><a href="/yschool/faces/about/contactus.xhtml">Contact</a></li>
-                </ul>
-                <p class="navbar-text pull-right">Logged in as <a href="#">userName</a></p>
+                    <ul class="nav pull-right">
+                        <li class="dropdown">
+                            <a href="#"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown">
+                                userName
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">Log out</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
             </div>
             <!--/.nav-collapse -->
+
         </div>
     </div>
 </div>

@@ -29,7 +29,7 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         </navigation-case>
         <navigation-case>
             <from-outcome>login</from-outcome>
-            <to-view-id>/faces/home/myhome.xhtml</to-view-id>
+            <to-view-id>/faces/home/myHome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -38,7 +38,7 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         <from-view-id>/faces/setup/setup.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
-            <to-view-id>/faces/home/myhome.xhtml</to-view-id>
+            <to-view-id>/faces/home/myHome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

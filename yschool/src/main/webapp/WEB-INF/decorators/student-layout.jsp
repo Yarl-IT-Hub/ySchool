@@ -23,8 +23,7 @@
     <link rel="apple-touch-icon" sizes="72x72" href="/yschool/images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="/yschool/images/apple-touch-icon-114x114.png">
 
-    <%--<title><sitemesh:write property='title'/></title>--%>
-    <title>ySchool - A school management system</title>
+    <title><sitemesh:write property='title'/></title>
     <script type="text/javascript" src="/yschool/js/yschool/yschool.js"></script>
     <sitemesh:write property='head'/>
 </head>
@@ -33,20 +32,26 @@
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">ySchool</a>
+
+            <a class="brand" href="/yschool/faces/home/myHome.xhtml">ySchool Home</a>
 
             <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#">Home</a></li>
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#"
+                           class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            userName
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Log out</a></li>
+                        </ul>
+                    </li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <p class="navbar-text pull-right">Logged in as <a href="#">userName</a></p>
             </div>
             <!--/.nav-collapse -->
         </div>
@@ -56,40 +61,31 @@
 
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span3">
+
+        <div class="span2">
             <div class="well sidebar-nav">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Manage</li>
-                    <li id="student"><a href="/yschool/faces/student/student.xhtml">Student</a></li>
-                    <li><a href="/yschool/faces/staff/staff.xhtml">Staff</a></li>
-                    <li id="parent"><a href="/yschool/faces/parent/parent.xhtml">Parents</a></li>
-                    <li><a href="#">Admin users</a></li>
-                    <li class="nav-header">Assign</li>
-                    <li><a href="#">Teachers to classes</a></li>
-                    <li id="add-student-to-class"><a href="/yschool/faces/student/add-student-class.xhtml">Add students
-                        to class</a></li>
-                    <li><a href="#">Assign subjects to Students</a></li>
-                    <li><a href="#">Marks Management</a></li>
-                    <li class="nav-header">Configure</li>
-                    <a href="/yschool/faces/yearly/yearly-index.xhtml">Yearly Configurations</a>
-                    <li><a href="#">Subjects</a></li>
-                    <li><a href="#">Terms</a></li>
-                    <li><a href="#">School notifications</a></li>
-                    <li><a href="#">Manage time table</a></li>
+                    <li id="student"><a href="/yschool/faces/student/studentHome.xhtml">Student</a></li>
+                    <li id="staff"><a href="/yschool/faces/staff/staffHome.xhtml">Staff</a></li>
+                    <li id="examinations"><a href="/yschool/faces/staff/examinationsHome.xhtml">Examinations</a></li>
+                    <li id="arrangements"><a href="/yschool/faces/staff/arrangementsHome.xhtml">Arrangements</a></li>
+                    <li id="settings"><a href="/yschool/faces/staff/settingsHome.xhtml">Settings</a></li>
+                    <li id="analytics"><a href="/yschool/faces/staff/analyticsHome.xhtml">Analytics</a></li>
+
+
                 </ul>
             </div>
             <!--/.well -->
         </div>
         <!--/span-->
         <sitemesh:write property='body'/>
-
     </div>
     <!--/row-->
 
     <hr/>
 
     <footer>
-        <p><![CDATA[&copy;]> ySchool 2012</p>
+        <p><![CDATA[&copy;]> ySchool 2013</p>
     </footer>
 
 </div>

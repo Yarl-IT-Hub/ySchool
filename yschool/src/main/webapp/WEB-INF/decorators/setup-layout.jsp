@@ -23,8 +23,8 @@
     <link rel="apple-touch-icon" sizes="72x72" href="/yschool/images/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="/yschool/images/apple-touch-icon-114x114.png">
 
-    <%--<title><sitemesh:write property='title'/></title>--%>
-    <title>ySchool - A school management system</title>
+    <title><sitemesh:write property='title'/></title>
+
     <script type="text/javascript" src="/yschool/js/yschool/yschool.js"></script>
     <sitemesh:write property='head'/>
 </head>
@@ -41,9 +41,6 @@
             <a class="brand" href="#">ySchool Home</a>
 
             <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#">SetUp</a></li>
-                </ul>
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#"
@@ -53,7 +50,7 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li> <a href = "#"> Log In </a></li>
+                            <li><a href="#"> Log In </a></li>
                         </ul>
                     </li>
                     <li><a href="#about">About</a></li>

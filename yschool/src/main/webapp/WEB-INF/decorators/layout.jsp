@@ -41,9 +41,6 @@
             <a class="brand" href="#">ySchool Home</a>
 
             <div class="nav-collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#">StartUp </a></li>
-                </ul>
                 <ul class="nav pull-right">
                     <li class="dropdown">
                         <a href="#"
