@@ -1,8 +1,8 @@
 <sitemesh>
 
-    <mapping path="/faces/student/*" decorator="/WEB-INF/decorators/student-layout.jsp"/>
-    <mapping path="/faces/home/*" decorator="/WEB-INF/decorators/home-layout.jsp"/>
-    <mapping path="/faces/setup/*" decorator="/WEB-INF/decorators/setup-layout.jsp"/>
-    <mapping path="/*" decorator="/WEB-INF/decorators/layout.jsp"/>
+    <!--<mapping path="/faces/student/*" decorator="/WEB-INF/decorators/student-layout.jsp"/>-->
+    <!--<mapping path="/faces/home/*" decorator="/WEB-INF/decorators/home-layout.jsp"/>-->
+    <!--<mapping path="/faces/setup/*" decorator="/WEB-INF/decorators/setup-layout.jsp"/>-->
+    <!--<mapping path="/*" decorator="/WEB-INF/decorators/layout.jsp"/>-->
 
 </sitemesh>

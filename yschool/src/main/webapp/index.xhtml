@@ -1,22 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Created by IntelliJ IDEA.
-  User: jason
-  Date: 3/11/12
-  Time: 9:54 AM
--->
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/templates/master.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head>
-    <title>Simple JSF Facelets page</title>
-</h:head>
-
-<h:body>
+ <ui:define name="body">
     <div class="span8 offset2">
         <div class="hero-unit">
             <h1><h:outputText value="#{msg.yschool}"/></h1>
@@ -80,6 +69,5 @@
         </div>
 
     </div>
-</h:body>
-
-</html>
+ </ui:define>
+</ui:composition>
