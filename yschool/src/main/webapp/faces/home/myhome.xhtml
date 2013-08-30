@@ -1,122 +1,121 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition template="/WEB-INF/templates/master-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-    <title>Simple JSF Facelets page</title>
-    <style type="text/css">
-        a.thumbnail {
-            background-color: 888;
-        }
+    <ui:define name="yhead">
+        <title>ySchool Home</title>
+        <style type="text/css">
+            a.thumbnail {
+                background-color: 888;
+            }
 
-        a.thumbnail:hover {
-            background-color: f88;
-        }
-    </style>
-</h:head>
+            a.thumbnail:hover {
+                background-color: f88;
+            }
+        </style>
+    </ui:define>
 
-<h:body>
-    <script type="text/javascript">
-        makeLinkActive("home");
-    </script>
+    <ui:define name="ybody-content">
+        <div class="row-fluid">
+            <div class="span8 offset2">
+                <h3 align="center">Welcome to ySchool</h3>
 
-    <div class="span8 offset2">
-        <h3 align="center">Welcome to ySchool</h3>
+                <ul class="thumbnails">
+                    <li class="span4">
+                        <a href="/yschool/faces/student/studentHome.xhtml">
+                            <div class="thumbnail">
 
-        <ul class="thumbnails">
-            <li class="span4">
-                <a href="/yschool/faces/student/studentHome.xhtml">
-                    <div class="thumbnail">
+                                <img src="/yschool/ico/student.png" alt="myschool" align="center"/>
 
-                        <img src="/yschool/ico/student.png" alt="myschool" align="center"/>
+                                <div class="caption">
+                                    <h5 align="center">Students</h5>
 
-                        <div class="caption">
-                            <h5 align="center">Students</h5>
+                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="span4">
+                        <a href="/yschool/faces/staff/staffHome.xhtml">
+                            <div class="thumbnail">
 
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="span4">
-                <a href="http://www.espn.com">
-                    <div class="thumbnail">
+                                <img src="/yschool/ico/staff.png" alt="myschool" align="center"/>
 
-                        <img src="/yschool/ico/staff.png" alt="myschool" align="center"/>
+                                <div class="caption">
+                                    <h5 align="center">Staffs</h5>
 
-                        <div class="caption">
-                            <h5 align="center">Staffs</h5>
+                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="span4">
+                        <a href="/yschool/faces/examinations/examinationsHome.xhtml">
+                            <div class="thumbnail">
+                                <img src="/yschool/ico/examinations.png" alt="examinations" align="center"/>
 
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="span4">
-                <a href="http://www.espn.com">
-                    <div class="thumbnail">
-                        <img src="/yschool/ico/examinations.png" alt="examinations" align="center"/>
+                                <div class="caption">
+                                    <h5 align="center">Examinations</h5>
 
-                        <div class="caption">
-                            <h5 align="center">Examinations</h5>
+                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
 
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+                                </div>
+                            </div>
+                        </a>
+                    </li>
 
-                        </div>
-                    </div>
-                </a>
-            </li>
+                </ul>
 
-        </ul>
+                <ul class="thumbnails">
+                    <li class="span4">
+                        <a href="/yschool/faces/arrangements/arrangementsHome.xhtml">
+                            <div class="thumbnail">
+                                <img src="/yschool/ico/arrangements.png" alt="arrangements" align="center"/>
 
-        <ul class="thumbnails">
-            <li class="span4">
-                <a href="http://www.espn.com">
-                    <div class="thumbnail">
-                        <img src="/yschool/ico/arrangements.png" alt="arrangements" align="center"/>
+                                <div class="caption">
+                                    <h5 align="center">Arrangements</h5>
 
-                        <div class="caption">
-                            <h5 align="center">Arrangements</h5>
+                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
 
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="span4">
+                        <a href="/yschool/faces/settings/settingsHome.xhtml">
+                            <div class="thumbnail">
+                                <img src="/yschool/ico/settings.png" alt="settings" align="center"/>
 
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="span4">
-                <a href="http://www.espn.com">
-                    <div class="thumbnail">
-                        <img src="/yschool/ico/settings.png" alt="settings" align="center"/>
+                                <div class="caption">
+                                    <h5 align="center">Settings</h5>
 
-                        <div class="caption">
-                            <h5 align="center">Settings</h5>
+                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
 
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="span4">
+                        <a href="/yschool/faces/analytics/analyticsHome.xhtml">
+                            <div class="thumbnail">
+                                <img src="/yschool/ico/analytics.png" alt="settings" align="center"/>
 
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li class="span4">
-                <a href="http://www.espn.com">
-                    <div class="thumbnail">
-                        <img src="/yschool/ico/class.png" alt="settings" align="center"/>
+                                <div class="caption">
+                                    <h5 align="center">Analytics</h5>
 
-                        <div class="caption">
-                            <h5 align="center">Analytics</h5>
+                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
 
-                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
 
-                        </div>
-                    </div>
-                </a>
-            </li>
-        </ul>
+            </div>
+            <!--/sapan8 offset2-->
+        </div>
+        <!--row fluid-->
 
-    </div>
 
-</h:body>
-</html>
+    </ui:define>
+</ui:composition>
