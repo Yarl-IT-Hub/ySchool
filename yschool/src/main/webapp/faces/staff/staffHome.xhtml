@@ -4,7 +4,7 @@
 
 <ui:define name="student-content">
 
-    <div class="span6">
+    <div class="span4">
         <ul class="breadcrumb">
             <li>
                 <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
@@ -15,7 +15,21 @@
         </ul>
     </div>
 
-    <div class="span9">
+    <div class="span4">
+        <!--Student search bar with filter-->
+        <form class="navbar-search pull-left">
+            <input type="text" class="search-query" placeholder="Search"> </input>
+        </form>
+    </div>
+
+    <div class="span2">
+        <!--Add new student Button-->
+        <a href="/yschool/faces/staff/staffNew.xhtml">
+            <Button class="btn btn-primary btn-large"> Add New Staff</Button>
+        </a>
+    </div>
+
+    <div class="span10">
         test Staff home.
     </div>
 </ui:define>
