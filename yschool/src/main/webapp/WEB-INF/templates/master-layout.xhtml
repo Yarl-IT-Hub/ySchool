@@ -15,7 +15,6 @@
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
@@ -38,18 +37,22 @@
     <link rel="apple-touch-icon" sizes="72x72" href="/yschool/images/apple-touch-icon-72x72.png"/>
     <link rel="apple-touch-icon" sizes="114x114" href="/yschool/images/apple-touch-icon-114x114.png"/>
 
-    <title><ui:insert name="title">ySchool1</ui:insert></title>
-
     <script type="text/javascript" src="/yschool/js/yschool/yschool.js"></script>
+
+    <!--Insert header info according to page in ui:define-->
+    <ui:insert name="yhead">
+        <title>ySchool</title>
+    </ui:insert>
 
 
 </h:head>
 
 <h:body>
-    <div id="header">
-        <ui:insert name="header">
+    <div id="ybody-header">
+        <ui:insert name="ybody-hader">
 
             <div class="navbar navbar-fixed-top">
+                <!--The top bar with home and sigin in information-->
                 <div class="navbar-inner">
                     <div class="container-fluid">
                         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -57,10 +60,15 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </a>
-                        <a class="brand" href="#">ySchool Home</a>
+
+                        <!--TODO: if a session logged in=> goto yschool home-->
+                        <a class="brand" href="#" id ="yschoolhome">ySchool Home</a>
+
+                        <!--TODO: Implement a date, time dispaly here-->
 
                         <div class="nav-collapse">
                             <ul class="nav pull-right">
+                                <!--TODO: if session logged in => show username with useraccount link-->
                                 <li class="dropdown">
                                     <a href="#"
                                        class="dropdown-toggle"
@@ -77,28 +85,24 @@
                             </ul>
                         </div>
                         <!--/.nav-collapse -->
-
                     </div>
+                    <!--/.container-fluid-->
                 </div>
+                <!--/.navbar-inner-->
             </div>
             <!--/.navbar-fixed-top-->
-
 
         </ui:insert>
     </div>
 
-    <div id="body">
-        <div class="row-fluid">
-
-            <ui:insert name="body">
-
-
-            </ui:insert>
-        </div>
+    <div id="ybody-content">
+        <ui:insert name="ybody-content">
+            Default body content from master template.
+        </ui:insert>
     </div>
 
-    <div id="footer">
-        <ui:insert name="footer">
+    <div id="ybody-footer">
+        <ui:insert name="ybody-footer">
             <p><![CDATA[&copy;]> ySchool 2013</![CDATA]]></p>
         </ui:insert>
     </div>
