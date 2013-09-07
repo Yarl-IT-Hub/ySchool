@@ -1,0 +1,20 @@
+<ui:composition template="/WEB-INF/templates/master-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="ybody-content">
+
+        <div class="row-fluid">
+            <ui:include src="/WEB-INF/templates/sidebar.xhtml"></ui:include>
+            <!--TODO: show sidebar active links-->
+            <!--<script type="text/javascript">-->
+            <!--makeLinkActive("analytics");-->
+            <!--</script>-->
+
+            <ui:insert name="student-content">
+                Default Student Content student layout.
+            </ui:insert>
+        </div>
+        <!--row-fluid-->
+    </ui:define>
+
+</ui:composition>
