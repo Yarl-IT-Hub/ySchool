@@ -1,17 +1,16 @@
-<ui:composition template="/WEB-INF/templates/student-layout.xhtml"
+<ui:composition template="/WEB-INF/templates/staff-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:define name="student-content">
 
     <div class="span4">
-        <!--Breadcrumb to help user "where you are?"-->
         <ul class="breadcrumb">
             <li>
                 <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
             </li>
             <li>
-                <a href="#">Student</a>
+                <a href="#">Staffs</a>
             </li>
         </ul>
     </div>
@@ -21,17 +20,17 @@
         <form class="navbar-search pull-left">
             <input type="text" class="search-query" placeholder="Search"> </input>
         </form>
-       </div>
+    </div>
 
     <div class="span2">
         <!--Add new student Button-->
-        <a href="/yschool/faces/student/studentNew.xhtml">
-            <Button class="btn btn-primary btn-large"> Add New Student</Button>
+        <a href="/yschool/faces/staff/staffNew.xhtml">
+            <Button class="btn btn-primary btn-large"> Add New Staff</Button>
         </a>
-           </div>
+    </div>
 
     <div class="span10">
-        test student home.
+        test Staff home.
     </div>
 </ui:define>
 
