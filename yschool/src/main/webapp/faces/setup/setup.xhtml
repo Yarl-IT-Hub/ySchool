@@ -27,204 +27,204 @@
 </div>
 
 
-    <div class="span8 offset2">
-        <div class="hero-unit">
-            <!--<h3>Setup Up ySchool....</h3>-->
+<div class="span8 offset2">
+    <div class="hero-unit">
+        <!--<h3>Setup Up ySchool....</h3>-->
 
-            <div id="init-form" class="tabbable" style="margin-bottom: 9px;">
-                <ul class="nav nav-tabs">
-                    <li><a href="#1" class="active" data-toggle="tab">Start ySchool</a></li>
-                    <li><a href="#2" data-toggle="tab">Setup School</a></li>
-                    <li><a href="#3" data-toggle="tab">Setup User</a></li>
-                </ul>
-                <h:form class="form-horizontal" enctype="multipart/form-data">
-                    <div class="tab-content">
+        <div id="init-form" class="tabbable" style="margin-bottom: 9px;">
+            <ul class="nav nav-tabs">
+                <li><a href="#1" class="active" data-toggle="tab">Start ySchool</a></li>
+                <li><a href="#2" data-toggle="tab">Setup School</a></li>
+                <li><a href="#3" data-toggle="tab">Setup User</a></li>
+            </ul>
+            <h:form class="form-horizontal" enctype="multipart/form-data">
+                <div class="tab-content">
 
-                        <div class="tab-pane active" id="1">
-                            <div class="progress progress-striped active">
-                                <div class="bar" style="width: 33%;"></div>
-                            </div>
-                            <fieldset>
-                                <legend>You are about to start ySchool now...</legend>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="init-doc">Fill the <a
-                                            href="/yschool/spreadsheet-templates/start_ySchool.xlsx">ySchool Initializing Document</a> and upload it here
-                                    </label>
-
-                                    <div class="controls">
-                                        <t:inputFileUpload id="init-doc" value="#{setupBean.initFile}"/>
-                                        <h:message for="init-doc" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="form-actions">
-                                    <a href="#2" data-toggle="tab">
-                                        <Button class="btn btn-primary btn-large"> Next</Button>
-                                    </a>
-                                </div>
-                            </fieldset>
+                    <div class="tab-pane active" id="1">
+                        <div class="progress progress-striped active">
+                            <div class="bar" style="width: 33%;"></div>
                         </div>
+                        <fieldset>
+                            <legend>You are about to start ySchool now...</legend>
 
+                            <div class="control-group">
+                                <label class="control-label" for="init-doc">Fill the <a
+                                        href="/yschool/spreadsheet-templates/start_ySchool.xlsx">ySchool Initializing Document</a> and upload it here
+                                </label>
 
-                        <div class="tab-pane" id="2">
-                            <div class="progress progress-striped active">
-                                <div class="bar" style="width: 66%;"></div>
+                                <div class="controls">
+                                    <t:inputFileUpload id="init-doc" value="#{setupBean.initFile}"/>
+                                    <h:message for="init-doc" errorStyle="color : red"/>
+                                </div>
                             </div>
-                            <fieldset>
-                                <legend>Initialize your School with ySchool...</legend>
-                                <div class="control-group">
-                                    <label class="control-label" for="school-name">School Name</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="school-name" value="#{setupBean.schoolName}" required="true"
-                                                     requiredMessage="School Name is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputText>
-                                        <h:message for="school-name" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="school-address">Address</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="school-address" value="#{setupBean.schoolAddress}"
-                                                     required="false"
-                                                     requiredMessage=" School address is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputText>
-                                        <h:message for="school-address" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="school-zone">Zone</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="school-zone" value="#{setupBean.schoolZone}" required="false"
-                                                     requiredMessage=" School zone is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputText>
-                                        <h:message for="school-zone" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="school-district">District</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="school-district" value="#{setupBean.schoolDistrict}"
-                                                     required="false"
-                                                     requiredMessage=" School district is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputText>
-                                        <h:message for="school-district" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="school-province">Province</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="school-province" value="#{setupBean.schoolProvience}"
-                                                     required="false"
-                                                     requiredMessage=" School province is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputText>
-                                        <h:message for="school-province" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="form-actions">
-                                    <a href="#1" data-toggle="tab">
-                                        <Button class="btn btn-primary btn-large"> Back</Button>
-                                    </a>
-                                    <a href="#3" data-toggle="tab">
-                                        <Button class="btn btn-primary btn-large"> Next</Button>
-                                    </a>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="tab-pane" id="3">
-                            <div class="progress progress-striped active">
-                                <div class="bar" style="width: 90%;"></div>
+                            <div class="form-actions">
+                                <a href="#2" data-toggle="tab">
+                                    <Button class="btn btn-primary btn-large"> Next</Button>
+                                </a>
                             </div>
-                            <fieldset>
-                                <legend>Create a ySchool user...</legend>
-
-                                <div class="control-group">
-                                    <label class="control-label" for="user-name">User Name</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="user-name" styleClass="input-xlarge"
-                                                     value="#{setupBean.userName}" required="true"
-                                                     requiredMessage="User Name is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputText>
-                                        <h:message for="user-name" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="user-role">User Role</label>
-
-                                    <div class="controls">
-                                        <h:selectOneMenu id="user-role"
-                                                         value="#{setupBean.userRole}">
-                                            <f:selectItem id="item1" itemLabel="Admin" itemValue="1"/>
-                                            <f:selectItem id="item2" itemLabel="Staff" itemValue="2"/>
-                                            <f:selectItem id="item3" itemLabel="Student" itemValue="3"/>
-                                            <f:selectItem id="item4" itemLabel="yUser" itemValue="4"/>
-                                        </h:selectOneMenu>
-                                        <h:message for="user-role" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="user-password">Password</label>
-
-                                    <div class="controls">
-                                        <h:inputSecret id="user-password" value="#{setupBean.password}" required="true"
-                                                       requiredMessage=" Password is required">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputSecret>
-                                        <h:message for="user-password" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="confirm-password">Confirm Password</label>
-
-                                    <div class="controls">
-                                        <h:inputSecret id="confirm-password" value="#{setupBean.confirmPassword}"
-                                                       required="true"
-                                                       requiredMessage=" Retype Password">
-                                            <f:validateRequired/>
-                                            <f:validateLength maximum="50"/>
-                                        </h:inputSecret>
-                                        <h:message for="confirm-password" errorStyle="color : red"/>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <div class="form-actions">
-                                    <a href="#2" data-toggle="tab">
-                                        <Button class="btn btn-primary btn-large"> Back</Button>
-                                    </a>
-                                    <h:commandButton type="submit" action="#{setupBean.enterSetup}" value="Finish"
-                                                     class="btn btn-primary btn-large"/>
-                                </div>
-                            </fieldset>
-                        </div>
+                        </fieldset>
                     </div>
-                    <!--tab-content-->
-                </h:form>
-            </div>
-            <!--tabbable-->
+
+
+                    <div class="tab-pane" id="2">
+                        <div class="progress progress-striped active">
+                            <div class="bar" style="width: 66%;"></div>
+                        </div>
+                        <fieldset>
+                            <legend>Initialize your School with ySchool...</legend>
+                            <div class="control-group">
+                                <label class="control-label" for="school-name">School Name</label>
+
+                                <div class="controls">
+                                    <h:inputText id="school-name" value="#{setupBean.schoolName}" required="true"
+                                                 requiredMessage="School Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-name" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="school-address">Address</label>
+
+                                <div class="controls">
+                                    <h:inputText id="school-address" value="#{setupBean.schoolAddress}"
+                                                 required="false"
+                                                 requiredMessage=" School address is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-address" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="school-zone">Zone</label>
+
+                                <div class="controls">
+                                    <h:inputText id="school-zone" value="#{setupBean.schoolZone}" required="false"
+                                                 requiredMessage=" School zone is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-zone" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="school-district">District</label>
+
+                                <div class="controls">
+                                    <h:inputText id="school-district" value="#{setupBean.schoolDistrict}"
+                                                 required="false"
+                                                 requiredMessage=" School district is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-district" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="school-province">Province</label>
+
+                                <div class="controls">
+                                    <h:inputText id="school-province" value="#{setupBean.schoolProvience}"
+                                                 required="false"
+                                                 requiredMessage=" School province is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="school-province" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <a href="#1" data-toggle="tab">
+                                    <Button class="btn btn-primary btn-large"> Back</Button>
+                                </a>
+                                <a href="#3" data-toggle="tab">
+                                    <Button class="btn btn-primary btn-large"> Next</Button>
+                                </a>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="tab-pane" id="3">
+                        <div class="progress progress-striped active">
+                            <div class="bar" style="width: 90%;"></div>
+                        </div>
+                        <fieldset>
+                            <legend>Create a ySchool user...</legend>
+
+                            <div class="control-group">
+                                <label class="control-label" for="user-name">User Name</label>
+
+                                <div class="controls">
+                                    <h:inputText id="user-name" styleClass="input-xlarge"
+                                                 value="#{setupBean.userName}" required="true"
+                                                 requiredMessage="User Name is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputText>
+                                    <h:message for="user-name" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="user-role">User Role</label>
+
+                                <div class="controls">
+                                    <h:selectOneMenu id="user-role"
+                                                     value="#{setupBean.userRole}">
+                                        <f:selectItem id="item1" itemLabel="Admin" itemValue="1"/>
+                                        <f:selectItem id="item2" itemLabel="Staff" itemValue="2"/>
+                                        <f:selectItem id="item3" itemLabel="Student" itemValue="3"/>
+                                        <f:selectItem id="item4" itemLabel="yUser" itemValue="4"/>
+                                    </h:selectOneMenu>
+                                    <h:message for="user-role" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="user-password">Password</label>
+
+                                <div class="controls">
+                                    <h:inputSecret id="user-password" value="#{setupBean.password}" required="true"
+                                                   requiredMessage=" Password is required">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputSecret>
+                                    <h:message for="user-password" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="confirm-password">Confirm Password</label>
+
+                                <div class="controls">
+                                    <h:inputSecret id="confirm-password" value="#{setupBean.confirmPassword}"
+                                                   required="true"
+                                                   requiredMessage=" Retype Password">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="50"/>
+                                    </h:inputSecret>
+                                    <h:message for="confirm-password" errorStyle="color : red"/>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-actions">
+                                <a href="#2" data-toggle="tab">
+                                    <Button class="btn btn-primary btn-large"> Back</Button>
+                                </a>
+                                <h:commandButton type="submit" action="#{setupBean.enterSetup}" value="Finish"
+                                                 class="btn btn-primary btn-large"/>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+                <!--tab-content-->
+            </h:form>
         </div>
-        <!--hero-unit-->
+        <!--tabbable-->
     </div>
-    <!--span8-->
+    <!--hero-unit-->
+</div>
+<!--span8-->
 
 </h:body>
 </html>
