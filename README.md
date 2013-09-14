@@ -1,6 +1,5 @@
-####################################################################################
-##### 				 ySchool				       #####
-####################################################################################
+ySchool	
+=======
 
 Version
 -------
@@ -23,8 +22,12 @@ How to Start
 2. Install git setup and fork ySchool.
 3. Install Maven and,
     Go to yschool directory in command-prompt/ terminal and Run the command
+```
 mvn install:install-file -Dfile=modules\repository\hbnPojoGenResource\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar
+```
     Next run command
- mvn clean install
+```
+mvn clean install
+```
     Run the command mvn clean jetty:run-war within yschool main module (yschool /yschool).
 4. Open localhost:8080/yschool in your browser to see ySchool up and running.
