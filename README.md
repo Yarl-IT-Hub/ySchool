@@ -29,5 +29,9 @@ mvn install:install-file -Dfile=modules\repository\hbnPojoGenResource\hbnpojogen
 ```
 mvn clean install
 ```
-    Run the command mvn clean jetty:run-war within yschool main module (yschool /yschool).
+    Run the command 
+```
+mvn clean jetty:run-war 
+```
+within yschool main module (yschool /yschool).
 4. Open localhost:8080/yschool in your browser to see ySchool up and running.
