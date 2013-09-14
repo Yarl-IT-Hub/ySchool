@@ -2,20 +2,20 @@ ySchool
 =======
 
 Version
-=======
-ySchool Version : 1.0-SNAPSHOT
-Build Version   : 1.0.40
-Last Update     : 08.09.2013.12.00
+-------
+* ySchool Version : 1.0-SNAPSHOT
+* Build Version   : 1.0.40
+* Last Update     : 08.09.2013.12.00
 
 Main Technologies
-=================
-Programming language    : Java 1.7
-DB                      : MySQL Community Server 5.5.20
-Build Tool              : Maven 3.0.4
+-----------------
+* Programming language    : Java 1.7
+* DB                      : MySQL Community Server 5.5.20
+* Build Tool              : Maven 3.0.4
 
 
 How to Start
-============
+------------
 1. Install WAMP/LAMP server.
     Import the SQL schema yschool/docs/yschool_lite_V1.1.sql into mysql server to create yschool database for you.
    Load SQL initial data with yschool/docs/yschool_lite_default_dataV1.1.sql.
