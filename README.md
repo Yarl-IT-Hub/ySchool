@@ -21,8 +21,8 @@ How to Start
    Load SQL initial data with yschool/docs/yschool_lite_default_dataV1.1.sql.
 2. Install git setup and fork ySchool.
 3. Install Maven, go to yschool directory in command-prompt/terminal and run 
-   '''mvn install:install-file -Dfile=modules\repository\hbnPojoGenResource\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar'''
-   '''mvn clean install'''
+   ```mvn install:install-file -Dfile=modules\repository\hbnPojoGenResource\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar```
+   ```mvn clean install```
 4. Run the command from yschool main module (yschool/yschool)
-   '''mvn clean jetty:run-war''' 
+   ```mvn clean jetty:run-war``` 
 5. Open localhost:8080/yschool in your browser to see ySchool up and running.
