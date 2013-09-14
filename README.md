@@ -1,5 +1,5 @@
 ###ySchool###
-
+A simple web based school management system.
 
 ####Version####
 
