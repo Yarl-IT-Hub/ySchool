@@ -1,6 +1,10 @@
 <ui:composition template="/WEB-INF/templates/student-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				>
 
     <ui:define name="student-content">
 
@@ -34,8 +38,107 @@
         </div>
 
         <div class="span10">
-            test new student page
-            add new student form here.
+            Add New Student Here....
+		
+			<h:form class="form-horizontal" enctype="multipart/form-data">
+                <div class="tab-content">
+				
+				 <fieldset>
+				             <div class="control-group">
+                                <label class="control-label" for="Admision_No">Admision_No</label>
+
+                                <div class="controls">
+                                    <h:inputText id="Admision_No" value="" required="true"
+                                                 requiredMessage="Admision_No is required">
+                                    </h:inputText>
+                                    <h:message for="Admision_No" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							
+						<div class="control-group">
+                                <label class="control-label" for="name">Name</label>
+
+                                <div class="controls">
+                                    <h:inputText id="name" value="" required="true"
+                                                 requiredMessage="Name is required">
+                                    </h:inputText>
+                                    <h:message for="name" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							
+							<div class="control-group">
+                                <label class="control-label" for="fullName">FullName</label>
+
+                                <div class="controls">
+                                    <h:inputText id="fullName" value="" required="true"
+                                                 requiredMessage="fullName is required">
+                                    </h:inputText>
+                                    <h:message for="fullName" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                <label class="control-label" for="nameWithInitial">NameWithInitial</label>
+
+                                <div class="controls">
+                                    <h:inputText id="nameWithInitial" value="" required="true"
+                                                 requiredMessage="NameWithInitial is required">
+                                    </h:inputText>
+                                    <h:message for="nameWithInitial" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                <label class="control-label" for="Dob">Dob</label>
+
+                                <div class="controls">
+                                    <h:inputText id="Dob" value="" required="true"
+                                                 requiredMessage="Dob is required">
+									<f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                                    </h:inputText>
+                                    <h:message for="Dob" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                <label class="control-label" for="Genter">Genter</label>
+                                <div class="controls">
+                                   <h:selectOneMenu id="Genter"
+                                                     value="">
+                                        <f:selectItem id="male" itemLabel="Male" itemValue="1"/>
+                                        <f:selectItem id="female" itemLabel="Female" itemValue="2"/>
+                                    </h:selectOneMenu>
+                                    <h:message for="user-role" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							
+							<div class="control-group">
+                                <label class="control-label" for="Address">Address</label>
+
+                                <div class="controls">
+                                    <h:inputText id="Address" value="" required="true"
+                                                 requiredMessage="Address is required">
+                                    </h:inputText>
+                                    <h:message for="Address" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                <label class="control-label" for="Photo">Photo</label>
+
+                                 <div class="controls">
+                                    <t:inputFileUpload id="init-doc" value="#{StudentBean.initFile}" sizeLimit="716800"/>
+                                    <h:message for="init-doc" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+							<div class="controls">
+							<ul class="breadcrumb">
+                                <li><h:commandButton type="submit" value="ADD ME"
+                                                 class="btn btn-primary btn-large"/></li>
+								<li><h:commandButton value="Cencel" type="reset" class="btn btn-primary btn-large" /></li>
+								</ul>
+							</div>
+                            </div>
+                        </fieldset>
+				</div>
+				</h:form>
         </div>
     </ui:define>
 
