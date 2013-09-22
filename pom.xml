@@ -19,6 +19,8 @@
         <module>modules/repository</module>
         <module>modules/setup</module>
         <module>modules/spreadSheetReader</module>
+        <module>modules/student</module>
+        <module>modules/staff</module>
     </modules>
 
     <dependencies>
