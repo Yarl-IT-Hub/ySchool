@@ -14,6 +14,8 @@ package org.yarlithub.yschool.web.student;
 
 import org.apache.log4j.Logger;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.annotation.PostConstruct;
@@ -34,7 +36,8 @@ import java.util.List;
  * $LastChangedRevision$
  */
 @ManagedBean
-@SessionScoped
+@Scope(value = "session")
+@Controller
 public class StudentBean implements Serializable {
 
 //    private static final Logger logger = Logger.getLogger(StudentBean.class);
