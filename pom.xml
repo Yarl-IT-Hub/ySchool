@@ -21,6 +21,8 @@
         <module>modules/spreadSheetReader</module>
         <module>modules/student</module>
         <module>modules/staff</module>
+		<module>modules/examination</module>
+		<module>modules/analytics</module>
     </modules>
 
     <dependencies>

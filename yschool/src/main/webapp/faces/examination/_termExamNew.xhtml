@@ -1,0 +1,57 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core">
+
+    <fieldset>
+        <div class="control-group span3 offset1">
+            <label class="control-label" for="grade">Grade</label>
+
+            <div class="controls">
+                <h:selectOneMenu id="grade"
+                                 value="">
+                    <f:selectItem id="grade6" itemLabel="6" itemValue="6"/>
+                    <f:selectItem id="grade7" itemLabel="7" itemValue="7"/>
+                    <f:selectItem id="grade8" itemLabel="8" itemValue="8"/>
+                    <f:selectItem id="grade9" itemLabel="9" itemValue="9"/>
+                </h:selectOneMenu>
+                <h:message for="grade" errorStyle="color : red"/>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="control-group span3 offset1">
+            <label class="control-label" for="subject">Subject</label>
+            <div class="controls">
+                <h:selectOneMenu id="subject"
+                                 value="">
+                    <f:selectItem id="subject1" itemLabel="Subject1" itemValue="1"/>
+                    <f:selectItem id="subject2" itemLabel="Subject2" itemValue="2"/>
+                    <f:selectItem id="subject3" itemLabel="Subject3" itemValue="3"/>
+                    <f:selectItem id="subject4" itemLabel="Subject4" itemValue="4"/>
+
+                </h:selectOneMenu>
+                <h:message for="subject" errorStyle="color : red"/>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div class="control-group span8 offset2">
+            <div class="controls">
+                <ul class="breadcrumb">
+                    <li>
+                        <h:commandButton value="Cencel" type="reset" class="btn btn-primary btn-large"/>
+                    </li>
+                    <li>
+                        <h:commandButton type="submit" value="Add this Term Exam"
+                                         class="btn btn-primary btn-large"/>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </fieldset>
+
+</ui:composition>
