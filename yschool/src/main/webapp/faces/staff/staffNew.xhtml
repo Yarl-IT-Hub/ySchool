@@ -1,6 +1,10 @@
 <ui:composition template="/WEB-INF/templates/staff-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:t="http://myfaces.apache.org/tomahawk"
+				>
 
 <ui:define name="student-content">
 
@@ -33,9 +37,63 @@
     </div>
 
     <div class="span10">
-        test add new Staff.
-        Add new staffs form here.
-    </div>
+         Add New Staff Here....
+		 
+	<h:form class="form-horizontal" enctype="multipart/form-data">
+                <div class="tab-content">
+				
+				 <fieldset>
+				             <div class="control-group">
+                                <label class="control-label" for="Staff_Id">Staff_Id</label>
+
+                                <div class="controls">
+                                    <h:inputText id="Staff_Id" value="" required="true"
+                                                 requiredMessage="Staff_Id is required">
+                                    </h:inputText>
+                                    <h:message for="Staff_Id" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							
+						<div class="control-group">
+                                <label class="control-label" for="name">Name</label>
+
+                                <div class="controls">
+                                    <h:inputText id="name" value="" required="true"
+                                                 requiredMessage="Name is required">
+                                    </h:inputText>
+                                    <h:message for="name" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							
+							<div class="control-group">
+                                <label class="control-label" for="fullName">FullName</label>
+
+                                <div class="controls">
+                                    <h:inputText id="fullName" value="" required="true"
+                                                 requiredMessage="fullName is required">
+                                    </h:inputText>
+                                    <h:message for="fullName" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                <label class="control-label" for="Photo">Photo</label>
+
+                                 <div class="controls">
+                                    <t:inputFileUpload id="init-doc" value="#{StudentBean.initFile}" sizeLimit="716800"/>
+                                    <h:message for="init-doc" errorStyle="color : red"/>
+                                </div>
+                            </div>
+							<div class="controls">
+							<ul class="breadcrumb">
+                                <li><h:commandButton type="submit" value="ADD ME"
+                                                 class="btn btn-primary btn-large"/></li>
+								<li><h:commandButton value="Cencel" type="reset" class="btn btn-primary btn-large" /></li>
+								</ul>
+							</div>
+                        </fieldset>
+				</div>
+				</h:form>
+	</div>
 </ui:define>
 
 </ui:composition>
