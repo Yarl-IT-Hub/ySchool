@@ -1,0 +1,99 @@
+<ui:composition template="/WEB-INF/templates/examinations-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+        >
+
+    <ui:define name="examination-content">
+
+        <div class="span4">
+            <!--Breadcrumb to help user "where you are?"-->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/examination/examinationHome.xhtml">Examination</a> <span
+                        class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Add New Exam</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span4">
+            <!--Examination search bar with filter-->
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search"> </input>
+            </form>
+        </div>
+
+        <div class="span2">
+            <!--Add new student Button-->
+            <a href="/yschool/faces/examinatin/examinationNew.xhtml">
+                <Button class="btn btn-primary btn-large"> Add New Exam</Button>
+            </a>
+        </div>
+
+        <div class="span8">
+
+            <h:form class="form-horizontal" enctype="multipart/form-data">
+
+                <fieldset>
+                    <div class="control-group span3 offset1">
+                        <label class="control-label" for="date">Date</label>
+
+                        <div class="controls">
+                            <h:inputText id="date" value="" required="true"
+                                         requiredMessage="Date is required">
+                                <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
+                            </h:inputText>
+                            <h:message for="date" errorStyle="color : red"/>
+                        </div>
+                    </div>
+                    <div class="control-group span3 offset1">
+                        <label class="control-label" for="term">Term</label>
+
+                        <div class="controls">
+                            <h:selectOneMenu id="term"
+                                             value="">
+                                <f:selectItem id="term1" itemLabel="1st Term" itemValue="1"/>
+                                <f:selectItem id="term2" itemLabel="2nd Term" itemValue="2"/>
+                                <f:selectItem id="term3" itemLabel="3rd Term" itemValue="3"/>
+                            </h:selectOneMenu>
+                            <h:message for="term" errorStyle="color : red"/>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <div class="control-group span10 offset1">
+                        <label class="control-label" for="type">Exam Type</label>
+
+                        <div class="controls">
+               <span class="btn-group" data-toggle="buttons-radio">
+                 <h:commandButton class="btn btn-primary btn-large" value="CA Exam"
+                                  action="#{newExamType.setCAExamPage}">
+                     <f:ajax render="exam-details"></f:ajax>
+                 </h:commandButton>
+                <h:commandButton class="btn btn-primary btn-large" value="Term Exam"
+                                 action="#{newExamType.setTermExamPage}">
+                    <f:ajax render="exam-details"></f:ajax>
+                </h:commandButton>
+
+                 </span>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <h:panelGroup id="exam-details" layout="block">
+                    <ui:include src="#{newExamType.page}.xhtml"/>
+                </h:panelGroup>
+
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
