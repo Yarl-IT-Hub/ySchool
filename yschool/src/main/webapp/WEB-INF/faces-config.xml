@@ -42,5 +42,19 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <display-name>addCAExam</display-name>
+        <from-view-id>/faces/examination/examinationNew.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/faces/examination/examinationHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/faces/examination/examinationNew.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

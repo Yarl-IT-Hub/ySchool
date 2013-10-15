@@ -135,6 +135,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 		return (MarksDao) getBean("marksDaoImpl"); 
 	}
 	/**
+	 * Returns a ResultsDao instance.
+	 * 
+	 * @return a ResultsDao instance
+	 */
+	public static ResultsDao getResultsDao() {
+		return (ResultsDao) getBean("resultsDaoImpl"); 
+	}
+	/**
 	 * Returns a RoleDao instance.
 	 * 
 	 * @return a RoleDao instance

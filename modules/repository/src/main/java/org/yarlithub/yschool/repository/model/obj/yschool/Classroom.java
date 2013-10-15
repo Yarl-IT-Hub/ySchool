@@ -3,7 +3,6 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -22,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroom;
 
 
@@ -35,7 +37,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroom;
 public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClassroom {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009400L;
+	private static final long serialVersionUID = -558977440L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -64,7 +66,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	/** Field mapping. */
 	private Section sectionIdsection;
 	/** Field mapping. */
-	private Date year;
+	private Integer year;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -83,10 +85,10 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 * @param division String object;
 	 * @param grade Integer object;
 	 * @param id Integer object;
-	 * @param year Date object;
+	 * @param year Integer object;
 	 */
 	public Classroom(String division, Integer grade, Integer id, 					
-			Date year) {
+			Integer year) {
 
 		this.division = division;
 		this.grade = grade;
@@ -298,11 +300,11 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 
     /**
      * Return the value associated with the column: year.
-	 * @return A Date object (this.year)
+	 * @return A Integer object (this.year)
 	 */
 	@Basic( optional = false )
 	@Column( nullable = false  )
-	public Date getYear() {
+	public Integer getYear() {
 		return this.year;
 		
 	}
@@ -313,7 +315,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
      * Set the value related to the column: year.
 	 * @param year the year value you wish to set
 	 */
-	public void setYear(final Date year) {
+	public void setYear(final Integer year) {
 		this.year = year;
 	}
 

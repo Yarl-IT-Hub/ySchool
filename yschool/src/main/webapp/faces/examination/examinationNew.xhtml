@@ -3,7 +3,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-        >
+                xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="examination-content">
 
@@ -32,7 +32,7 @@
 
         <div class="span2">
             <!--Add new student Button-->
-            <a href="/yschool/faces/examinatin/examinationNew.xhtml">
+            <a href="/yschool/faces/examination/examinationNew.xhtml">
                 <Button class="btn btn-primary btn-large"> Add New Exam</Button>
             </a>
         </div>
@@ -40,25 +40,27 @@
         <div class="span8">
 
             <h:form class="form-horizontal" enctype="multipart/form-data">
-
                 <fieldset>
-                    <div class="control-group span3 offset1">
+                    <div class="control-group span6 offset1">
                         <label class="control-label" for="date">Date</label>
 
                         <div class="controls">
-                            <h:inputText id="date" value="" required="true"
-                                         requiredMessage="Date is required">
-                                <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-                            </h:inputText>
-                            <h:message for="date" errorStyle="color : red"/>
+                            <!--p:calendar not working(not showing popup button) as in primefaces-->
+                            <p:calendar value="#{examinationBean.date}" id="popupButtonCal" showOn="button"
+                            display="popup"  requiredMessage="Select a Date"/>
+                            <p:message for="popupButtonCal" errorStyle="color : red"/>
                         </div>
                     </div>
+                </fieldset>
+
+                <fieldset>
                     <div class="control-group span3 offset1">
                         <label class="control-label" for="term">Term</label>
 
                         <div class="controls">
                             <h:selectOneMenu id="term"
-                                             value="">
+                                             value="#{examinationBean.term}" required="true"
+                                             requiredMessage="Select a Term">
                                 <f:selectItem id="term1" itemLabel="1st Term" itemValue="1"/>
                                 <f:selectItem id="term2" itemLabel="2nd Term" itemValue="2"/>
                                 <f:selectItem id="term3" itemLabel="3rd Term" itemValue="3"/>
@@ -75,11 +77,11 @@
                         <div class="controls">
                <span class="btn-group" data-toggle="buttons-radio">
                  <h:commandButton class="btn btn-primary btn-large" value="CA Exam"
-                                  action="#{newExamType.setCAExamPage}">
+                                  action="#{examinationBean.setCAExamPage}">
                      <f:ajax render="exam-details"></f:ajax>
                  </h:commandButton>
                 <h:commandButton class="btn btn-primary btn-large" value="Term Exam"
-                                 action="#{newExamType.setTermExamPage}">
+                                 action="#{examinationBean.setTermExamPage}">
                     <f:ajax render="exam-details"></f:ajax>
                 </h:commandButton>
 
@@ -89,7 +91,7 @@
                 </fieldset>
 
                 <h:panelGroup id="exam-details" layout="block">
-                    <ui:include src="#{newExamType.page}.xhtml"/>
+                    <ui:include src="#{examinationBean.page}.xhtml"/>
                 </h:panelGroup>
 
             </h:form>

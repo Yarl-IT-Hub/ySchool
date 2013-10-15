@@ -3,6 +3,7 @@ import java.util.Date;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 
 
 /** 
@@ -177,6 +178,25 @@ public interface IStudent {
 	 * @param photo the photo value you wish to set
 	 */
 	void setPhoto(final Byte[] photo);
+
+    /**
+     * Return the value associated with the column: results.
+	 * @return A Set&lt;Results&gt; object (this.results)
+	 */
+	Set<Results> getResultss();
+	
+	/**
+	 * Adds a bi-directional link of type Results to the resultss set.
+	 * @param results item to add
+	 */
+	void addResults(Results results);
+
+  
+    /**  
+     * Set the value related to the column: results.
+	 * @param results the results value you wish to set
+	 */
+	void setResultss(final Set<Results> results);
 
 	// end of interface
 }

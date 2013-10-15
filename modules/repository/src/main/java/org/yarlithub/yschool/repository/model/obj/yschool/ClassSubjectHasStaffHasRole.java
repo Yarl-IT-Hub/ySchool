@@ -2,6 +2,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,7 +20,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassSubjectHas
 public class ClassSubjectHasStaffHasRole implements Cloneable, Serializable, IPojoGenEntity, IClassSubjectHasStaffHasRole {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009394L;
+	private static final long serialVersionUID = -558977434L;
 
 	
 

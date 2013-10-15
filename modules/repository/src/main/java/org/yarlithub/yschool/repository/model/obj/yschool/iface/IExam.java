@@ -4,6 +4,7 @@ import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 
 
 /** 
@@ -91,6 +92,25 @@ public interface IExam {
 	void setMarkss(final Set<Marks> marks);
 
     /**
+     * Return the value associated with the column: results.
+	 * @return A Set&lt;Results&gt; object (this.results)
+	 */
+	Set<Results> getResultss();
+	
+	/**
+	 * Adds a bi-directional link of type Results to the resultss set.
+	 * @param results item to add
+	 */
+	void addResults(Results results);
+
+  
+    /**  
+     * Set the value related to the column: results.
+	 * @param results the results value you wish to set
+	 */
+	void setResultss(final Set<Results> results);
+
+    /**
      * Return the value associated with the column: term.
 	 * @return A Integer object (this.term)
 	 */
@@ -103,20 +123,6 @@ public interface IExam {
 	 * @param term the term value you wish to set
 	 */
 	void setTerm(final Integer term);
-
-    /**
-     * Return the value associated with the column: year.
-	 * @return A Date object (this.year)
-	 */
-	Date getYear();
-	
-
-  
-    /**  
-     * Set the value related to the column: year.
-	 * @param year the year value you wish to set
-	 */
-	void setYear(final Date year);
 
 	// end of interface
 }

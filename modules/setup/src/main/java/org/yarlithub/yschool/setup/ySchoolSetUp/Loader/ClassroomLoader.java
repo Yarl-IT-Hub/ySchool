@@ -32,12 +32,11 @@ public class ClassroomLoader {
             int year = reader.getNumericCellValue(2);
 
             SQLQuery insertQuery = DataLayerYschool.createSQLQuery(SetUpDBQueries.CLASS_INIT_SQL);
-            insertQuery.setParameter("year", String.valueOf(year));
+            insertQuery.setParameter("year", year);
             insertQuery.setParameter("grade", grade);
             insertQuery.setParameter("division", division);
             insertQuery.setParameter("Section_idSection", null);
             int result = insertQuery.executeUpdate();
-
 
         }
         return true;

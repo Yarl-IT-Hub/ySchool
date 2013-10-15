@@ -1,5 +1,4 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
-import java.util.Date;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
@@ -131,9 +130,9 @@ public interface IClassroom {
 
     /**
      * Return the value associated with the column: year.
-	 * @return A Date object (this.year)
+	 * @return A Integer object (this.year)
 	 */
-	Date getYear();
+	Integer getYear();
 	
 
   
@@ -141,7 +140,7 @@ public interface IClassroom {
      * Set the value related to the column: year.
 	 * @param year the year value you wish to set
 	 */
-	void setYear(final Date year);
+	void setYear(final Integer year);
 
 	// end of interface
 }

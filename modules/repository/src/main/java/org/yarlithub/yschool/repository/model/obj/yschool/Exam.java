@@ -22,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
+import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExam;
 
 
@@ -35,7 +37,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExam;
 public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009391L;
+	private static final long serialVersionUID = -558977431L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -58,9 +60,10 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	private Set<Marks> markss = new HashSet<Marks>();
 
 	/** Field mapping. */
-	private Integer term;
+	private Set<Results> resultss = new HashSet<Results>();
+
 	/** Field mapping. */
-	private Date year;
+	private Integer term;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -79,15 +82,12 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	 * @param date Date object;
 	 * @param id Integer object;
 	 * @param term Integer object;
-	 * @param year Date object;
 	 */
-	public Exam(Date date, Integer id, Integer term, 					
-			Date year) {
+	public Exam(Date date, Integer id, Integer term) {
 
 		this.date = date;
 		this.id = id;
 		this.term = term;
-		this.year = year;
 	}
 	
  
@@ -233,6 +233,37 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	}
 
     /**
+     * Return the value associated with the column: results.
+	 * @return A Set&lt;Results&gt; object (this.results)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "examIdexam"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<Results> getResultss() {
+		return this.resultss;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type Results to the resultss set.
+	 * @param results item to add
+	 */
+	public void addResults(Results results) {
+		results.setExamIdexam(this);
+		this.resultss.add(results);
+	}
+
+  
+    /**  
+     * Set the value related to the column: results.
+	 * @param results the results value you wish to set
+	 */
+	public void setResultss(final Set<Results> results) {
+		this.resultss = results;
+	}
+
+    /**
      * Return the value associated with the column: term.
 	 * @return A Integer object (this.term)
 	 */
@@ -253,27 +284,6 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		this.term = term;
 	}
 
-    /**
-     * Return the value associated with the column: year.
-	 * @return A Date object (this.year)
-	 */
-	@Basic( optional = false )
-	@Column( nullable = false  )
-	public Date getYear() {
-		return this.year;
-		
-	}
-	
-
-  
-    /**  
-     * Set the value related to the column: year.
-	 * @param year the year value you wish to set
-	 */
-	public void setYear(final Date year) {
-		this.year = year;
-	}
-
 
    /**
     * Deep copy.
@@ -292,8 +302,10 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		if (this.getMarkss() != null) {
 			copy.getMarkss().addAll(this.getMarkss());
 		}
+		if (this.getResultss() != null) {
+			copy.getResultss().addAll(this.getResultss());
+		}
 		copy.setTerm(this.getTerm());
-		copy.setYear(this.getYear());
 		return copy;
 	}
 	
@@ -309,8 +321,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		
 		sb.append("date: " + this.getDate() + ", ");
 		sb.append("id: " + this.getId() + ", ");
-		sb.append("term: " + this.getTerm() + ", ");
-		sb.append("year: " + this.getYear());
+		sb.append("term: " + this.getTerm());
 		return sb.toString();		
 	}
 
@@ -360,7 +371,6 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		result = result && (((getDate() == null) && (that.getDate() == null)) || (getDate() != null && getDate().equals(that.getDate())));
 		result = result && (((getExamTypeIdexamType() == null) && (that.getExamTypeIdexamType() == null)) || (getExamTypeIdexamType() != null && getExamTypeIdexamType().getId().equals(that.getExamTypeIdexamType().getId())));	
 		result = result && (((getTerm() == null) && (that.getTerm() == null)) || (getTerm() != null && getTerm().equals(that.getTerm())));
-		result = result && (((getYear() == null) && (that.getYear() == null)) || (getYear() != null && getYear().equals(that.getYear())));
 		return result;
 	}
 	

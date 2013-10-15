@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
+import org.yarlithub.yschool.repository.model.obj.yschool.StaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IRole;
 
 
@@ -32,7 +33,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IRole;
 public class Role implements Cloneable, Serializable, IPojoGenEntity, IRole {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009388L;
+	private static final long serialVersionUID = -558977427L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
