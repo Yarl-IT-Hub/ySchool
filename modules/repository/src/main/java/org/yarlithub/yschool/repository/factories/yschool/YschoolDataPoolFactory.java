@@ -1,6 +1,8 @@
 package org.yarlithub.yschool.repository.factories.yschool;
 
+import com.felees.hbnpojogen.randomlib.data.dataGeneration.*;
 import org.springframework.stereotype.Component;
+import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 import org.yarlithub.yschool.repository.model.obj.yschool.*;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -18,7 +20,7 @@ public class YschoolDataPoolFactory {
 	/** Table commit order. */
     private static final Multimap<String, String> tableDeps = ArrayListMultimap.create();
 	/** DB commit order. */
-	private static final String[] commitOrder = new String[]{"User", "StudentClassSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Marks", "ClassroomHasStaffHasRole", "ClassSubjectHasStaffHasRole", "ClassSubject", "ClassStudent", "UserRole", "Subject", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
+	private static final String[] commitOrder = new String[]{"User", "StudentClassSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomHasStaffHasRole", "ClassSubjectHasStaffHasRole", "ClassSubject", "ClassStudent", "UserRole", "Subject", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
 	static{
 		// Store table deps for possible use. 
  		tableDeps.put("ClassroomHasStaffHasRole", "Classroom");
@@ -31,6 +33,8 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("ClassSubjectHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("Marks", "Exam");
  		tableDeps.put("Marks", "Student");
+ 		tableDeps.put("Results", "Exam");
+ 		tableDeps.put("Results", "Student");
  		tableDeps.put("SchoolHasStaffHasRole", "School");
  		tableDeps.put("SchoolHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("SectionHasStaffHasRole", "Section");
@@ -67,7 +71,7 @@ public class YschoolDataPoolFactory {
 		if (sectionIdsection != null) {
 			sectionIdsection.addClassroom (classroom);
 		}
-        classroom.setYear(BasicDataGenerator.generateDate());
+        classroom.setYear(BasicDataGenerator.generateRandomInt());
 
         return classroom;
     }
@@ -243,7 +247,6 @@ public class YschoolDataPoolFactory {
 			examTypeIdexamType.addExam (exam);
 		}
         exam.setTerm(BasicDataGenerator.generateRandomInt());
-        exam.setYear(BasicDataGenerator.generateDate());
 
         return exam;
     }
@@ -291,6 +294,39 @@ public class YschoolDataPoolFactory {
 		}
 
         return marks;
+    }
+
+    /**
+     * Data pool factory for Results.
+     * @return Results A Results object
+     */
+    public static Results getResults() {
+
+        Results results =  getResults(
+	        getExam(), getStudent());
+
+		return results;
+       
+    }
+
+     /**
+     * Data pool factory for Results.
+     * @param examIdexam A valid Exam object
+     * @param studentIdstudent A valid Student object
+     * @return Results A Results object
+     */
+    public static Results getResults(Exam examIdexam, Student studentIdstudent) {
+        Results results = new Results();     
+		if (examIdexam != null) {
+			examIdexam.addResults (results);
+		}
+        results.setId(BasicDataGenerator.generateRandomInt());
+        results.setResults(BasicDataGenerator.generateRandomString(5));
+		if (studentIdstudent != null) {
+			studentIdstudent.addResults (results);
+		}
+
+        return results;
     }
 
     /**

@@ -12,6 +12,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubjectHasStaffHa
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.Role;
 import org.yarlithub.yschool.repository.model.obj.yschool.School;
 import org.yarlithub.yschool.repository.model.obj.yschool.SchoolHasStaffHasRole;
@@ -101,6 +102,7 @@ public class DataLayerYschoolImpl implements DataLayerYschool {
 	 	   		daoMap.put(Exam.class, HibernateYschoolDaoFactory.getExamDao());
 	 	   		daoMap.put(ExamType.class, HibernateYschoolDaoFactory.getExamTypeDao());
 	 	   		daoMap.put(Marks.class, HibernateYschoolDaoFactory.getMarksDao());
+	 	   		daoMap.put(Results.class, HibernateYschoolDaoFactory.getResultsDao());
 	 	   		daoMap.put(Role.class, HibernateYschoolDaoFactory.getRoleDao());
 	 	   		daoMap.put(School.class, HibernateYschoolDaoFactory.getSchoolDao());
 	 	   		daoMap.put(SchoolHasStaffHasRole.class, HibernateYschoolDaoFactory.getSchoolHasStaffHasRoleDao());
@@ -368,6 +370,31 @@ public class DataLayerYschoolImpl implements DataLayerYschool {
      */
      public Marks getMarks(final Integer id) {
         return HibernateYschoolDaoFactory.getMarksDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Results obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteResults(final Integer id)  {
+        HibernateYschoolDaoFactory.getResultsDao().delete(loadResults(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Results object
+     */
+    public Results loadResults(final Integer id) {
+        return HibernateYschoolDaoFactory.getResultsDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public Results getResults(final Integer id) {
+        return HibernateYschoolDaoFactory.getResultsDao().get(id);
     }  
 
     /** Deletes an object of a given Id. 

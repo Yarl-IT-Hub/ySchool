@@ -4,7 +4,7 @@ A simple web based school management system.
 ####Version####
 
 * ySchool Version : 1.0-SNAPSHOT
-* Build Version   : 1.0.42
+* Build Version   : 1.0.43
 * Last Update     : 08.09.2013.12.00
 
 ####Main Technologies####

@@ -1,5 +1,6 @@
 package org.yarlithub.yschool.repository.model.obj.yschool;
 
+import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -20,7 +21,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISectionHasStaff
 public class SectionHasStaffHasRolePK implements Cloneable, Serializable,  ISectionHasStaffHasRolePK {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009380L;
+	private static final long serialVersionUID = -558977419L;
 
 	
 

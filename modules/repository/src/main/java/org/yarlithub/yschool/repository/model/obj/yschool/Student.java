@@ -21,6 +21,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
+import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 
 
@@ -34,7 +37,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 public class Student implements Cloneable, Serializable, IPojoGenEntity, IStudent {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -559009377L;
+	private static final long serialVersionUID = -558977416L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -69,6 +72,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	private String nameWtInitial;
 	/** Field mapping. */
 	private Byte[] photo;
+	/** Field mapping. */
+	private Set<Results> resultss = new HashSet<Results>();
+
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -365,6 +371,37 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		this.photo = photo;
 	}
 
+    /**
+     * Return the value associated with the column: results.
+	 * @return A Set&lt;Results&gt; object (this.results)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "studentIdstudent"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<Results> getResultss() {
+		return this.resultss;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type Results to the resultss set.
+	 * @param results item to add
+	 */
+	public void addResults(Results results) {
+		results.setStudentIdstudent(this);
+		this.resultss.add(results);
+	}
+
+  
+    /**  
+     * Set the value related to the column: results.
+	 * @param results the results value you wish to set
+	 */
+	public void setResultss(final Set<Results> results) {
+		this.resultss = results;
+	}
+
 
    /**
     * Deep copy.
@@ -391,6 +428,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		copy.setName(this.getName());
 		copy.setNameWtInitial(this.getNameWtInitial());
 		copy.setPhoto(this.getPhoto());
+		if (this.getResultss() != null) {
+			copy.getResultss().addAll(this.getResultss());
+		}
 		return copy;
 	}
 	
@@ -412,7 +452,7 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("name: " + this.getName() + ", ");
 		sb.append("nameWtInitial: " + this.getNameWtInitial() + ", ");
-		sb.append("photo: " + (this.photo == null ? null : Arrays.toString(this.getPhoto())));
+		sb.append("photo: " + (this.photo == null ? null : Arrays.toString(this.getPhoto())) + ", ");
 		return sb.toString();		
 	}
 
