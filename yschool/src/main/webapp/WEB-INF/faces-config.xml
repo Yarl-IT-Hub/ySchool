@@ -57,4 +57,22 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/faces/student/studentNew.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddStudentSuccess</from-outcome>
+            <to-view-id>/faces/student/studentHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/faces/student/studentNew.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AddStudentFailed</from-outcome>
+            <to-view-id>/faces/student/studentNew.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+
 </faces-config>
