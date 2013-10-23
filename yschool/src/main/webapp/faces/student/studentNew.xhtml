@@ -47,7 +47,7 @@
                             <label class="control-label" for="Admision_No">Admision No</label>
 
                             <div class="controls">
-                                <h:inputText id="Admision_No" value="" required="true"
+                                <h:inputText id="Admision_No" value="#{studentBean.addmision_No}" required="true"
                                              requiredMessage="Admision_No is required">
                                 </h:inputText>
                                 <h:message for="Admision_No" errorStyle="color : red"/>
@@ -58,20 +58,10 @@
                             <label class="control-label" for="name">Name</label>
 
                             <div class="controls">
-                                <h:inputText id="name" value="" required="true"
+                                <h:inputText id="name" value="#{studentBean.name}" required="true"
                                              requiredMessage="Name is required">
                                 </h:inputText>
                                 <h:message for="name" errorStyle="color : red"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="nameWithInitial">Initials</label>
-
-                            <div class="controls">
-                                <h:inputText id="nameWithInitial" value="" required="true"
-                                             requiredMessage="NameWithInitial is required">
-                                </h:inputText>
-                                <h:message for="nameWithInitial" errorStyle="color : red"/>
                             </div>
                         </div>
 
@@ -79,17 +69,28 @@
                             <label class="control-label" for="fullName">Full Name</label>
 
                             <div class="controls">
-                                <h:inputText id="fullName" value="" required="true"
+                                <h:inputText id="fullName" value="#{studentBean.fullname}" required="true"
                                              requiredMessage="fullName is required">
                                 </h:inputText>
                                 <h:message for="fullName" errorStyle="color : red"/>
                             </div>
                         </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="nameWithInitial">Initials</label>
+
+                    <div class="controls">
+                        <h:inputText id="nameWithInitial" value="#{studentBean.name_wt_initial}" required="true"
+                                     requiredMessage="NameWithInitial is required">
+                        </h:inputText>
+                        <h:message for="nameWithInitial" errorStyle="color : red"/>
+                    </div>
+                </div>
                         <div class="control-group">
                             <label class="control-label" for="Dob">Date Of Birth</label>
 
                             <div class="controls">
-                                <h:inputText id="Dob" value="" required="true"
+                                <h:inputText id="Dob" value="#{studentBean.dob}" required="true"
                                              requiredMessage="Dob is required">
                                     <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
                                 </h:inputText>
@@ -101,9 +102,9 @@
 
                             <div class="controls">
                                 <h:selectOneMenu id="Genter"
-                                                 value="">
-                                    <f:selectItem id="male" itemLabel="Male" itemValue="1"/>
-                                    <f:selectItem id="female" itemLabel="Female" itemValue="2"/>
+                                                 value="#{studentBean.gender}">
+                                    <f:selectItem id="male" itemLabel="Male" itemValue="Male"/>
+                                    <f:selectItem id="female" itemLabel="Female" itemValue="Female"/>
                                 </h:selectOneMenu>
                                 <h:message for="user-role" errorStyle="color : red"/>
                             </div>
@@ -113,18 +114,10 @@
                             <label class="control-label" for="Address">Address</label>
 
                             <div class="controls">
-                                <h:inputText id="Address" value="" required="true"
+                                <h:inputText id="Address" value="#{studentBean.address}" required="true"
                                              requiredMessage="Address is required">
                                 </h:inputText>
                                 <h:message for="Address" errorStyle="color : red"/>
-                            </div>
-                        </div>
-                        <div class="control-group">
-                            <label class="control-label" for="Photo">Profile Photo</label>
-
-                            <div class="controls">
-                                <t:inputFileUpload id="init-doc" value="#{StudentBean.initFile}" sizeLimit="716800"/>
-                                <h:message for="init-doc" errorStyle="color : red"/>
                             </div>
                         </div>
                         <div class="control-group">
@@ -132,7 +125,7 @@
                                 <ul class="breadcrumb">
                                     <li><h:commandButton value="Clear All" type="reset" class="btn btn-primary btn-large"/>
                                     </li>
-                                    <li><h:commandButton type="submit" value="Add This Student"
+                                    <li><h:commandButton type="submit" value="Add This Student" action="#{studentBean.addStudent}"
                                                          class="btn btn-primary btn-large"/></li>
 
                                 </ul>
