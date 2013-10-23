@@ -162,6 +162,11 @@
 
         <dependency>
             <groupId>org.yarlithub.yschool</groupId>
+            <artifactId>staff</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yarlithub.yschool</groupId>
             <artifactId>student</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

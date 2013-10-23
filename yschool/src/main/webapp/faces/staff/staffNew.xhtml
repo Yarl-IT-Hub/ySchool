@@ -45,7 +45,7 @@
                             <label class="control-label" for="Staff_Id">Staff ID/No.</label>
 
                             <div class="controls">
-                                <h:inputText id="Staff_Id" value="" required="true"
+                                <h:inputText id="Staff_Id" value="#{staffBean.staffID}" required="true"
                                              requiredMessage="Staff_Id is required">
                                 </h:inputText>
                                 <h:message for="Staff_Id" errorStyle="color : red"/>
@@ -56,7 +56,7 @@
                             <label class="control-label" for="name">Name</label>
 
                             <div class="controls">
-                                <h:inputText id="name" value="" required="true"
+                                <h:inputText id="name" value="#{staffBean.name}" required="true"
                                              requiredMessage="Name is required">
                                 </h:inputText>
                                 <h:message for="name" errorStyle="color : red"/>
@@ -67,25 +67,18 @@
                             <label class="control-label" for="fullName">Full Name</label>
 
                             <div class="controls">
-                                <h:inputText id="fullName" value="" required="true"
+                                <h:inputText id="fullName" value="#{staffBean.fullname}" required="true"
                                              requiredMessage="fullName is required">
                                 </h:inputText>
                                 <h:message for="fullName" errorStyle="color : red"/>
                             </div>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="Photo">Photo</label>
 
-                            <div class="controls">
-                                <t:inputFileUpload id="init-doc" value="#{StudentBean.initFile}" sizeLimit="716800"/>
-                                <h:message for="init-doc" errorStyle="color : red"/>
-                            </div>
-                        </div>
                         <div class="controls">
                             <ul class="breadcrumb">
                                 <li><h:commandButton value="Clear All" type="reset" class="btn btn-primary btn-large"/>
                                 </li>
-                                <li><h:commandButton type="submit" value="Add This Staff"
+                                <li><h:commandButton type="submit" action="#{staffBean.addStaff}" value="Add This Staff"
                                                      class="btn btn-primary btn-large"/></li>
                             </ul>
                         </div>
