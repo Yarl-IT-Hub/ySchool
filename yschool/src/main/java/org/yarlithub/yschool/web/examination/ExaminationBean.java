@@ -22,9 +22,7 @@ import java.util.Date;
 public class ExaminationBean implements Serializable {
     @Autowired
     private ExaminationService examinationService;
-
     private String page = "_caExamNew";
-
     private Date date;
     private int term;
     private int examType;
@@ -106,13 +104,23 @@ public class ExaminationBean implements Serializable {
         this.page = "_termExamNew";
     }
 
-    public String addCAExam(){
-        boolean setupResult = examinationService.addCAExam(date,term,examType,grade,division,subjectid);
+    public String addCAExam() {
+        boolean setupResult = examinationService.addCAExam(date, term, examType, grade, division, subjectid);
         if (setupResult) {
             //navigates to home page.(see faces-config.xml)
             return "success";
         }
         //shows error page.
         return "failure";
+    }
+
+    public String addTermExam() {
+        boolean isAddNewTermExam = examinationService.addTermExam(date, term, examType, grade, subjectid);
+        if (isAddNewTermExam) {
+            //navigates to home page.(see faces-config.xml)
+            return "NewTermExamSuccess";
+        }
+        //shows error page.
+        return "NewTermExamFailure";
     }
 }

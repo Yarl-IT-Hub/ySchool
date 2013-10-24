@@ -10,11 +10,10 @@
 
             <div class="controls">
                 <h:selectOneMenu id="grade"
-                                 value="">
-                    <f:selectItem id="grade6" itemLabel="6" itemValue="6"/>
-                    <f:selectItem id="grade7" itemLabel="7" itemValue="7"/>
-                    <f:selectItem id="grade8" itemLabel="8" itemValue="8"/>
-                    <f:selectItem id="grade9" itemLabel="9" itemValue="9"/>
+                                 value="#{examinationBean.grade}">
+                    <f:selectItem id="grade6" itemLabel="10" itemValue="10"/>
+                    <f:selectItem id="grade7" itemLabel="11" itemValue="11"/>
+
                 </h:selectOneMenu>
                 <h:message for="grade" errorStyle="color : red"/>
             </div>
@@ -24,13 +23,19 @@
     <fieldset>
         <div class="control-group span3 offset1">
             <label class="control-label" for="subject">Subject</label>
+
             <div class="controls">
                 <h:selectOneMenu id="subject"
-                                 value="">
-                    <f:selectItem id="subject1" itemLabel="Subject1" itemValue="1"/>
-                    <f:selectItem id="subject2" itemLabel="Subject2" itemValue="2"/>
-                    <f:selectItem id="subject3" itemLabel="Subject3" itemValue="3"/>
-                    <f:selectItem id="subject4" itemLabel="Subject4" itemValue="4"/>
+                                 value="#{examinationBean.subjectid}">
+                    <!--have to retrive these from database tables-->
+                    <f:selectItem id="subject1" itemLabel="SAIVISM" itemValue="1"/>
+                    <f:selectItem id="subject2" itemLabel="TAMIL LANGUAGE" itemValue="2"/>
+                    <f:selectItem id="subject3" itemLabel="ENGLISH LANGUAGE" itemValue="3"/>
+                    <f:selectItem id="subject4" itemLabel="MATHEMATICS" itemValue="4"/>
+                    <f:selectItem id="subject5" itemLabel="SCIENCE AND TECHNOLOGY" itemValue="5"/>
+                    <f:selectItem id="subject6" itemLabel="HISTORY" itemValue="6"/>
+                    <f:selectItem id="subject7" itemLabel="BUSSINESS AND ACCOUNTING" itemValue="7"/>
+                    <f:selectItem id="subject8" itemLabel="INFORMATION AND COMMUNICATION TECHNOLOGY" itemValue="8"/>
 
                 </h:selectOneMenu>
                 <h:message for="subject" errorStyle="color : red"/>
@@ -47,6 +52,7 @@
                     </li>
                     <li>
                         <h:commandButton type="submit" value="Add this Term Exam"
+                                         action="#{examinationBean.addTermExam}"
                                          class="btn btn-primary btn-large"/>
                     </li>
                 </ul>

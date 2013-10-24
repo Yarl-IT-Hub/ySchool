@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
@@ -53,7 +53,7 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	/** Field mapping. */
 	private String address;
 	/** Field mapping. */
-	private Set<ClassStudent> classStudents = new HashSet<ClassStudent>();
+	private Set<ClassroomStudent> classroomStudents = new HashSet<ClassroomStudent>();
 
 	/** Field mapping. */
 	private Date dob;
@@ -157,34 +157,34 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	}
 
     /**
-     * Return the value associated with the column: classStudent.
-	 * @return A Set&lt;ClassStudent&gt; object (this.classStudent)
+     * Return the value associated with the column: classroomStudent.
+	 * @return A Set&lt;ClassroomStudent&gt; object (this.classroomStudent)
 	 */
  	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "studentIdstudent"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( nullable = false  )
-	public Set<ClassStudent> getClassStudents() {
-		return this.classStudents;
+	public Set<ClassroomStudent> getClassroomStudents() {
+		return this.classroomStudents;
 		
 	}
 	
 	/**
-	 * Adds a bi-directional link of type ClassStudent to the classStudents set.
-	 * @param classStudent item to add
+	 * Adds a bi-directional link of type ClassroomStudent to the classroomStudents set.
+	 * @param classroomStudent item to add
 	 */
-	public void addClassStudent(ClassStudent classStudent) {
-		classStudent.setStudentIdstudent(this);
-		this.classStudents.add(classStudent);
+	public void addClassroomStudent(ClassroomStudent classroomStudent) {
+		classroomStudent.setStudentIdstudent(this);
+		this.classroomStudents.add(classroomStudent);
 	}
 
   
     /**  
-     * Set the value related to the column: classStudent.
-	 * @param classStudent the classStudent value you wish to set
+     * Set the value related to the column: classroomStudent.
+	 * @param classroomStudent the classroomStudent value you wish to set
 	 */
-	public void setClassStudents(final Set<ClassStudent> classStudent) {
-		this.classStudents = classStudent;
+	public void setClassroomStudents(final Set<ClassroomStudent> classroomStudent) {
+		this.classroomStudents = classroomStudent;
 	}
 
     /**
@@ -415,8 +415,8 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 
 		copy.setAddmisionNo(this.getAddmisionNo());
 		copy.setAddress(this.getAddress());
-		if (this.getClassStudents() != null) {
-			copy.getClassStudents().addAll(this.getClassStudents());
+		if (this.getClassroomStudents() != null) {
+			copy.getClassroomStudents().addAll(this.getClassroomStudents());
 		}
 		copy.setDob(this.getDob());
 		copy.setFullName(this.getFullName());

@@ -4,10 +4,10 @@ import java.io.Serializable;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRolePK;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubjectHasStaffHasRole;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubjectHasStaffHasRolePK;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRole;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRolePK;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
@@ -22,7 +22,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.SectionHasStaffHasRole
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.repository.model.obj.yschool.StaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Subject;
 import org.yarlithub.yschool.repository.model.obj.yschool.User;
 import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
@@ -113,61 +113,61 @@ public interface DataLayerYschool {
      ClassroomHasStaffHasRole getClassroomHasStaffHasRole(final ClassroomHasStaffHasRolePK id);  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (ClassStudent obj) directly
+     * Will load the object internally so consider using delete (ClassroomStudent obj) directly
      * @param id Identifier to delete
      */
-    void deleteClassStudent(final Integer id);
+    void deleteClassroomStudent(final Integer id);
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
-     * @return a ClassStudent object
+     * @return a ClassroomStudent object
      */
-    ClassStudent loadClassStudent(final Integer id);
+    ClassroomStudent loadClassroomStudent(final Integer id);
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     ClassStudent getClassStudent(final Integer id);  
+     ClassroomStudent getClassroomStudent(final Integer id);  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (ClassSubject obj) directly
+     * Will load the object internally so consider using delete (ClassroomSubject obj) directly
      * @param id Identifier to delete
      */
-    void deleteClassSubject(final Integer id);
+    void deleteClassroomSubject(final Integer id);
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
-     * @return a ClassSubject object
+     * @return a ClassroomSubject object
      */
-    ClassSubject loadClassSubject(final Integer id);
+    ClassroomSubject loadClassroomSubject(final Integer id);
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     ClassSubject getClassSubject(final Integer id);  
+     ClassroomSubject getClassroomSubject(final Integer id);  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (ClassSubjectHasStaffHasRole obj) directly
+     * Will load the object internally so consider using delete (ClassroomSubjectHasStaffHasRole obj) directly
      * @param id Identifier to delete
      */
-    void deleteClassSubjectHasStaffHasRole(final ClassSubjectHasStaffHasRolePK id);
+    void deleteClassroomSubjectHasStaffHasRole(final ClassroomSubjectHasStaffHasRolePK id);
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
-     * @return a ClassSubjectHasStaffHasRole object
+     * @return a ClassroomSubjectHasStaffHasRole object
      */
-    ClassSubjectHasStaffHasRole loadClassSubjectHasStaffHasRole(final ClassSubjectHasStaffHasRolePK id);
+    ClassroomSubjectHasStaffHasRole loadClassroomSubjectHasStaffHasRole(final ClassroomSubjectHasStaffHasRolePK id);
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     ClassSubjectHasStaffHasRole getClassSubjectHasStaffHasRole(final ClassSubjectHasStaffHasRolePK id);  
+     ClassroomSubjectHasStaffHasRole getClassroomSubjectHasStaffHasRole(final ClassroomSubjectHasStaffHasRolePK id);  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Exam obj) directly
@@ -398,23 +398,23 @@ public interface DataLayerYschool {
      Student getStudent(final Integer id);  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (StudentClassSubject obj) directly
+     * Will load the object internally so consider using delete (StudentClassroomSubject obj) directly
      * @param id Identifier to delete
      */
-    void deleteStudentClassSubject(final Integer id);
+    void deleteStudentClassroomSubject(final Integer id);
 	
     /**
      * Loads the given Object.
      * @param id Identifier to load
-     * @return a StudentClassSubject object
+     * @return a StudentClassroomSubject object
      */
-    StudentClassSubject loadStudentClassSubject(final Integer id);
+    StudentClassroomSubject loadStudentClassroomSubject(final Integer id);
     /**
      * Loads the given Object.
      * @param id Id to load
      * @return An object of type T
      */
-     StudentClassSubject getStudentClassSubject(final Integer id);  
+     StudentClassroomSubject getStudentClassroomSubject(final Integer id);  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Subject obj) directly

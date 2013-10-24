@@ -49,7 +49,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	
 
 	/** Field mapping. */
-	private ClassSubject classSubjectIdclassSubject;
+	private ClassroomSubject classroomSubjectIdclassroomSubject;
 	/** Field mapping. */
 	private Date date;
 	/** Field mapping. */
@@ -104,26 +104,26 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
  
 
     /**
-     * Return the value associated with the column: classSubjectIdclassSubject.
-	 * @return A ClassSubject object (this.classSubjectIdclassSubject)
+     * Return the value associated with the column: classroomSubjectIdclassroomSubject.
+	 * @return A ClassroomSubject object (this.classroomSubjectIdclassroomSubject)
 	 */
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = true )
-	@JoinColumn(name = "Class_Subject_idClass_Subject", nullable = true )
-	public ClassSubject getClassSubjectIdclassSubject() {
-		return this.classSubjectIdclassSubject;
+	@JoinColumn(name = "classroom_subject_idclassroom_subject", nullable = true )
+	public ClassroomSubject getClassroomSubjectIdclassroomSubject() {
+		return this.classroomSubjectIdclassroomSubject;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: classSubjectIdclassSubject.
-	 * @param classSubjectIdclassSubject the classSubjectIdclassSubject value you wish to set
+     * Set the value related to the column: classroomSubjectIdclassroomSubject.
+	 * @param classroomSubjectIdclassroomSubject the classroomSubjectIdclassroomSubject value you wish to set
 	 */
-	public void setClassSubjectIdclassSubject(final ClassSubject classSubjectIdclassSubject) {
-		this.classSubjectIdclassSubject = classSubjectIdclassSubject;
+	public void setClassroomSubjectIdclassroomSubject(final ClassroomSubject classroomSubjectIdclassroomSubject) {
+		this.classroomSubjectIdclassroomSubject = classroomSubjectIdclassroomSubject;
 	}
 
     /**
@@ -154,7 +154,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = true )
-	@JoinColumn(name = "Exam_Type_idExam_Type", nullable = true )
+	@JoinColumn(name = "exam_type_idexam_type", nullable = true )
 	public ExamType getExamTypeIdexamType() {
 		return this.examTypeIdexamType;
 		
@@ -295,7 +295,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		
         final Exam copy = (Exam)super.clone();
 
-		copy.setClassSubjectIdclassSubject(this.getClassSubjectIdclassSubject());
+		copy.setClassroomSubjectIdclassroomSubject(this.getClassroomSubjectIdclassroomSubject());
 		copy.setDate(this.getDate());
 		copy.setExamTypeIdexamType(this.getExamTypeIdexamType());
 		copy.setId(this.getId());
@@ -367,7 +367,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((getClassSubjectIdclassSubject() == null) && (that.getClassSubjectIdclassSubject() == null)) || (getClassSubjectIdclassSubject() != null && getClassSubjectIdclassSubject().getId().equals(that.getClassSubjectIdclassSubject().getId())));	
+		result = result && (((getClassroomSubjectIdclassroomSubject() == null) && (that.getClassroomSubjectIdclassroomSubject() == null)) || (getClassroomSubjectIdclassroomSubject() != null && getClassroomSubjectIdclassroomSubject().getId().equals(that.getClassroomSubjectIdclassroomSubject().getId())));	
 		result = result && (((getDate() == null) && (that.getDate() == null)) || (getDate() != null && getDate().equals(that.getDate())));
 		result = result && (((getExamTypeIdexamType() == null) && (that.getExamTypeIdexamType() == null)) || (getExamTypeIdexamType() != null && getExamTypeIdexamType().getId().equals(that.getExamTypeIdexamType().getId())));	
 		result = result && (((getTerm() == null) && (that.getTerm() == null)) || (getTerm() != null && getTerm().equals(that.getTerm())));

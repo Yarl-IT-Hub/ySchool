@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISubject;
 
 
@@ -45,7 +45,7 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	
 
 	/** Field mapping. */
-	private Set<ClassSubject> classSubjects = new HashSet<ClassSubject>();
+	private Set<ClassroomSubject> classroomSubjects = new HashSet<ClassroomSubject>();
 
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
@@ -91,34 +91,34 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
  
 
     /**
-     * Return the value associated with the column: classSubject.
-	 * @return A Set&lt;ClassSubject&gt; object (this.classSubject)
+     * Return the value associated with the column: classroomSubject.
+	 * @return A Set&lt;ClassroomSubject&gt; object (this.classroomSubject)
 	 */
  	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "subjectIdsubject"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( nullable = false  )
-	public Set<ClassSubject> getClassSubjects() {
-		return this.classSubjects;
+	public Set<ClassroomSubject> getClassroomSubjects() {
+		return this.classroomSubjects;
 		
 	}
 	
 	/**
-	 * Adds a bi-directional link of type ClassSubject to the classSubjects set.
-	 * @param classSubject item to add
+	 * Adds a bi-directional link of type ClassroomSubject to the classroomSubjects set.
+	 * @param classroomSubject item to add
 	 */
-	public void addClassSubject(ClassSubject classSubject) {
-		classSubject.setSubjectIdsubject(this);
-		this.classSubjects.add(classSubject);
+	public void addClassroomSubject(ClassroomSubject classroomSubject) {
+		classroomSubject.setSubjectIdsubject(this);
+		this.classroomSubjects.add(classroomSubject);
 	}
 
   
     /**  
-     * Set the value related to the column: classSubject.
-	 * @param classSubject the classSubject value you wish to set
+     * Set the value related to the column: classroomSubject.
+	 * @param classroomSubject the classroomSubject value you wish to set
 	 */
-	public void setClassSubjects(final Set<ClassSubject> classSubject) {
-		this.classSubjects = classSubject;
+	public void setClassroomSubjects(final Set<ClassroomSubject> classroomSubject) {
+		this.classroomSubjects = classroomSubject;
 	}
 
     /**
@@ -205,8 +205,8 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		
         final Subject copy = (Subject)super.clone();
 
-		if (this.getClassSubjects() != null) {
-			copy.getClassSubjects().addAll(this.getClassSubjects());
+		if (this.getClassroomSubjects() != null) {
+			copy.getClassroomSubjects().addAll(this.getClassroomSubjects());
 		}
 		copy.setId(this.getId());
 		copy.setIsOptional(this.isIsOptional());

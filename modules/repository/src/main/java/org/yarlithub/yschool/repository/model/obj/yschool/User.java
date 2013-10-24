@@ -195,7 +195,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "User_Role_idUser_Role", nullable = false )
+	@JoinColumn(name = "user_role_iduser_role", nullable = false )
 	public UserRole getUserRoleIduserRole() {
 		return this.userRoleIduserRole;
 		

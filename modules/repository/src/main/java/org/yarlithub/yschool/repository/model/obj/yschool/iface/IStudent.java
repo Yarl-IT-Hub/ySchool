@@ -1,7 +1,7 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Date;
 import java.util.Set;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassStudent;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 
@@ -44,23 +44,23 @@ public interface IStudent {
 	void setAddress(final String address);
 
     /**
-     * Return the value associated with the column: classStudent.
-	 * @return A Set&lt;ClassStudent&gt; object (this.classStudent)
+     * Return the value associated with the column: classroomStudent.
+	 * @return A Set&lt;ClassroomStudent&gt; object (this.classroomStudent)
 	 */
-	Set<ClassStudent> getClassStudents();
+	Set<ClassroomStudent> getClassroomStudents();
 	
 	/**
-	 * Adds a bi-directional link of type ClassStudent to the classStudents set.
-	 * @param classStudent item to add
+	 * Adds a bi-directional link of type ClassroomStudent to the classroomStudents set.
+	 * @param classroomStudent item to add
 	 */
-	void addClassStudent(ClassStudent classStudent);
+	void addClassroomStudent(ClassroomStudent classroomStudent);
 
   
     /**  
-     * Set the value related to the column: classStudent.
-	 * @param classStudent the classStudent value you wish to set
+     * Set the value related to the column: classroomStudent.
+	 * @param classroomStudent the classroomStudent value you wish to set
 	 */
-	void setClassStudents(final Set<ClassStudent> classStudent);
+	void setClassroomStudents(final Set<ClassroomStudent> classroomStudent);
 
     /**
      * Return the value associated with the column: dob.

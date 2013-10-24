@@ -46,13 +46,13 @@ public class RepositoryTest {
 //        assertEquals("Error in accessing UserRole table in database!", 1, list.size());
 
         //Use SQL query for insert operations.
-        String sql = "INSERT INTO user (user_name, email, password, User_Role_idUser_Role) VALUES (:user_name, :email, :password, :User_Role_idUser_Role)";
+        String sql = "INSERT INTO user (user_name, email, password, user_role_iduser_role) VALUES (:user_name, :email, :password, :user_role_iduser_role)";
 
         SQLQuery insertQuery = dataLayerYschool.createSQLQuery(sql);
         insertQuery.setParameter("user_name", "transient_testuser_WD#$@DTGHYFEX768IHHJWE");
         insertQuery.setParameter("email", "me@me.com");
         insertQuery.setParameter("password", "XXXX");
-        insertQuery.setParameter("User_Role_idUser_Role", 1);
+        insertQuery.setParameter("user_role_iduser_role", 1);
         int result1 = insertQuery.executeUpdate();
 
         assertEquals("Error in inserting value into User table!", 1, result1);

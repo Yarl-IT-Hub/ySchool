@@ -96,7 +96,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "Exam_idExam", nullable = false )
+	@JoinColumn(name = "exam_idexam", nullable = false )
 	public Exam getExamIdexam() {
 		return this.examIdexam;
 		
@@ -169,7 +169,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "Student_idStudent", nullable = false )
+	@JoinColumn(name = "student_idstudent", nullable = false )
 	public Student getStudentIdstudent() {
 		return this.studentIdstudent;
 		

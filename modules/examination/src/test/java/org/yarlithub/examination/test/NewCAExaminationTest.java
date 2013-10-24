@@ -10,7 +10,7 @@
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //import org.springframework.test.context.transaction.TransactionConfiguration;
 //import org.springframework.transaction.annotation.Transactional;
-//import org.yarlithub.yschool.examination.core.NewCAExamination;
+//import org.yarlithub.yschool.examination.core.NewExamination;
 //import org.yarlithub.yschool.examination.dataAccess.ExaminationDBQueries;
 //import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 //import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
@@ -77,7 +77,7 @@
 ////        insertExamQuery.setParameter("idClass_Subject", 2);
 ////        insertExamQuery.setParameter("idExam_Type", 2);
 ////        int success=insertExamQuery.executeUpdate();
-////        NewCAExamination newCAExamination = new NewCAExamination();
+////        NewExamination newCAExamination = new NewExamination();
 ////        int a= newCAExamination.getClassid(6,"A");
 ////        System.out.print(a);
 //         Calendar cal = Calendar.getInstance();

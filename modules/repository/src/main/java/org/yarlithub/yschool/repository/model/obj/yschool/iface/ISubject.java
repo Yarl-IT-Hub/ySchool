@@ -1,6 +1,6 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Set;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 
 
 /** 
@@ -13,23 +13,23 @@ public interface ISubject {
 
 
     /**
-     * Return the value associated with the column: classSubject.
-	 * @return A Set&lt;ClassSubject&gt; object (this.classSubject)
+     * Return the value associated with the column: classroomSubject.
+	 * @return A Set&lt;ClassroomSubject&gt; object (this.classroomSubject)
 	 */
-	Set<ClassSubject> getClassSubjects();
+	Set<ClassroomSubject> getClassroomSubjects();
 	
 	/**
-	 * Adds a bi-directional link of type ClassSubject to the classSubjects set.
-	 * @param classSubject item to add
+	 * Adds a bi-directional link of type ClassroomSubject to the classroomSubjects set.
+	 * @param classroomSubject item to add
 	 */
-	void addClassSubject(ClassSubject classSubject);
+	void addClassroomSubject(ClassroomSubject classroomSubject);
 
   
     /**  
-     * Set the value related to the column: classSubject.
-	 * @param classSubject the classSubject value you wish to set
+     * Set the value related to the column: classroomSubject.
+	 * @param classroomSubject the classroomSubject value you wish to set
 	 */
-	void setClassSubjects(final Set<ClassSubject> classSubject);
+	void setClassroomSubjects(final Set<ClassroomSubject> classroomSubject);
 
     /**
      * Return the value associated with the column: id.

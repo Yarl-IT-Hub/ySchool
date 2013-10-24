@@ -29,14 +29,14 @@ public class ClassroomHasStaffHasRolePK implements Cloneable, Serializable,  ICl
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "Classroom_idClass", nullable = false , insertable = false, updatable = false )
+	@JoinColumn(name = "classroom_idclass", nullable = false , insertable = false, updatable = false )
 	private Classroom classroomIdclass;
 
 	/** Field mapping. */
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "Staff_has_Role_idStaff_has_role", nullable = false , insertable = false, updatable = false )
+	@JoinColumn(name = "staff_has_role_idstaff_has_role", nullable = false , insertable = false, updatable = false )
 	private StaffHasRole staffHasRoleIdstaffHasRole;
 
  
