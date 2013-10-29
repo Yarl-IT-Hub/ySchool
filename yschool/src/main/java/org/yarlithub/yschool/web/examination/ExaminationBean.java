@@ -3,11 +3,15 @@ package org.yarlithub.yschool.web.examination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.service.ExaminationService;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.event.ActionEvent;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -29,6 +33,10 @@ public class ExaminationBean implements Serializable {
     private int grade;
     private String division;
     private int subjectid;
+
+    private List<Exam> exams;
+    private Exam exam;
+
 
     public ExaminationBean() {
         setExamType(ExamType.CA_EXAM);
@@ -82,6 +90,22 @@ public class ExaminationBean implements Serializable {
         this.grade = grade;
     }
 
+    public List<Exam> getExams() {
+        return exams;
+    }
+
+    public void setExams(List<Exam> exams) {
+        this.exams = exams;
+    }
+
+    public Exam getExam() {
+        return exam;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
+
     /**
      * Ajax Dynamic loading.
      */
@@ -122,5 +146,15 @@ public class ExaminationBean implements Serializable {
         }
         //shows error page.
         return "NewTermExamFailure";
+    }
+
+    public boolean preloadLatestExams() {
+        this.setExams(examinationService.listExams(1,5));
+        return true;
+    }
+
+    public String viewExam(){
+        this.exam = exams.get(1);
+        return "ViewExam";
     }
 }

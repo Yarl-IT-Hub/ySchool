@@ -1,0 +1,60 @@
+<ui:composition template="/WEB-INF/templates/examinations-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+        >
+    <ui:define name="yhead">
+        <!--set the current viewing exam to bean from examinationHome page-->
+        <!--<f:metadata>-->
+            <!--<f:viewParam name="exam" value="{examinationBean.exam}"/>-->
+        <!--</f:metadata >-->
+        <title>Exams View</title>
+
+
+    </ui:define>
+
+    <ui:define name="examination-content">
+
+        <div class="span4">
+            <!--Breadcrumb to help user "where you are?"-->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Examination #{examinationBean.exam.id}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span4">
+            <!--Examination search bar with filter-->
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search"> </input>
+            </form>
+        </div>
+
+        <div class="span2">
+            <!--Add new exam Button-->
+            <a href="/yschool/faces/examination/examinationNew.xhtml">
+                <Button class="btn btn-primary btn-large"> Add New Exam</Button>
+            </a>
+        </div>
+
+
+        <div class="span10">
+            <div class='thumbnail'>
+                <p>
+                    <h:outputText value="Date : #{examinationBean.exam.date}"/>
+                    <h:outputText value="Exam type: #{examinationBean.exam.examTypeIdexamType.typeName}"/>
+                    <h:outputText value="Grade : #{examinationBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                    <h:outputText value="Division : #{examinationBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
+                    <h:outputText value="Subject: #{examinationBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
+                </p>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

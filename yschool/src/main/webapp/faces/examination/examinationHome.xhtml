@@ -1,6 +1,13 @@
 <ui:composition template="/WEB-INF/templates/examinations-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+        >
+    <ui:define name="yhead">
+        <title>Exams Home</title>
+        <f:event listener="#{examinationBean.preloadLatestExams}" type="preRenderView"/>
+    </ui:define>
 
     <ui:define name="examination-content">
 
@@ -26,14 +33,55 @@
         <div class="span2">
             <!--Add new exam Button-->
             <a href="/yschool/faces/examination/examinationNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Exam</Button>
+                <Button class="btn btn-success btn-large"> Add New Exam</Button>
             </a>
         </div>
 
 
         <div class="span10">
-            Default Examination home.
+            <div class="row-fluid">
+                <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
+                <ul>
+                    <!--empty list to avoid bootstrap first row margin bug-->
+                    <li class="span8">
+                    </li>
+                    <ui:repeat value="#{examinationBean.exams}" var="exam">
+                        <li class=" well span8">
+
+                            <div class="span10">
+                                <h5>
+                                    <h:outputText
+                                            value="Grade: #{exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                                    <h:outputText
+                                            value="#{exam.classroomSubjectIdclassroomSubject.classroomIdclass.division}     "/>
+
+                                    <h:outputText value="Term:  #{exam.term} "/>
+                                    <h:outputText value="#{exam.examTypeIdexamType.typeName} "/> on
+                                    <h:outputText
+                                            value=" #{exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}"/>
+
+                                    at
+                                    <div class="pull-right"><h:outputText value=" #{exam.date.year}"/></div>
+
+                                </h5>
+                            </div>
+
+                            <div class="box span2">
+                                <h:form>
+                                <h:commandButton class="btn btn-large" value="View..."
+                                                 type="submit"
+                                                 action="#{examinationBean.viewExam}"> </h:commandButton>
+                                <!--<f:param name="exam" value="{exam}"/>-->
+                                </h:form>
+                            </div>
+
+                        </li>
+                    </ui:repeat>
+                </ul>
+            </div>
         </div>
+
+
     </ui:define>
 
 </ui:composition>

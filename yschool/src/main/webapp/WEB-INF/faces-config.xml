@@ -68,6 +68,16 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
     </navigation-rule>
 
     <navigation-rule>
+        <display-name>ExaminationHome</display-name>
+        <from-view-id>/faces/examination/examinationHome.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>ViewExam</from-outcome>
+            <to-view-id>/faces/examination/examinationView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <from-view-id>/faces/student/studentNew.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>AddStudentSuccess</from-outcome>
