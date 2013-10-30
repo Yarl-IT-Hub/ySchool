@@ -8,7 +8,7 @@
 
     <ui:define name="student-content">
 
-        <div class="span4">
+        <div class="span3">
             <!--Breadcrumb to help user "where you are?"-->
             <ul class="breadcrumb">
                 <li>
@@ -23,12 +23,18 @@
             </ul>
         </div>
 
-        <div class="span4">
+        <div class="span3">
             <!--Student search bar with filter-->
             <form class="navbar-search pull-left">
                 <input type="text" class="search-query" placeholder="Search"> </input>
             </form>
         </div>
+		
+		<div class="span2">
+	   <a href="/yschool/faces/student/studentSearch.xhtml">
+            <Button class="btn btn-primary btn-large">Search</Button>
+        </a>
+	   </div>
 
         <div class="span2">
             <!--Add new student Button-->
