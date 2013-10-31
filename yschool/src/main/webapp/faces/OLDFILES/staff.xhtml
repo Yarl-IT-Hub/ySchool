@@ -41,7 +41,7 @@
                                         <h:message for="add-sId" errorStyle="color : red" />
                                                                         
                                     <label>#{msg.full_name}</label>
-                                    <h:inputText id="add-name" value="#{staffBean.staff.fullName}" required="true" requiredMessage=" Name is required">  
+                                    <h:inputText id="add-name" value="#{staffBean.staff.fullName}" required="true" requiredMessage=" Name is required">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="50" />
                                     </h:inputText>
@@ -106,7 +106,7 @@
                                     <h:message for="add-city" errorStyle="color : red" />
                                     
                                     <label>Country</label>
-                                    <h:inputText id="add-country" value="#{staffBean.staff.country}" required="true" requiredMessage=" Country is required"/>  
+                                    <h:inputText id="add-country" value="#{staffBean.staff.country}" required="true" requiredMessage=" Country is required"/>
                                     <h:message for="add-country" errorStyle="color : red" />
 
                                     <legend>Temporary Address</legend>

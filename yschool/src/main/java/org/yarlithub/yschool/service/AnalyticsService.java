@@ -1,14 +1,20 @@
 package org.yarlithub.yschool.service;
 
+import net.sf.jasperreports.engine.JRException;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yarlithub.yschool.analytics.reporting.JasperReport;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.setup.schoolSetUp.SchoolInitializer;
 import org.yarlithub.yschool.setup.userSetUP.UserIntializer;
 import org.yarlithub.yschool.setup.ySchoolSetUp.DataInitializer;
+import org.yarlithub.yschool.student.core.GetStudent;
 
+import javax.servlet.ServletOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -17,6 +23,8 @@ import java.io.IOException;
 @Service(value = "analyticsService")
 public class AnalyticsService {
     private static final Logger logger = LoggerFactory.getLogger(AnalyticsService.class);
+
+
 
     /**
      * TODO description
@@ -71,5 +79,18 @@ public class AnalyticsService {
     public void logIn(String userName, String password) {
         //TODO authentication
 
+    }
+
+    @Transactional
+    public Student getStudent() {
+             GetStudent student=new GetStudent();
+      return  student.getStudentByID(1);
+
+    }
+
+    @Transactional
+    public void  printReport(ServletOutputStream servletOutputStream) throws IOException, JRException {       // ServletOutputStream servletOutputStream
+        JasperReport jasperReport= new JasperReport();
+        jasperReport.printJasperReport(servletOutputStream );                        //  servletOutputStream
     }
 }

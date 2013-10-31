@@ -173,6 +173,12 @@
 
 
         <dependency>
+            <groupId>org.yarlithub.yschool</groupId>
+            <artifactId>analytics</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
             <groupId>ant</groupId>
             <artifactId>ant</artifactId>
             <version>1.6.5</version>

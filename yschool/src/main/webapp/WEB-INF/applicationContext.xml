@@ -44,12 +44,12 @@
         <property name="user" value="root"/>
         <property name="password" value=""/>
         <property name="idleConnectionTestPeriod" value="60"/>
-        <property name="maxIdleTime" value="240"/>         
+        <property name="maxIdleTime" value="240"/>
         <property name="maxPoolSize" value="20"/>
         <property name="minPoolSize" value="10"/>
-        <property name="initialPoolSize" value="10"/>          
-        <property name="maxStatements" value="100"/>            
-        <property name="acquireIncrement" value="3"/>                              
+        <property name="initialPoolSize" value="10"/>
+        <property name="maxStatements" value="100"/>
+        <property name="acquireIncrement" value="3"/>
         <property name="autoCommitOnClose" value="true"/>
 	</bean>
 

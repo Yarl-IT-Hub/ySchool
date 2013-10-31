@@ -1,10 +1,23 @@
 <ui:composition template="/WEB-INF/templates/analytics-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
 
-<ui:define name="student-content">
+    <ui:define name="yhead">
+        <title>Analytics Student Home</title>
 
-    <div class="span6">
+        <div>
+            <f:event listener="#{analyticsBean.preloadStudent}" type="preRenderView"/>
+        </div>
+
+    </ui:define>
+
+
+    <ui:define name="student-content">
+
+        <div class="span6">
         <ul class="breadcrumb">
             <li>
                 <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
@@ -15,9 +28,38 @@
         </ul>
     </div>
 
-    <div class="span9">
-        test Analytics home.
+        <div class="span5">
+            test Analytics home <br/>           <br/>
+            Student name check
+            .
+            #{analyticsBean.student.name}
+
+        </div>
+
+       <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+
+       <div class="span6">
+           <h:panelGrid columns="1">
+
+
+           <p:lineChart value="#{analyticsBean.linearModel}" legendPosition="e" zoom="true" animate="true"
+                        title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
+
+       </h:panelGrid>
+       </div>
+
+
+
+        <div class="span8">
+        <h:form>
+        <h:commandButton type="submit" action="#{analyticsBean.printReport}" value="Generate Report (PDF)"
+                         class="btn btn-primary btn-large"/>
+        </h:form>
     </div>
-</ui:define>
+
+    </ui:define>
+
+
+
 
 </ui:composition>
