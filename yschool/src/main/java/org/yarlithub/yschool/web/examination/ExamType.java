@@ -10,4 +10,5 @@ package org.yarlithub.yschool.web.examination;
 public class ExamType {
     public static int CA_EXAM = 1;
     public static int TERM_EXAM = 2;
+    public static int GENERAL_EXAM = 3;
 }

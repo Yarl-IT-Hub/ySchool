@@ -1,17 +1,22 @@
 package org.yarlithub.yschool.web.examination;
 
+import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
+import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.service.ExaminationService;
+import org.yarlithub.yschool.web.util.YDateUtils;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.event.ActionEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -33,9 +38,15 @@ public class ExaminationBean implements Serializable {
     private int grade;
     private String division;
     private int subjectid;
-
-    private List<Exam> exams;
+    private int yearInt;
+    private int dateInt;
+    private String monthString;
+    private DataModel exams;
     private Exam exam;
+    private DataModel<Results> results;
+    private DataModel<Marks> marks;
+
+    private UploadedFile marksFile;
 
 
     public ExaminationBean() {
@@ -66,6 +77,25 @@ public class ExaminationBean implements Serializable {
         this.date = date;
     }
 
+    public int getYearInt() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.exam.getDate());
+        return cal.get(Calendar.YEAR);
+
+    }
+
+    public int getDateInt() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.exam.getDate());
+        return cal.get(Calendar.DATE);
+    }
+
+    public String getMonthString() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(this.exam.getDate());
+        return YDateUtils.getMonthForInt(cal.get(Calendar.MONTH));
+    }
+
     public String getDivision() {
         return division;
     }
@@ -90,11 +120,11 @@ public class ExaminationBean implements Serializable {
         this.grade = grade;
     }
 
-    public List<Exam> getExams() {
+    public DataModel getExams() {
         return exams;
     }
 
-    public void setExams(List<Exam> exams) {
+    public void setExams(DataModel exams) {
         this.exams = exams;
     }
 
@@ -104,6 +134,30 @@ public class ExaminationBean implements Serializable {
 
     public void setExam(Exam exam) {
         this.exam = exam;
+    }
+
+    public DataModel<Marks> getMarks() {
+        return marks;
+    }
+
+    public void setMarks(DataModel<Marks> marks) {
+        this.marks = marks;
+    }
+
+    public DataModel<Results> getResults() {
+        return results;
+    }
+
+    public void setResults(DataModel<Results> results) {
+        this.results = results;
+    }
+
+    public UploadedFile getMarksFile() {
+        return marksFile;
+    }
+
+    public void setMarksFile(UploadedFile marksFile) {
+        this.marksFile = marksFile;
     }
 
     /**
@@ -149,12 +203,28 @@ public class ExaminationBean implements Serializable {
     }
 
     public boolean preloadLatestExams() {
-        this.setExams(examinationService.listExams(1,5));
+        exams = new ListDataModel(examinationService.listExams(1, 5));
+        this.setExams(exams);
         return true;
     }
 
-    public String viewExam(){
-        this.exam = exams.get(1);
+    public String viewExam() {
+        this.exam = (Exam) exams.getRowData();
+        if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
+            marks = null;
+        } else {  //for term and ca exam we have float marks
+            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
+        }
+        return "ViewExam";
+    }
+
+    public String uploadMarks() throws IOException {
+        examinationService.uploadMarks(marksFile,exam.getId());
+        if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
+            marks = null;
+        } else {  //for term and ca exam we have float marks
+            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
+        }
         return "ViewExam";
     }
 }

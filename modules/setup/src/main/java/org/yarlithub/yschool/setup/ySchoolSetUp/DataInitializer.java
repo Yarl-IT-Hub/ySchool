@@ -26,7 +26,7 @@ public class DataInitializer {
     /**
      * Takes the ySchool initialization document and enter the initial data into database.
      *
-     * @param uploadedFile of the yschool initialization document in users local macnine
+     * @param uploadedFile of the yschool initialization document from user's local machine
      * @return True or False according to success or failure of processing and entering the initial data
      */
 

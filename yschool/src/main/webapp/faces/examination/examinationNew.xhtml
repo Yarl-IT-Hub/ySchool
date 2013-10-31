@@ -46,9 +46,9 @@
 
                         <div class="controls">
                             <!--p:calendar not working(not showing popup button) as in primefaces-->
-                            <p:calendar value="#{examinationBean.date}" id="popupButtonCal" showOn="button"
-                            display="popup"  requiredMessage="Select a Date"/>
-                            <p:message for="popupButtonCal" errorStyle="color : red"/>
+                            <p:calendar value="#{examinationBean.date}" id="popupCal"
+                            requiredMessage="Select a Date"/>
+                            <p:message for="popupCal" errorStyle="color : red"/>
                         </div>
                     </div>
                 </fieldset>
@@ -76,11 +76,11 @@
 
                         <div class="controls">
                <span class="btn-group" data-toggle="buttons-radio">
-                 <h:commandButton class="btn btn-primary btn-large" value="CA Exam"
+                 <h:commandButton class="btn" value="CA Exam"
                                   action="#{examinationBean.setCAExamPage}">
                      <f:ajax render="exam-details"></f:ajax>
                  </h:commandButton>
-                <h:commandButton class="btn btn-primary btn-large" value="Term Exam"
+                <h:commandButton class="btn" value="Term Exam"
                                  action="#{examinationBean.setTermExamPage}">
                     <f:ajax render="exam-details"></f:ajax>
                 </h:commandButton>

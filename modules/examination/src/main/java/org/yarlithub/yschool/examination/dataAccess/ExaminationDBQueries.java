@@ -11,6 +11,8 @@ public class ExaminationDBQueries {
     /**
      * TODO: delete
      */
+    public static final String INSERT_MARKS = "INSERT INTO marks (exam_idexam, student_idstudent, marks) VALUES (:idexam, :idstudent, :marks)";
+    public static final String GET_STUDENTID = "SELECT idstudent FROM student WHERE addmision_no = :add_no" ;
 
     //not used after build 1.0.42, instead Hibernate Criteria Queries are used.
     public static final String INSERT_EXAM = "INSERT INTO exam (date, term, year, Class_Subject_idClass_Subject, Exam_Type_idExam_Type) VALUES (:date, :term, :year, :idClass_Subject, :idExam_Type)";

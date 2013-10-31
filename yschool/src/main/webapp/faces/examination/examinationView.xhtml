@@ -3,12 +3,12 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
         >
     <ui:define name="yhead">
         <!--set the current viewing exam to bean from examinationHome page-->
         <!--<f:metadata>-->
-            <!--<f:viewParam name="exam" value="{examinationBean.exam}"/>-->
+        <!--<f:viewParam name="exam" value="{examinationBean.exam}"/>-->
         <!--</f:metadata >-->
         <title>Exams View</title>
 
@@ -24,7 +24,11 @@
                     <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
                 </li>
                 <li>
-                    <a href="#">Examination #{examinationBean.exam.id}</a>
+                    <a href="/yschool/faces/examination/examinationHome.xhtml">Examination</a> <span
+                        class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Exam id: #{examinationBean.exam.id}</a>
                 </li>
             </ul>
         </div>
@@ -44,17 +48,73 @@
         </div>
 
 
-        <div class="span10">
-            <div class='thumbnail'>
+        <div class="span8">
+            <div class='well'>
                 <p>
-                    <h:outputText value="Date : #{examinationBean.exam.date}"/>
-                    <h:outputText value="Exam type: #{examinationBean.exam.examTypeIdexamType.typeName}"/>
-                    <h:outputText value="Grade : #{examinationBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
-                    <h:outputText value="Division : #{examinationBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
-                    <h:outputText value="Subject: #{examinationBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
+                    <h:outputText
+                            value="Date :#{examinationBean.dateInt} #{examinationBean.monthString} #{examinationBean.yearInt} "/>
+                    <span class="label pull-right">Exam type: #{examinationBean.exam.examTypeIdexamType.typeName}</span>
+                    <br/>
+                    <h:outputText
+                            value="Grade : #{examinationBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                    <h:outputText
+                            value="Division : #{examinationBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
+                    <br/>
+                    <h:outputText
+                            value="Subject: #{examinationBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
                 </p>
+
             </div>
         </div>
+
+        <ui:fragment rendered="#{!examinationBean.marks.rowAvailable}">
+            <h:form class="form-horizontal" enctype="multipart/form-data">
+                <div class="well span8">No marks entered yet.
+                    <br/>
+                   Fill up <a
+                            href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks Document</a> and upload it here.
+
+
+
+                        <t:inputFileUpload id="marks-doc" value="#{examinationBean.marksFile}"/>
+                        <h:message for="marks-doc" errorStyle="color : red"/>
+
+
+                        <h:commandButton value="Update Marks" styleClass="btn pull-right"
+                                         action="#{examinationBean.uploadMarks}" type="submit"/>
+
+                </div>
+            </h:form>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{examinationBean.marks.rowAvailable}">
+            <!--makrs list-->
+            <div class="span8">
+                <h:form>
+                    <h:dataTable value="#{examinationBean.marks}" var="marks" styleClass="table table-hover">
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Addmission No</f:facet>
+                            #{ marks.studentIdstudent.addmisionNo}
+                        </h:column>
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Name</f:facet>
+                            #{marks.studentIdstudent.name}
+                        </h:column>
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Marks</f:facet>
+                            #{marks.marks}
+                        </h:column>
+                        <h:column>
+                            <h:commandButton value="Edit" styleClass="btn btn-mini"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
+            <!--end makrs list-->
+        </ui:fragment>
     </ui:define>
 
 </ui:composition>

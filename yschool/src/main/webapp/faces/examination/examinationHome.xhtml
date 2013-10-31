@@ -60,18 +60,18 @@
                                     <h:outputText
                                             value=" #{exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}"/>
 
-                                    at
-                                    <div class="pull-right"><h:outputText value=" #{exam.date.year}"/></div>
+
+                                    <div class="pull-right"><h:outputText value=" #{exam.date}"/></div>
 
                                 </h5>
                             </div>
 
                             <div class="box span2">
                                 <h:form>
-                                <h:commandButton class="btn btn-large" value="View..."
-                                                 type="submit"
-                                                 action="#{examinationBean.viewExam}"> </h:commandButton>
-                                <!--<f:param name="exam" value="{exam}"/>-->
+                                    <h:commandButton class="btn btn-large" value="View..."
+                                                     type="submit"
+                                                     action="#{examinationBean.viewExam}"> </h:commandButton>
+                                    <!--<f:param name="exam" value="{exam}"/>-->
                                 </h:form>
                             </div>
 
