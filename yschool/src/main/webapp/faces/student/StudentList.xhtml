@@ -1,6 +1,19 @@
 <ui:composition template="/WEB-INF/templates/student-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+				
+				<ui:define name="yhead">
+          <div>
+            <f:event listener="#{studentBean.preloadstudents}" type="preRenderView"/>
+              <f:metadata>
+              <f:viewParam name="student" value="{studentBean.student}"/>
+              </f:metadata >
+        </div>
+
+    </ui:define>
 
 <ui:define name="student-content">
 
@@ -40,7 +53,40 @@
            </div>
 
     <div class="span10">
-        test studentList here...
+    <div class="control-group span10 offset1">
+
+        <table border="1" bgcolor="black" width="600px">
+         <tr style="background-color: teal;color: white;text-align: center;" height="40px">
+          <td>AddmissionNo</td>
+           <td>Name</td>
+           <td>FullName</td>
+           <td>NameWithInitial</td>
+           <td>Dob</td>
+           <td>Gender</td>
+           <td>Address</td>
+            <td>Action</td>
+             <td>Edit</td>
+            </tr>
+        <ui:repeat value="#{studentBean.students}" var="student">
+            <tr style="background-color:white;color: black;text-align: center;" height="30px" >
+                <td><h:outputText value="#{student.addmisionNo} "/></td>
+                <td><h:outputText value="#{student.name} "/> </td>
+                <td> <h:outputText value="#{student.fullName} "/></td>
+                <td> <h:outputText value="#{student.nameWtInitial} "/></td>
+                <td><h:outputText value="#{student.dob} "/></td>
+                <td><h:outputText value="#{student.gender} "/> </td>
+                <td><h:outputText value="#{student.address} "/></td>
+                <td> <a href="">
+                    <Button class="btn" value="">Delete</Button>
+                </a></td>
+
+                <td> <a href="">
+                    <Button class="btn" value="">Edit</Button>
+                </a></td>
+           </tr>
+       </ui:repeat>
+          </table>
+        </div>
     </div>
 </ui:define>
 
