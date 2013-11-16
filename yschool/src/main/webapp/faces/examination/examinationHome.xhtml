@@ -6,7 +6,7 @@
         >
     <ui:define name="yhead">
         <title>Exams Home</title>
-        <f:event listener="#{examinationBean.preloadLatestExams}" type="preRenderView"/>
+        <f:event listener="#{examinationHomeBean.preloadLatestExams}" type="preRenderView"/>
     </ui:define>
 
     <ui:define name="examination-content">
@@ -45,11 +45,12 @@
                     <!--empty list to avoid bootstrap first row margin bug-->
                     <li class="span8">
                     </li>
-                    <ui:repeat value="#{examinationBean.exams}" var="exam">
+                    <ui:repeat value="#{examinationHomeBean.exams}" var="exam">
                         <li class=" well span8">
 
                             <div class="span10">
                                 <h5>
+                                    <h:outputText value="idddddddd:  #{exam.id} "/>
                                     <h:outputText
                                             value="Grade: #{exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
                                     <h:outputText
@@ -70,8 +71,9 @@
                                 <h:form>
                                     <h:commandButton class="btn btn-large" value="View..."
                                                      type="submit"
-                                                     action="#{examinationBean.viewExam}"> </h:commandButton>
-                                    <!--<f:param name="exam" value="{exam}"/>-->
+                                                     action="#{examinationHomeBean.viewExam}">
+
+                                    </h:commandButton>
                                 </h:form>
                             </div>
 

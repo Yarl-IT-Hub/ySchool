@@ -28,7 +28,7 @@ import java.util.Date;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class ExaminationBean implements Serializable {
+public class ExaminationNewBean implements Serializable {
     @Autowired
     private ExaminationService examinationService;
     private String page = "_caExamNew";
@@ -49,7 +49,7 @@ public class ExaminationBean implements Serializable {
     private UploadedFile marksFile;
 
 
-    public ExaminationBean() {
+    public ExaminationNewBean() {
         setExamType(ExamType.CA_EXAM);
     }
 

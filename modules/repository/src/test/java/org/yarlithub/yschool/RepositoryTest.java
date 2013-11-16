@@ -1,6 +1,8 @@
-package org.yarlithub;
+package org.yarlithub.yschool;
 
+import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -8,9 +10,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
+import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.Subject;
 import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
+
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -82,5 +89,11 @@ public class RepositoryTest {
 //        user.setUserRoleIduserRole(userRole1);
 //        dataLayerYschool.save(user);
 //        dataLayerYschool.flushSession();
+
+//        //netsted criteria test for joins : analytics subjectlists    //
+//       Criteria st= dataLayerYschool.createCriteria(Subject.class);
+//        List<Classroom> lt= st.createAlias("classroom_student","clsu").createAlias("student","st").add(Restrictions.eq("st.idstudent","1")).list();
+       // List<Subject> lt= st.add(Restrictions.eq("name","SAIVISAM")).list();   //
+//        System.out.println(lt.get(0).getId());
     }
 }

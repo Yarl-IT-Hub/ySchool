@@ -1,28 +1,97 @@
 <ui:composition template="/WEB-INF/templates/analytics-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+        >
 
-<ui:define name="student-content">
+    <ui:define name="yhead">
+        <title>ySchool: Student Analytics </title>
 
-    <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-            </li>
-            <li>
-                <a href="#">Analytics</a>
-            </li>
+        <div>
+            <f:event listener="#{analyticsStudentHomeBean.preloadStudent}" type="preRenderView"/>
+        </div>
 
-            <li>
-                <a href="#">The Student</a>  <!-- need to get the Student ID -->
-            </li>
+    </ui:define>
 
-        </ul>
-    </div>
+    <ui:define name="student-content">
 
-    <div class="span9">
-        test Analytics home.
-    </div>
-</ui:define>
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a>><span class="divider">></span>
+                </li>
+
+                <li>
+                    <a href="#">#{analyticsStudentHomeBean.student.fullName}</a>  <!-- need to get the Student ID -->
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="span9">
+
+            <div id="init-form" class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li><a href="#1" data-toggle="tab">Secondary Level</a></li>
+                    <li><a href="#2" class="active" data-toggle="tab">Ordinary Level</a></li>
+                    <li><a href="#3" data-toggle="tab">Advance Level</a></li>
+                </ul>
+                <div class="tab-content">
+
+                    <div class="tab-pane" id="1">
+                        <div class="span6">
+                            <h:panelGrid columns="1">
+                        <p:lineChart value="#{analyticsStudentHomeBean.linearModel}" legendPosition="e" zoom="true" animate="true"
+                                     title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
+                            </h:panelGrid>
+                        </div>
+                        <!--tab-pane 1 ends-->
+                    </div>
+
+                    <div class="tab-pane active" id="2">
+                        <div class="well"> test </div>
+                        <div class="accordion" id="accordion2">
+
+                            <ui:repeat value="#{analyticsStudentHomeBean.oLSubjects}" var="classroomSubject">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                           href="#collapseOne">
+                                            Grade : #{classroomSubject.subjectIdsubject.name}
+
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="accordion-body collapse in">
+                                        <div class="accordion-inner">
+                                            <p:lineChart value="#{analyticsStudentHomeBean.linearModel}" legendPosition="e" zoom="true" animate="true"
+                                                         title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+
+                        </div>
+                        <!--accodion ends-->
+                        <!--tab-pane 2 ends-->
+                    </div>
+
+                    <div class="tab-pane active" id="3">
+                        <!--tab-pane 3 ends-->
+                    </div>
+
+                    <!--tab-content ends-->
+                </div>
+                <!--tabbable ends-->
+            </div>
+
+
+
+        </div>
+    </ui:define>
 
 </ui:composition>

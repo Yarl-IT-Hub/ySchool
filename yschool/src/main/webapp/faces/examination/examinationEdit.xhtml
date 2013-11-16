@@ -8,10 +8,9 @@
     <ui:define name="yhead">
         <!--set the current viewing exam to bean from examinationHome page-->
         <!--<f:metadata>-->
-            <!--<f:viewParam name="examid" value="{examinationViewBean.examid}"/>-->
-        <!--</f:metadata>-->
+        <!--<f:viewParam name="exam" value="{examinationBean.exam}"/>-->
+        <!--</f:metadata >-->
         <title>Exams View</title>
-        <f:event listener="#{examinationViewBean.preloadExam}" type="preRenderView"/>
 
 
     </ui:define>
@@ -29,7 +28,7 @@
                         class="divider">></span>
                 </li>
                 <li>
-                    <a href="#">Exam id: #{examinationViewBean.exam.id}</a>
+                    <a href="#">Exam id: #{examinationHomeBean.exam.id}</a>
                 </li>
             </ul>
         </div>
@@ -53,47 +52,46 @@
             <div class='well'>
                 <p>
                     <h:outputText
-                            value="Date :#{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
-                    <span class="label pull-right">Exam type: #{examinationViewBean.exam.examTypeIdexamType.typeName}</span>
+                            value="Date :#{examinationHomeBean.dateInt} #{examinationHomeBean.monthString} #{examinationHomeBean.yearInt} "/>
+                    <span class="label pull-right">Exam type: #{examinationHomeBean.exam.examTypeIdexamType.typeName}</span>
                     <br/>
                     <h:outputText
-                            value="Grade : #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                            value="Grade : #{examinationHomeBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
                     <h:outputText
-                            value="Division : #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
+                            value="Division : #{examinationHomeBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
                     <br/>
                     <h:outputText
-                            value="Subject: #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
+                            value="Subject: #{examinationHomeBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
                 </p>
 
             </div>
         </div>
 
-        <ui:fragment rendered="#{!examinationViewBean.marks.rowAvailable}">
+        <ui:fragment rendered="#{!examinationHomeBean.marks.rowAvailable}">
             <h:form class="form-horizontal" enctype="multipart/form-data">
                 <div class="well span8">No marks entered yet.
                     <br/>
-                    Fill up <a
+                   Fill up <a
                             href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks Document</a> and upload it here.
 
 
-                    <t:inputFileUpload id="marks-doc" value="#{examinationViewBean.marksFile}"/>
-                    <h:message for="marks-doc" errorStyle="color : red"/>
+
+                        <t:inputFileUpload id="marks-doc" value="#{examinationHomeBean.marksFile}"/>
+                        <h:message for="marks-doc" errorStyle="color : red"/>
 
 
-                    <h:commandButton value="Update Marks" styleClass="btn pull-right"
-                                     action="#{examinationViewBean.uploadMarks}" type="submit">
-                        <f:param name="examid" value="#{examinationViewBean.examid}"/>
-                    </h:commandButton>
+                        <h:commandButton value="Update Marks" styleClass="btn pull-right"
+                                         action="#{examinationHomeBean.uploadMarks}" type="submit"/>
 
                 </div>
             </h:form>
         </ui:fragment>
 
-        <ui:fragment rendered="#{examinationViewBean.marks.rowAvailable}">
+        <ui:fragment rendered="#{examinationHomeBean.marks.rowAvailable}">
             <!--makrs list-->
             <div class="span8">
                 <h:form>
-                    <h:dataTable value="#{examinationViewBean.marks}" var="marks" styleClass="table table-hover">
+                    <h:dataTable value="#{examinationHomeBean.marks}" var="marks" styleClass="table table-hover">
                         <h:column>
                             <!-- column header -->
                             <f:facet name="header">Addmission No</f:facet>

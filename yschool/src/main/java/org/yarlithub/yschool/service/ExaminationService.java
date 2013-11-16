@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.examination.core.ExamLoader;
-import org.yarlithub.yschool.examination.core.ListExamination;
+import org.yarlithub.yschool.examination.core.ExaminationHelper;
 import org.yarlithub.yschool.examination.core.NewExamination;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
@@ -40,8 +40,8 @@ public class ExaminationService {
 
     @Transactional
     public List<Exam> listExams(int start, int max) {
-        ListExamination listExamination = new ListExamination();
-        List<Exam> exams = listExamination.getLatestExams(start, max);
+        ExaminationHelper examinationHelper = new ExaminationHelper();
+        List<Exam> exams = examinationHelper.getLatestExams(start, max);
 
         //Hibernate needs lazy initialization of internal objects
         Iterator<Exam> iterator = exams.iterator();
@@ -56,8 +56,8 @@ public class ExaminationService {
 
     @Transactional
     public List<Marks> getExamMarks(Integer examid) {
-        ListExamination listExamination = new ListExamination();
-        List<Marks> marks = listExamination.getExamMarks(examid);
+        ExaminationHelper examinationHelper = new ExaminationHelper();
+        List<Marks> marks = examinationHelper.getExamMarks(examid);
         //Hibernate needs lazy initialization of internal objects
         Iterator<Marks> iterator = marks.iterator();
         while (iterator.hasNext()) {
@@ -71,5 +71,17 @@ public class ExaminationService {
     public void uploadMarks(UploadedFile marksFile, int examid) throws IOException {
         ExamLoader loadExamination = new ExamLoader();
         loadExamination.loadMarks(marksFile,examid);
+    }
+
+    @Transactional
+    public Exam getExambyId(int examid){
+     ExaminationHelper examinationHelper = new ExaminationHelper();
+        Exam exam = examinationHelper.getExambyId(examid);
+        Hibernate.initialize(exam.getExamTypeIdexamType());
+        Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject());
+        Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
+        Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
+
+        return exam;
     }
 }
