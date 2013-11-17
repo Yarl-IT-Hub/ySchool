@@ -108,7 +108,7 @@ public class AnalyticsStudentRecommenderBean implements Serializable {
 
         this.matchingStudentProfiles =  new ListDataModel(analyticsService.getStudentByAdmissionNumber(admissionNoList));
         //  this.student=analyticsController.getStudent();
-        createLinearModel();
+
 
         return true;
     }

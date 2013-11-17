@@ -79,7 +79,7 @@ public class YAnalyzer {
 //        marks.add(96);
 
         try {
-           indexNoList= ProfileMatcher.getNearestLocalProfiles(11089,11,3,subjects,marks);
+           indexNoList= ProfileMatcher.getNearestLocalProfiles(11086,11,3,subjects,marks);
             return indexNoList;
 
         } catch (Exception e) {
