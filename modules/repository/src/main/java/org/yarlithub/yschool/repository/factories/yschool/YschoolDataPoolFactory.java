@@ -20,7 +20,7 @@ public class YschoolDataPoolFactory {
 	/** Table commit order. */
     private static final Multimap<String, String> tableDeps = ArrayListMultimap.create();
 	/** DB commit order. */
-	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
+	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "ResultsRank", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
 	static{
 		// Store table deps for possible use. 
  		tableDeps.put("ClassroomHasStaffHasRole", "Classroom");
@@ -35,6 +35,7 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("Marks", "Student");
  		tableDeps.put("Results", "Exam");
  		tableDeps.put("Results", "Student");
+ 		tableDeps.put("ResultsRank", "Results");
  		tableDeps.put("SchoolHasStaffHasRole", "School");
  		tableDeps.put("SchoolHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("SectionHasStaffHasRole", "Section");
@@ -327,6 +328,43 @@ public class YschoolDataPoolFactory {
 		}
 
         return results;
+    }
+
+    /**
+     * Data pool factory for ResultsRank.
+     * @return ResultsRank A ResultsRank object
+     */
+    public static ResultsRank getResultsRank() {
+
+        ResultsRank resultsRank =  getResultsRank(
+	        getExam(), getStudent());
+
+		return resultsRank;
+       
+    }
+
+     /**
+     * Data pool factory for ResultsRank.
+     * @param examIdexam A valid Exam object
+     * @param studentIdstudent A valid Student object
+     * @return ResultsRank A ResultsRank object
+     */
+    public static ResultsRank getResultsRank(Exam examIdexam, Student studentIdstudent) {
+        ResultsRank resultsRank = new ResultsRank();     
+		if (examIdexam != null) {
+			examIdexam.addResults (resultsRank);
+		}
+        resultsRank.setId(BasicDataGenerator.generateRandomInt());
+        resultsRank.setRank1(BasicDataGenerator.generateRandomInt());
+        resultsRank.setRank2(BasicDataGenerator.generateRandomInt());
+        resultsRank.setRank3(BasicDataGenerator.generateRandomInt());
+        resultsRank.setResults(BasicDataGenerator.generateRandomString(5));
+		if (studentIdstudent != null) {
+			studentIdstudent.addResults (resultsRank);
+		}
+        resultsRank.setZscore(BasicDataGenerator.generateRandomDouble());
+
+        return resultsRank;
     }
 
     /**
