@@ -4,6 +4,7 @@ import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 
 
 /** 
@@ -197,6 +198,25 @@ public interface IStudent {
 	 * @param results the results value you wish to set
 	 */
 	void setResultss(final Set<Results> results);
+
+    /**
+     * Return the value associated with the column: studentGeneralexamProfile.
+	 * @return A Set&lt;StudentGeneralexamProfile&gt; object (this.studentGeneralexamProfile)
+	 */
+	Set<StudentGeneralexamProfile> getStudentGeneralexamProfiles();
+	
+	/**
+	 * Adds a bi-directional link of type StudentGeneralexamProfile to the studentGeneralexamProfiles set.
+	 * @param studentGeneralexamProfile item to add
+	 */
+	void addStudentGeneralexamProfile(StudentGeneralexamProfile studentGeneralexamProfile);
+
+  
+    /**  
+     * Set the value related to the column: studentGeneralexamProfile.
+	 * @param studentGeneralexamProfile the studentGeneralexamProfile value you wish to set
+	 */
+	void setStudentGeneralexamProfiles(final Set<StudentGeneralexamProfile> studentGeneralexamProfile);
 
 	// end of interface
 }

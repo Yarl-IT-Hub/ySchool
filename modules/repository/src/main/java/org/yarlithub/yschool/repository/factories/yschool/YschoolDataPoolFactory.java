@@ -20,7 +20,7 @@ public class YschoolDataPoolFactory {
 	/** Table commit order. */
     private static final Multimap<String, String> tableDeps = ArrayListMultimap.create();
 	/** DB commit order. */
-	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "ResultsRank", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
+	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
 	static{
 		// Store table deps for possible use. 
  		tableDeps.put("ClassroomHasStaffHasRole", "Classroom");
@@ -35,7 +35,6 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("Marks", "Student");
  		tableDeps.put("Results", "Exam");
  		tableDeps.put("Results", "Student");
- 		tableDeps.put("ResultsRank", "Results");
  		tableDeps.put("SchoolHasStaffHasRole", "School");
  		tableDeps.put("SchoolHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("SectionHasStaffHasRole", "Section");
@@ -44,6 +43,7 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("StaffHasRole", "Staff");
  		tableDeps.put("StudentClassroomSubject", "ClassroomStudent");
  		tableDeps.put("StudentClassroomSubject", "ClassroomSubject");
+ 		tableDeps.put("StudentGeneralexamProfile", "Student");
  		tableDeps.put("User", "UserRole");
 	}
 
@@ -321,50 +321,12 @@ public class YschoolDataPoolFactory {
 		if (examIdexam != null) {
 			examIdexam.addResults (results);
 		}
-        results.setId(BasicDataGenerator.generateRandomInt());
         results.setResults(BasicDataGenerator.generateRandomString(5));
 		if (studentIdstudent != null) {
 			studentIdstudent.addResults (results);
 		}
 
         return results;
-    }
-
-    /**
-     * Data pool factory for ResultsRank.
-     * @return ResultsRank A ResultsRank object
-     */
-    public static ResultsRank getResultsRank() {
-
-        ResultsRank resultsRank =  getResultsRank(
-	        getExam(), getStudent());
-
-		return resultsRank;
-       
-    }
-
-     /**
-     * Data pool factory for ResultsRank.
-     * @param examIdexam A valid Exam object
-     * @param studentIdstudent A valid Student object
-     * @return ResultsRank A ResultsRank object
-     */
-    public static ResultsRank getResultsRank(Exam examIdexam, Student studentIdstudent) {
-        ResultsRank resultsRank = new ResultsRank();     
-		if (examIdexam != null) {
-			examIdexam.addResults (resultsRank);
-		}
-        resultsRank.setId(BasicDataGenerator.generateRandomInt());
-        resultsRank.setRank1(BasicDataGenerator.generateRandomInt());
-        resultsRank.setRank2(BasicDataGenerator.generateRandomInt());
-        resultsRank.setRank3(BasicDataGenerator.generateRandomInt());
-        resultsRank.setResults(BasicDataGenerator.generateRandomString(5));
-		if (studentIdstudent != null) {
-			studentIdstudent.addResults (resultsRank);
-		}
-        resultsRank.setZscore(BasicDataGenerator.generateRandomDouble());
-
-        return resultsRank;
     }
 
     /**
@@ -588,6 +550,35 @@ public class YschoolDataPoolFactory {
 		}
 
         return studentClassroomSubject;
+    }
+
+    /**
+     * Data pool factory for StudentGeneralexamProfile.
+     * @return StudentGeneralexamProfile A StudentGeneralexamProfile object
+     */
+    public static StudentGeneralexamProfile getStudentGeneralexamProfile() {
+
+        StudentGeneralexamProfile studentGeneralexamProfile =  getStudentGeneralexamProfile(
+	        getStudent());
+
+		return studentGeneralexamProfile;
+       
+    }
+
+     /**
+     * Data pool factory for StudentGeneralexamProfile.
+     * @param studentIdstudent A valid Student object
+     * @return StudentGeneralexamProfile A StudentGeneralexamProfile object
+     */
+    public static StudentGeneralexamProfile getStudentGeneralexamProfile(Student studentIdstudent) {
+        StudentGeneralexamProfile studentGeneralexamProfile = new StudentGeneralexamProfile();     
+        studentGeneralexamProfile.setAlIslandRank(BasicDataGenerator.generateRandomInt());
+		if (studentIdstudent != null) {
+			studentIdstudent.addStudentGeneralexamProfile (studentGeneralexamProfile);
+		}
+        studentGeneralexamProfile.setZscore(BasicDataGenerator.generateRandomDouble());
+
+        return studentGeneralexamProfile;
     }
 
     /**

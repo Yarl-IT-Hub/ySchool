@@ -10,15 +10,14 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
-import org.yarlithub.yschool.repository.enums.subtype.yschool.ResultsSubclassType;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IResults;
 
 
@@ -28,7 +27,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IResults;
  */
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "results", catalog = "yschool", schema = "yschool")
 public class Results implements Cloneable, Serializable, IPojoGenEntity, IResults {
 
@@ -47,7 +45,7 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 	/** Field mapping. */
 	private Exam examIdexam;
 	/** Field mapping. */
-	private Integer id;
+	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private String results;
 	/** Field mapping. */
@@ -81,16 +79,7 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
  
 
 
- 	/**
- 	 * Return an enum of the type of this subclass. This is useful to be able to use switch/case in your code.
- 	 *
- 	 * @return ResultsSubclassType enum.
- 	 */
- 	@Transient
- 	public ResultsSubclassType getResultsSubclassType() {
-		return ResultsSubclassType.NOT_A_CHILD;
- 	}  
-  
+ 
 	/** Return the type of this class. Useful for when dealing with proxies.
 	* @return Defining class.
 	*/
@@ -128,6 +117,7 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 	 * @return A Integer object (this.id)
 	 */
     @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idresults", nullable = false  )
 	public Integer getId() {

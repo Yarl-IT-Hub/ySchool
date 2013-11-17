@@ -24,6 +24,7 @@ import org.hibernate.proxy.HibernateProxy;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 
 
@@ -37,7 +38,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 public class Student implements Cloneable, Serializable, IPojoGenEntity, IStudent {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977415L;
+	private static final long serialVersionUID = -558977416L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -74,6 +75,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	private Byte[] photo;
 	/** Field mapping. */
 	private Set<Results> resultss = new HashSet<Results>();
+
+	/** Field mapping. */
+	private Set<StudentGeneralexamProfile> studentGeneralexamProfiles = new HashSet<StudentGeneralexamProfile>();
 
 	/**
 	 * Default constructor, mainly for hibernate use.
@@ -402,6 +406,37 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		this.resultss = results;
 	}
 
+    /**
+     * Return the value associated with the column: studentGeneralexamProfile.
+	 * @return A Set&lt;StudentGeneralexamProfile&gt; object (this.studentGeneralexamProfile)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "studentIdstudent"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<StudentGeneralexamProfile> getStudentGeneralexamProfiles() {
+		return this.studentGeneralexamProfiles;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type StudentGeneralexamProfile to the studentGeneralexamProfiles set.
+	 * @param studentGeneralexamProfile item to add
+	 */
+	public void addStudentGeneralexamProfile(StudentGeneralexamProfile studentGeneralexamProfile) {
+		studentGeneralexamProfile.setStudentIdstudent(this);
+		this.studentGeneralexamProfiles.add(studentGeneralexamProfile);
+	}
+
+  
+    /**  
+     * Set the value related to the column: studentGeneralexamProfile.
+	 * @param studentGeneralexamProfile the studentGeneralexamProfile value you wish to set
+	 */
+	public void setStudentGeneralexamProfiles(final Set<StudentGeneralexamProfile> studentGeneralexamProfile) {
+		this.studentGeneralexamProfiles = studentGeneralexamProfile;
+	}
+
 
    /**
     * Deep copy.
@@ -430,6 +465,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		copy.setPhoto(this.getPhoto());
 		if (this.getResultss() != null) {
 			copy.getResultss().addAll(this.getResultss());
+		}
+		if (this.getStudentGeneralexamProfiles() != null) {
+			copy.getStudentGeneralexamProfiles().addAll(this.getStudentGeneralexamProfiles());
 		}
 		return copy;
 	}

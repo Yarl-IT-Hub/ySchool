@@ -216,7 +216,7 @@ ENGINE = InnoDB;
 -- Table `yschool`.`results`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool`.`results` (
-  `idresults` INT NOT NULL ,
+  `idresults` INT NOT NULL AUTO_INCREMENT ,
   `exam_idexam` INT NOT NULL ,
   `student_idstudent` INT NOT NULL ,
   `results` VARCHAR(5) NULL ,
@@ -396,19 +396,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `yschool`.`results_rank`
+-- Table `yschool`.`student_generalexam_profile`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `yschool`.`results_rank` (
-  `results_idresults` INT NOT NULL ,
-  `rank1` INT NULL ,
-  `rank2` INT NULL ,
-  `rank3` INT NULL ,
+CREATE  TABLE IF NOT EXISTS `yschool`.`student_generalexam_profile` (
+  `idstudent_generalexam_profile` INT NOT NULL AUTO_INCREMENT ,
+  `student_idstudent` INT NOT NULL ,
+  `al_island_rank` INT NULL ,
   `zscore` FLOAT NULL ,
-  INDEX `fk_results_rank_results1_idx` (`results_idresults` ASC) ,
-  PRIMARY KEY (`results_idresults`) ,
-  CONSTRAINT `fk_results_rank_results1`
-    FOREIGN KEY (`results_idresults` )
-    REFERENCES `yschool`.`results` (`idresults` )
+  PRIMARY KEY (`idstudent_generalexam_profile`) ,
+  INDEX `fk_student_generalexam_profile_student1_idx` (`student_idstudent` ASC) ,
+  CONSTRAINT `fk_student_generalexam_profile_student1`
+    FOREIGN KEY (`student_idstudent` )
+    REFERENCES `yschool`.`student` (`idstudent` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -428,8 +427,9 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `yschool`;
-INSERT INTO `yschool`.`exam_type` (`idexam_type`, `type_name`) VALUES (1, 'TermExam');
-INSERT INTO `yschool`.`exam_type` (`idexam_type`, `type_name`) VALUES (2, 'CA');
+INSERT INTO `yschool`.`exam_type` (`idexam_type`, `type_name`) VALUES (1, 'CONTINUOUS ASSESSMENT');
+INSERT INTO `yschool`.`exam_type` (`idexam_type`, `type_name`) VALUES (2, 'TERM EXAM');
+INSERT INTO `yschool`.`exam_type` (`idexam_type`, `type_name`) VALUES (3, 'GENERAL EXAM');
 
 COMMIT;
 

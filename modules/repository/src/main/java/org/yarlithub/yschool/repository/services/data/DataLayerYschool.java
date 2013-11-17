@@ -12,7 +12,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
-import org.yarlithub.yschool.repository.model.obj.yschool.ResultsRank;
 import org.yarlithub.yschool.repository.model.obj.yschool.Role;
 import org.yarlithub.yschool.repository.model.obj.yschool.School;
 import org.yarlithub.yschool.repository.model.obj.yschool.SchoolHasStaffHasRole;
@@ -24,6 +23,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.repository.model.obj.yschool.StaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.repository.model.obj.yschool.Subject;
 import org.yarlithub.yschool.repository.model.obj.yschool.User;
 import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
@@ -247,25 +247,6 @@ public interface DataLayerYschool {
      Results getResults(final Integer id);  
 
     /** Deletes an object of a given Id. 
-     * Will load the object internally so consider using delete (ResultsRank obj) directly
-     * @param id Identifier to delete
-     */
-    void deleteResultsRank(final Integer id);
-	
-    /**
-     * Loads the given Object.
-     * @param id Identifier to load
-     * @return a ResultsRank object
-     */
-    ResultsRank loadResultsRank(final Integer id);
-    /**
-     * Loads the given Object.
-     * @param id Id to load
-     * @return An object of type T
-     */
-     ResultsRank getResultsRank(final Integer id);  
-
-    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Role obj) directly
      * @param id Identifier to delete
      */
@@ -435,6 +416,25 @@ public interface DataLayerYschool {
      * @return An object of type T
      */
      StudentClassroomSubject getStudentClassroomSubject(final Integer id);  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (StudentGeneralexamProfile obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteStudentGeneralexamProfile(final Integer id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a StudentGeneralexamProfile object
+     */
+    StudentGeneralexamProfile loadStudentGeneralexamProfile(final Integer id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     StudentGeneralexamProfile getStudentGeneralexamProfile(final Integer id);  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Subject obj) directly
