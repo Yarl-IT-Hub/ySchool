@@ -29,11 +29,11 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISchool;
  */
 
 @Entity
-@Table(name = "school", schema = "yschool")
+@Table(name = "school", catalog = "yschool", schema = "yschool")
 public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977426L;
+	private static final long serialVersionUID = -558977425L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */

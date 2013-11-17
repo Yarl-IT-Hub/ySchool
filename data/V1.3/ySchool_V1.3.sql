@@ -394,6 +394,25 @@ CREATE  TABLE IF NOT EXISTS `yschool`.`classroom_subject_has_staff_has_role` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `yschool`.`results_rank`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `yschool`.`results_rank` (
+  `results_idresults` INT NOT NULL ,
+  `rank1` INT NULL ,
+  `rank2` INT NULL ,
+  `rank3` INT NULL ,
+  `zscore` FLOAT NULL ,
+  INDEX `fk_results_rank_results1_idx` (`results_idresults` ASC) ,
+  PRIMARY KEY (`results_idresults`) ,
+  CONSTRAINT `fk_results_rank_results1`
+    FOREIGN KEY (`results_idresults` )
+    REFERENCES `yschool`.`results` (`idresults` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 USE `yschool` ;
 
 CREATE USER 'yschool_user' IDENTIFIED BY 'yschool@123';

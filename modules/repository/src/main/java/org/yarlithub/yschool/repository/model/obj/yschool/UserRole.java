@@ -29,11 +29,11 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IUserRole;
  */
 
 @Entity
-@Table(name = "user_role", schema = "yschool")
+@Table(name = "user_role", catalog = "yschool", schema = "yschool")
 public class UserRole implements Cloneable, Serializable, IPojoGenEntity, IUserRole {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977412L;
+	private static final long serialVersionUID = -558977411L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */

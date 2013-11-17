@@ -16,7 +16,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroomSubjec
  */
 
 @Entity
-@Table(name = "classroom_subject_has_staff_has_role", schema = "yschool")
+@Table(name = "classroom_subject_has_staff_has_role", catalog = "yschool", schema = "yschool")
 public class ClassroomSubjectHasStaffHasRole implements Cloneable, Serializable, IPojoGenEntity, IClassroomSubjectHasStaffHasRole {
 
 	/** Serial Version UID. */
