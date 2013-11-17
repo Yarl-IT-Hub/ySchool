@@ -176,10 +176,16 @@
         </dependency>
 
         <!--Project CLASS analytics-->
+        <!--<dependency>-->
+            <!--<artifactId>class</artifactId>-->
+            <!--<groupId>com.arima</groupId>-->
+            <!--<version>1.0.3</version>-->
+        <!--</dependency>-->
+
         <dependency>
-            <artifactId>class</artifactId>
-            <groupId>com.arima</groupId>
-            <version>1.0.3</version>
+        <groupId>com.arima.classanalyzer</groupId>
+        <artifactId>class-analyzer</artifactId>
+        <version>1.0.3</version>
         </dependency>
 
         <dependency>

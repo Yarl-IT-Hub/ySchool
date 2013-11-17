@@ -8,7 +8,9 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
+import com.arima.classanalyzer.analyzer.ProfileMatcher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,4 +53,40 @@ public class YAnalyzer {
 
         return lt;
     }
-}
+
+    public List<Integer> getNeighbours() {
+
+        List<String> subjects = new ArrayList<String>();
+        List<Integer> marks = new ArrayList<Integer>();
+        List<Integer> indexNoList = new ArrayList<Integer>();
+
+        subjects.add("SAIVISM");
+        subjects.add("MATHEMATICS");
+//        subjects.add("SCIENCE AND TECHNOLOGY");
+        subjects.add("TAMIL LANGUAGE");
+        subjects.add("ENGLISH LANGUAGE");
+        subjects.add("HISTORY");
+        subjects.add("INFORMATION AND COMMUNICATION TECHNOLOGY");
+        //       subjects.add("BUSSINESS AND ACCOUNTING");
+
+        marks.add(90);
+        marks.add(82);
+//        marks.add(96);
+        marks.add(90);
+        marks.add(82);
+        marks.add(96);
+        marks.add(82);
+//        marks.add(96);
+
+        try {
+           indexNoList= ProfileMatcher.getNearestLocalProfiles(11089,11,3,subjects,marks);
+            return indexNoList;
+
+        } catch (Exception e) {
+            return null;
+
+        }
+
+    }
+
+    }

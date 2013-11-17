@@ -12,6 +12,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.student.core.GetStudent;
+import org.yarlithub.yschool.student.core.StudentHelper;
 
 import javax.servlet.ServletOutputStream;
 import java.io.IOException;
@@ -54,6 +55,24 @@ public class AnalyticsService {
             Hibernate.initialize(classroomStudent.getStudentClassroomSubjects());
         }
         return student;
+    }
+
+    @Transactional
+    public List<Student> getStudentByAdmissionNumber(List<Integer> admissionNo) {
+        StudentHelper studentHelper = new StudentHelper();
+        List<Student> studentList=null;
+        Iterator<Integer> adminNoIterator = admissionNo.iterator();
+        while (adminNoIterator.hasNext()) {
+
+            int admissionNumber = adminNoIterator.next();
+           Student student= studentHelper.getStudentByAdmissionNo(admissionNumber);
+
+            studentList.add(student);
+            Hibernate.initialize(student);
+
+        }
+
+        return studentList;
     }
 
     @Transactional
