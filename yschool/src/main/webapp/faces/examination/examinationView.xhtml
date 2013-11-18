@@ -8,7 +8,7 @@
     <ui:define name="yhead">
         <!--set the current viewing exam to bean from examinationHome page-->
         <!--<f:metadata>-->
-            <!--<f:viewParam name="examid" value="{examinationViewBean.examid}"/>-->
+        <!--<f:viewParam name="examid" value="{examinationViewBean.examid}"/>-->
         <!--</f:metadata>-->
         <title>Exams View</title>
         <f:event listener="#{examinationViewBean.preloadExam}" type="preRenderView"/>
@@ -68,32 +68,33 @@
             </div>
         </div>
 
-        <ui:fragment rendered="#{!examinationViewBean.marks.rowAvailable}">
+        <ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
             <h:form class="form-horizontal" enctype="multipart/form-data">
-                <div class="well span8">No marks entered yet.
+                <div class="well span8">No marks or results entered yet.
                     <br/>
                     Fill up <a
-                            href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks Document</a> and upload it here.
+                            href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks/REsults Document</a> and upload it here.
 
 
-                    <t:inputFileUpload id="marks-doc" value="#{examinationViewBean.marksFile}"/>
+                    <t:inputFileUpload id="marks-doc" value="#{examinationViewBean.marksORresultsFile}"/>
                     <h:message for="marks-doc" errorStyle="color : red"/>
 
 
                     <h:commandButton value="Update Marks" styleClass="btn pull-right"
                                      action="#{examinationViewBean.uploadMarks}" type="submit">
-                        <f:param name="examid" value="#{examinationViewBean.examid}"/>
                     </h:commandButton>
 
                 </div>
             </h:form>
         </ui:fragment>
 
-        <ui:fragment rendered="#{examinationViewBean.marks.rowAvailable}">
+        <ui:fragment rendered="#{examinationViewBean.marksORresults.rowAvailable}">
+        <ui:fragment rendered="#{!examinationViewBean.generalExam}">
             <!--makrs list-->
             <div class="span8">
                 <h:form>
-                    <h:dataTable value="#{examinationViewBean.marks}" var="marks" styleClass="table table-hover">
+                    <h:dataTable value="#{examinationViewBean.marksORresults}" var="marks"
+                                 styleClass="table table-hover">
                         <h:column>
                             <!-- column header -->
                             <f:facet name="header">Addmission No</f:facet>
@@ -116,6 +117,47 @@
                 </h:form>
             </div>
             <!--end makrs list-->
+        </ui:fragment>
+            <ui:fragment rendered="#{examinationViewBean.generalExam}">
+                <!--results list-->
+                <div class="span8">
+                    <h:form>
+                        <h:dataTable value="#{examinationViewBean.marksORresults}" var="results"
+                                     styleClass="table table-hover">
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Addmission No</f:facet>
+                                #{ results.studentIdstudent.addmisionNo}
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Name</f:facet>
+                                #{results.studentIdstudent.name}
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Results</f:facet>
+                                #{results.results}
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Island Rank</f:facet>
+                                1
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">z Score</f:facet>
+                                4
+                            </h:column>
+                            <h:column>
+                                <h:commandButton value="Edit" styleClass="btn btn-mini"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+                <!--end results list-->
+            </ui:fragment>
+
         </ui:fragment>
     </ui:define>
 

@@ -378,7 +378,7 @@ CREATE  TABLE IF NOT EXISTS `yschool`.`Results` (
   `idResults` INT NOT NULL ,
   `Exam_idExam` INT NOT NULL ,
   `Student_idStudent` INT NOT NULL ,
-  `results` VARCHAR(5) NULL ,
+  `marksORresults` VARCHAR(5) NULL ,
   PRIMARY KEY (`idResults`) ,
   INDEX `fk_Results_Exam1_idx` (`Exam_idExam` ASC) ,
   INDEX `fk_Results_Student1_idx` (`Student_idStudent` ASC) ,

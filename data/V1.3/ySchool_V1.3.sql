@@ -213,13 +213,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `yschool`.`results`
+-- Table `yschool`.`marksORresults`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `yschool`.`results` (
+CREATE  TABLE IF NOT EXISTS `yschool`.`marksORresults` (
   `idresults` INT NOT NULL AUTO_INCREMENT ,
   `exam_idexam` INT NOT NULL ,
   `student_idstudent` INT NOT NULL ,
-  `results` VARCHAR(5) NULL ,
+  `marksORresults` VARCHAR(5) NULL ,
   PRIMARY KEY (`idresults`) ,
   INDEX `fk_results_exam1_idx` (`exam_idexam` ASC) ,
   INDEX `fk_results_student1_idx` (`student_idstudent` ASC) ,

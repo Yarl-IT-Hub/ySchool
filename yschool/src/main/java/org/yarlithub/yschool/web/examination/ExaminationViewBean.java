@@ -5,14 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
-import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
-import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.service.ExaminationService;
 import org.yarlithub.yschool.web.util.YDateUtils;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.IOException;
@@ -35,22 +31,12 @@ public class ExaminationViewBean implements Serializable {
     @Autowired
     private ExaminationController examinationController;
     private Exam exam;
-    private int examid;
-    private DataModel<Results> results;
-    private DataModel<Marks> marks;
-    private UploadedFile marksFile;
-
+    private DataModel marksORresults;
+    private UploadedFile marksORresultsFile;
     private int yearInt;
     private int dateInt;
     private String monthString;
-
-    public int getExamid() {
-        return examid;
-    }
-
-    public void setExamid(int examid) {
-        this.examid = examid;
-    }
+    public boolean generalExam;
 
     public Exam getExam() {
         return exam;
@@ -60,28 +46,20 @@ public class ExaminationViewBean implements Serializable {
         this.exam = exam;
     }
 
-    public DataModel<Results> getResults() {
-        return results;
+    public DataModel getMarksORresults() {
+        return marksORresults;
     }
 
-    public void setResults(DataModel<Results> results) {
-        this.results = results;
+    public void setMarksORresults(DataModel marksORresults) {
+        this.marksORresults = marksORresults;
     }
 
-    public DataModel<Marks> getMarks() {
-        return marks;
+    public UploadedFile getMarksORresultsFile() {
+        return marksORresultsFile;
     }
 
-    public void setMarks(DataModel<Marks> marks) {
-        this.marks = marks;
-    }
-
-    public UploadedFile getMarksFile() {
-        return marksFile;
-    }
-
-    public void setMarksFile(UploadedFile marksFile) {
-        this.marksFile = marksFile;
+    public void setMarksORresultsFile(UploadedFile marksORresultsFile) {
+        this.marksORresultsFile = marksORresultsFile;
     }
 
     public int getYearInt() {
@@ -103,30 +81,36 @@ public class ExaminationViewBean implements Serializable {
         return YDateUtils.getMonthForInt(cal.get(Calendar.MONTH));
     }
 
+    public boolean isGeneralExam() {
+        return generalExam;
+    }
+
+    public void setGeneralExam(boolean generalExam) {
+        this.generalExam = generalExam;
+    }
 
     public void preloadExam() {
 
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        String examidParam = context.getExternalContext().getRequestParameterMap().get("examid");
-//        this.setExamid(Integer.valueOf(examidParam));
-
-//        this.setExam(examinationService.getExambyId(examid));
         this.setExam(examinationController.getExam());
 
-        //load marks/results of the current exam.
+        //load marks/marksORresults of the current exam.
         if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
-            marks = null;
+            setGeneralExam(true);
+            this.marksORresults = new ListDataModel(examinationService.getExamResults(this.exam.getId()));
         } else {  //for term and ca exam we have float marks
-            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
+            setGeneralExam(false);
+            this.marksORresults = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
         }
     }
 
     public String uploadMarks() throws IOException {
-        examinationService.uploadMarks(marksFile,exam.getId());
+
         if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
-            marks = null;
+            examinationService.uploadMarks(marksORresultsFile, exam.getId());
+            marksORresults = new ListDataModel(examinationService.getExamResults(this.exam.getId()));
         } else {  //for term and ca exam we have float marks
-            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
+            examinationService.uploadMarks(marksORresultsFile, exam.getId());
+            this.marksORresults = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
         }
         return "ViewExam";
     }

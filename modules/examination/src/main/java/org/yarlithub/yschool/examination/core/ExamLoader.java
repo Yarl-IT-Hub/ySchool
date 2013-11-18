@@ -28,6 +28,7 @@ public class ExamLoader {
         for (int i = 2; i <= marksDocReader.getLastRowNumber(); i++) {
             marksDocReader.setRow(i);
 
+            //I n exam marks uploading spreadsheet :admission no column, name column(not needed), marks column
             int addno = marksDocReader.getNumericCellValue(0);
             float marks = marksDocReader.getNumericCellValue(2);
 
@@ -39,6 +40,33 @@ public class ExamLoader {
             insertQuery.setParameter("idexam", examid);
             insertQuery.setParameter("idstudent", studentid);
             insertQuery.setParameter("marks", marks);
+            int result = insertQuery.executeUpdate();
+
+        }
+
+    }
+
+    public void loadResults(UploadedFile resultsFile, int examid)  throws IOException{
+        ReaderFactory readerFactory = new ReaderFactory();
+        Reader marksDocReader = readerFactory.getspreadSheetReader(resultsFile);
+
+        marksDocReader.setSheet(0);
+        DataLayerYschool DataLayerYschool = DataLayerYschoolImpl.getInstance();
+
+        for (int i = 2; i <= marksDocReader.getLastRowNumber(); i++) {
+            marksDocReader.setRow(i);
+
+            int addno = marksDocReader.getNumericCellValue(0);
+            String results = marksDocReader.getStringCellValue(2);
+
+            SQLQuery getstudentidQuery = DataLayerYschool.createSQLQuery(ExaminationDBQueries.GET_STUDENTID);
+            getstudentidQuery.setParameter("add_no",String.valueOf(addno));
+            int studentid= Integer.valueOf(getstudentidQuery.list().get(0).toString());
+
+            SQLQuery insertQuery = DataLayerYschool.createSQLQuery(ExaminationDBQueries.INSERT_RESULTS);
+            insertQuery.setParameter("idexam", examid);
+            insertQuery.setParameter("idstudent", studentid);
+            insertQuery.setParameter("results", results);
             int result = insertQuery.executeUpdate();
 
         }

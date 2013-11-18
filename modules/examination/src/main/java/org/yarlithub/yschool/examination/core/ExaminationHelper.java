@@ -5,6 +5,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -27,7 +28,7 @@ public class ExaminationHelper {
      * Returns the Exam specified by id
      *
      * @param examid
-     * @return
+     * @return org.yarlithub.yschool.repository.model.obj.yschool.Exam
      */
     public Exam  getExambyId(int examid){
        Exam exam=dataLayerYschool.getExam(examid);
@@ -37,9 +38,9 @@ public class ExaminationHelper {
     /**
      * Retrieve last inserted exam entries as Exam objects ordered by id:autoincrement .
      *
-     * @param first the first entry, for pagination.
-     * @param max   maximum objects to retrieve.
-     * @return list of latest Exam objects.
+     * @param first The first entry, for pagination.
+     * @param max   Maximum objects to retrieve.
+     * @return List of latest Exam objects, org.yarlithub.yschool.repository.model.obj.yschool.Marks.
      */
     public List<Exam> getLatestExams(int first, int max) {
         Criteria examCriteria = dataLayerYschool.createCriteria(Exam.class);
@@ -54,13 +55,25 @@ public class ExaminationHelper {
      * Returns Marks list of specified exam id.
      *
      * @param examid Requested exam id.
-     * @return
+     * @return List of org.yarlithub.yschool.repository.model.obj.yschool.Marks
      */
-
     public List<Marks> getExamMarks(Integer examid) {
         Exam exam = dataLayerYschool.getExam(examid);
         Criteria marksCriteria = dataLayerYschool.createCriteria(Marks.class);
         marksCriteria.add(Restrictions.eq("examIdexam", exam));
         return marksCriteria.list();
+    }
+
+    /**
+     * Returns Results list of specified exam id.
+     *
+     * @param examid Requested exam id.
+     * @return org.yarlithub.yschool.repository.model.obj.yschool.Results
+     */
+    public List<Results> getExamResults(Integer examid) {
+        Exam exam = dataLayerYschool.getExam(examid);
+        Criteria resultsCriteria = dataLayerYschool.createCriteria(Results.class);
+        resultsCriteria.add(Restrictions.eq("examIdexam", exam));
+        return resultsCriteria.list();
     }
 }

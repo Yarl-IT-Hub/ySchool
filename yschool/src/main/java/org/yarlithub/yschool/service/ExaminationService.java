@@ -11,6 +11,7 @@ import org.yarlithub.yschool.examination.core.ExaminationHelper;
 import org.yarlithub.yschool.examination.core.NewExamination;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
+import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 
 import java.io.IOException;
 import java.util.Date;
@@ -57,20 +58,39 @@ public class ExaminationService {
     @Transactional
     public List<Marks> getExamMarks(Integer examid) {
         ExaminationHelper examinationHelper = new ExaminationHelper();
-        List<Marks> marks = examinationHelper.getExamMarks(examid);
+        List<Marks> marksList = examinationHelper.getExamMarks(examid);
         //Hibernate needs lazy initialization of internal objects
-        Iterator<Marks> iterator = marks.iterator();
-        while (iterator.hasNext()) {
-            Marks mark = iterator.next();
+        Iterator<Marks> marksIterator = marksList.iterator();
+        while (marksIterator.hasNext()) {
+            Marks mark = marksIterator.next();
             Hibernate.initialize(mark.getStudentIdstudent());
         }
-        return marks;
+        return marksList;
+    }
+
+    @Transactional
+    public List<Results> getExamResults(Integer examid) {
+        ExaminationHelper examinationHelper = new ExaminationHelper();
+        List<Results> resultsList = examinationHelper.getExamResults(examid);
+        //Hibernate needs lazy initialization of internal objects
+        Iterator<Results> resultsIterator = resultsList.iterator();
+        while (resultsIterator.hasNext()) {
+            Results results = resultsIterator.next();
+            Hibernate.initialize(results.getStudentIdstudent());
+        }
+        return resultsList;
     }
 
     @Transactional
     public void uploadMarks(UploadedFile marksFile, int examid) throws IOException {
         ExamLoader loadExamination = new ExamLoader();
         loadExamination.loadMarks(marksFile,examid);
+    }
+
+    @Transactional
+    public void uploadResults(UploadedFile resultsFile, int examid) throws IOException {
+        ExamLoader loadExamination = new ExamLoader();
+        loadExamination.loadResults(resultsFile,examid);
     }
 
     @Transactional
