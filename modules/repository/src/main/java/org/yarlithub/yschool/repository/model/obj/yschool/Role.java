@@ -29,7 +29,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IRole;
  */
 
 @Entity
-@Table(name = "role", catalog = "yschool", schema = "yschool")
+@Table(name = "role", schema = "yschool")
 public class Role implements Cloneable, Serializable, IPojoGenEntity, IRole {
 
 	/** Serial Version UID. */

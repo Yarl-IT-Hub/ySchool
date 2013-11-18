@@ -33,7 +33,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroomSubjec
  */
 
 @Entity
-@Table(name = "classroom_subject", catalog = "yschool", schema = "yschool")
+@Table(name = "classroom_subject", schema = "yschool")
 public class ClassroomSubject implements Cloneable, Serializable, IPojoGenEntity, IClassroomSubject {
 
 	/** Serial Version UID. */

@@ -10,10 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
-import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
-import org.yarlithub.yschool.repository.model.obj.yschool.Subject;
-import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -95,5 +92,17 @@ public class RepositoryTest {
 //        List<Classroom> lt= st.createAlias("classroom_student","clsu").createAlias("student","st").add(Restrictions.eq("st.idstudent","1")).list();
        // List<Subject> lt= st.add(Restrictions.eq("name","SAIVISAM")).list();   //
 //        System.out.println(lt.get(0).getId());
+
+
+
+        Student student = null;
+        Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
+        studentCR.add(Restrictions.eq("addmisionNo", "18746"));                        //String.valueOf(admissionNo)
+        List<Student> studentList = studentCR.list();
+        /*The admission is unique thus the number of students retured should be one */
+//        if (studentList.size() == 1) {
+        student = studentList.get(0);
+        System.out.println(student.getName());
+
     }
 }

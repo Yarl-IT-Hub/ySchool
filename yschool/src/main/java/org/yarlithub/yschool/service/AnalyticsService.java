@@ -16,6 +16,7 @@ import org.yarlithub.yschool.student.core.StudentHelper;
 
 import javax.servlet.ServletOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class AnalyticsService {
     @Transactional
     public List<Student> getStudentByAdmissionNumber(List<Integer> admissionNo) {
         StudentHelper studentHelper = new StudentHelper();
-        List<Student> studentList=null;
+        List<Student> studentList= new ArrayList<Student>();
         Iterator<Integer> adminNoIterator = admissionNo.iterator();
         while (adminNoIterator.hasNext()) {
 

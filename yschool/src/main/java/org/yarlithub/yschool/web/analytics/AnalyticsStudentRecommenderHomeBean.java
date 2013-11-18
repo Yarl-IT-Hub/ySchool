@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.analytics.core.YAnalyzer;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 import org.yarlithub.yschool.service.StudentService;
@@ -16,9 +15,6 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 import java.util.List;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import org.primefaces.event.ToggleEvent;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,20 +27,16 @@ import org.primefaces.event.ToggleEvent;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class AnalyticsStudentRecommenderBean implements Serializable {
+public class AnalyticsStudentRecommenderHomeBean implements Serializable {
     @Autowired
     private StudentService studentService;
     @Autowired
     private AnalyticsService analyticsService;
     @Autowired
     private AnalyticsController analyticsController;
-
     private Student student;
     private DataModel<Student> oLSubjects;
     private DataModel<Student> matchingStudentProfiles;
-
-
-
     private CartesianChartModel linearModel;
 
     public Student getStudent() {
@@ -71,6 +63,13 @@ public class AnalyticsStudentRecommenderBean implements Serializable {
         this.linearModel = linearModel;
     }
 
+    public DataModel<Student> getMatchingStudentProfiles() {
+        return matchingStudentProfiles;
+    }
+
+    public void setMatchingStudentProfiles(DataModel<Student> matchingStudentProfiles) {
+        this.matchingStudentProfiles = matchingStudentProfiles;
+    }
 
     private void createLinearModel() {
         linearModel = new CartesianChartModel();
@@ -102,13 +101,12 @@ public class AnalyticsStudentRecommenderBean implements Serializable {
     }
 
     public boolean preloadProfiles() {
-        YAnalyzer yAnalyzer=new YAnalyzer();
-        List<Integer> admissionNoList=null;
-        admissionNoList= yAnalyzer.getNeighbours();
+        YAnalyzer yAnalyzer = new YAnalyzer();
+        List<Integer> admissionNoList = null;
+        admissionNoList = yAnalyzer.getNeighbours();
 
-        this.matchingStudentProfiles =  new ListDataModel(analyticsService.getStudentByAdmissionNumber(admissionNoList));
+        this.matchingStudentProfiles = new ListDataModel(analyticsService.getStudentByAdmissionNumber(admissionNoList));
         //  this.student=analyticsController.getStudent();
-
 
         return true;
     }

@@ -27,7 +27,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IResults;
  */
 
 @Entity
-@Table(name = "results", catalog = "yschool", schema = "yschool")
+@Table(name = "results", schema = "yschool")
 public class Results implements Cloneable, Serializable, IPojoGenEntity, IResults {
 
 	/** Serial Version UID. */

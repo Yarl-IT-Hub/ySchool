@@ -29,7 +29,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExamType;
  */
 
 @Entity
-@Table(name = "exam_type", catalog = "yschool", schema = "yschool")
+@Table(name = "exam_type", schema = "yschool")
 public class ExamType implements Cloneable, Serializable, IPojoGenEntity, IExamType {
 
 	/** Serial Version UID. */
