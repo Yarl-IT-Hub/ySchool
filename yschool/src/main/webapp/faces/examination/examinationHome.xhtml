@@ -33,7 +33,7 @@
         <div class="span2">
             <!--Add new exam Button-->
             <a href="/yschool/faces/examination/examinationNew.xhtml">
-                <Button class="btn btn-success btn-large"> Add New Exam</Button>
+                <Button class="btn btn-info btn-large"> Add New Exam</Button>
             </a>
         </div>
 
@@ -41,18 +41,18 @@
         <div class="span10">
             <div class="row-fluid">
                 <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
-                <ul>
-                    <!--empty list to avoid bootstrap first row margin bug-->
+                <ul class="thumbnails">
+                <!--empty list to avoid bootstrap first row margin bug-->
                     <li class="span8">
                     </li>
                     <ui:repeat value="#{examinationHomeBean.exams}" var="exam">
-                        <li class=" well span8">
+                        <li class="thumbnail span8">
 
                             <div class="span10">
                                 <h5>
-                                    <h:outputText value="idddddddd:  #{exam.id} "/>
+
                                     <h:outputText
-                                            value="Grade: #{exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                                            value=" #{exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
                                     <h:outputText
                                             value="#{exam.classroomSubjectIdclassroomSubject.classroomIdclass.division}     "/>
 
@@ -62,7 +62,6 @@
                                             value=" #{exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}"/>
 
 
-                                    <div class="pull-right"><h:outputText value=" #{exam.date}"/></div>
 
                                 </h5>
                             </div>

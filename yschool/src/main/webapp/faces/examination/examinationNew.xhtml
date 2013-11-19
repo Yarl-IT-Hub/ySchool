@@ -33,7 +33,7 @@
         <div class="span2">
             <!--Add new student Button-->
             <a href="/yschool/faces/examination/examinationNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Exam</Button>
+                <Button class="btn btn-info btn-large"> Add New Exam</Button>
             </a>
         </div>
 
@@ -46,7 +46,7 @@
 
                         <div class="controls">
                             <!--p:calendar not working(not showing popup button) as in primefaces-->
-                            <p:calendar value="#{examinationHomeBean.date}" id="popupCal"
+                            <p:calendar value="#{examinationNewBean.date}" id="popupCal"
                             requiredMessage="Select a Date"/>
                             <p:message for="popupCal" errorStyle="color : red"/>
                         </div>
@@ -59,7 +59,7 @@
 
                         <div class="controls">
                             <h:selectOneMenu id="term"
-                                             value="#{examinationHomeBean.term}" required="true"
+                                             value="#{examinationNewBean.term}" required="true"
                                              requiredMessage="Select a Term">
                                 <f:selectItem id="term1" itemLabel="1st Term" itemValue="1"/>
                                 <f:selectItem id="term2" itemLabel="2nd Term" itemValue="2"/>
@@ -77,11 +77,11 @@
                         <div class="controls">
                <span class="btn-group" data-toggle="buttons-radio">
                  <h:commandButton class="btn" value="CA Exam"
-                                  action="#{examinationHomeBean.setCAExamPage}">
+                                  action="#{examinationNewBean.setCAExamPage}">
                      <f:ajax render="exam-details"></f:ajax>
                  </h:commandButton>
                 <h:commandButton class="btn" value="Term Exam"
-                                 action="#{examinationHomeBean.setTermExamPage}">
+                                 action="#{examinationNewBean.setTermExamPage}">
                     <f:ajax render="exam-details"></f:ajax>
                 </h:commandButton>
 
@@ -91,7 +91,7 @@
                 </fieldset>
 
                 <h:panelGroup id="exam-details" layout="block">
-                    <ui:include src="#{examinationHomeBean.page}.xhtml"/>
+                    <ui:include src="#{examinationNewBean.page}.xhtml"/>
                 </h:panelGroup>
 
             </h:form>

@@ -11,7 +11,7 @@
 
             <div class="controls">
                 <h:selectOneMenu id="grade"
-                                 value="#{examinationHomeBean.grade}" required="true" requiredMessage="Grade is required">
+                                 value="#{examinationNewBean.grade}" required="true" requiredMessage="Grade is required">
                     <!--have to retrive these from database tables-->
                     <f:selectItem id="grade10" itemLabel="10" itemValue="10"/>
                     <f:selectItem id="grade11" itemLabel="11" itemValue="11"/>
@@ -27,7 +27,7 @@
             <label class="control-label" for="division">Division</label>
             <div class="controls">
                 <h:selectOneMenu id="division"
-                                  value="#{examinationHomeBean.division}"  required="true" requiredMessage="Division is required">
+                                  value="#{examinationNewBean.division}"  required="true" requiredMessage="Division is required">
                     <!--have to retrive these from database tables-->
                     <f:selectItem id="divisiona" itemLabel="A" itemValue="A"/>
                     <f:selectItem id="divisionb" itemLabel="B" itemValue="B"/>
@@ -46,7 +46,7 @@
             <label class="control-label" for="subject">Subject</label>
             <div class="controls">
                 <h:selectOneMenu id="subject"
-                                 value="#{examinationHomeBean.subjectid}"  required="true" requiredMessage="Grade is required">
+                                 value="#{examinationNewBean.subjectid}"  required="true" requiredMessage="Grade is required">
                     <!--have to retrive these from database tables-->
                     <f:selectItem id="subject1" itemLabel="SAIVISM" itemValue="1"/>
                     <f:selectItem id="subject2" itemLabel="TAMIL LANGUAGE" itemValue="2"/>
@@ -72,7 +72,7 @@
                         <h:commandButton value="Cencel" type="reset" class="btn btn-primary btn-large"/>
                     </li>
                     <li>
-                        <h:commandButton type="submit" value="Add this CA Exam" action="#{examinationHomeBean.addCAExam}"
+                        <h:commandButton type="submit" value="Add this CA Exam" action="#{examinationNewBean.addCAExam}"
                                          class="btn btn-primary btn-large"/>
                     </li>
                 </ul>

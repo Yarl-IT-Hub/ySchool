@@ -5,75 +5,97 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:t="http://myfaces.apache.org/tomahawk"
         >
-    <ui:define name="yhead">
-        <!--set the current viewing exam to bean from examinationHome page-->
-        <!--<f:metadata>-->
-        <!--<f:viewParam name="examid" value="{examinationViewBean.examid}"/>-->
-        <!--</f:metadata>-->
-        <title>Exams View</title>
-        <f:event listener="#{examinationViewBean.preloadExam}" type="preRenderView"/>
+<ui:define name="yhead">
+    <!--set the current viewing exam to bean from examinationHome page-->
+    <!--<f:metadata>-->
+    <!--<f:viewParam name="examid" value="{examinationViewBean.examid}"/>-->
+    <!--</f:metadata>-->
+    <title>Exams View</title>
+    <f:event listener="#{examinationViewBean.preloadExam}" type="preRenderView"/>
 
 
-    </ui:define>
+</ui:define>
 
-    <ui:define name="examination-content">
+<ui:define name="examination-content">
 
-        <div class="span4">
-            <!--Breadcrumb to help user "where you are?"-->
-            <ul class="breadcrumb">
-                <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-                </li>
-                <li>
-                    <a href="/yschool/faces/examination/examinationHome.xhtml">Examination</a> <span
-                        class="divider">></span>
-                </li>
-                <li>
-                    <a href="#">Exam id: #{examinationViewBean.exam.id}</a>
-                </li>
-            </ul>
+<div class="span4">
+    <!--Breadcrumb to help user "where you are?"-->
+    <ul class="breadcrumb">
+        <li>
+            <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+        </li>
+        <li>
+            <a href="/yschool/faces/examination/examinationHome.xhtml">Examination</a> <span
+                class="divider">></span>
+        </li>
+        <li>
+            <a href="#">Exam id: #{examinationViewBean.exam.id}</a>
+        </li>
+    </ul>
+</div>
+
+<div class="span4">
+    <!--Examination search bar with filter-->
+    <form class="navbar-search pull-left">
+        <input type="text" class="search-query" placeholder="Search"> </input>
+    </form>
+</div>
+
+<div class="span2">
+    <!--Add new exam Button-->
+    <a href="/yschool/faces/examination/examinationNew.xhtml">
+        <Button class="btn btn-info btn-large"> Add New Exam</Button>
+    </a>
+</div>
+
+<ul class="thumbnails span10">
+
+    <!--avoid bootstrap first list margin bug!-->
+    <li class="span8"></li>
+
+    <!--Exam details-->
+    <li class="thumbnail span8">
+        <div class="span10">
+            <p class="lead">Exam Details</p>
+            <h5>
+                <h:outputText
+                        value="#{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                <h:outputText
+                        value="  #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
+                <h:outputText
+                        value="  #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
+
+                <h:outputText
+                        value="  #{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
+                <br/>
+                <h:outputText
+                        value="  #{examinationViewBean.exam.examTypeIdexamType.typeName} "/>
+            </h5>
+        </div>
+        <div class="box span2">
+            <h:form>
+
+                <h:commandButton class="btn btn-large" value="Edit..."
+                                 type="submit">
+
+                </h:commandButton>
+
+            </h:form>
         </div>
 
-        <div class="span4">
-            <!--Examination search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
+    </li>
+    <!--end Exam details-->
 
-        <div class="span2">
-            <!--Add new exam Button-->
-            <a href="/yschool/faces/examination/examinationNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Exam</Button>
-            </a>
-        </div>
-
-
-        <div class="span8">
-            <div class='well'>
-                <p>
-                    <h:outputText
-                            value="Date :#{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
-                    <span class="label pull-right">Exam type: #{examinationViewBean.exam.examTypeIdexamType.typeName}</span>
-                    <br/>
-                    <h:outputText
-                            value="Grade : #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
-                    <h:outputText
-                            value="Division : #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
-                    <br/>
-                    <h:outputText
-                            value="Subject: #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
-                </p>
-
-            </div>
-        </div>
-
-        <ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
+    <ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
+        <!--upload marks-->
+        <li class="thumbnail span8">
             <h:form class="form-horizontal" enctype="multipart/form-data">
-                <div class="well span8">No marks or results entered yet.
+                <div class="well span10">
+                    <p class="lead text-center">Upload Results</p>
+                    No marks or results entered yet.
                     <br/>
                     Fill up <a
-                            href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks/REsults Document</a> and upload it here.
+                        href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks/REsults Document</a> and upload it here.
 
 
                     <t:inputFileUpload id="marks-doc" value="#{examinationViewBean.marksORresultsFile}"/>
@@ -86,79 +108,140 @@
 
                 </div>
             </h:form>
-        </ui:fragment>
+        </li>
+        <!--end upload marks-->
+    </ui:fragment>
 
-        <ui:fragment rendered="#{examinationViewBean.marksORresults.rowAvailable}">
-        <ui:fragment rendered="#{!examinationViewBean.generalExam}">
-            <!--makrs list-->
-            <div class="span8">
-                <h:form>
-                    <h:dataTable value="#{examinationViewBean.marksORresults}" var="marks"
-                                 styleClass="table table-hover">
-                        <h:column>
-                            <!-- column header -->
-                            <f:facet name="header">Addmission No</f:facet>
-                            #{ marks.studentIdstudent.addmisionNo}
-                        </h:column>
-                        <h:column>
-                            <!-- column header -->
-                            <f:facet name="header">Name</f:facet>
-                            #{marks.studentIdstudent.name}
-                        </h:column>
-                        <h:column>
-                            <!-- column header -->
-                            <f:facet name="header">Marks</f:facet>
-                            #{marks.marks}
-                        </h:column>
-                        <h:column>
-                            <h:commandButton value="Edit" styleClass="btn btn-mini"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:form>
-            </div>
-            <!--end makrs list-->
-        </ui:fragment>
-            <ui:fragment rendered="#{examinationViewBean.generalExam}">
-                <!--results list-->
-                <div class="span8">
-                    <h:form>
-                        <h:dataTable value="#{examinationViewBean.marksORresults}" var="results"
-                                     styleClass="table table-hover">
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">Addmission No</f:facet>
-                                #{ results.studentIdstudent.addmisionNo}
-                            </h:column>
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">Name</f:facet>
-                                #{results.studentIdstudent.name}
-                            </h:column>
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">Results</f:facet>
-                                #{results.results}
-                            </h:column>
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">Island Rank</f:facet>
-                                1
-                            </h:column>
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">z Score</f:facet>
-                                4
-                            </h:column>
-                            <h:column>
-                                <h:commandButton value="Edit" styleClass="btn btn-mini"/>
-                            </h:column>
-                        </h:dataTable>
-                    </h:form>
+
+    <ui:fragment rendered="#{examinationViewBean.marksORresults.rowAvailable}">
+
+        <!--exam marks or results section-->
+        <li class="thumbnail span8">
+            <div class="accordion span12" id="accordion1">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <div class="span10">
+                            <p class="lead">
+                                Students and Results
+                            </p>
+                        </div>
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
+                           href="#collapseOne">
+                            <button class="btn btn-large">View</button>
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse">
+                        <div class="accordion-inner">
+
+
+                            <ui:fragment rendered="#{!examinationViewBean.generalExam}">
+                                <!--makrs list-->
+                                <div>
+                                    <h:form>
+                                        <h:dataTable value="#{examinationViewBean.marksORresults}" var="marks"
+                                                     styleClass="table table-hover">
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Addmission No</f:facet>
+                                                #{ marks.studentIdstudent.addmisionNo}
+                                            </h:column>
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Name</f:facet>
+                                                #{marks.studentIdstudent.name}
+                                            </h:column>
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Marks</f:facet>
+                                                #{marks.marks}
+                                            </h:column>
+                                            <h:column>
+                                                <h:commandButton value="Edit" styleClass="btn btn-mini"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:form>
+                                </div>
+                                <!--end makrs list-->
+                            </ui:fragment>
+                            <ui:fragment rendered="#{examinationViewBean.generalExam}">
+                                <!--results list-->
+                                <div>
+                                    <h:form>
+                                        <h:dataTable value="#{examinationViewBean.marksORresults}" var="results"
+                                                     styleClass="table table-hover">
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Addmission No</f:facet>
+                                                #{ results.studentIdstudent.addmisionNo}
+                                            </h:column>
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Name</f:facet>
+                                                #{results.studentIdstudent.name}
+                                            </h:column>
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Results</f:facet>
+                                                #{results.results}
+                                            </h:column>
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">Island Rank</f:facet>
+                                                1
+                                            </h:column>
+                                            <h:column>
+                                                <!-- column header -->
+                                                <f:facet name="header">z Score</f:facet>
+                                                4
+                                            </h:column>
+                                            <h:column>
+                                                <h:commandButton value="Edit" styleClass="btn btn-mini"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:form>
+                                </div>
+                                <!--end results list-->
+                            </ui:fragment>
+
+                        </div>
+                    </div>
                 </div>
-                <!--end results list-->
-            </ui:fragment>
+            </div>
+            <!--end accordion-->
+        </li>
+        <!--end exam marks or results section-->
 
-        </ui:fragment>
-    </ui:define>
+        <!--li CLASS datasnyc -->
+        <li class="thumbnail span8">
+            <p class="lead"> CLASS Data Sync</p>
 
+            <div class="alert alert-info">
+
+                    <p class="text text-center">
+                    This Exam marks are not synced with CLASS Server yet. <br/>
+                    Press Sync Now button to synchronize this Exam with CLASS Server.   <br/>
+                    Make sure you have an active internet connection till synchronization ends.
+                    </p>
+            </div>
+                    <div class="span2 offset5">
+                        <h:form>
+                            <h:commandButton class="btn btn-info btn-large" value="Sync Now"
+                                             type="submit">
+
+                            </h:commandButton>
+                        </h:form>
+                    </div>
+
+
+
+            <!--CLASS datasync-->
+        </li>
+        <!--CLASS datasync-->
+
+    </ui:fragment>
+
+</ul>
+
+</ui:define>
+<!--end exam contants-->
 </ui:composition>
