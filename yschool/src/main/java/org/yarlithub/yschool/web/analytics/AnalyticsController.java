@@ -20,6 +20,7 @@ import java.io.Serializable;
 public class AnalyticsController implements Serializable {
 
     private Student student;
+    private String stream;
 
     public Student getStudent() {
         return student;
@@ -34,4 +35,17 @@ public class AnalyticsController implements Serializable {
 
     }
 
+    public String getStream() {
+        return stream;
+    }
+
+    public void setStream(String stream) {
+        this.stream = stream;
+    }
+
+    public void setCurrentStream(String stream) {
+        this.stream = stream;
+
+
+    }
 }
