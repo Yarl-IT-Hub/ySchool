@@ -114,4 +114,11 @@ public class ExaminationViewBean implements Serializable {
         }
         return "ViewExam";
     }
+
+    public void syncExam(){
+        for (int i=0;i<10000;i++){
+               String a="kjds";
+            a.equalsIgnoreCase("kjsdf") ;
+        }
+    }
 }

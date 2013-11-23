@@ -213,13 +213,13 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `yschool`.`marksORresults`
+-- Table `yschool`.`results`
 -- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `yschool`.`marksORresults` (
+CREATE  TABLE IF NOT EXISTS `yschool`.`results` (
   `idresults` INT NOT NULL AUTO_INCREMENT ,
   `exam_idexam` INT NOT NULL ,
   `student_idstudent` INT NOT NULL ,
-  `marksORresults` VARCHAR(5) NULL ,
+  `results` VARCHAR(5) NULL ,
   PRIMARY KEY (`idresults`) ,
   INDEX `fk_results_exam1_idx` (`exam_idexam` ASC) ,
   INDEX `fk_results_student1_idx` (`student_idstudent` ASC) ,
@@ -406,6 +406,42 @@ CREATE  TABLE IF NOT EXISTS `yschool`.`student_generalexam_profile` (
   PRIMARY KEY (`idstudent_generalexam_profile`) ,
   INDEX `fk_student_generalexam_profile_student1_idx` (`student_idstudent` ASC) ,
   CONSTRAINT `fk_student_generalexam_profile_student1`
+    FOREIGN KEY (`student_idstudent` )
+    REFERENCES `yschool`.`student` (`idstudent` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `yschool`.`exam_sync`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `yschool`.`exam_sync` (
+  `idexam_sync` INT NOT NULL AUTO_INCREMENT ,
+  `exam_idexam` INT NOT NULL ,
+  `class_idexam` INT NULL ,
+  `sync_status` INT NULL ,
+  PRIMARY KEY (`idexam_sync`, `exam_idexam`, `class_idexam`) ,
+  INDEX `fk_exam_sync_exam1_idx` (`exam_idexam` ASC) ,
+  CONSTRAINT `fk_exam_sync_exam1`
+    FOREIGN KEY (`exam_idexam` )
+    REFERENCES `yschool`.`exam` (`idexam` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `yschool`.`student_sync`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `yschool`.`student_sync` (
+  `idstudent_sync` INT NOT NULL AUTO_INCREMENT ,
+  `student_idstudent` INT NOT NULL ,
+  `class_idstudent` INT NULL ,
+  `sync_status` INT NULL ,
+  PRIMARY KEY (`idstudent_sync`, `student_idstudent`, `class_idstudent`) ,
+  INDEX `fk_student_sync_student1_idx` (`student_idstudent` ASC) ,
+  CONSTRAINT `fk_student_sync_student1`
     FOREIGN KEY (`student_idstudent` )
     REFERENCES `yschool`.`student` (`idstudent` )
     ON DELETE NO ACTION
