@@ -46,15 +46,16 @@
                     <div class="tab-pane" id="1">
                         <div class="span6">
                             <h:panelGrid columns="1">
-                        <p:lineChart value="#{analyticsStudentHomeBean.linearModel}" legendPosition="e" zoom="true" animate="true"
-                                     title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
+                                <p:lineChart value="#{analyticsStudentHomeBean.linearModel}" legendPosition="e"
+                                             zoom="true" animate="true"
+                                             title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
                             </h:panelGrid>
                         </div>
                         <!--tab-pane 1 ends-->
                     </div>
 
                     <div class="tab-pane active" id="2">
-                        <div class="well"> test </div>
+                        <div class="well"> test</div>
                         <div class="accordion" id="accordion2">
 
                             <ui:repeat value="#{analyticsStudentHomeBean.oLSubjects}" var="classroomSubject">
@@ -68,7 +69,8 @@
                                     </div>
                                     <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
-                                            <p:lineChart value="#{analyticsStudentHomeBean.linearModel}" legendPosition="e" zoom="true" animate="true"
+                                            <p:lineChart value="#{analyticsStudentHomeBean.linearModel}"
+                                                         legendPosition="e" zoom="true" animate="true"
                                                          title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
                                         </div>
                                     </div>
@@ -88,7 +90,6 @@
                 </div>
                 <!--tabbable ends-->
             </div>
-
 
 
         </div>

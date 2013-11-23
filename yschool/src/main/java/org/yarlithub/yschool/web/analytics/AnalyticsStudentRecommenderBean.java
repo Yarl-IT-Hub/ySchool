@@ -1,8 +1,5 @@
 package org.yarlithub.yschool.web.analytics;
 
-import org.primefaces.event.ItemSelectEvent;
-import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -29,7 +26,7 @@ import java.util.List;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class AnalyticsStudentRecommenderHomeBean implements Serializable {
+public class AnalyticsStudentRecommenderBean implements Serializable {
     @Autowired
     private StudentService studentService;
     @Autowired
@@ -40,8 +37,6 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
     private DataModel<Student> matchingStudentProfiles;
     private PieChartModel pieModelSubject;
     private PieChartModel pieModelSuccess;
-    private int streamIndex = 1232;
-    private CartesianChartModel categoryModelStreamSuccessFailure;
 
     public Student getStudent() {
         return student;
@@ -106,65 +101,4 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
         return true;
     }
 
-    public void itemSelect(ItemSelectEvent event) {
-
-        streamIndex = event.getItemIndex();
-        navigate();
-
-//        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
-//                "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
-//
-//
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-
-    }
-
-    private String navigate() {
-        if (streamIndex < 5) {
-            return "ExploreStream";
-        }
-        return null;
-    }
-
-    public int getStreamIndex() {
-        return streamIndex;
-    }
-
-    public void setStreamIndex(int streamIndex) {
-        this.streamIndex = streamIndex;
-    }
-
-    public CartesianChartModel getCategoryModelStreamSuccessFailure() {
-        createCategoryModel();
-        return categoryModelStreamSuccessFailure;
-    }
-
-    public void setCategoryModelStreamSuccessFailure(CartesianChartModel categoryModelStreamSuccessFailure) {
-        this.categoryModelStreamSuccessFailure = categoryModelStreamSuccessFailure;
-    }
-
-    private void createCategoryModel() {
-        categoryModelStreamSuccessFailure = new CartesianChartModel();
-
-        ChartSeries boys = new ChartSeries();
-        boys.setLabel("Successful");
-
-        boys.set("2004", 120);
-        boys.set("2005", 100);
-        boys.set("2006", 44);
-        boys.set("2007", 150);
-        boys.set("2008", 25);
-
-        ChartSeries girls = new ChartSeries();
-        girls.setLabel("Failure");
-
-        girls.set("2004", 52);
-        girls.set("2005", 60);
-        girls.set("2006", 110);
-        girls.set("2007", 135);
-        girls.set("2008", 120);
-
-        categoryModelStreamSuccessFailure.addSeries(boys);
-        categoryModelStreamSuccessFailure.addSeries(girls);
-    }
 }
