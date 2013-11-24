@@ -41,7 +41,7 @@ public class StudentHelper {
         Student student;
         List<Student> studentList = new ArrayList<>();
         Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
-        studentCR.add(Restrictions.eq("addmisionNo", String.valueOf(admissionNo)));                        //String.valueOf(admissionNo)
+        studentCR.add(Restrictions.eq("admissionNo", String.valueOf(admissionNo)));                        //String.valueOf(admissionNo)
         studentList = studentCR.list();
         /*The admission is unique thus the number of students retured should be one */
 //        if (studentList.size() == 1) {

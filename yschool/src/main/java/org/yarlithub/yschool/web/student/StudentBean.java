@@ -20,7 +20,7 @@ import java.util.Date;
 @Controller
 public class StudentBean implements Serializable {
 
-    private String addmision_No;
+    private String admission_No;
     private String name;
     private String fullname;
     private String name_wt_initial;
@@ -31,11 +31,11 @@ public class StudentBean implements Serializable {
     private StudentService studentService;
 
     public String getAddmision_No() {
-        return addmision_No;
+        return admission_No;
     }
 
-    public void setAddmision_No(String addmision_No) {
-        this.addmision_No = addmision_No;
+    public void setAddmision_No(String admission_No) {
+        this.admission_No = admission_No;
     }
 
     public String getName() {
@@ -88,7 +88,7 @@ public class StudentBean implements Serializable {
 
     public String addStudent() {
 
-        boolean setupResult = studentService.addStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
+        boolean setupResult = studentService.addStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
         if (setupResult) {
             return "AddStudentSuccess";
         }

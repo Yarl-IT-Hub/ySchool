@@ -50,7 +50,7 @@ public class StudentLoader {
 
             //insert Student table
             SQLQuery insertStudentQuery = DataLayerYschool.createSQLQuery(SetUpDBQueries.STUDENT_INIT_SQL);
-            insertStudentQuery.setParameter("addmision_no", addmissionNo);
+            insertStudentQuery.setParameter("admission_no", addmissionNo);
             insertStudentQuery.setParameter("name", nameWithInitials);      //TODO: name
             insertStudentQuery.setParameter("full_name", fullName);
             insertStudentQuery.setParameter("name_wt_initial", nameWithInitials);
@@ -67,7 +67,7 @@ public class StudentLoader {
             int classID = Integer.valueOf(selectClassIDQuery.list().get(0).toString());
 
             SQLQuery selectStudentIDQuery = DataLayerYschool.createSQLQuery(SetUpDBQueries.GET_STUDENT_ID_SQL);
-            selectStudentIDQuery.setParameter("addmision_no", addmissionNo);
+            selectStudentIDQuery.setParameter("admission_no", addmissionNo);
             int studentID = Integer.valueOf(selectStudentIDQuery.list().get(0).toString());
 
             SQLQuery insertClassStudentQuery = DataLayerYschool.createSQLQuery(SetUpDBQueries.CLASS_STUDENT_INIT_SQL);

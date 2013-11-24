@@ -21,9 +21,9 @@ import java.util.Date;
 public class StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
     @Transactional
-    public boolean addStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
+    public boolean addStudent(String admission_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
         NewStudent newStudent= new NewStudent();
-        boolean success = newStudent.addNewStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
+        boolean success = newStudent.addNewStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
         return success;
     }
 

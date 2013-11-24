@@ -11,10 +11,10 @@ import java.util.Date;
 public class NewStudent {
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
-    public boolean addNewStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
+    public boolean addNewStudent(String admission_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
 
         Student student = YschoolDataPoolFactory.getStudent();
-        student.setAddmisionNo(addmision_No);
+        student.setAddress(admission_No);
         student.setName(name);
         student.setFullName(fullname);
         student.setNameWtInitial(name_wt_initial);
