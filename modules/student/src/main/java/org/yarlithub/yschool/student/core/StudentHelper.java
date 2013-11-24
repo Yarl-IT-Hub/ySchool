@@ -6,6 +6,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,17 +35,18 @@ public class StudentHelper {
      * (should be unique), if duplicates exist then NULL is returned
      *
      * @param admissionNo of Student
-     * @return  org.yarlithub.yschool.repository.model.obj.yschool.Student
+     * @return org.yarlithub.yschool.repository.model.obj.yschool.Student
      */
     public Student getStudentByAdmissionNo(int admissionNo) {
-        Student student = null;
+        Student student;
+        List<Student> studentList = new ArrayList<>();
         Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
-        studentCR.add(Restrictions.eq("addmisionNo", "18746"));                        //String.valueOf(admissionNo)
-        List<Student> studentList = studentCR.list();
+        studentCR.add(Restrictions.eq("addmisionNo", String.valueOf(admissionNo)));                        //String.valueOf(admissionNo)
+        studentList = studentCR.list();
         /*The admission is unique thus the number of students retured should be one */
 //        if (studentList.size() == 1) {
-            student = studentList.get(0);
-       // }
+        student = studentList.get(0);
+        // }
         return student;
     }
 

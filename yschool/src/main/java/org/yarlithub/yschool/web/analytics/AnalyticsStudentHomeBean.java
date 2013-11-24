@@ -7,18 +7,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
-import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 import org.yarlithub.yschool.service.AnalyticsService;
-import org.yarlithub.yschool.service.ExaminationService;
 import org.yarlithub.yschool.service.StudentService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,12 +33,10 @@ public class AnalyticsStudentHomeBean implements Serializable {
     private AnalyticsService analyticsService;
     @Autowired
     private AnalyticsController analyticsController;
-
     private Student student;
     private DataModel secondarySubjects;
     private DataModel<ClassroomSubject> oLSubjects;
     private DataModel aLSubjects;
-
     private CartesianChartModel linearModel;
 
     public Student getStudent() {
@@ -101,12 +94,12 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-      this.student = analyticsService.getStudenById(1);
-      //  this.student=analyticsController.getStudent();
-        this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student)) ;
+        this.student = analyticsService.getStudenById(1);
+        //  this.student=analyticsController.getStudent();
+        this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         createLinearModel();
 
-       return true;
+        return true;
     }
 
-    }
+}

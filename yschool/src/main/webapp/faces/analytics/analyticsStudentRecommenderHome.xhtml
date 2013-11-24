@@ -33,7 +33,7 @@
                 </li>
 
                 <li>
-                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Recommender Home</a>
+                    <a href="/yschool/faces/analytics/analyticsStudentRecommenderHome.xhtml">Recommender Home</a>
                 </li>
 
             </ul>
@@ -95,124 +95,78 @@
         <div class="span9">
             <div class="span3">
 
-                <p:barChart id="arts" value="#{analyticsStudentRecommenderHomeBean.categoryModelStreamSuccessFailure}"
-                            legendPosition="ne" style="height:300px"
-                            title="Arts: Success vs Failure" stacked="true" barMargin="50" min="0" max="300"/>
+                <p:pieChart id="arts" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                            legendPosition="w" showDataLabels="true"
+                            title="Arts: Success vs Failure" style="width:300px;height:200px"
+                            sliceMargin="5"
+                            diameter="100"/>
             </div>
 
 
             <div class="span3">
 
-                <p:barChart id="commerce"
-                            value="#{analyticsStudentRecommenderHomeBean.categoryModelStreamSuccessFailure}"
-                            legendPosition="ne" style="height:300px"
-                            title="Commerce: Success vs Failure" stacked="true" barMargin="50" min="0" max="300"/>
+                <p:pieChart id="commerce" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                            legendPosition="w" showDataLabels="true"
+                            title="Commerce: Success vs Failure" style="width:300px;height:200px"
+                            sliceMargin="5"
+                            diameter="100"/>
             </div>
 
 
             <div class="span3">
 
-                <p:barChart id="maths" value="#{analyticsStudentRecommenderHomeBean.categoryModelStreamSuccessFailure}"
-                            legendPosition="ne" style="height:300px"
-                            title="Maths: Success vs Failure" stacked="true" barMargin="50" min="0" max="300"/>
+                <p:pieChart id="maths" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                            legendPosition="w" showDataLabels="true"
+                            title="Maths: Success vs Failure" style="width:300px;height:200px"
+                            sliceMargin="5"
+                            diameter="100"/>
             </div>
 
 
             <div class="span3">
 
-                <p:barChart id="science"
-                            value="#{analyticsStudentRecommenderHomeBean.categoryModelStreamSuccessFailure}"
-                            legendPosition="ne" style="height:300px"
-                            title="Science: Success vs Failure" stacked="true" barMargin="50" min="0" max="300"/>
+                <p:pieChart id="science" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                            legendPosition="w" showDataLabels="true"
+                            title="Science: Success vs Failure" style="width:300px;height:200px"
+                            sliceMargin="5"
+                            diameter="100"/>
             </div>
 
-
-        </div>
-
-        <div class="span9">
             <h:form>
 
-                <div class="span2 offset1">
-                    <h:commandButton type="submit" value="Profiles" action="#{examinationNewBean.addCAExam}"
-                                     class="btn btn-primary btn-large"/>
+                <div class="span2">
+                    <h:commandButton type="submit" value="Profiles"
+                                     action="#{analyticsStudentRecommenderHomeBean.navigateToStreamProfiles_Arts}"
+                                     class="btn btn-info btn-large"/>
                 </div>
 
                 <div class="span2 offset1">
-                    <h:commandButton type="submit" value="Profiles" action="#{examinationNewBean.addCAExam}"
-                                     class="btn btn-primary btn-large"/>
+                    <h:commandButton type="submit" value="Profiles"
+                                     action="#{analyticsStudentRecommenderHomeBean.navigateToStreamProfiles_Commerce}"
+                                     class="btn btn-info btn-large"/>
                 </div>
 
                 <div class="span2 offset1">
-                    <h:commandButton type="submit" value="Profiles" action="#{examinationNewBean.addCAExam}"
-                                     class="btn btn-primary btn-large"/>
+                    <h:commandButton type="submit" value="Profiles"
+                                     action="#{analyticsStudentRecommenderHomeBean.navigateToStreamProfiles_Science}"
+                                     class="btn btn-info btn-large"/>
                 </div>
 
 
                 <div class="span2 offset1">
-                    <h:commandButton type="submit" value="Profiles" action="#{examinationNewBean.addCAExam}"
-                                     class="btn btn-primary btn-large"/>
+                    <h:commandButton type="submit" value="Profiles"
+                                     action="#{analyticsStudentRecommenderHomeBean.navigateToStreamProfiles_Maths}"
+                                     class="btn btn-info btn-large"/>
                 </div>
 
 
             </h:form>
+
         </div>
 
 
     </ui:define>
 
 </ui:composition>
-
-
-        <!-- <div class="span9">
-
-
-
-
-            <div class="span8">
-                <h:form prependId="false">
-                    <p:growl id="growl" showDetail="true"/>
-                    <p:pieChart id="pieChart" value="#{analyticsStudentRecommenderHomeBean.pieModelSubject}"
-                                legendPosition="w"
-                                showDataLabels="true" title="Matching Profiles: A/L Streams"
-                                style="width:600px;height:400px"
-                                itemSelectListener="#{analyticsStudentRecommenderHomeBean.itemSelect}" update="growl">
-
-
-                    </p:pieChart>
-
-                </h:form>
-
-            </div>
-
-
-            <div class="span4">
-
-                <div class="accordion" id="intrSubDes">
-                    <div class="accordion-group">
-                        <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#intrSubDescrip"
-                               href="#subDescription">
-                                A/L Stream Recommender: Stream Selection Assistance
-                            </a>
-                        </div>
-                        <div id="intrSubDescrip" class="accordion-body collapse in">
-                            <div class="accordion-inner">
-                                A/L Stream Recommender assists in the decision making process of a new student about to
-                                enter the advanced level. This Pie Chart illustrates the choice of streams done by the
-                                matching profiles in the past. This chart assist the decision making regarding the
-                                stream
-                                selection, via exhibiting the past decisions taken by the students whose performance are
-                                alike.Click the desired field on the pie chart for further information. Please note that
-                                some profiles may not be revealed according the enforced policies.
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
--->
 
 

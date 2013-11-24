@@ -61,15 +61,15 @@ public class AnalyticsService {
     @Transactional
     public List<Student> getStudentByAdmissionNumber(List<Integer> admissionNo) {
         StudentHelper studentHelper = new StudentHelper();
-        List<Student> studentList= new ArrayList<Student>();
+        List<Student> studentList = new ArrayList<Student>();
         Iterator<Integer> adminNoIterator = admissionNo.iterator();
         while (adminNoIterator.hasNext()) {
 
             int admissionNumber = adminNoIterator.next();
-           Student student= studentHelper.getStudentByAdmissionNo(admissionNumber);
+            Student student = studentHelper.getStudentByAdmissionNo(admissionNumber);
 
             studentList.add(student);
-            Hibernate.initialize(student);
+          //  Hibernate.initialize(student);
 
         }
 

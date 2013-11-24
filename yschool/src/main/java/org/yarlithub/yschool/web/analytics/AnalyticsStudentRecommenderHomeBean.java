@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
     private DataModel<Student> matchingStudentProfiles;
     private PieChartModel pieModelSubject;
     private PieChartModel pieModelSuccess;
+    private PieChartModel pieModelStreamSuccess;
     private int streamIndex = 1232;
     private CartesianChartModel categoryModelStreamSuccessFailure;
 
@@ -97,7 +99,7 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
 
     public boolean preloadProfiles() {
         YAnalyzer yAnalyzer = new YAnalyzer();
-        List<Integer> admissionNoList = null;
+        List<Integer> admissionNoList= new ArrayList<>();
         admissionNoList = yAnalyzer.getNeighbours();
 
         this.matchingStudentProfiles = new ListDataModel(analyticsService.getStudentByAdmissionNumber(admissionNoList));
@@ -167,4 +169,44 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
         categoryModelStreamSuccessFailure.addSeries(boys);
         categoryModelStreamSuccessFailure.addSeries(girls);
     }
+
+    public PieChartModel getPieModelStreamSuccess() {
+        createPieModelStreamSuccess();
+        return pieModelStreamSuccess;
+    }
+
+    public void setPieModelStreamSuccess(PieChartModel pieModelStreamSuccess) {
+        this.pieModelStreamSuccess = pieModelStreamSuccess;
+    }
+
+    private void createPieModelStreamSuccess() {
+        pieModelStreamSuccess = new PieChartModel();
+
+        pieModelStreamSuccess.set("Arts_Success", 2);
+        pieModelStreamSuccess.set("Arts__Failure", 6);
+//        pieModelSuccess.set("Maths__Success", 1);
+//        pieModelSuccess.set("Commerce__Success", 1);
+    }
+
+    public String navigateToStreamProfiles_Arts() {
+
+
+        return "StreamProfiles";
+    }
+
+    public String navigateToStreamProfiles_Commerce() {
+
+        return "StreamProfiles";
+    }
+
+    public String navigateToStreamProfiles_Maths() {
+        return "StreamProfiles";
+    }
+
+    public String navigateToStreamProfiles_Science() {
+        return "StreamProfiles";
+    }
 }
+
+
+

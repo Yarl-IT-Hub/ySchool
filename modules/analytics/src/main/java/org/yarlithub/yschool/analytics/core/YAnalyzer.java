@@ -11,6 +11,7 @@ import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -40,6 +41,57 @@ public class YAnalyzer {
 //
 //    }
 
+    public static void main(String[] args) {
+        List<String> subjects = new ArrayList<String>();
+        List<Integer> marks = new ArrayList<Integer>();
+        ArrayList<Integer> addmissionNoList = new ArrayList<Integer>();
+
+        subjects.add("SAIVISM");
+        subjects.add("MATHEMATICS");
+        subjects.add("SCIENCE AND TECHNOLOGY");
+        subjects.add("TAMIL LANGUAGE");
+        subjects.add("ENGLISH LANGUAGE");
+        subjects.add("HISTORY");
+       /* subjects.add("INFORMATION AND COMMUNICATION TECHNOLOGY");
+        subjects.add("BUSSINESS AND ACCOUNTING");*/
+
+
+
+
+        marks.add(50);
+        marks.add(50);
+        marks.add(50);
+        marks.add(50);
+        marks.add(50);
+        marks.add(50);
+        /*marks.add(50);
+        marks.add(50);*/
+
+
+
+        try {
+            addmissionNoList = (ArrayList<Integer>) ProfileMatcher.getNearestLocalProfiles(11086, 11, 3, subjects, marks);
+            System.out.println(addmissionNoList);
+
+            Iterator<Integer> adminNoIterator = addmissionNoList.iterator();
+            while (adminNoIterator.hasNext()) {
+
+                int admissionNumber = adminNoIterator.next();
+
+
+                System.out.println(admissionNumber);
+
+
+            }
+
+
+        } catch (Exception e) {
+
+
+        }
+
+    }
+
     public List<ClassroomSubject> getOLSubjects(Student student) {
 
         Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
@@ -58,7 +110,7 @@ public class YAnalyzer {
 
         List<String> subjects = new ArrayList<String>();
         List<Integer> marks = new ArrayList<Integer>();
-        List<Integer> indexNoList = new ArrayList<Integer>();
+        List<Integer> addmissionNoList = new ArrayList<Integer>();
 
         subjects.add("SAIVISM");
         subjects.add("MATHEMATICS");
@@ -66,21 +118,23 @@ public class YAnalyzer {
         subjects.add("TAMIL LANGUAGE");
         subjects.add("ENGLISH LANGUAGE");
         subjects.add("HISTORY");
-        subjects.add("INFORMATION AND COMMUNICATION TECHNOLOGY");
-        subjects.add("BUSSINESS AND ACCOUNTING");
+        /*subjects.add("INFORMATION AND COMMUNICATION TECHNOLOGY");
+        subjects.add("BUSSINESS AND ACCOUNTING");*/
 
-        marks.add(76);
-        marks.add(82);
-        marks.add(86);
+
         marks.add(90);
-        marks.add(82);
-        marks.add(89);
-        marks.add(82);
-        marks.add(78);
+        marks.add(90);
+        marks.add(90);
+        marks.add(90);
+        marks.add(90);
+        marks.add(90);
+       /* marks.add(90);
+        marks.add(90);*/
+
 
         try {
-            indexNoList = ProfileMatcher.getNearestLocalProfiles(11086, 11, 3, subjects, marks);
-            return indexNoList;
+            addmissionNoList = ProfileMatcher.getNearestLocalProfiles(11086, 11, 3, subjects, marks);
+            return addmissionNoList;
 
         } catch (Exception e) {
             return null;
@@ -88,5 +142,4 @@ public class YAnalyzer {
         }
 
     }
-
 }
