@@ -71,6 +71,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 
 	
 	/**
+	 * Returns a ClassAnalyzerClassifierDao instance.
+	 * 
+	 * @return a ClassAnalyzerClassifierDao instance
+	 */
+	public static ClassAnalyzerClassifierDao getClassAnalyzerClassifierDao() {
+		return (ClassAnalyzerClassifierDao) getBean("classAnalyzerClassifierDaoImpl"); 
+	}
+	/**
 	 * Returns a ClassroomDao instance.
 	 * 
 	 * @return a ClassroomDao instance
@@ -117,6 +125,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 	 */
 	public static ExamDao getExamDao() {
 		return (ExamDao) getBean("examDaoImpl"); 
+	}
+	/**
+	 * Returns a ExamSyncDao instance.
+	 * 
+	 * @return a ExamSyncDao instance
+	 */
+	public static ExamSyncDao getExamSyncDao() {
+		return (ExamSyncDao) getBean("examSyncDaoImpl"); 
 	}
 	/**
 	 * Returns a ExamTypeDao instance.
@@ -221,6 +237,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 	 */
 	public static StudentGeneralexamProfileDao getStudentGeneralexamProfileDao() {
 		return (StudentGeneralexamProfileDao) getBean("studentGeneralexamProfileDaoImpl"); 
+	}
+	/**
+	 * Returns a StudentSyncDao instance.
+	 * 
+	 * @return a StudentSyncDao instance
+	 */
+	public static StudentSyncDao getStudentSyncDao() {
+		return (StudentSyncDao) getBean("studentSyncDaoImpl"); 
 	}
 	/**
 	 * Returns a SubjectDao instance.

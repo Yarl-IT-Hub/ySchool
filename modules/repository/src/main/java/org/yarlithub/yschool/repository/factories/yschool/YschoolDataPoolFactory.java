@@ -20,7 +20,7 @@ public class YschoolDataPoolFactory {
 	/** Table commit order. */
     private static final Multimap<String, String> tableDeps = ArrayListMultimap.create();
 	/** DB commit order. */
-	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "Exam", "Classroom"};
+	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "StudentSync", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "ExamSync", "Exam", "Classroom", "ClassAnalyzerClassifier"};
 	static{
 		// Store table deps for possible use. 
  		tableDeps.put("ClassroomHasStaffHasRole", "Classroom");
@@ -31,6 +31,7 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("ClassroomSubject", "Subject");
  		tableDeps.put("ClassroomSubjectHasStaffHasRole", "ClassroomSubject");
  		tableDeps.put("ClassroomSubjectHasStaffHasRole", "StaffHasRole");
+ 		tableDeps.put("ExamSync", "Exam");
  		tableDeps.put("Marks", "Exam");
  		tableDeps.put("Marks", "Student");
  		tableDeps.put("Results", "Exam");
@@ -44,6 +45,7 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("StudentClassroomSubject", "ClassroomStudent");
  		tableDeps.put("StudentClassroomSubject", "ClassroomSubject");
  		tableDeps.put("StudentGeneralexamProfile", "Student");
+ 		tableDeps.put("StudentSync", "Student");
  		tableDeps.put("User", "UserRole");
 	}
 
@@ -69,6 +71,7 @@ public class YschoolDataPoolFactory {
         Classroom classroom = new Classroom();     
         classroom.setDivision(BasicDataGenerator.generateRandomString(45));
         classroom.setGrade(BasicDataGenerator.generateRandomInt());
+        classroom.setModifiedTime(BasicDataGenerator.generateDate());
 		if (sectionIdsection != null) {
 			sectionIdsection.addClassroom (classroom);
 		}
@@ -220,6 +223,26 @@ public class YschoolDataPoolFactory {
     }
 
     /**
+     * Data pool factory for ClassAnalyzerClassifier.
+     * @return ClassAnalyzerClassifierA ClassAnalyzerClassifier object
+     */
+    public static ClassAnalyzerClassifier getClassAnalyzerClassifier() {
+
+        ClassAnalyzerClassifier classAnalyzerClassifier = new ClassAnalyzerClassifier();    
+        
+        classAnalyzerClassifier.setBin(BasicDataGenerator.generateRandomInt());
+        classAnalyzerClassifier.setGrade(BasicDataGenerator.generateRandomInt());
+        classAnalyzerClassifier.setModel(BasicDataGenerator.generateRandomBinary(2147483647));
+        classAnalyzerClassifier.setModifiedTime(BasicDataGenerator.generateDate());
+        classAnalyzerClassifier.setSubject(BasicDataGenerator.generateRandomString(100));
+        classAnalyzerClassifier.setTerm(BasicDataGenerator.generateRandomInt());
+        classAnalyzerClassifier.setType(BasicDataGenerator.generateRandomString(500));
+        classAnalyzerClassifier.setYear(BasicDataGenerator.generateRandomInt());
+
+        return classAnalyzerClassifier;
+    }
+
+    /**
      * Data pool factory for Exam.
      * @return Exam A Exam object
      */
@@ -247,9 +270,51 @@ public class YschoolDataPoolFactory {
 		if (examTypeIdexamType != null) {
 			examTypeIdexamType.addExam (exam);
 		}
+        exam.setModifiedTime(BasicDataGenerator.generateDate());
         exam.setTerm(BasicDataGenerator.generateRandomInt());
 
         return exam;
+    }
+
+    /**
+     * Data pool factory for ExamSync.
+     * @return ExamSyncA ExamSync object
+     */
+    public static ExamSync getExamSync() {
+
+        ExamSync examSync = new ExamSync();    
+        
+        examSync.setId(getExamSyncPK());
+        examSync.setModifiedTime(BasicDataGenerator.generateDate());
+        examSync.setSyncStatus(BasicDataGenerator.generateRandomInt());
+
+        return examSync;
+    }
+
+    /**
+     * Data pool factory for ExamSyncPK.
+     * @return ExamSyncPK A ExamSyncPK object
+     */
+    public static ExamSyncPK getExamSyncPK() {
+
+        ExamSyncPK examSyncPK =  getExamSyncPK(
+	        getExam());
+
+		return examSyncPK;
+       
+    }
+
+     /**
+     * Data pool factory for ExamSyncPK.
+     * @param examIdexam A valid Exam object
+     * @return ExamSyncPK A ExamSyncPK object
+     */
+    public static ExamSyncPK getExamSyncPK(Exam examIdexam) {
+        ExamSyncPK examSyncPK = new ExamSyncPK();     
+        examSyncPK.setClassIdexam(BasicDataGenerator.generateRandomInt());
+        examSyncPK.setExamIdexam(examIdexam);
+
+        return examSyncPK;
     }
 
     /**
@@ -290,6 +355,7 @@ public class YschoolDataPoolFactory {
 			examIdexam.addMarks (marks);
 		}
         marks.setMarks(BasicDataGenerator.generateRandomDouble());
+        marks.setModifiedTime(BasicDataGenerator.generateDate());
 		if (studentIdstudent != null) {
 			studentIdstudent.addMarks (marks);
 		}
@@ -321,6 +387,7 @@ public class YschoolDataPoolFactory {
 		if (examIdexam != null) {
 			examIdexam.addResults (results);
 		}
+        results.setModifiedTime(BasicDataGenerator.generateDate());
         results.setResults(BasicDataGenerator.generateRandomString(5));
 		if (studentIdstudent != null) {
 			studentIdstudent.addResults (results);
@@ -352,8 +419,10 @@ public class YschoolDataPoolFactory {
         
         school.setAddress(BasicDataGenerator.generateRandomString(45));
         school.setDistrict(BasicDataGenerator.generateRandomString(45));
+        school.setModifiedTime(BasicDataGenerator.generateDate());
         school.setName(BasicDataGenerator.generateRandomString(45));
         school.setProvince(BasicDataGenerator.generateRandomString(45));
+        school.setSchoolNo(BasicDataGenerator.generateRandomInt());
         school.setZone(BasicDataGenerator.generateRandomString(45));
 
         return school;
@@ -407,6 +476,7 @@ public class YschoolDataPoolFactory {
 
         Section section = new Section();    
         
+        section.setModifiedTime(BasicDataGenerator.generateDate());
         section.setSectionName(BasicDataGenerator.generateRandomString(45));
 
         return section;
@@ -461,6 +531,7 @@ public class YschoolDataPoolFactory {
         Staff staff = new Staff();    
         
         staff.setFullName(BasicDataGenerator.generateRandomString(100));
+        staff.setModifiedTime(BasicDataGenerator.generateDate());
         staff.setName(BasicDataGenerator.generateRandomString(45));
         staff.setPhoto(BasicDataGenerator.generateRandomBinary(65535));
         staff.setStaffid(BasicDataGenerator.generateRandomString(45));
@@ -509,11 +580,12 @@ public class YschoolDataPoolFactory {
 
         Student student = new Student();    
         
-        student.setAddmisionNo(BasicDataGenerator.generateRandomString(45));
         student.setAddress(BasicDataGenerator.generateRandomString(400));
+        student.setAdmissionNo(BasicDataGenerator.generateRandomString(45));
         student.setDob(BasicDataGenerator.generateDate());
         student.setFullName(BasicDataGenerator.generateRandomString(45));
         student.setGender(BasicDataGenerator.generateRandomString(10));
+        student.setModifiedTime(BasicDataGenerator.generateDate());
         student.setName(BasicDataGenerator.generateRandomString(45));
         student.setNameWtInitial(BasicDataGenerator.generateRandomString(45));
         student.setPhoto(BasicDataGenerator.generateRandomBinary(2147483647));
@@ -548,6 +620,7 @@ public class YschoolDataPoolFactory {
 		if (classroomSubjectIdclassroomSubject != null) {
 			classroomSubjectIdclassroomSubject.addStudentClassroomSubject (studentClassroomSubject);
 		}
+        studentClassroomSubject.setModifiedTime(BasicDataGenerator.generateDate());
 
         return studentClassroomSubject;
     }
@@ -573,12 +646,54 @@ public class YschoolDataPoolFactory {
     public static StudentGeneralexamProfile getStudentGeneralexamProfile(Student studentIdstudent) {
         StudentGeneralexamProfile studentGeneralexamProfile = new StudentGeneralexamProfile();     
         studentGeneralexamProfile.setAlIslandRank(BasicDataGenerator.generateRandomInt());
+        studentGeneralexamProfile.setModifiedTime(BasicDataGenerator.generateDate());
 		if (studentIdstudent != null) {
 			studentIdstudent.addStudentGeneralexamProfile (studentGeneralexamProfile);
 		}
         studentGeneralexamProfile.setZscore(BasicDataGenerator.generateRandomDouble());
 
         return studentGeneralexamProfile;
+    }
+
+    /**
+     * Data pool factory for StudentSync.
+     * @return StudentSyncA StudentSync object
+     */
+    public static StudentSync getStudentSync() {
+
+        StudentSync studentSync = new StudentSync();    
+        
+        studentSync.setId(getStudentSyncPK());
+        studentSync.setModifiedTime(BasicDataGenerator.generateDate());
+        studentSync.setSyncStatus(BasicDataGenerator.generateRandomInt());
+
+        return studentSync;
+    }
+
+    /**
+     * Data pool factory for StudentSyncPK.
+     * @return StudentSyncPK A StudentSyncPK object
+     */
+    public static StudentSyncPK getStudentSyncPK() {
+
+        StudentSyncPK studentSyncPK =  getStudentSyncPK(
+	        getStudent());
+
+		return studentSyncPK;
+       
+    }
+
+     /**
+     * Data pool factory for StudentSyncPK.
+     * @param studentIdstudent A valid Student object
+     * @return StudentSyncPK A StudentSyncPK object
+     */
+    public static StudentSyncPK getStudentSyncPK(Student studentIdstudent) {
+        StudentSyncPK studentSyncPK = new StudentSyncPK();     
+        studentSyncPK.setClassIdstudent(BasicDataGenerator.generateRandomInt());
+        studentSyncPK.setStudentIdstudent(studentIdstudent);
+
+        return studentSyncPK;
     }
 
     /**
@@ -590,7 +705,9 @@ public class YschoolDataPoolFactory {
         Subject subject = new Subject();    
         
         subject.setIsOptional(BasicDataGenerator.generateRandomBoolean());
+        subject.setModifiedTime(BasicDataGenerator.generateDate());
         subject.setName(BasicDataGenerator.generateRandomString(45));
+        subject.setSubjectCode(BasicDataGenerator.generateRandomString(45));
 
         return subject;
     }
@@ -616,6 +733,7 @@ public class YschoolDataPoolFactory {
     public static User getUser(UserRole userRoleIduserRole) {
         User user = new User();     
         user.setEmail(BasicDataGenerator.generateRandomString(45));
+        user.setModifiedTime(BasicDataGenerator.generateDate());
         user.setPassword(BasicDataGenerator.generateRandomString(45));
         user.setUserName(BasicDataGenerator.generateRandomString(45));
 		if (userRoleIduserRole != null) {

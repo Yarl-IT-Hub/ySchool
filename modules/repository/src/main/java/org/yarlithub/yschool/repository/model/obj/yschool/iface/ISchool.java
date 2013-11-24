@@ -1,4 +1,5 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
+import java.util.Date;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.SchoolHasStaffHasRole;
 
@@ -55,6 +56,20 @@ public interface ISchool {
 	void setId(final Integer id);
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	Date getModifiedTime();
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	void setModifiedTime(final Date modifiedTime);
+
+    /**
      * Return the value associated with the column: name.
 	 * @return A String object (this.name)
 	 */
@@ -100,6 +115,20 @@ public interface ISchool {
 	 * @param schoolHasStaffHasRole the schoolHasStaffHasRole value you wish to set
 	 */
 	void setSchoolHasStaffHasRoles(final Set<SchoolHasStaffHasRole> schoolHasStaffHasRole);
+
+    /**
+     * Return the value associated with the column: schoolNo.
+	 * @return A Integer object (this.schoolNo)
+	 */
+	Integer getSchoolNo();
+	
+
+  
+    /**  
+     * Set the value related to the column: schoolNo.
+	 * @param schoolNo the schoolNo value you wish to set
+	 */
+	void setSchoolNo(final Integer schoolNo);
 
     /**
      * Return the value associated with the column: zone.

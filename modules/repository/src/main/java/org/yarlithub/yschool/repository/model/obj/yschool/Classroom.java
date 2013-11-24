@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -64,6 +65,8 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
+	private Date modifiedTime;
+	/** Field mapping. */
 	private Section sectionIdsection;
 	/** Field mapping. */
 	private Integer year;
@@ -85,14 +88,16 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 * @param division String object;
 	 * @param grade Integer object;
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param year Integer object;
 	 */
 	public Classroom(String division, Integer grade, Integer id, 					
-			Integer year) {
+			Date modifiedTime, Integer year) {
 
 		this.division = division;
 		this.grade = grade;
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.year = year;
 	}
 	
@@ -276,6 +281,27 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: sectionIdsection.
 	 * @return A Section object (this.sectionIdsection)
 	 */
@@ -342,6 +368,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 		copy.setDivision(this.getDivision());
 		copy.setGrade(this.getGrade());
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setSectionIdsection(this.getSectionIdsection());
 		copy.setYear(this.getYear());
 		return copy;
@@ -360,6 +387,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 		sb.append("division: " + this.getDivision() + ", ");
 		sb.append("grade: " + this.getGrade() + ", ");
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("year: " + this.getYear());
 		return sb.toString();		
 	}
@@ -408,6 +436,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getDivision() == null) && (that.getDivision() == null)) || (getDivision() != null && getDivision().equals(that.getDivision())));
 		result = result && (((getGrade() == null) && (that.getGrade() == null)) || (getGrade() != null && getGrade().equals(that.getGrade())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getSectionIdsection() == null) && (that.getSectionIdsection() == null)) || (getSectionIdsection() != null && getSectionIdsection().getId().equals(that.getSectionIdsection().getId())));	
 		result = result && (((getYear() == null) && (that.getYear() == null)) || (getYear() != null && getYear().equals(that.getYear())));
 		return result;

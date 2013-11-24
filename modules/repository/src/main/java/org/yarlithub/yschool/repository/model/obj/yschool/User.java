@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.persistence.Basic;
@@ -31,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IUser;
 public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977412L;
+	private static final long serialVersionUID = -558977405L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -46,6 +47,8 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	private String email;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private String password;
 	/** Field mapping. */
@@ -68,14 +71,16 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 	
 	/** Constructor taking a given ID.
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param password String object;
 	 * @param userName String object;
 	 * @param userRoleIduserRole UserRole object;
 	 */
-	public User(Integer id, String password, String userName, 					
-			UserRole userRoleIduserRole) {
+	public User(Integer id, Date modifiedTime, String password, 					
+			String userName, UserRole userRoleIduserRole) {
 
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.password = password;
 		this.userName = userName;
 		this.userRoleIduserRole = userRoleIduserRole;
@@ -144,6 +149,27 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 		SAVED_HASHES.put( id, this.hashCode );
 		}
 		this.id = id;
+	}
+
+    /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
 	}
 
     /**
@@ -224,6 +250,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 
 		copy.setEmail(this.getEmail());
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setPassword(this.getPassword());
 		copy.setUserName(this.getUserName());
 		copy.setUserRoleIduserRole(this.getUserRoleIduserRole());
@@ -242,6 +269,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 		
 		sb.append("email: " + this.getEmail() + ", ");
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("password: " + this.getPassword() + ", ");
 		sb.append("userName: " + this.getUserName() + ", ");
 		return sb.toString();		
@@ -290,6 +318,7 @@ public class User implements Cloneable, Serializable, IPojoGenEntity, IUser {
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getEmail() == null) && (that.getEmail() == null)) || (getEmail() != null && getEmail().equals(that.getEmail())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getPassword() == null) && (that.getPassword() == null)) || (getPassword() != null && getPassword().equals(that.getPassword())));
 		result = result && (((getUserName() == null) && (that.getUserName() == null)) || (getUserName() != null && getUserName().equals(that.getUserName())));
 		result = result && (((getUserRoleIduserRole() == null) && (that.getUserRoleIduserRole() == null)) || (getUserRoleIduserRole() != null && getUserRoleIduserRole().getId().equals(that.getUserRoleIduserRole().getId())));	

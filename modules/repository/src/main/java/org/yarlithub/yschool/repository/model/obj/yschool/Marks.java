@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.persistence.Basic;
@@ -31,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IMarks;
 public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977429L;
+	private static final long serialVersionUID = -558977425L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -48,6 +49,8 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
 	private Double marks;
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private Student studentIdstudent;
 	/**
@@ -67,12 +70,15 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	/** Constructor taking a given ID.
 	 * @param examIdexam Exam object;
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param studentIdstudent Student object;
 	 */
-	public Marks(Exam examIdexam, Integer id, Student studentIdstudent) {
+	public Marks(Exam examIdexam, Integer id, Date modifiedTime, 					
+			Student studentIdstudent) {
 
 		this.examIdexam = examIdexam;
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.studentIdstudent = studentIdstudent;
 	}
 	
@@ -163,6 +169,27 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: studentIdstudent.
 	 * @return A Student object (this.studentIdstudent)
 	 */
@@ -199,6 +226,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 		copy.setExamIdexam(this.getExamIdexam());
 		copy.setId(this.getId());
 		copy.setMarks(this.getMarks());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setStudentIdstudent(this.getStudentIdstudent());
 		return copy;
 	}
@@ -215,6 +243,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 		
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("marks: " + this.getMarks() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		return sb.toString();		
 	}
 
@@ -262,6 +291,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getExamIdexam() == null) && (that.getExamIdexam() == null)) || (getExamIdexam() != null && getExamIdexam().getId().equals(that.getExamIdexam().getId())));	
 		result = result && (((getMarks() == null) && (that.getMarks() == null)) || (getMarks() != null && getMarks().equals(that.getMarks())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getStudentIdstudent() == null) && (that.getStudentIdstudent() == null)) || (getStudentIdstudent() != null && getStudentIdstudent().getId().equals(that.getStudentIdstudent().getId())));	
 		return result;
 	}

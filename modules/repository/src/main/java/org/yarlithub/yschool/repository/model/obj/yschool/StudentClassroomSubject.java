@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.persistence.Basic;
@@ -31,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudentClassroo
 public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGenEntity, IStudentClassroomSubject {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977415L;
+	private static final long serialVersionUID = -558977411L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -48,6 +49,8 @@ public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGe
 	private ClassroomSubject classroomSubjectIdclassroomSubject;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Date modifiedTime;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -66,12 +69,15 @@ public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGe
 	 * @param classroomStudentIdclassroomStudent ClassroomStudent object;
 	 * @param classroomSubjectIdclassroomSubject ClassroomSubject object;
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 */
-	public StudentClassroomSubject(ClassroomStudent classroomStudentIdclassroomStudent, ClassroomSubject classroomSubjectIdclassroomSubject, Integer id) {
+	public StudentClassroomSubject(ClassroomStudent classroomStudentIdclassroomStudent, ClassroomSubject classroomSubjectIdclassroomSubject, Integer id, 					
+			Date modifiedTime) {
 
 		this.classroomStudentIdclassroomStudent = classroomStudentIdclassroomStudent;
 		this.classroomSubjectIdclassroomSubject = classroomSubjectIdclassroomSubject;
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 	}
 	
  
@@ -164,6 +170,27 @@ public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGe
 		this.id = id;
 	}
 
+    /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
 
    /**
     * Deep copy.
@@ -178,6 +205,7 @@ public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGe
 		copy.setClassroomStudentIdclassroomStudent(this.getClassroomStudentIdclassroomStudent());
 		copy.setClassroomSubjectIdclassroomSubject(this.getClassroomSubjectIdclassroomSubject());
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		return copy;
 	}
 	
@@ -191,7 +219,8 @@ public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGe
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append("id: " + this.getId());
+		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime());
 		return sb.toString();		
 	}
 
@@ -239,6 +268,7 @@ public class StudentClassroomSubject implements Cloneable, Serializable, IPojoGe
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getClassroomStudentIdclassroomStudent() == null) && (that.getClassroomStudentIdclassroomStudent() == null)) || (getClassroomStudentIdclassroomStudent() != null && getClassroomStudentIdclassroomStudent().getId().equals(that.getClassroomStudentIdclassroomStudent().getId())));	
 		result = result && (((getClassroomSubjectIdclassroomSubject() == null) && (that.getClassroomSubjectIdclassroomSubject() == null)) || (getClassroomSubjectIdclassroomSubject() != null && getClassroomSubjectIdclassroomSubject().getId().equals(that.getClassroomSubjectIdclassroomSubject().getId())));	
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		return result;
 	}
 	

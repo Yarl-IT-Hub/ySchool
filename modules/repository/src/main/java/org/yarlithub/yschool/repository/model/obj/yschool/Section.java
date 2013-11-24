@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +35,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISection;
 public class Section implements Cloneable, Serializable, IPojoGenEntity, ISection {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977422L;
+	private static final long serialVersionUID = -558977418L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -50,6 +51,8 @@ public class Section implements Cloneable, Serializable, IPojoGenEntity, ISectio
 
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private Set<SectionHasStaffHasRole> sectionHasStaffHasRoles = new HashSet<SectionHasStaffHasRole>();
 
@@ -67,6 +70,16 @@ public class Section implements Cloneable, Serializable, IPojoGenEntity, ISectio
 	 */
 	public Section(Integer id) {
 		this.id = id;
+	}
+	
+	/** Constructor taking a given ID.
+	 * @param id Integer object;
+	 * @param modifiedTime Date object;
+	 */
+	public Section(Integer id, Date modifiedTime) {
+
+		this.id = id;
+		this.modifiedTime = modifiedTime;
 	}
 	
  
@@ -145,6 +158,27 @@ public class Section implements Cloneable, Serializable, IPojoGenEntity, ISectio
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: sectionHasStaffHasRole.
 	 * @return A Set&lt;SectionHasStaffHasRole&gt; object (this.sectionHasStaffHasRole)
 	 */
@@ -211,6 +245,7 @@ public class Section implements Cloneable, Serializable, IPojoGenEntity, ISectio
 			copy.getClassrooms().addAll(this.getClassrooms());
 		}
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		if (this.getSectionHasStaffHasRoles() != null) {
 			copy.getSectionHasStaffHasRoles().addAll(this.getSectionHasStaffHasRoles());
 		}
@@ -229,6 +264,7 @@ public class Section implements Cloneable, Serializable, IPojoGenEntity, ISectio
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("sectionName: " + this.getSectionName());
 		return sb.toString();		
 	}
@@ -275,6 +311,7 @@ public class Section implements Cloneable, Serializable, IPojoGenEntity, ISectio
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getSectionName() == null) && (that.getSectionName() == null)) || (getSectionName() != null && getSectionName().equals(that.getSectionName())));
 		return result;
 	}

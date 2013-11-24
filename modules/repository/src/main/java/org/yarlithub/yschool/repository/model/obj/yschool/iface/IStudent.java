@@ -17,20 +17,6 @@ public interface IStudent {
 
 
     /**
-     * Return the value associated with the column: addmisionNo.
-	 * @return A String object (this.addmisionNo)
-	 */
-	String getAddmisionNo();
-	
-
-  
-    /**  
-     * Set the value related to the column: addmisionNo.
-	 * @param addmisionNo the addmisionNo value you wish to set
-	 */
-	void setAddmisionNo(final String addmisionNo);
-
-    /**
      * Return the value associated with the column: address.
 	 * @return A String object (this.address)
 	 */
@@ -43,6 +29,20 @@ public interface IStudent {
 	 * @param address the address value you wish to set
 	 */
 	void setAddress(final String address);
+
+    /**
+     * Return the value associated with the column: admissionNo.
+	 * @return A String object (this.admissionNo)
+	 */
+	String getAdmissionNo();
+	
+
+  
+    /**  
+     * Set the value related to the column: admissionNo.
+	 * @param admissionNo the admissionNo value you wish to set
+	 */
+	void setAdmissionNo(final String admissionNo);
 
     /**
      * Return the value associated with the column: classroomStudent.
@@ -137,6 +137,20 @@ public interface IStudent {
 	 * @param marks the marks value you wish to set
 	 */
 	void setMarkss(final Set<Marks> marks);
+
+    /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	Date getModifiedTime();
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	void setModifiedTime(final Date modifiedTime);
 
     /**
      * Return the value associated with the column: name.

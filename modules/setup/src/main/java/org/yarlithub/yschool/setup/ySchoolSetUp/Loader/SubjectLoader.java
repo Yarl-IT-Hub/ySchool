@@ -10,7 +10,7 @@ import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
 /**
  * Created with IntelliJ IDEA.
- * User: jayrksih
+ * User: Jay Krish
  * Date: 8/13/13
  * Time: 11:16 PM
  * To change this template use File | Settings | File Templates.

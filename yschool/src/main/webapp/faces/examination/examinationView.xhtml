@@ -73,9 +73,9 @@
             </h5>
         </div>
         <div class="box span2">
-            <h:form>
+            <h:form id="form_editexam">
 
-                <h:commandButton class="btn btn-large" value="Edit..."
+                <h:commandButton class="btn btn-large" value="Edit..." action="#{examinationViewBean.editExam}"
                                  type="submit">
 
                 </h:commandButton>
@@ -89,7 +89,7 @@
     <ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
         <!--upload marks-->
         <li class="thumbnail span8">
-            <h:form class="form-horizontal" enctype="multipart/form-data">
+            <h:form id="form_marksupload" class="form-horizontal" enctype="multipart/form-data">
                 <div class="well span10">
                     <p class="lead text-center">Upload Results</p>
                     No marks or results entered yet.
@@ -215,26 +215,20 @@
         <li class="thumbnail span8">
             <p class="lead"> CLASS Data Sync</p>
 
+            <div class="alert alert-info">
 
-            <h:form>
+                <p class="text text-center">
+                    This Exam marks are not synced with CLASS Server yet. <br/>
+                    Press Sync Now button to synchronize this Exam with CLASS Server. <br/>
+                    Make sure you have an active internet connection till synchronization ends.
+                </p>
+            </div>
+            <div class="span4 offset4">
 
-                <div class="alert alert-info">
-
-                    <p class="text text-center">
-                        This Exam marks are not synced with CLASS Server yet. <br/>
-                        Press Sync Now button to synchronize this Exam with CLASS Server. <br/>
-                        Make sure you have an active internet connection till synchronization ends.
-                    </p>
-                </div>
-                <div class="span2 offset5">
-
-                    <h:commandButton class="btn btn-info btn-large" action="#{examinationViewBean.syncExam}" value="SyncNow"
-                                     type="submit">
-
-                    </h:commandButton>
-                </div>
-
-            </h:form>
+                <a href="/yschool/faces/analytics/analyticsSync.xhtml">
+                    <Button class="btn btn-info btn-large">Go to Sync Now</Button>
+                </a>
+            </div>
 
 
             <!--CLASS datasync-->

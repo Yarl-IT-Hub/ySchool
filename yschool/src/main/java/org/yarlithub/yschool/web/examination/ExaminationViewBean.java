@@ -26,6 +26,7 @@ import java.util.Calendar;
 @Scope(value = "session")
 @Controller
 public class ExaminationViewBean implements Serializable {
+    public boolean generalExam;
     @Autowired
     private ExaminationService examinationService;
     @Autowired
@@ -36,7 +37,6 @@ public class ExaminationViewBean implements Serializable {
     private int yearInt;
     private int dateInt;
     private String monthString;
-    public boolean generalExam;
 
     public Exam getExam() {
         return exam;
@@ -115,10 +115,12 @@ public class ExaminationViewBean implements Serializable {
         return "ViewExam";
     }
 
-    public void syncExam(){
-        for (int i=0;i<10000;i++){
-               String a="kjds";
-            a.equalsIgnoreCase("kjsdf") ;
-        }
+    public String editExam() {
+        return "EditExam";
+    }
+
+    public String syncCLASS() {
+        return "AnalyticsHome";
+
     }
 }

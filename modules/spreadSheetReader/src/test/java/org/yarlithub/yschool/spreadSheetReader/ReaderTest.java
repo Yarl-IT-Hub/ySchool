@@ -2,7 +2,7 @@ package org.yarlithub.yschool.spreadSheetReader;
 
 /**
  * Created with IntelliJ IDEA.
- * User: jayrksih
+ * User: Jay Krish
  * Date: 8/16/13
  * Time: 3:21 PM
  * To change this template use File | Settings | File Templates.

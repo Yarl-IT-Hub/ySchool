@@ -1,4 +1,5 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
+import java.util.Date;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 
@@ -60,6 +61,20 @@ public interface ISubject {
 	void setIsOptional(final Boolean isOptional);
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	Date getModifiedTime();
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	void setModifiedTime(final Date modifiedTime);
+
+    /**
      * Return the value associated with the column: name.
 	 * @return A String object (this.name)
 	 */
@@ -72,6 +87,20 @@ public interface ISubject {
 	 * @param name the name value you wish to set
 	 */
 	void setName(final String name);
+
+    /**
+     * Return the value associated with the column: subjectCode.
+	 * @return A String object (this.subjectCode)
+	 */
+	String getSubjectCode();
+	
+
+  
+    /**  
+     * Set the value related to the column: subjectCode.
+	 * @param subjectCode the subjectCode value you wish to set
+	 */
+	void setSubjectCode(final String subjectCode);
 
 	// end of interface
 }

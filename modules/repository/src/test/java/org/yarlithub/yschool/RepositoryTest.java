@@ -97,7 +97,7 @@ public class RepositoryTest {
 
         Student student = null;
         Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
-        studentCR.add(Restrictions.eq("addmisionNo", "18746"));                        //String.valueOf(admissionNo)
+        studentCR.add(Restrictions.eq("admissionNo", "18746"));                        //String.valueOf(admissionNo)
         List<Student> studentList = studentCR.list();
         /*The admission is unique thus the number of students retured should be one */
 //        if (studentList.size() == 1) {

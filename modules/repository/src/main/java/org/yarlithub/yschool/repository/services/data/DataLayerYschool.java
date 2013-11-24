@@ -1,6 +1,7 @@
 package org.yarlithub.yschool.repository.services.data;
 
 import java.io.Serializable;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassAnalyzerClassifier;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRolePK;
@@ -9,6 +10,8 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRolePK;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
+import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
+import org.yarlithub.yschool.repository.model.obj.yschool.ExamSyncPK;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
@@ -24,6 +27,8 @@ import org.yarlithub.yschool.repository.model.obj.yschool.StaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentSync;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentSyncPK;
 import org.yarlithub.yschool.repository.model.obj.yschool.Subject;
 import org.yarlithub.yschool.repository.model.obj.yschool.User;
 import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
@@ -171,6 +176,25 @@ public interface DataLayerYschool {
      ClassroomSubjectHasStaffHasRole getClassroomSubjectHasStaffHasRole(final ClassroomSubjectHasStaffHasRolePK id);  
 
     /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (ClassAnalyzerClassifier obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteClassAnalyzerClassifier(final Integer id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a ClassAnalyzerClassifier object
+     */
+    ClassAnalyzerClassifier loadClassAnalyzerClassifier(final Integer id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     ClassAnalyzerClassifier getClassAnalyzerClassifier(final Integer id);  
+
+    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Exam obj) directly
      * @param id Identifier to delete
      */
@@ -188,6 +212,25 @@ public interface DataLayerYschool {
      * @return An object of type T
      */
      Exam getExam(final Integer id);  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (ExamSync obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteExamSync(final ExamSyncPK id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a ExamSync object
+     */
+    ExamSync loadExamSync(final ExamSyncPK id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     ExamSync getExamSync(final ExamSyncPK id);  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (ExamType obj) directly
@@ -435,6 +478,25 @@ public interface DataLayerYschool {
      * @return An object of type T
      */
      StudentGeneralexamProfile getStudentGeneralexamProfile(final Integer id);  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (StudentSync obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteStudentSync(final StudentSyncPK id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a StudentSync object
+     */
+    StudentSync loadStudentSync(final StudentSyncPK id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     StudentSync getStudentSync(final StudentSyncPK id);  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Subject obj) directly

@@ -4,6 +4,7 @@ import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -34,7 +35,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStaff;
 public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977418L;
+	private static final long serialVersionUID = -558977414L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -49,6 +50,8 @@ public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 	private String fullName;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private String name;
 	/** Field mapping. */
@@ -74,12 +77,15 @@ public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 	
 	/** Constructor taking a given ID.
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param name String object;
 	 * @param staffid String object;
 	 */
-	public Staff(Integer id, String name, String staffid) {
+	public Staff(Integer id, Date modifiedTime, String name, 					
+			String staffid) {
 
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.name = name;
 		this.staffid = staffid;
 	}
@@ -147,6 +153,27 @@ public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 		SAVED_HASHES.put( id, this.hashCode );
 		}
 		this.id = id;
+	}
+
+    /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
 	}
 
     /**
@@ -254,6 +281,7 @@ public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 
 		copy.setFullName(this.getFullName());
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setName(this.getName());
 		copy.setPhoto(this.getPhoto());
 		if (this.getStaffHasRoles() != null) {
@@ -275,6 +303,7 @@ public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 		
 		sb.append("fullName: " + this.getFullName() + ", ");
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("name: " + this.getName() + ", ");
 		sb.append("photo: " + (this.photo == null ? null : Arrays.toString(this.getPhoto())) + ", ");
 		sb.append("staffid: " + this.getStaffid());
@@ -324,6 +353,7 @@ public class Staff implements Cloneable, Serializable, IPojoGenEntity, IStaff {
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getFullName() == null) && (that.getFullName() == null)) || (getFullName() != null && getFullName().equals(that.getFullName())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getName() == null) && (that.getName() == null)) || (getName() != null && getName().equals(that.getName())));
 		result = result && (((getPhoto() == null) && (that.getPhoto() == null)) || (getPhoto() != null && getPhoto().equals(that.getPhoto())));
 		result = result && (((getStaffid() == null) && (that.getStaffid() == null)) || (getStaffid() != null && getStaffid().equals(that.getStaffid())));

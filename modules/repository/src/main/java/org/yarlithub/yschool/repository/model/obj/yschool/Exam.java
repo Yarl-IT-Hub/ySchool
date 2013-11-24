@@ -37,7 +37,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExam;
 public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977431L;
+	private static final long serialVersionUID = -558977430L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -60,6 +60,8 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	private Set<Marks> markss = new HashSet<Marks>();
 
 	/** Field mapping. */
+	private Date modifiedTime;
+	/** Field mapping. */
 	private Set<Results> resultss = new HashSet<Results>();
 
 	/** Field mapping. */
@@ -81,12 +83,15 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	/** Constructor taking a given ID.
 	 * @param date Date object;
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param term Integer object;
 	 */
-	public Exam(Date date, Integer id, Integer term) {
+	public Exam(Date date, Integer id, Date modifiedTime, 					
+			Integer term) {
 
 		this.date = date;
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.term = term;
 	}
 	
@@ -233,6 +238,27 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: results.
 	 * @return A Set&lt;Results&gt; object (this.results)
 	 */
@@ -302,6 +328,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		if (this.getMarkss() != null) {
 			copy.getMarkss().addAll(this.getMarkss());
 		}
+		copy.setModifiedTime(this.getModifiedTime());
 		if (this.getResultss() != null) {
 			copy.getResultss().addAll(this.getResultss());
 		}
@@ -321,6 +348,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		
 		sb.append("date: " + this.getDate() + ", ");
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("term: " + this.getTerm());
 		return sb.toString();		
 	}
@@ -370,6 +398,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		result = result && (((getClassroomSubjectIdclassroomSubject() == null) && (that.getClassroomSubjectIdclassroomSubject() == null)) || (getClassroomSubjectIdclassroomSubject() != null && getClassroomSubjectIdclassroomSubject().getId().equals(that.getClassroomSubjectIdclassroomSubject().getId())));	
 		result = result && (((getDate() == null) && (that.getDate() == null)) || (getDate() != null && getDate().equals(that.getDate())));
 		result = result && (((getExamTypeIdexamType() == null) && (that.getExamTypeIdexamType() == null)) || (getExamTypeIdexamType() != null && getExamTypeIdexamType().getId().equals(that.getExamTypeIdexamType().getId())));	
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getTerm() == null) && (that.getTerm() == null)) || (getTerm() != null && getTerm().equals(that.getTerm())));
 		return result;
 	}

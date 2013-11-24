@@ -38,7 +38,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 public class Student implements Cloneable, Serializable, IPojoGenEntity, IStudent {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977416L;
+	private static final long serialVersionUID = -558977412L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -50,9 +50,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	
 
 	/** Field mapping. */
-	private String addmisionNo;
-	/** Field mapping. */
 	private String address;
+	/** Field mapping. */
+	private String admissionNo;
 	/** Field mapping. */
 	private Set<ClassroomStudent> classroomStudents = new HashSet<ClassroomStudent>();
 
@@ -67,6 +67,8 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	/** Field mapping. */
 	private Set<Marks> markss = new HashSet<Marks>();
 
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private String name;
 	/** Field mapping. */
@@ -94,14 +96,17 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	}
 	
 	/** Constructor taking a given ID.
-	 * @param addmisionNo String object;
+	 * @param admissionNo String object;
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param name String object;
 	 */
-	public Student(String addmisionNo, Integer id, String name) {
+	public Student(String admissionNo, Integer id, Date modifiedTime, 					
+			String name) {
 
-		this.addmisionNo = addmisionNo;
+		this.admissionNo = admissionNo;
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.name = name;
 	}
 	
@@ -117,27 +122,6 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		return Student.class;
 	}
  
-
-    /**
-     * Return the value associated with the column: addmisionNo.
-	 * @return A String object (this.addmisionNo)
-	 */
-	@Basic( optional = false )
-	@Column( name = "addmision_no", nullable = false, length = 45  )
-	public String getAddmisionNo() {
-		return this.addmisionNo;
-		
-	}
-	
-
-  
-    /**  
-     * Set the value related to the column: addmisionNo.
-	 * @param addmisionNo the addmisionNo value you wish to set
-	 */
-	public void setAddmisionNo(final String addmisionNo) {
-		this.addmisionNo = addmisionNo;
-	}
 
     /**
      * Return the value associated with the column: address.
@@ -158,6 +142,27 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	 */
 	public void setAddress(final String address) {
 		this.address = address;
+	}
+
+    /**
+     * Return the value associated with the column: admissionNo.
+	 * @return A String object (this.admissionNo)
+	 */
+	@Basic( optional = false )
+	@Column( name = "admission_no", nullable = false, length = 45  )
+	public String getAdmissionNo() {
+		return this.admissionNo;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: admissionNo.
+	 * @param admissionNo the admissionNo value you wish to set
+	 */
+	public void setAdmissionNo(final String admissionNo) {
+		this.admissionNo = admissionNo;
 	}
 
     /**
@@ -315,6 +320,27 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: name.
 	 * @return A String object (this.name)
 	 */
@@ -448,8 +474,8 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		
         final Student copy = (Student)super.clone();
 
-		copy.setAddmisionNo(this.getAddmisionNo());
 		copy.setAddress(this.getAddress());
+		copy.setAdmissionNo(this.getAdmissionNo());
 		if (this.getClassroomStudents() != null) {
 			copy.getClassroomStudents().addAll(this.getClassroomStudents());
 		}
@@ -460,6 +486,7 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		if (this.getMarkss() != null) {
 			copy.getMarkss().addAll(this.getMarkss());
 		}
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setName(this.getName());
 		copy.setNameWtInitial(this.getNameWtInitial());
 		copy.setPhoto(this.getPhoto());
@@ -482,12 +509,13 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append("addmisionNo: " + this.getAddmisionNo() + ", ");
 		sb.append("address: " + this.getAddress() + ", ");
+		sb.append("admissionNo: " + this.getAdmissionNo() + ", ");
 		sb.append("dob: " + this.getDob() + ", ");
 		sb.append("fullName: " + this.getFullName() + ", ");
 		sb.append("gender: " + this.getGender() + ", ");
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("name: " + this.getName() + ", ");
 		sb.append("nameWtInitial: " + this.getNameWtInitial() + ", ");
 		sb.append("photo: " + (this.photo == null ? null : Arrays.toString(this.getPhoto())) + ", ");
@@ -536,11 +564,12 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((getAddmisionNo() == null) && (that.getAddmisionNo() == null)) || (getAddmisionNo() != null && getAddmisionNo().equals(that.getAddmisionNo())));
 		result = result && (((getAddress() == null) && (that.getAddress() == null)) || (getAddress() != null && getAddress().equals(that.getAddress())));
+		result = result && (((getAdmissionNo() == null) && (that.getAdmissionNo() == null)) || (getAdmissionNo() != null && getAdmissionNo().equals(that.getAdmissionNo())));
 		result = result && (((getDob() == null) && (that.getDob() == null)) || (getDob() != null && getDob().equals(that.getDob())));
 		result = result && (((getFullName() == null) && (that.getFullName() == null)) || (getFullName() != null && getFullName().equals(that.getFullName())));
 		result = result && (((getGender() == null) && (that.getGender() == null)) || (getGender() != null && getGender().equals(that.getGender())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getName() == null) && (that.getName() == null)) || (getName() != null && getName().equals(that.getName())));
 		result = result && (((getNameWtInitial() == null) && (that.getNameWtInitial() == null)) || (getNameWtInitial() != null && getNameWtInitial().equals(that.getNameWtInitial())));
 		result = result && (((getPhoto() == null) && (that.getPhoto() == null)) || (getPhoto() != null && getPhoto().equals(that.getPhoto())));

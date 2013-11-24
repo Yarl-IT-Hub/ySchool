@@ -6,7 +6,7 @@ import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 /**
  * Created with IntelliJ IDEA.
- * User: jayrksih
+ * User: Jay Krish
  * Date: 9/22/13
  * Time: 9:05 AM
  * To change this template use File | Settings | File Templates.

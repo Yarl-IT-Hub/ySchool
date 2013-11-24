@@ -92,6 +92,20 @@ public interface IExam {
 	void setMarkss(final Set<Marks> marks);
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	Date getModifiedTime();
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	void setModifiedTime(final Date modifiedTime);
+
+    /**
      * Return the value associated with the column: results.
 	 * @return A Set&lt;Results&gt; object (this.results)
 	 */

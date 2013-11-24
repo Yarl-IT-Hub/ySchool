@@ -9,7 +9,7 @@ import org.yarlithub.yschool.setup.dataAccess.SetUpDBQueries;
 
 /**
  * Created with IntelliJ IDEA.
- * User: jayrksih
+ * User: Jay Krish
  * Date: 8/8/13
  * Time: 4:49 PM
  * To change this template use File | Settings | File Templates.

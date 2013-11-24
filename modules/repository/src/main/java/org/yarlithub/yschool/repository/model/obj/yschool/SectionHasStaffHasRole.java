@@ -20,7 +20,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISectionHasStaff
 public class SectionHasStaffHasRole implements Cloneable, Serializable, IPojoGenEntity, ISectionHasStaffHasRole {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977421L;
+	private static final long serialVersionUID = -558977417L;
 
 	
 

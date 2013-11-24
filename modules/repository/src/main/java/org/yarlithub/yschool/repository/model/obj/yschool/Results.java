@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.persistence.Basic;
@@ -31,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IResults;
 public class Results implements Cloneable, Serializable, IPojoGenEntity, IResults {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977428L;
+	private static final long serialVersionUID = -558977424L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -46,6 +47,8 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 	private Exam examIdexam;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private String results;
 	/** Field mapping. */
@@ -67,12 +70,15 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 	/** Constructor taking a given ID.
 	 * @param examIdexam Exam object;
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param studentIdstudent Student object;
 	 */
-	public Results(Exam examIdexam, Integer id, Student studentIdstudent) {
+	public Results(Exam examIdexam, Integer id, Date modifiedTime, 					
+			Student studentIdstudent) {
 
 		this.examIdexam = examIdexam;
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.studentIdstudent = studentIdstudent;
 	}
 	
@@ -144,6 +150,27 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: results.
 	 * @return A String object (this.results)
 	 */
@@ -200,6 +227,7 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 
 		copy.setExamIdexam(this.getExamIdexam());
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setResults(this.getResults());
 		copy.setStudentIdstudent(this.getStudentIdstudent());
 		return copy;
@@ -216,6 +244,7 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("results: " + this.getResults() + ", ");
 		return sb.toString();		
 	}
@@ -263,6 +292,7 @@ public class Results implements Cloneable, Serializable, IPojoGenEntity, IResult
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getExamIdexam() == null) && (that.getExamIdexam() == null)) || (getExamIdexam() != null && getExamIdexam().getId().equals(that.getExamIdexam().getId())));	
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getResults() == null) && (that.getResults() == null)) || (getResults() != null && getResults().equals(that.getResults())));
 		result = result && (((getStudentIdstudent() == null) && (that.getStudentIdstudent() == null)) || (getStudentIdstudent() != null && getStudentIdstudent().getId().equals(that.getStudentIdstudent().getId())));	
 		return result;

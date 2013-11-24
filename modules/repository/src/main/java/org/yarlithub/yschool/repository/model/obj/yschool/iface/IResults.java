@@ -1,4 +1,5 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
+import java.util.Date;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 
@@ -39,6 +40,20 @@ public interface IResults {
 	 * @param id the id value you wish to set
 	 */
 	void setId(final Integer id);
+
+    /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	Date getModifiedTime();
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	void setModifiedTime(final Date modifiedTime);
 
     /**
      * Return the value associated with the column: results.

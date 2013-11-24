@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -33,7 +34,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISubject;
 public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubject {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977413L;
+	private static final long serialVersionUID = -558977406L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -52,7 +53,11 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	/** Field mapping. */
 	private Boolean isOptional;
 	/** Field mapping. */
+	private Date modifiedTime;
+	/** Field mapping. */
 	private String name;
+	/** Field mapping. */
+	private String subjectCode;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -69,11 +74,13 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	
 	/** Constructor taking a given ID.
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param name String object;
 	 */
-	public Subject(Integer id, String name) {
+	public Subject(Integer id, Date modifiedTime, String name) {
 
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.name = name;
 	}
 	
@@ -174,6 +181,27 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: name.
 	 * @return A String object (this.name)
 	 */
@@ -194,6 +222,27 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		this.name = name;
 	}
 
+    /**
+     * Return the value associated with the column: subjectCode.
+	 * @return A String object (this.subjectCode)
+	 */
+	@Basic( optional = true )
+	@Column( name = "subject_code", length = 45  )
+	public String getSubjectCode() {
+		return this.subjectCode;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: subjectCode.
+	 * @param subjectCode the subjectCode value you wish to set
+	 */
+	public void setSubjectCode(final String subjectCode) {
+		this.subjectCode = subjectCode;
+	}
+
 
    /**
     * Deep copy.
@@ -210,7 +259,9 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		}
 		copy.setId(this.getId());
 		copy.setIsOptional(this.isIsOptional());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setName(this.getName());
+		copy.setSubjectCode(this.getSubjectCode());
 		return copy;
 	}
 	
@@ -226,7 +277,9 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("isOptional: " + this.isIsOptional() + ", ");
-		sb.append("name: " + this.getName());
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
+		sb.append("name: " + this.getName() + ", ");
+		sb.append("subjectCode: " + this.getSubjectCode());
 		return sb.toString();		
 	}
 
@@ -273,7 +326,9 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((isIsOptional() == null) && (that.isIsOptional() == null)) || (isIsOptional() != null && isIsOptional().equals(that.isIsOptional())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getName() == null) && (that.getName() == null)) || (getName() != null && getName().equals(that.getName())));
+		result = result && (((getSubjectCode() == null) && (that.getSubjectCode() == null)) || (getSubjectCode() != null && getSubjectCode().equals(that.getSubjectCode())));
 		return result;
 	}
 	

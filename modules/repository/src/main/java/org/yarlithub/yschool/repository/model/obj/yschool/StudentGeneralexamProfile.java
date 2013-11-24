@@ -3,6 +3,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.persistence.Basic;
@@ -31,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudentGenerale
 public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojoGenEntity, IStudentGeneralexamProfile {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977414L;
+	private static final long serialVersionUID = -558977410L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -46,6 +47,8 @@ public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojo
 	private Integer alIslandRank;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Date modifiedTime;
 	/** Field mapping. */
 	private Student studentIdstudent;
 	/** Field mapping. */
@@ -66,11 +69,13 @@ public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojo
 	
 	/** Constructor taking a given ID.
 	 * @param id Integer object;
+	 * @param modifiedTime Date object;
 	 * @param studentIdstudent Student object;
 	 */
-	public StudentGeneralexamProfile(Integer id, Student studentIdstudent) {
+	public StudentGeneralexamProfile(Integer id, Date modifiedTime, Student studentIdstudent) {
 
 		this.id = id;
+		this.modifiedTime = modifiedTime;
 		this.studentIdstudent = studentIdstudent;
 	}
 	
@@ -140,6 +145,27 @@ public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojo
 	}
 
     /**
+     * Return the value associated with the column: modifiedTime.
+	 * @return A Date object (this.modifiedTime)
+	 */
+	@Basic( optional = false )
+	@Column( name = "modified_time", nullable = false  )
+	public Date getModifiedTime() {
+		return this.modifiedTime;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: modifiedTime.
+	 * @param modifiedTime the modifiedTime value you wish to set
+	 */
+	public void setModifiedTime(final Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
+    /**
      * Return the value associated with the column: studentIdstudent.
 	 * @return A Student object (this.studentIdstudent)
 	 */
@@ -194,6 +220,7 @@ public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojo
 
 		copy.setAlIslandRank(this.getAlIslandRank());
 		copy.setId(this.getId());
+		copy.setModifiedTime(this.getModifiedTime());
 		copy.setStudentIdstudent(this.getStudentIdstudent());
 		copy.setZscore(this.getZscore());
 		return copy;
@@ -211,6 +238,7 @@ public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojo
 		
 		sb.append("alIslandRank: " + this.getAlIslandRank() + ", ");
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("zscore: " + this.getZscore());
 		return sb.toString();		
 	}
@@ -258,6 +286,7 @@ public class StudentGeneralexamProfile implements Cloneable, Serializable, IPojo
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getAlIslandRank() == null) && (that.getAlIslandRank() == null)) || (getAlIslandRank() != null && getAlIslandRank().equals(that.getAlIslandRank())));
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getStudentIdstudent() == null) && (that.getStudentIdstudent() == null)) || (getStudentIdstudent() != null && getStudentIdstudent().getId().equals(that.getStudentIdstudent().getId())));	
 		result = result && (((getZscore() == null) && (that.getZscore() == null)) || (getZscore() != null && getZscore().equals(that.getZscore())));
 		return result;
