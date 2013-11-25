@@ -175,13 +175,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--Project CLASS analytics-->
-        <!--<dependency>-->
-            <!--<artifactId>class</artifactId>-->
-            <!--<groupId>com.arima</groupId>-->
-            <!--<version>1.0.3</version>-->
-        <!--</dependency>-->
-
         <dependency>
         <groupId>com.arima.classanalyzer</groupId>
         <artifactId>class-analyzer</artifactId>
