@@ -9,11 +9,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
+import org.yarlithub.yschool.repository.factories.yschool.HibernateYschoolDaoFactory;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -35,10 +37,13 @@ public class RepositoryTest {
         DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
         //create object and save into RDBMS
+        //
+        //
+        //Student studentss = YschoolDataPoolFactory.getStudent();
         UserRole userRole = YschoolDataPoolFactory.getUserRole();
         userRole.setName("transient_admin_WD#$@DTGHYFEX768IHHJWE");
         dataLayerYschool.save(userRole);
-        dataLayerYschool.flushSession();
+       dataLayerYschool.flushSession();
 
 //        //TODO: hibernate query is not working now.
 //        //Use hibernate query language to access RDBMS.
@@ -93,7 +98,7 @@ public class RepositoryTest {
        // List<Subject> lt= st.add(Restrictions.eq("name","SAIVISAM")).list();   //
 //        System.out.println(lt.get(0).getId());
 
-
+     //   ClassAnalyzerClassifier s = YschoolDataPoolFactory.getClassAnalyzerClassifier();
 
         Student student = null;
         Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
@@ -103,6 +108,18 @@ public class RepositoryTest {
 //        if (studentList.size() == 1) {
         student = studentList.get(0);
         System.out.println(student.getName());
+
+
+//        Working after data1.0.4
+ //         Exam exam =dataLayerYschool.getExam(1);
+//        System.out.println(exam.getId());
+//           ExamSync examSync = YschoolDataPoolFactory.getExamSync(null);
+//        examSync.setClassIdexam(1);
+//        examSync.setSyncStatus(2);
+//        examSync.setExamIdexam(exam);
+//        dataLayerYschool.save(examSync);
+//        dataLayerYschool.flushSession();
+//        System.out.println(examSync.getId());
 
     }
 }

@@ -106,7 +106,7 @@ public class ExaminationViewBean implements Serializable {
     public String uploadMarks() throws IOException {
 
         if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
-            examinationService.uploadMarks(marksORresultsFile, exam.getId());
+            examinationService.uploadResults(marksORresultsFile, exam.getId());
             marksORresults = new ListDataModel(examinationService.getExamResults(this.exam.getId()));
         } else {  //for term and ca exam we have float marks
             examinationService.uploadMarks(marksORresultsFile, exam.getId());

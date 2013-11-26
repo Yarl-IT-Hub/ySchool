@@ -1,6 +1,6 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Date;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentSyncPK;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 
 
 /** 
@@ -13,10 +13,24 @@ public interface IStudentSync {
 
 
     /**
-     * Return the value associated with the column: id.
-	 * @return A StudentSyncPK object (this.id)
+     * Return the value associated with the column: classIdstudent.
+	 * @return A Integer object (this.classIdstudent)
 	 */
-	StudentSyncPK getId();
+	Integer getClassIdstudent();
+	
+
+  
+    /**  
+     * Set the value related to the column: classIdstudent.
+	 * @param classIdstudent the classIdstudent value you wish to set
+	 */
+	void setClassIdstudent(final Integer classIdstudent);
+
+    /**
+     * Return the value associated with the column: id.
+	 * @return A Integer object (this.id)
+	 */
+	Integer getId();
 	
 
   
@@ -24,7 +38,7 @@ public interface IStudentSync {
      * Set the value related to the column: id.
 	 * @param id the id value you wish to set
 	 */
-	void setId(final StudentSyncPK id);
+	void setId(final Integer id);
 
     /**
      * Return the value associated with the column: modifiedTime.
@@ -39,6 +53,20 @@ public interface IStudentSync {
 	 * @param modifiedTime the modifiedTime value you wish to set
 	 */
 	void setModifiedTime(final Date modifiedTime);
+
+    /**
+     * Return the value associated with the column: studentIdstudent.
+	 * @return A Student object (this.studentIdstudent)
+	 */
+	Student getStudentIdstudent();
+	
+
+  
+    /**  
+     * Set the value related to the column: studentIdstudent.
+	 * @param studentIdstudent the studentIdstudent value you wish to set
+	 */
+	void setStudentIdstudent(final Student studentIdstudent);
 
     /**
      * Return the value associated with the column: syncStatus.

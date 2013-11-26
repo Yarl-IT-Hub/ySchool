@@ -33,7 +33,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExamType;
 public class ExamType implements Cloneable, Serializable, IPojoGenEntity, IExamType {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977426L;
+	private static final long serialVersionUID = -558977428L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */

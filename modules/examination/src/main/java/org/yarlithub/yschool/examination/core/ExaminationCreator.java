@@ -7,10 +7,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,7 +16,7 @@ import java.util.ListIterator;
  * Time: 9:05 AM
  * To change this template use File | Settings | File Templates.
  */
-public class NewExamination {
+public class ExaminationCreator {
 
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
@@ -30,39 +27,55 @@ public class NewExamination {
      * @param grade     int grade
      * @param division  Char like A/B/C/D/E/F
      * @param subjectid int id as in Subject table
-     * @return true if successfully created a CA exam and inserted entries into related database tables.
+     * @return exam object if successfully created a CA exam and inserted entries into related database tables, otherwise null.
      */
-    public boolean addCAExam(Date date, int term, int examtype, int grade, String division, int subjectid) {
+    public Exam addNewCAExam(Date date, int term, int examtype, int grade, String division, int subjectid) {
 
         //see database design in data/V1.2/ySchool_ERDiagram_V1.2.png
         //First get the class id from classroom table using available user inputs
-        Classroom classroom = getClassid(date, grade, division);
+        Classroom classroom = getClassId(date, grade, division);
         if (classroom == null) {
-            return false;
+            return null;
         }
 
         //Using class id and subject get the relation table calsssubject id
         Subject subject = dataLayerYschool.getSubject(subjectid);
         ClassroomSubject classSubject = getClassroomSubject(classroom, subject);
         if (classSubject == null) {
-            return false;
+            return null;
         }
 
         //Finally enter an exam table entry.
         ExamType examType = dataLayerYschool.getExamType(examtype);
-        int success = insertExam(date, term, examType, classSubject);
-        if (success == 1) {
-            return true;
+        Exam exam = insertExam(date, term, examType, classSubject);
+        if (exam.getId() > 0) {
+            /* if SQL error in insert exam then the exam.id remains 0,
+             * if success returns the auto-generated id */
+            return exam;
         }
-        return false;
+        return null;
     }
 
-    public boolean addTermExam(Date date, int term, int examtype, int grade, int subjectid) {
+    /**
+     * @param date      java.util.date
+     * @param term      int term 1 or 2 or 3
+     * @param examtype  int id as in Exam_Type table in yschool database version1.2
+     * @param grade     int grade
+     * @param subjectid int id as in Subject table
+     * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division
+     * and if successful and inserted entries into related database tables return list of exams, otherwise null.
+     */
+    public List<Exam> addNewTermExam(Date date, int term, int examtype, int grade, int subjectid) {
+
+        List<Exam> examList = new ArrayList<Exam>();
 
         ExamType examType = dataLayerYschool.getExamType(examtype);
         //see database design in data/V1.2/ySchool_ERDiagram_V1.2.png
         //First get the all divisions of classes.
-        List<Classroom> classrooms = getClassids(date, grade);
+        List<Classroom> classrooms = getClassIds(date, grade);
+        if(classrooms ==null){
+            return null;
+        }
         //for each divisions of classroom entry, check if the subject is provided.
         ListIterator classiter = classrooms.listIterator();
         while (classiter.hasNext()) {
@@ -71,14 +84,16 @@ public class NewExamination {
             ClassroomSubject classroomSubject = getClassroomSubject(classroom, subject);
             if (classroomSubject != null) {
                 //iteratively enter exams for each divisions.
-                insertExam(date, term, examType, classroomSubject);
+                examList.add(insertExam(date, term, examType, classroomSubject));
             }
         }
-        //TODO:Track failures??
-        return true;
+       if(examList.size()>0){
+            return examList;
+        }
+        return null;
     }
 
-    private int insertExam(Date date, int term, ExamType examType, ClassroomSubject classSubject) {
+    private Exam insertExam(Date date, int term, ExamType examType, ClassroomSubject classSubject) {
 
         Exam exam = YschoolDataPoolFactory.getExam();
         exam.setDate(date);
@@ -87,8 +102,7 @@ public class NewExamination {
         exam.setExamTypeIdexamType(examType);
         dataLayerYschool.save(exam);
         dataLayerYschool.flushSession();
-        //TODO: save method does not indicates/returns success/failure
-        return 1;
+        return exam;
     }
 
     private ClassroomSubject getClassroomSubject(Classroom classroom, Subject subject) {
@@ -105,10 +119,11 @@ public class NewExamination {
         return null;
     }
 
-    private Classroom getClassid(Date date, int grade, String division) {
+    private Classroom getClassId(Date date, int grade, String division) {
 
         Criteria getclassCriteria = dataLayerYschool.createCriteria(Classroom.class);
 
+        List<Classroom> classroomList = new ArrayList<>();
         //year is int for classroom.
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -116,26 +131,28 @@ public class NewExamination {
         getclassCriteria.add(Restrictions.eq("year", year));
         getclassCriteria.add(Restrictions.eq("grade", grade));
         getclassCriteria.add(Restrictions.eq("division", division));
-        List<Classroom> list = getclassCriteria.list();
-        if (list.size() > 0) {
-            int classroomid = list.get(0).getId();
-            Classroom classroom = dataLayerYschool.getClassroom(classroomid);
-            return classroom;
+        classroomList = getclassCriteria.list();
+        if (classroomList.size() > 0) {
+            return classroomList.get(0);
         }
         return null;
     }
 
-    private List<Classroom> getClassids(Date date, int grade) {
+    private List<Classroom> getClassIds(Date date, int grade) {
 
         Criteria getclassCriteria = dataLayerYschool.createCriteria(Classroom.class);
+        List<Classroom> classrooms = new ArrayList<>();
         //year is int for classroom.
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int year = calendar.get(Calendar.YEAR);
         getclassCriteria.add(Restrictions.eq("year", year));
         getclassCriteria.add(Restrictions.eq("grade", grade));
-        List<Classroom> classrooms = getclassCriteria.list();
-        return classrooms;
+        classrooms = getclassCriteria.list();
+        if (classrooms.size() > 0) {
+            return classrooms;
+        }
+        return null;
     }
 
 }

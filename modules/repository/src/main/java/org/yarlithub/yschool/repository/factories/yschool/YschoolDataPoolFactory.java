@@ -232,6 +232,7 @@ public class YschoolDataPoolFactory {
         
         classAnalyzerClassifier.setBin(BasicDataGenerator.generateRandomInt());
         classAnalyzerClassifier.setGrade(BasicDataGenerator.generateRandomInt());
+        classAnalyzerClassifier.setId(BasicDataGenerator.generateRandomInt());
         classAnalyzerClassifier.setModel(BasicDataGenerator.generateRandomBinary(2147483647));
         classAnalyzerClassifier.setModifiedTime(BasicDataGenerator.generateDate());
         classAnalyzerClassifier.setSubject(BasicDataGenerator.generateRandomString(100));
@@ -278,43 +279,32 @@ public class YschoolDataPoolFactory {
 
     /**
      * Data pool factory for ExamSync.
-     * @return ExamSyncA ExamSync object
+     * @return ExamSync A ExamSync object
      */
     public static ExamSync getExamSync() {
 
-        ExamSync examSync = new ExamSync();    
-        
-        examSync.setId(getExamSyncPK());
-        examSync.setModifiedTime(BasicDataGenerator.generateDate());
-        examSync.setSyncStatus(BasicDataGenerator.generateRandomInt());
-
-        return examSync;
-    }
-
-    /**
-     * Data pool factory for ExamSyncPK.
-     * @return ExamSyncPK A ExamSyncPK object
-     */
-    public static ExamSyncPK getExamSyncPK() {
-
-        ExamSyncPK examSyncPK =  getExamSyncPK(
+        ExamSync examSync =  getExamSync(
 	        getExam());
 
-		return examSyncPK;
+		return examSync;
        
     }
 
      /**
-     * Data pool factory for ExamSyncPK.
+     * Data pool factory for ExamSync.
      * @param examIdexam A valid Exam object
-     * @return ExamSyncPK A ExamSyncPK object
+     * @return ExamSync A ExamSync object
      */
-    public static ExamSyncPK getExamSyncPK(Exam examIdexam) {
-        ExamSyncPK examSyncPK = new ExamSyncPK();     
-        examSyncPK.setClassIdexam(BasicDataGenerator.generateRandomInt());
-        examSyncPK.setExamIdexam(examIdexam);
+    public static ExamSync getExamSync(Exam examIdexam) {
+        ExamSync examSync = new ExamSync();     
+        examSync.setClassIdexam(BasicDataGenerator.generateRandomInt());
+		if (examIdexam != null) {
+			examIdexam.addExamSync (examSync);
+		}
+        examSync.setModifiedTime(BasicDataGenerator.generateDate());
+        examSync.setSyncStatus(BasicDataGenerator.generateRandomInt());
 
-        return examSyncPK;
+        return examSync;
     }
 
     /**
@@ -657,43 +647,32 @@ public class YschoolDataPoolFactory {
 
     /**
      * Data pool factory for StudentSync.
-     * @return StudentSyncA StudentSync object
+     * @return StudentSync A StudentSync object
      */
     public static StudentSync getStudentSync() {
 
-        StudentSync studentSync = new StudentSync();    
-        
-        studentSync.setId(getStudentSyncPK());
-        studentSync.setModifiedTime(BasicDataGenerator.generateDate());
-        studentSync.setSyncStatus(BasicDataGenerator.generateRandomInt());
-
-        return studentSync;
-    }
-
-    /**
-     * Data pool factory for StudentSyncPK.
-     * @return StudentSyncPK A StudentSyncPK object
-     */
-    public static StudentSyncPK getStudentSyncPK() {
-
-        StudentSyncPK studentSyncPK =  getStudentSyncPK(
+        StudentSync studentSync =  getStudentSync(
 	        getStudent());
 
-		return studentSyncPK;
+		return studentSync;
        
     }
 
      /**
-     * Data pool factory for StudentSyncPK.
+     * Data pool factory for StudentSync.
      * @param studentIdstudent A valid Student object
-     * @return StudentSyncPK A StudentSyncPK object
+     * @return StudentSync A StudentSync object
      */
-    public static StudentSyncPK getStudentSyncPK(Student studentIdstudent) {
-        StudentSyncPK studentSyncPK = new StudentSyncPK();     
-        studentSyncPK.setClassIdstudent(BasicDataGenerator.generateRandomInt());
-        studentSyncPK.setStudentIdstudent(studentIdstudent);
+    public static StudentSync getStudentSync(Student studentIdstudent) {
+        StudentSync studentSync = new StudentSync();     
+        studentSync.setClassIdstudent(BasicDataGenerator.generateRandomInt());
+        studentSync.setModifiedTime(BasicDataGenerator.generateDate());
+		if (studentIdstudent != null) {
+			studentIdstudent.addStudentSync (studentSync);
+		}
+        studentSync.setSyncStatus(BasicDataGenerator.generateRandomInt());
 
-        return studentSyncPK;
+        return studentSync;
     }
 
     /**

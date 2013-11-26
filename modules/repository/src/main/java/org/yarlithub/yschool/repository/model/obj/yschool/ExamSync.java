@@ -2,13 +2,23 @@ package org.yarlithub.yschool.repository.model.obj.yschool;
 
 import com.felees.hbnpojogen.persistence.IPojoGenEntity;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Map;
+import java.util.WeakHashMap;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import org.hibernate.proxy.HibernateProxy;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExamSync;
 
 
@@ -24,21 +34,25 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
 	/** Serial Version UID. */
 	private static final long serialVersionUID = -558977429L;
 
+	/** Use a WeakHashMap so entries will be garbage collected once all entities 
+		referring to a saved hash are garbage collected themselves. */
+	private static final Map<Serializable, Integer> SAVED_HASHES =
+		Collections.synchronizedMap(new WeakHashMap<Serializable, Integer>());
+	
+	/** hashCode temporary storage. */
+	private volatile Integer hashCode;
 	
 
 	/** Field mapping. */
-	@Id 
-	@Column( name = "class_idexam", nullable = false  )
-	private ExamSyncPK id;
-
+	private Integer classIdexam;
 	/** Field mapping. */
-	@Column( name = "modified_time", nullable = false  )
+	private Exam examIdexam;
+	/** Field mapping. */
+	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
 	private Date modifiedTime;
-
 	/** Field mapping. */
-	@Column( name = "sync_status"  )
 	private Integer syncStatus;
-
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -49,18 +63,25 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
 	/** Constructor taking a given ID.
 	 * @param id to set
 	 */
-	public ExamSync(ExamSyncPK id) {
+	public ExamSync(Integer id) {
 		this.id = id;
 	}
 	
 	/** Constructor taking a given ID.
-	 * @param id ExamSyncPK object;
+	 * @param classIdexam Integer object;
+	 * @param examIdexam Exam object;
+	 * @param id Integer object;
 	 * @param modifiedTime Date object;
+	 * @param syncStatus Integer object;
 	 */
-	public ExamSync(ExamSyncPK id, Date modifiedTime) {
+	public ExamSync(Integer classIdexam, Exam examIdexam, Integer id, 					
+			Date modifiedTime, Integer syncStatus) {
 
+		this.classIdexam = classIdexam;
+		this.examIdexam = examIdexam;
 		this.id = id;
 		this.modifiedTime = modifiedTime;
+		this.syncStatus = syncStatus;
 	}
 	
  
@@ -77,12 +98,58 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
  
 
     /**
-     * Return the value associated with the column: id.
-	 * @return A ExamSyncPK object (this.id)
+     * Return the value associated with the column: classIdexam.
+	 * @return A Integer object (this.classIdexam)
 	 */
 	@Basic( optional = false )
 	@Column( name = "class_idexam", nullable = false  )
-	public ExamSyncPK getId() {
+	public Integer getClassIdexam() {
+		return this.classIdexam;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: classIdexam.
+	 * @param classIdexam the classIdexam value you wish to set
+	 */
+	public void setClassIdexam(final Integer classIdexam) {
+		this.classIdexam = classIdexam;
+	}
+
+    /**
+     * Return the value associated with the column: examIdexam.
+	 * @return A Exam object (this.examIdexam)
+	 */
+	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@JoinColumn(name = "exam_idexam", nullable = false )
+	public Exam getExamIdexam() {
+		return this.examIdexam;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: examIdexam.
+	 * @param examIdexam the examIdexam value you wish to set
+	 */
+	public void setExamIdexam(final Exam examIdexam) {
+		this.examIdexam = examIdexam;
+	}
+
+    /**
+     * Return the value associated with the column: id.
+	 * @return A Integer object (this.id)
+	 */
+    @Id 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Basic( optional = false )
+	@Column( name = "idexam_sync", nullable = false  )
+	public Integer getId() {
 		return this.id;
 		
 	}
@@ -93,7 +160,15 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
      * Set the value related to the column: id.
 	 * @param id the id value you wish to set
 	 */
-	public void setId(final ExamSyncPK id) {
+	public void setId(final Integer id) {
+		// If we've just been persisted and hashCode has been
+		// returned then make sure other entities with this
+		// ID return the already returned hash code
+		if ( (this.id == null || this.id == 0) &&
+				(id != null) &&
+				(this.hashCode != null) ) {
+		SAVED_HASHES.put( id, this.hashCode );
+		}
 		this.id = id;
 	}
 
@@ -122,8 +197,8 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
      * Return the value associated with the column: syncStatus.
 	 * @return A Integer object (this.syncStatus)
 	 */
-	@Basic( optional = true )
-	@Column( name = "sync_status"  )
+	@Basic( optional = false )
+	@Column( name = "sync_status", nullable = false  )
 	public Integer getSyncStatus() {
 		return this.syncStatus;
 		
@@ -150,6 +225,8 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
 		
         final ExamSync copy = (ExamSync)super.clone();
 
+		copy.setClassIdexam(this.getClassIdexam());
+		copy.setExamIdexam(this.getExamIdexam());
 		copy.setId(this.getId());
 		copy.setModifiedTime(this.getModifiedTime());
 		copy.setSyncStatus(this.getSyncStatus());
@@ -166,6 +243,7 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		
+		sb.append("classIdexam: " + this.getClassIdexam() + ", ");
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("syncStatus: " + this.getSyncStatus());
@@ -180,16 +258,45 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
 	 */
 	@Override
 	public boolean equals(final Object aThat) {
+		Object proxyThat = aThat;
+		
 		if ( this == aThat ) {
 			 return true;
 		}
 
-		if ((aThat == null) || ( !(aThat.getClass().equals(this.getClass())))) {
+		
+		if (aThat instanceof HibernateProxy) {
+ 			// narrow down the proxy to the class we are dealing with.
+ 			try {
+				proxyThat = ((HibernateProxy) aThat).getHibernateLazyInitializer().getImplementation(); 
+			} catch (org.hibernate.ObjectNotFoundException e) {
+				return false;
+		   	}
+		}
+		if (aThat == null)  {
 			 return false;
 		}
-	
-		final ExamSync that = (ExamSync) aThat;
-		return this.getId().equals(that.getId());
+		
+		final ExamSync that; 
+		try {
+			that = (ExamSync) proxyThat;
+			if ( !(that.getClassType().equals(this.getClassType()))){
+				return false;
+			}
+		} catch (org.hibernate.ObjectNotFoundException e) {
+				return false;
+		} catch (ClassCastException e) {
+				return false;
+		}
+		
+		
+		boolean result = true;
+		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
+		result = result && (((getClassIdexam() == null) && (that.getClassIdexam() == null)) || (getClassIdexam() != null && getClassIdexam().equals(that.getClassIdexam())));
+		result = result && (((getExamIdexam() == null) && (that.getExamIdexam() == null)) || (getExamIdexam() != null && getExamIdexam().getId().equals(that.getExamIdexam().getId())));	
+		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
+		result = result && (((getSyncStatus() == null) && (that.getSyncStatus() == null)) || (getSyncStatus() != null && getSyncStatus().equals(that.getSyncStatus())));
+		return result;
 	}
 	
 	/** Calculate the hashcode.
@@ -198,7 +305,28 @@ public class ExamSync implements Cloneable, Serializable, IPojoGenEntity, IExamS
 	 */
 	@Override
 	public int hashCode() {
-		return getId().hashCode();
+		if ( this.hashCode == null ) {
+			synchronized ( this ) {
+				if ( this.hashCode == null ) {
+					Integer newHashCode = null;
+
+					if ( getId() != null ) {
+					newHashCode = SAVED_HASHES.get( getId() );
+					}
+					
+					if ( newHashCode == null ) {
+						if ( getId() != null && getId() != 0) {
+							newHashCode = getId();
+						} else {
+
+						}
+					}
+					
+					this.hashCode = newHashCode;
+				}
+			}
+		}
+	return this.hashCode;
 	}
 	
 

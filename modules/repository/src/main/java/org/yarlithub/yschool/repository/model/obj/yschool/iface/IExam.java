@@ -2,6 +2,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Date;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
@@ -43,6 +44,25 @@ public interface IExam {
 	 * @param date the date value you wish to set
 	 */
 	void setDate(final Date date);
+
+    /**
+     * Return the value associated with the column: examSync.
+	 * @return A Set&lt;ExamSync&gt; object (this.examSync)
+	 */
+	Set<ExamSync> getExamSyncs();
+	
+	/**
+	 * Adds a bi-directional link of type ExamSync to the examSyncs set.
+	 * @param examSync item to add
+	 */
+	void addExamSync(ExamSync examSync);
+
+  
+    /**  
+     * Set the value related to the column: examSync.
+	 * @param examSync the examSync value you wish to set
+	 */
+	void setExamSyncs(final Set<ExamSync> examSync);
 
     /**
      * Return the value associated with the column: examTypeIdexamType.
