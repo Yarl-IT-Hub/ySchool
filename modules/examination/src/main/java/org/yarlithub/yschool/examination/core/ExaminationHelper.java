@@ -45,8 +45,8 @@ public class ExaminationHelper {
     public List<Exam> getLatestExams(int first, int max) {
         Criteria examCriteria = dataLayerYschool.createCriteria(Exam.class);
         examCriteria.addOrder(Order.desc("id"));
-        //examCriteria.setFirstResult(first);
-        //examCriteria.setMaxResults(max);
+        examCriteria.setFirstResult(first);
+        examCriteria.setMaxResults(max);
         List<Exam> examlist = examCriteria.list();
         return examlist;
     }

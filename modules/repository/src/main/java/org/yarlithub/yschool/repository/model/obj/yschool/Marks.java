@@ -32,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IMarks;
 public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977425L;
+	private static final long serialVersionUID = -558977427L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */

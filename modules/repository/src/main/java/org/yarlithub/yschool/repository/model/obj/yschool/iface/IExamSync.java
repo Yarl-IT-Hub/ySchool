@@ -1,6 +1,6 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Date;
-import org.yarlithub.yschool.repository.model.obj.yschool.ExamSyncPK;
+import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 
 
 /** 
@@ -13,10 +13,38 @@ public interface IExamSync {
 
 
     /**
-     * Return the value associated with the column: id.
-	 * @return A ExamSyncPK object (this.id)
+     * Return the value associated with the column: classIdexam.
+	 * @return A Integer object (this.classIdexam)
 	 */
-	ExamSyncPK getId();
+	Integer getClassIdexam();
+	
+
+  
+    /**  
+     * Set the value related to the column: classIdexam.
+	 * @param classIdexam the classIdexam value you wish to set
+	 */
+	void setClassIdexam(final Integer classIdexam);
+
+    /**
+     * Return the value associated with the column: examIdexam.
+	 * @return A Exam object (this.examIdexam)
+	 */
+	Exam getExamIdexam();
+	
+
+  
+    /**  
+     * Set the value related to the column: examIdexam.
+	 * @param examIdexam the examIdexam value you wish to set
+	 */
+	void setExamIdexam(final Exam examIdexam);
+
+    /**
+     * Return the value associated with the column: id.
+	 * @return A Integer object (this.id)
+	 */
+	Integer getId();
 	
 
   
@@ -24,7 +52,7 @@ public interface IExamSync {
      * Set the value related to the column: id.
 	 * @param id the id value you wish to set
 	 */
-	void setId(final ExamSyncPK id);
+	void setId(final Integer id);
 
     /**
      * Return the value associated with the column: modifiedTime.

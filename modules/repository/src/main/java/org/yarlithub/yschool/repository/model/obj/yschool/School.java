@@ -34,7 +34,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISchool;
 public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977422L;
+	private static final long serialVersionUID = -558977424L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */

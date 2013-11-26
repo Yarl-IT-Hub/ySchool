@@ -21,7 +21,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISchoolHasStaffH
 public class SchoolHasStaffHasRolePK implements Cloneable, Serializable,  ISchoolHasStaffHasRolePK {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977419L;
+	private static final long serialVersionUID = -558977421L;
 
 	
 

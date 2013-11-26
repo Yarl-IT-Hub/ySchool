@@ -6,9 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.examination.core.ExamLoader;
+import org.yarlithub.yschool.analytics.datasync.SyncExamination;
 import org.yarlithub.yschool.examination.core.ExaminationHelper;
-import org.yarlithub.yschool.examination.core.NewExamination;
+import org.yarlithub.yschool.examination.core.ExaminationCreator;
+import org.yarlithub.yschool.examination.core.ExaminationLoader;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
@@ -32,18 +33,61 @@ import java.util.List;
 public class ExaminationService {
     private static final Logger logger = LoggerFactory.getLogger(ExaminationService.class);
 
+    /**
+     *
+     * @param date      java.util.date
+     * @param term      int term 1 or 2 or 3
+     * @param examType  int id as in Exam_Type table in yschool database version1.2
+     * @param grade     int grade
+     * @param division  Char like A/B/C/D/E/F
+     * @param subjectid int id as in Subject table
+     * @return exam if successfully created a CA exam and inserted entries into related database tables,
+     * and added exam sync entry, otherwise null.
+     */
     @Transactional
-    public boolean addCAExam(Date date, int term, int examType, int grade, String division, int subjectid) {
-        NewExamination newExamination = new NewExamination();
-        boolean success = newExamination.addCAExam(date, term, examType, grade, division, subjectid);
-        return success;
+    public Exam addCAExam(Date date, int term, int examType, int grade, String division, int subjectid) {
+        ExaminationCreator examinationCreator = new ExaminationCreator();
+        Exam exam = examinationCreator.addNewCAExam(date, term, examType, grade, division, subjectid);
+        if(exam != null){
+            SyncExamination syncExamination = new SyncExamination();
+            boolean success = syncExamination.addNewSyncExam(exam);
+            if(success){
+                //only return exam if addnewCA exam entry and exansync entry succeeded.
+                return exam;
+            }
+        }
+
+        return null;
     }
 
+    /**
+     * @param date      java.util.date
+     * @param term      int term 1 or 2 or 3
+     * @param examType  int id as in Exam_Type table in yschool database version1.2
+     * @param grade     int grade
+     * @param subjectid int id as in Subject table
+     * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division
+     * and if successful and inserted entries into related database tables return list of exams,
+     * and add exam entry for each exams, otherwise null.
+     */
     @Transactional
-    public boolean addTermExam(Date date, int term, int examType, int grade, int subjectid) {
-        NewExamination newExamination = new NewExamination();
-        boolean success = newExamination.addTermExam(date, term, examType, grade, subjectid);
-        return success;
+    public List<Exam> addTermExam(Date date, int term, int examType, int grade, int subjectid) {
+        boolean success = true;
+        ExaminationCreator examinationCreator = new ExaminationCreator();
+        List<Exam> examList = examinationCreator.addNewTermExam(date, term, examType, grade, subjectid);
+        if(examList !=null){
+            SyncExamination syncExamination = new SyncExamination();
+            Iterator<Exam> examIterator = examList.iterator();
+            while (examIterator.hasNext()){
+                Exam exam= examIterator.next();
+                /* make sure all exams are synced by returning true*/
+                success = syncExamination.addNewSyncExam(exam);
+            }
+            if(success){
+                return examList;
+            }
+        }
+        return null;
     }
 
     @Transactional
@@ -90,14 +134,14 @@ public class ExaminationService {
 
     @Transactional
     public void uploadMarks(UploadedFile marksFile, int examid) throws IOException {
-        ExamLoader loadExamination = new ExamLoader();
-        loadExamination.loadMarks(marksFile,examid);
+        ExaminationLoader examinationLoader = new ExaminationLoader();
+        examinationLoader.loadMarks(marksFile, examid);
     }
 
     @Transactional
     public void uploadResults(UploadedFile resultsFile, int examid) throws IOException {
-        ExamLoader loadExamination = new ExamLoader();
-        loadExamination.loadResults(resultsFile,examid);
+        ExaminationLoader examinationLoader = new ExaminationLoader();
+        examinationLoader.loadResults(resultsFile, examid);
     }
 
     @Transactional

@@ -10,28 +10,31 @@
               http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
               http://www.springframework.org/schema/context
               http://www.springframework.org/schema/context/spring-context-2.5.xsd
+              http://www.springframework.org/schema/lang
+              http://www.springframework.org/schema/lang/spring-lang-2.5.xsd
               http://www.springframework.org/schema/tx
-              http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+              http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+              http://www.springframework.org/schema/util
+              http://www.springframework.org/schema/util/spring-util-2.5.xsd">
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" autowire="autodetect">
         <property name="dataSource">
-            <ref local="dataSource" />
+            <ref local="dataSource"/>
+        </property>
+        <property name="sessionFactory">
+            <ref local="sessionFactory"/>
         </property>
     </bean>
     <bean id="persistenceManager" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 
     <bean class="org.springframework.beans.factory.config.PropertyOverrideConfigurer">
-        <property name="ignoreResourceNotFound"><value>true</value></property>   <!--  In the properties file, override the items you need in this format:
-    -->
+        <property name="ignoreResourceNotFound"><value>true</value></property>
         <property name="location">
             <!--  You may use file:d:/temp/db.properties etc here -->
-            <value>classpath:yschool.db.properties</value>
+            <value>classpath:repository.db.properties</value>
         </property>
     </bean>
-
-
-
 
     <!-- C3P0 Configuration -->
     <bean id="mainDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -60,8 +63,6 @@
     <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" autowire="autodetect">
         <property name="dataSource" ref="dataSource" />
-
-
         <property name="packagesToScan">
             <list>
                 <value>org.yarlithub.yschool.**.*</value>
@@ -76,8 +77,6 @@
             </props>
         </property>
     </bean>
-
-    <!-- Switch on transactions -->
     <tx:annotation-driven />
 
     <context:component-scan base-package="org.yarlithub.yschool"/>

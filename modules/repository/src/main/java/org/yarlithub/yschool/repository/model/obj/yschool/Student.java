@@ -25,6 +25,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentSync;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 
 
@@ -38,7 +39,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStudent;
 public class Student implements Cloneable, Serializable, IPojoGenEntity, IStudent {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977412L;
+	private static final long serialVersionUID = -558977414L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -80,6 +81,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 
 	/** Field mapping. */
 	private Set<StudentGeneralexamProfile> studentGeneralexamProfiles = new HashSet<StudentGeneralexamProfile>();
+
+	/** Field mapping. */
+	private Set<StudentSync> studentSyncs = new HashSet<StudentSync>();
 
 	/**
 	 * Default constructor, mainly for hibernate use.
@@ -463,6 +467,37 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		this.studentGeneralexamProfiles = studentGeneralexamProfile;
 	}
 
+    /**
+     * Return the value associated with the column: studentSync.
+	 * @return A Set&lt;StudentSync&gt; object (this.studentSync)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "studentIdstudent"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<StudentSync> getStudentSyncs() {
+		return this.studentSyncs;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type StudentSync to the studentSyncs set.
+	 * @param studentSync item to add
+	 */
+	public void addStudentSync(StudentSync studentSync) {
+		studentSync.setStudentIdstudent(this);
+		this.studentSyncs.add(studentSync);
+	}
+
+  
+    /**  
+     * Set the value related to the column: studentSync.
+	 * @param studentSync the studentSync value you wish to set
+	 */
+	public void setStudentSyncs(final Set<StudentSync> studentSync) {
+		this.studentSyncs = studentSync;
+	}
+
 
    /**
     * Deep copy.
@@ -495,6 +530,9 @@ public class Student implements Cloneable, Serializable, IPojoGenEntity, IStuden
 		}
 		if (this.getStudentGeneralexamProfiles() != null) {
 			copy.getStudentGeneralexamProfiles().addAll(this.getStudentGeneralexamProfiles());
+		}
+		if (this.getStudentSyncs() != null) {
+			copy.getStudentSyncs().addAll(this.getStudentSyncs());
 		}
 		return copy;
 	}

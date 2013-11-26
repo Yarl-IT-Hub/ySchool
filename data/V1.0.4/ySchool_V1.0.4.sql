@@ -433,11 +433,12 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `yschool`.`exam_sync` (
   `idexam_sync` INT NOT NULL AUTO_INCREMENT ,
   `exam_idexam` INT NOT NULL ,
-  `class_idexam` INT NULL ,
-  `sync_status` INT NULL ,
+  `class_idexam` INT NOT NULL DEFAULT 0 ,
+  `sync_status` INT NOT NULL DEFAULT 0 ,
   `modified_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
-  PRIMARY KEY (`idexam_sync`, `exam_idexam`, `class_idexam`) ,
+  PRIMARY KEY (`idexam_sync`) ,
   INDEX `fk_exam_sync_exam1_idx` (`exam_idexam` ASC) ,
+  UNIQUE INDEX `exam_idexam_UNIQUE` (`exam_idexam` ASC) ,
   CONSTRAINT `fk_exam_sync_exam1`
     FOREIGN KEY (`exam_idexam` )
     REFERENCES `yschool`.`exam` (`idexam` )
@@ -452,11 +453,12 @@ ENGINE = InnoDB;
 CREATE  TABLE IF NOT EXISTS `yschool`.`student_sync` (
   `idstudent_sync` INT NOT NULL AUTO_INCREMENT ,
   `student_idstudent` INT NOT NULL ,
-  `class_idstudent` INT NULL ,
-  `sync_status` INT NULL ,
+  `class_idstudent` INT NOT NULL DEFAULT 0 ,
+  `sync_status` INT NOT NULL DEFAULT 0 ,
   `modified_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
-  PRIMARY KEY (`idstudent_sync`, `student_idstudent`, `class_idstudent`) ,
+  PRIMARY KEY (`idstudent_sync`) ,
   INDEX `fk_student_sync_student1_idx` (`student_idstudent` ASC) ,
+  UNIQUE INDEX `student_idstudent_UNIQUE` (`student_idstudent` ASC) ,
   CONSTRAINT `fk_student_sync_student1`
     FOREIGN KEY (`student_idstudent` )
     REFERENCES `yschool`.`student` (`idstudent` )
@@ -469,7 +471,7 @@ ENGINE = InnoDB;
 -- Table `yschool`.`class_analyzer_classifier`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `yschool`.`class_analyzer_classifier` (
-  `idclass_analyzer_classifier` INT NOT NULL AUTO_INCREMENT ,
+  `idclass_analyzer_classifier` INT NOT NULL ,
   `year` INT NOT NULL ,
   `grade` INT NOT NULL ,
   `term` INT NOT NULL ,

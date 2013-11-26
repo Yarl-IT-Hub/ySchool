@@ -30,11 +30,11 @@ public class StudentBean implements Serializable {
     @Autowired
     private StudentService studentService;
 
-    public String getAddmision_No() {
+    public String getAdmission_No() {
         return admission_No;
     }
 
-    public void setAddmision_No(String admission_No) {
+    public void setAdmission_No(String admission_No) {
         this.admission_No = admission_No;
     }
 

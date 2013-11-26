@@ -5,6 +5,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentSync;
 
 
 /** 
@@ -231,6 +232,25 @@ public interface IStudent {
 	 * @param studentGeneralexamProfile the studentGeneralexamProfile value you wish to set
 	 */
 	void setStudentGeneralexamProfiles(final Set<StudentGeneralexamProfile> studentGeneralexamProfile);
+
+    /**
+     * Return the value associated with the column: studentSync.
+	 * @return A Set&lt;StudentSync&gt; object (this.studentSync)
+	 */
+	Set<StudentSync> getStudentSyncs();
+	
+	/**
+	 * Adds a bi-directional link of type StudentSync to the studentSyncs set.
+	 * @param studentSync item to add
+	 */
+	void addStudentSync(StudentSync studentSync);
+
+  
+    /**  
+     * Set the value related to the column: studentSync.
+	 * @param studentSync the studentSync value you wish to set
+	 */
+	void setStudentSyncs(final Set<StudentSync> studentSync);
 
 	// end of interface
 }

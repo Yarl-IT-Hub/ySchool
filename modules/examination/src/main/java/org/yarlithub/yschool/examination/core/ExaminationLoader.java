@@ -17,7 +17,7 @@ import java.io.IOException;
  * Time: 11:21 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ExamLoader {
+public class ExaminationLoader {
     public void loadMarks(UploadedFile marksFile, int examid) throws IOException {
         ReaderFactory readerFactory = new ReaderFactory();
         Reader marksDocReader = readerFactory.getspreadSheetReader(marksFile);

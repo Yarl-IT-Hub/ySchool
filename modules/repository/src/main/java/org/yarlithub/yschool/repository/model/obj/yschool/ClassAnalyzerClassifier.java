@@ -10,8 +10,6 @@ import java.util.WeakHashMap;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -45,7 +43,7 @@ public class ClassAnalyzerClassifier implements Cloneable, Serializable, IPojoGe
 	/** Field mapping. */
 	private Integer grade;
 	/** Field mapping. */
-	private Integer id = 0; // init for hibernate bug workaround
+	private Integer id;
 	/** Field mapping. */
 	private Byte[] model;
 	/** Field mapping. */
@@ -158,7 +156,6 @@ public class ClassAnalyzerClassifier implements Cloneable, Serializable, IPojoGe
 	 * @return A Integer object (this.id)
 	 */
     @Id 
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
 	@Column( name = "idclass_analyzer_classifier", nullable = false  )
 	public Integer getId() {

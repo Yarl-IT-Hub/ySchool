@@ -22,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
+import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IExam;
@@ -52,6 +53,9 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	private ClassroomSubject classroomSubjectIdclassroomSubject;
 	/** Field mapping. */
 	private Date date;
+	/** Field mapping. */
+	private Set<ExamSync> examSyncs = new HashSet<ExamSync>();
+
 	/** Field mapping. */
 	private ExamType examTypeIdexamType;
 	/** Field mapping. */
@@ -150,6 +154,37 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	 */
 	public void setDate(final Date date) {
 		this.date = date;
+	}
+
+    /**
+     * Return the value associated with the column: examSync.
+	 * @return A Set&lt;ExamSync&gt; object (this.examSync)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "examIdexam"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<ExamSync> getExamSyncs() {
+		return this.examSyncs;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type ExamSync to the examSyncs set.
+	 * @param examSync item to add
+	 */
+	public void addExamSync(ExamSync examSync) {
+		examSync.setExamIdexam(this);
+		this.examSyncs.add(examSync);
+	}
+
+  
+    /**  
+     * Set the value related to the column: examSync.
+	 * @param examSync the examSync value you wish to set
+	 */
+	public void setExamSyncs(final Set<ExamSync> examSync) {
+		this.examSyncs = examSync;
 	}
 
     /**
@@ -323,6 +358,9 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 
 		copy.setClassroomSubjectIdclassroomSubject(this.getClassroomSubjectIdclassroomSubject());
 		copy.setDate(this.getDate());
+		if (this.getExamSyncs() != null) {
+			copy.getExamSyncs().addAll(this.getExamSyncs());
+		}
 		copy.setExamTypeIdexamType(this.getExamTypeIdexamType());
 		copy.setId(this.getId());
 		if (this.getMarkss() != null) {

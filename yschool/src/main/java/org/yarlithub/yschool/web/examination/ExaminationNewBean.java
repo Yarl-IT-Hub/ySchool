@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -183,8 +184,8 @@ public class ExaminationNewBean implements Serializable {
     }
 
     public String addCAExam() {
-        boolean setupResult = examinationService.addCAExam(date, term, examType, grade, division, subjectid);
-        if (setupResult) {
+        Exam insertedExam = examinationService.addCAExam(date, term, examType, grade, division, subjectid);
+        if (insertedExam != null) {
             //navigates to home page.(see faces-config.xml)
             return "success";
         }
@@ -193,8 +194,8 @@ public class ExaminationNewBean implements Serializable {
     }
 
     public String addTermExam() {
-        boolean isAddNewTermExam = examinationService.addTermExam(date, term, examType, grade, subjectid);
-        if (isAddNewTermExam) {
+        List<Exam> insertedExamList = examinationService.addTermExam(date, term, examType, grade, subjectid);
+        if (insertedExamList!=null) {
             //navigates to home page.(see faces-config.xml)
             return "NewTermExamSuccess";
         }
