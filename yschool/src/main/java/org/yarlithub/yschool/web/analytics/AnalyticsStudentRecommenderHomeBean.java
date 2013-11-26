@@ -1,6 +1,5 @@
 package org.yarlithub.yschool.web.analytics;
 
-import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.chart.CartesianChartModel;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.PieChartModel;
@@ -42,7 +41,6 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
     private PieChartModel pieModelSubject;
     private PieChartModel pieModelSuccess;
     private PieChartModel pieModelStreamSuccess;
-    private int streamIndex = 1232;
     private CartesianChartModel categoryModelStreamSuccessFailure;
 
     public Student getStudent() {
@@ -99,41 +97,13 @@ public class AnalyticsStudentRecommenderHomeBean implements Serializable {
 
     public boolean preloadProfiles() {
         YAnalyzer yAnalyzer = new YAnalyzer();
-        List<Integer> admissionNoList= new ArrayList<>();
+        List<Integer> admissionNoList = new ArrayList<>();
         admissionNoList = yAnalyzer.getNeighbours();
 
         this.matchingStudentProfiles = new ListDataModel(analyticsService.getStudentByAdmissionNumber(admissionNoList));
         //  this.student=analyticsController.getStudent();
 
         return true;
-    }
-
-    public void itemSelect(ItemSelectEvent event) {
-
-        streamIndex = event.getItemIndex();
-        navigate();
-
-//        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",
-//                "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());
-//
-//
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-
-    }
-
-    private String navigate() {
-        if (streamIndex < 5) {
-            return "ExploreStream";
-        }
-        return null;
-    }
-
-    public int getStreamIndex() {
-        return streamIndex;
-    }
-
-    public void setStreamIndex(int streamIndex) {
-        this.streamIndex = streamIndex;
     }
 
     public CartesianChartModel getCategoryModelStreamSuccessFailure() {

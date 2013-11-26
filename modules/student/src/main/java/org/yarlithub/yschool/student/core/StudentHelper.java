@@ -3,6 +3,7 @@ package org.yarlithub.yschool.student.core;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -50,4 +51,29 @@ public class StudentHelper {
         return student;
     }
 
+    public List<StudentGeneralexamProfile> getALDetailsStudentByIndex(int indexNo, Student student, List<Integer> IndexNo, String stream) {
+
+        List<Student> studentList = new ArrayList<>();
+        Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
+        Criteria studentGeneralExam = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+
+        studentGeneralExam.createAlias("studentIdstudent", "stuID").createAlias("stuID.", "").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        studentGeneralExam.add(Restrictions.eq("cl.grade", 10));
+        List<StudentGeneralexamProfile> lt = studentGeneralExam.list();
+
+        return lt;
+    }
+
 }
+
+
+
+/*Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+
+        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        classroomSubjectCR.add(Restrictions.eq("cl.grade", 10));
+        List<ClassroomSubject> lt = classroomSubjectCR.list();
+
+        return lt;*/

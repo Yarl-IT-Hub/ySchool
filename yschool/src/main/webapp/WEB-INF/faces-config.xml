@@ -125,7 +125,7 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
     <navigation-rule>
         <from-view-id>/faces/analytics/analyticsStudentRecommenderHome.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>ExploreStream</from-outcome>
+            <from-outcome>StreamProfiles</from-outcome>
             <to-view-id>/faces/analytics/analyticsStudentRecommenderStream.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
