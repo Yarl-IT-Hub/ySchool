@@ -70,6 +70,13 @@ public class AnalyticsService {
         return classroomSubjectList;
     }
 
+    @Transactional
+    public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject){
+        YAnalyzer yAnalyzer = new YAnalyzer();
+        return yAnalyzer.getALSubjectsResult( student, classroomSubject);
+
+    }
+
 
     @Transactional
     public Student getStudenById(int id) {
@@ -89,7 +96,7 @@ public class AnalyticsService {
     @Transactional
     public Student getStudent() {
         GetStudent student = new GetStudent();
-        return student.getStudentByID(1);
+        return student.getStudentByID(2);
 
     }
 

@@ -5,10 +5,7 @@ package org.yarlithub.yschool.analytics.core;
 import com.arima.classanalyzer.analyzer.ProfileMatcher;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
-import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
-import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -210,6 +207,15 @@ public class YAnalyzer {
     }
 
 
+    public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+
+
+        Criteria resultCR = dataLayerYschool.createCriteria(Results.class);
+        resultCR.add(Restrictions.eq("studentIdstudent",student));
+        resultCR.createAlias("examIdexam", "ex").add(Restrictions.eq("ex.classroomSubjectIdclassroomSubject", classroomSubject));
+        List<Results> resultList = resultCR.list();
+         return resultList.get(0).getResults();
+    }
 }
 
 

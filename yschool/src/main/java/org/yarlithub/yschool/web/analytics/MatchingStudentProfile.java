@@ -22,7 +22,8 @@ public class MatchingStudentProfile {
 
     private Student student;
     private DataModel<ClassroomSubject> olSubjects ;
-    private DataModel<ClassroomSubject> alSubjects ;
+    private DataModel<SubjectResult> alSubjects ;
+
 
     public MatchingStudentProfile(Student student) {
         this.setStudent(student);
@@ -44,11 +45,11 @@ public class MatchingStudentProfile {
         this.olSubjects = olSubjects;
     }
 
-    public DataModel<ClassroomSubject> getAlSubjects() {
+    public DataModel<SubjectResult> getAlSubjects() {
         return alSubjects;
     }
 
-    public void setAlSubjects(DataModel<ClassroomSubject> alSubjects) {
+    public void setAlSubjects(DataModel<SubjectResult> alSubjects) {
         this.alSubjects = alSubjects;
     }
 }

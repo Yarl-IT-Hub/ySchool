@@ -36,8 +36,8 @@
 
             matching profile check
             <ui:fragment rendered="#{analyticsBean.matchingStudentProfile.alSubjects.rowAvailable}">
-            <ui:repeat value="#{analyticsBean.matchingStudentProfile.alSubjects}" var="matchprofilie">
-                   #{matchprofilie.subjectIdsubject.name}
+            <ui:repeat value="#{analyticsBean.matchingStudentProfile.alSubjects}" var="subjectResult">
+                   #{subjectResult.classroomSubject.subjectIdsubject.name}  Results: #{subjectResult.result}
               </ui:repeat>
             </ui:fragment>
         </div>
