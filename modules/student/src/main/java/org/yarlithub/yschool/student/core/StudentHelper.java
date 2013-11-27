@@ -45,35 +45,22 @@ public class StudentHelper {
         studentCR.add(Restrictions.eq("admissionNo", String.valueOf(admissionNo)));                        //String.valueOf(admissionNo)
         studentList = studentCR.list();
         /*The admission is unique thus the number of students retured should be one */
-//        if (studentList.size() == 1) {
-        student = studentList.get(0);
-        // }
-        return student;
+        if (studentList.size() == 1) {
+            student = studentList.get(0);
+            return student;
+        }
+        return null;
     }
 
-    public List<StudentGeneralexamProfile> getALDetailsStudentByIndex(int indexNo, Student student, List<Integer> IndexNo, String stream) {
+    public StudentGeneralexamProfile getStudentProfileViaStudentID(Integer id) {
+        Criteria studentGeneralExamProfilesCR = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
 
-        List<Student> studentList = new ArrayList<>();
-        Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
-        Criteria studentGeneralExam = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+        studentGeneralExamProfilesCR.add(Restrictions.eq("studentIdstudent", String.valueOf(id)));
 
-        studentGeneralExam.createAlias("studentIdstudent", "stuID").createAlias("stuID.", "").add(Restrictions.eq("clst.studentIdstudent", student));
+        List<StudentGeneralexamProfile> lt =  studentGeneralExamProfilesCR.list();
+        return lt.get(0);
 
-        studentGeneralExam.add(Restrictions.eq("cl.grade", 10));
-        List<StudentGeneralexamProfile> lt = studentGeneralExam.list();
-
-        return lt;
     }
-
 }
 
 
-
-/*Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
-
-        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
-
-        classroomSubjectCR.add(Restrictions.eq("cl.grade", 10));
-        List<ClassroomSubject> lt = classroomSubjectCR.list();
-
-        return lt;*/

@@ -11,9 +11,11 @@ import org.yarlithub.yschool.analytics.reporting.JasperReport;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.student.core.GetStudent;
 import org.yarlithub.yschool.student.core.StudentHelper;
 
+import javax.faces.model.DataModel;
 import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -67,24 +69,6 @@ public class AnalyticsService {
     }
 
     @Transactional
-    public List<Student> getStudentByAdmissionNumber(List<Integer> admissionNo) {
-        StudentHelper studentHelper = new StudentHelper();
-        List<Student> studentList = new ArrayList<Student>();
-        Iterator<Integer> adminNoIterator = admissionNo.iterator();
-        while (adminNoIterator.hasNext()) {
-
-            int admissionNumber = adminNoIterator.next();
-            Student student = studentHelper.getStudentByAdmissionNo(admissionNumber);
-
-            studentList.add(student);
-          //  Hibernate.initialize(student);
-
-        }
-
-        return studentList;
-    }
-
-    @Transactional
     public Student getStudent() {
         GetStudent student = new GetStudent();
         return student.getStudentByID(1);
@@ -96,4 +80,42 @@ public class AnalyticsService {
         JasperReport jasperReport = new JasperReport();
         jasperReport.printJasperReport(servletOutputStream);                        //  servletOutputStream
     }
+
+    @Transactional
+    public List<Student> getStudentByAdmissionNumber(List<Integer> admissionNo) {
+        StudentHelper studentHelper = new StudentHelper();
+        List<Student> studentList = new ArrayList<Student>();
+        Iterator<Integer> adminNoIterator = admissionNo.iterator();
+        while (adminNoIterator.hasNext()) {
+
+            int admissionNumber = adminNoIterator.next();
+            Student student = studentHelper.getStudentByAdmissionNo(admissionNumber);
+
+            studentList.add(student);
+            //  Hibernate.initialize(student);
+
+        }
+
+        return studentList;
+    }
+
+    @Transactional
+    public List<StudentGeneralexamProfile> getStudentGeneralExamProfileByStudentList(DataModel<Student> matchingStudentProfiles) {
+
+
+        StudentHelper studentHelper = new StudentHelper();
+        List<StudentGeneralexamProfile> matchingProfilesGeneralExam = new ArrayList<StudentGeneralexamProfile>();
+        Iterator<Student> matchingProfilesIterator = matchingStudentProfiles.iterator();
+        while (matchingProfilesIterator.hasNext()) {
+
+            Student student = matchingProfilesIterator.next();
+            StudentGeneralexamProfile studentGeneralexamProfile = studentHelper.getStudentProfileViaStudentID(student.getId());
+
+            matchingProfilesGeneralExam.add(studentGeneralexamProfile);
+        }
+        return matchingProfilesGeneralExam;
+
+
+    }
+
 }

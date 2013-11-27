@@ -8,4 +8,5 @@ package org.yarlithub.analytics;
  * To change this template use File | Settings | File Templates.
  */
 public class AnalyticsTest {
+
 }

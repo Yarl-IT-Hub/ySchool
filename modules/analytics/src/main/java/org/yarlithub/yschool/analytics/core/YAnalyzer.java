@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -23,28 +24,14 @@ import java.util.List;
  */
 public class YAnalyzer {
 
+    public static List<StudentGeneralexamProfile> theList = new ArrayList<StudentGeneralexamProfile>();
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
-
-//    public List getOLSubjects(Student student){
-//        DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
-//        Criteria c1=dataLayerYschool.createCriteria(ClassroomStudent.class).createCriteria("");
-//        c1.add(Restrictions.eq("studentIdstudent",student));
-//        List<ClassroomStudent> classroomStudents = c1.list();
-//
-//        Iterator<ClassroomStudent> classroomStudentIterator =classroomStudents.iterator();
-//        while(classroomStudentIterator.hasNext()){
-//            Hibernate.initialize(classroomStudentIterator.next().getStudentClassroomSubjects());
-//            Hibernate.initialize((classroomStudentIterator.next().getClassroomIdclass()));
-//                 }
-    //  List<Classroom> lt= st.createAlias("classroom_student","clsu").createAlias("student","st").add(Restrictions.eq("st.idstudent","1")).list();
-//          return null;
-//
-//    }
 
     public static void main(String[] args) {
         List<String> subjects = new ArrayList<String>();
         List<Integer> marks = new ArrayList<Integer>();
         ArrayList<Integer> addmissionNoList = new ArrayList<Integer>();
+
 
         subjects.add("SAIVISM");
         subjects.add("MATHEMATICS");
@@ -54,8 +41,6 @@ public class YAnalyzer {
         subjects.add("HISTORY");
        /* subjects.add("INFORMATION AND COMMUNICATION TECHNOLOGY");
         subjects.add("BUSSINESS AND ACCOUNTING");*/
-
-
 
 
         marks.add(50);
@@ -68,10 +53,9 @@ public class YAnalyzer {
         marks.add(50);*/
 
 
-
         try {
             addmissionNoList = (ArrayList<Integer>) ProfileMatcher.getNearestLocalProfiles(11086, 11, 3, subjects, marks);
-            System.out.println(addmissionNoList);
+            //    System.out.println(addmissionNoList);
 
             Iterator<Integer> adminNoIterator = addmissionNoList.iterator();
             while (adminNoIterator.hasNext()) {
@@ -79,7 +63,7 @@ public class YAnalyzer {
                 int admissionNumber = adminNoIterator.next();
 
 
-                System.out.println(admissionNumber);
+                //      System.out.println(admissionNumber);
 
 
             }
@@ -89,6 +73,45 @@ public class YAnalyzer {
 
 
         }
+
+//        YAnalyzer yAnalyzer=new YAnalyzer();
+//        yAnalyzer.getOLSubjectsMain();
+//
+//        System.out.println(theList);
+
+    }
+
+    public void getOLSubjectsMain() {
+        Student student;
+        List<Student> studentList = new ArrayList<>();
+        Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
+        studentCR.add(Restrictions.eq("admissionNo", String.valueOf(18746)));                        //String.valueOf(admissionNo)
+        studentList = studentCR.list();
+        /*The admission is unique thus the number of students retured should be one */
+//        if (studentList.size() == 1) {
+        student = studentList.get(0);
+        // }
+
+
+        Criteria studentGeneralExamProfiles = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+
+        studentGeneralExamProfiles.createAlias("admissionNo", "adNo");
+
+        studentGeneralExamProfiles.add(Restrictions.eq("adNo", 18746));
+        List<StudentGeneralexamProfile> adProfiles = studentGeneralExamProfiles.list();
+
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        //student_classroom_subject data is not ready yet
+        //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        //so using this as temporary ,but this may violate optional subject...
+
+
+        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        // classroomSubjectCR.add(Restrictions.eq("cl.grade", 10));
+        List<ClassroomSubject> lt = classroomSubjectCR.list();
+        theList = adProfiles;
+
 
     }
 
@@ -142,4 +165,23 @@ public class YAnalyzer {
         }
 
     }
+
+
 }
+
+
+//    public List getOLSubjects(Student student){
+//        DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
+//        Criteria c1=dataLayerYschool.createCriteria(ClassroomStudent.class).createCriteria("");
+//        c1.add(Restrictions.eq("studentIdstudent",student));
+//        List<ClassroomStudent> classroomStudents = c1.list();
+//
+//        Iterator<ClassroomStudent> classroomStudentIterator =classroomStudents.iterator();
+//        while(classroomStudentIterator.hasNext()){
+//            Hibernate.initialize(classroomStudentIterator.next().getStudentClassroomSubjects());
+//            Hibernate.initialize((classroomStudentIterator.next().getClassroomIdclass()));
+//                 }
+//  List<Classroom> lt= st.createAlias("classroom_student","clsu").createAlias("student","st").add(Restrictions.eq("st.idstudent","1")).list();
+//          return null;
+//
+//    }
