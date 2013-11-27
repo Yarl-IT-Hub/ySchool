@@ -9,13 +9,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.repository.factories.yschool.HibernateYschoolDaoFactory;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
-import org.yarlithub.yschool.repository.model.obj.yschool.*;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -43,7 +45,7 @@ public class RepositoryTest {
         UserRole userRole = YschoolDataPoolFactory.getUserRole();
         userRole.setName("transient_admin_WD#$@DTGHYFEX768IHHJWE");
         dataLayerYschool.save(userRole);
-       dataLayerYschool.flushSession();
+        dataLayerYschool.flushSession();
 
 //        //TODO: hibernate query is not working now.
 //        //Use hibernate query language to access RDBMS.
@@ -95,10 +97,10 @@ public class RepositoryTest {
 //        //netsted criteria test for joins : analytics subjectlists    //
 //       Criteria st= dataLayerYschool.createCriteria(Subject.class);
 //        List<Classroom> lt= st.createAlias("classroom_student","clsu").createAlias("student","st").add(Restrictions.eq("st.idstudent","1")).list();
-       // List<Subject> lt= st.add(Restrictions.eq("name","SAIVISAM")).list();   //
+        // List<Subject> lt= st.add(Restrictions.eq("name","SAIVISAM")).list();   //
 //        System.out.println(lt.get(0).getId());
 
-     //   ClassAnalyzerClassifier s = YschoolDataPoolFactory.getClassAnalyzerClassifier();
+        //   ClassAnalyzerClassifier s = YschoolDataPoolFactory.getClassAnalyzerClassifier();
 
         Student student = null;
         Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
@@ -111,7 +113,7 @@ public class RepositoryTest {
 
 
 //        Working after data1.0.4
- //         Exam exam =dataLayerYschool.getExam(1);
+        //         Exam exam =dataLayerYschool.getExam(1);
 //        System.out.println(exam.getId());
 //           ExamSync examSync = YschoolDataPoolFactory.getExamSync(null);
 //        examSync.setClassIdexam(1);
@@ -120,6 +122,39 @@ public class RepositoryTest {
 //        dataLayerYschool.save(examSync);
 //        dataLayerYschool.flushSession();
 //        System.out.println(examSync.getId());
+
+
+        studentList = new ArrayList<>();
+        studentCR = dataLayerYschool.createCriteria(Student.class);
+        studentCR.add(Restrictions.eq("admissionNo", String.valueOf(18746)));                        //String.valueOf(admissionNo)
+        studentList = studentCR.list();
+        /*The admission is unique thus the number of students retured should be one */
+//        if (studentList.size() == 1) {
+        student = studentList.get(0);
+        // }
+
+
+        Criteria studentGeneralExamProfiles = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+
+       // studentGeneralExamProfiles.createAlias("admissionNo", "adNo");
+
+       studentGeneralExamProfiles.add(Restrictions.eq("alIslandRank", 18952));
+        List<StudentGeneralexamProfile> adProfiles = studentGeneralExamProfiles.list();
+
+      //  Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+
+
+        //student_classroom_subject data is not ready yet
+        //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        //so using this as temporary ,but this may violate optional subject...
+
+
+        //classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        // classroomSubjectCR.add(Restrictions.eq("cl.grade", 10));
+        //List<ClassroomSubject> lt = classroomSubjectCR.list();
+        System.out.println(adProfiles);
+
 
     }
 }

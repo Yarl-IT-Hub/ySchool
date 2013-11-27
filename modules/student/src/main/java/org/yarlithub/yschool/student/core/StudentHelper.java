@@ -3,6 +3,7 @@ package org.yarlithub.yschool.student.core;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -44,10 +45,22 @@ public class StudentHelper {
         studentCR.add(Restrictions.eq("admissionNo", String.valueOf(admissionNo)));                        //String.valueOf(admissionNo)
         studentList = studentCR.list();
         /*The admission is unique thus the number of students retured should be one */
-//        if (studentList.size() == 1) {
-        student = studentList.get(0);
-        // }
-        return student;
+        if (studentList.size() == 1) {
+            student = studentList.get(0);
+            return student;
+        }
+        return null;
     }
 
+    public StudentGeneralexamProfile getStudentProfileViaStudentID(Integer id) {
+        Criteria studentGeneralExamProfilesCR = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+
+        studentGeneralExamProfilesCR.add(Restrictions.eq("studentIdstudent", String.valueOf(id)));
+
+        List<StudentGeneralexamProfile> lt =  studentGeneralExamProfilesCR.list();
+        return lt.get(0);
+
+    }
 }
+
+

@@ -53,14 +53,16 @@
 
 
         <div class="span9">
-            <ui:repeat value="#{analyticsStudentRecommenderStreamBean.matchingStudentProfiles}" var="matchingProfile">
+            <ui:repeat value="#{analyticsStudentRecommenderStreamBean.matchingStudentProfiles}"
+                       var="matchingProfile">
 
                 <div class="accordion-group">
 
                     <div class="accordion-heading">
                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
                            href="#collapseOne">
-                            Profile Match : #{matchingProfile.fullName}  <!-- student name/index or both-->
+                            Profile Match :
+                            #{matchingProfile.fullName} <!-- student name/index or both-->
 
                         </a>
                     </div>
@@ -69,7 +71,8 @@
                         <div class="accordion-inner">
 
                             <div class="span4"><img src="/yschool/ico/student.png" alt="myschool"/></div>
-                            <div class="span8"> The Adavanced Level Stream: #{matchingProfile.fullName}<br/>
+                            <div class="span8"> The Adavanced Level Stream:
+                                #{matchingProfile.fullName}<br/>
                                 The Subjects and Results: #{matchingProfile.fullName} <br/>
                                 The Island Rank: #{matchingProfile.fullName} <br/>
                                 The Z-Score: #{matchingProfile.fullName} <br/>
