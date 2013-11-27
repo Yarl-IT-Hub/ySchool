@@ -8,6 +8,7 @@ import org.yarlithub.yschool.service.AnalyticsService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 
 
@@ -24,7 +25,6 @@ public class AnalyticsSyncBean implements Serializable {
 
     private DataModel<Exam> newExams;
     private DataModel<Exam> modifiedExams;
-
     @Autowired
     private AnalyticsService analyticsService;
     private boolean allSynced;
@@ -53,8 +53,13 @@ public class AnalyticsSyncBean implements Serializable {
         this.modifiedExams = modifiedExams;
     }
 
-    public void preload(){
-          setAllSynced(true);
+    public void preload() {
+        setAllSynced(true);
+        newExams = new ListDataModel(analyticsService.getNotSyncedExams());
+        modifiedExams = new ListDataModel();
+        if (newExams != null || modifiedExams != null) {
+            setAllSynced(false);
+        }
     }
 
 }

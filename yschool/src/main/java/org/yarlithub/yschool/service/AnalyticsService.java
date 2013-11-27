@@ -7,11 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.analytics.core.YAnalyzer;
+import org.yarlithub.yschool.analytics.datasync.SyncExamination;
 import org.yarlithub.yschool.analytics.reporting.JasperReport;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
-import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.student.core.GetStudent;
 import org.yarlithub.yschool.student.core.StudentHelper;
 
@@ -115,6 +113,22 @@ public class AnalyticsService {
         }
         return matchingProfilesGeneralExam;
 
+
+    }
+
+    @Transactional
+    public List<Exam> getNotSyncedExams(){
+        SyncExamination syncExamination = new SyncExamination();
+        List<Exam> examList= syncExamination.getNotSyncedExams();
+        //Hibernate needs lazy initialization of internal objects
+        Iterator<Exam> iterator = examList.iterator();
+        while (iterator.hasNext()) {
+            Exam exam = iterator.next();
+            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
+            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
+            Hibernate.initialize(exam.getExamTypeIdexamType());
+        }
+        return examList;
 
     }
 

@@ -2,6 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
         >
 
     <ui:define name="yhead">
@@ -48,6 +49,55 @@
                     </a>
                 </div>
             </div>
+        </ui:fragment>
+
+        <ui:fragment rendered="#{!analyticsSyncBean.allSynced}">
+
+            <ui:fragment rendered="#{analyticsSyncBean.newExams.rowAvailable}">
+                <div class="span8">
+                    <div class="alert alert-danger">
+
+                        <p class="text text-center">
+                            The following data are not yet synced with CLASS Server. <br/>
+                            ress "Start Sync Now" button to sunc your data. <br/>
+                            Make sure you have an active internet connection and do not turn off your computer till the operation completes.
+                        </p>
+                    </div>
+
+                    <ul class="thumbnails">
+                        <!--empty list to avoid bootstrap first row margin bug-->
+                        <li class="span8">
+                        </li>
+                        <ui:repeat value="#{analyticsSyncBean.newExams}" var="newexam">
+                            <li class="thumbnail span8">
+                                <div class="span10">
+                                    <h5>
+
+                                        <h:outputText
+                                                value=" #{newexam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                                        <h:outputText
+                                                value="#{newexam.classroomSubjectIdclassroomSubject.classroomIdclass.division}     "/>
+
+                                        <h:outputText value="Term:  #{newexam.term} "/>
+                                        <h:outputText value="#{newexam.examTypeIdexamType.typeName} "/> on
+                                        <h:outputText
+                                                value=" #{newexam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}"/>
+
+                                    </h5>
+                                </div>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+
+
+                    <div class="span6 offset3">
+
+                        <a href="/yschool/faces/analytics/analyticsSync.xhtml">
+                            <Button class="btn btn-info btn-large">Start Sync Now</Button>
+                        </a>
+                    </div>
+                </div>
+            </ui:fragment>
         </ui:fragment>
 
 
