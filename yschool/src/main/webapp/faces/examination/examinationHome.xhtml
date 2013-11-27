@@ -39,12 +39,13 @@
 
 
         <div class="span10">
-            <div class="row-fluid">
+            <div class="row-fluid" id="examination-home-contents">
                 <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
                 <ul class="thumbnails">
                 <!--empty list to avoid bootstrap first row margin bug-->
                     <li class="span8">
                     </li>
+
                     <ui:repeat value="#{examinationHomeBean.exams}" var="exam">
                         <li class="thumbnail span8">
 

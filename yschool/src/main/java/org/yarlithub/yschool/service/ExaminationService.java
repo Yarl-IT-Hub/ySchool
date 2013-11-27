@@ -42,22 +42,13 @@ public class ExaminationService {
      * @param division  Char like A/B/C/D/E/F
      * @param subjectid int id as in Subject table
      * @return exam if successfully created a CA exam and inserted entries into related database tables,
-     * and added exam sync entry, otherwise null.
+     *  otherwise null.
      */
     @Transactional
     public Exam addCAExam(Date date, int term, int examType, int grade, String division, int subjectid) {
         ExaminationCreator examinationCreator = new ExaminationCreator();
         Exam exam = examinationCreator.addNewCAExam(date, term, examType, grade, division, subjectid);
-        if(exam != null){
-            SyncExamination syncExamination = new SyncExamination();
-            boolean success = syncExamination.addNewSyncExam(exam);
-            if(success){
-                //only return exam if addnewCA exam entry and exansync entry succeeded.
-                return exam;
-            }
-        }
-
-        return null;
+        return exam;
     }
 
     /**
@@ -68,26 +59,13 @@ public class ExaminationService {
      * @param subjectid int id as in Subject table
      * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division
      * and if successful and inserted entries into related database tables return list of exams,
-     * and add exam entry for each exams, otherwise null.
+     * otherwise null.
      */
     @Transactional
     public List<Exam> addTermExam(Date date, int term, int examType, int grade, int subjectid) {
-        boolean success = true;
         ExaminationCreator examinationCreator = new ExaminationCreator();
         List<Exam> examList = examinationCreator.addNewTermExam(date, term, examType, grade, subjectid);
-        if(examList !=null){
-            SyncExamination syncExamination = new SyncExamination();
-            Iterator<Exam> examIterator = examList.iterator();
-            while (examIterator.hasNext()){
-                Exam exam= examIterator.next();
-                /* make sure all exams are synced by returning true*/
-                success = syncExamination.addNewSyncExam(exam);
-            }
-            if(success){
-                return examList;
-            }
-        }
-        return null;
+        return examList;
     }
 
     @Transactional
@@ -136,12 +114,16 @@ public class ExaminationService {
     public void uploadMarks(UploadedFile marksFile, int examid) throws IOException {
         ExaminationLoader examinationLoader = new ExaminationLoader();
         examinationLoader.loadMarks(marksFile, examid);
+        SyncExamination syncExamination = new SyncExamination();
+        boolean success = syncExamination.addNewSyncExam(examid);
     }
 
     @Transactional
     public void uploadResults(UploadedFile resultsFile, int examid) throws IOException {
         ExaminationLoader examinationLoader = new ExaminationLoader();
         examinationLoader.loadResults(resultsFile, examid);
+        SyncExamination syncExamination = new SyncExamination();
+        boolean success = syncExamination.addNewSyncExam(examid);
     }
 
     @Transactional

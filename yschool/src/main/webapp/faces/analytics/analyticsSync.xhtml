@@ -2,14 +2,13 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+        >
 
     <ui:define name="yhead">
-        <title>ySchool: Analytics</title>
+        <title>ySchool: Analytics Synchronization</title>
 
         <div>
-            <f:event listener="#{analyticsBean.preloadStudent}" type="preRenderView"/>
+            <f:event listener="#{analyticsSyncBean.preload}" type="preRenderView"/>
         </div>
 
     </ui:define>
@@ -18,48 +17,41 @@
     <ui:define name="student-content">
 
         <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-            </li>
-            <li>
-                <a href="#">Analytics</a>
-            </li>
-        </ul>
-    </div>
-
-        <div class="span5">
-            test Analytics home <br/>           <br/>
-            Student name check
-            .
-            #{analyticsBean.student.name}
-
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Analytics</a>
+                </li>
+            </ul>
         </div>
 
-       <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+        <ui:fragment rendered="#{analyticsSyncBean.allSynced}">
+            <div class="span8">
+                <div class="alert alert-success">
 
-       <div class="span6">
-           <h:panelGrid columns="1">
+                    <p class="text text-center">
+                        All your data is synced with CLASS Server. <br/>
+                        CLASS Server is continuously updating.
+                        Press Check for Analytics Updates button to keep your analytics features up-to-date. <br/>
+                        Make sure you have an active internet connection and do not turn off your computer till the update completes.
+                    </p>
+                </div>
+                <div class="span6 offset3">
 
+                    <a href="/yschool/faces/analytics/analyticsSync.xhtml">
+                        <Button class="btn btn-info btn-large">Check for Analytics Updates</Button>
+                    </a>
+                </div>
+            </div>
+        </ui:fragment>
 
-           <p:lineChart value="#{analyticsBean.linearModel}" legendPosition="e" zoom="true" animate="true"
-                        title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
-
-       </h:panelGrid>
-       </div>
-
-
-
-        <div class="span8">
-        <h:form>
-        <h:commandButton type="submit" action="#{analyticsBean.printReport}" value="Generate Report (PDF)"
-                         class="btn btn-primary btn-large"/>
-        </h:form>
-    </div>
 
     </ui:define>
-
-
 
 
 </ui:composition>

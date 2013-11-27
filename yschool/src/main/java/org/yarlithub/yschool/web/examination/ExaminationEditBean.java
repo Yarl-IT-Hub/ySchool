@@ -182,25 +182,25 @@ public class ExaminationEditBean implements Serializable {
         this.page = "_termExamNew";
     }
 
-    public String addCAExam() {
-        boolean setupResult = examinationService.addCAExam(date, term, examType, grade, division, subjectid);
-        if (setupResult) {
-            //navigates to home page.(see faces-config.xml)
-            return "success";
-        }
-        //shows error page.
-        return "failure";
-    }
-
-    public String addTermExam() {
-        boolean isAddNewTermExam = examinationService.addTermExam(date, term, examType, grade, subjectid);
-        if (isAddNewTermExam) {
-            //navigates to home page.(see faces-config.xml)
-            return "NewTermExamSuccess";
-        }
-        //shows error page.
-        return "NewTermExamFailure";
-    }
+//    public String addCAExam() {
+//        boolean setupResult = examinationService.addCAExam(date, term, examType, grade, division, subjectid);
+//        if (setupResult) {
+//            //navigates to home page.(see faces-config.xml)
+//            return "success";
+//        }
+//        //shows error page.
+//        return "failure";
+//    }
+//
+//    public String addTermExam() {
+//        boolean isAddNewTermExam = examinationService.addTermExam(date, term, examType, grade, subjectid);
+//        if (isAddNewTermExam) {
+//            //navigates to home page.(see faces-config.xml)
+//            return "NewTermExamSuccess";
+//        }
+//        //shows error page.
+//        return "NewTermExamFailure";
+//    }
 
     public boolean preloadLatestExams() {
         exams = new ListDataModel(examinationService.listExams(1, 5));

@@ -120,7 +120,7 @@ public class ExaminationViewBean implements Serializable {
     }
 
     public String syncCLASS() {
-        return "AnalyticsHome";
+        return "AnalyticsSync";
 
     }
 }
