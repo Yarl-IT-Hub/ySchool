@@ -31,6 +31,7 @@ import java.util.List;
 /**
  * TODO description
  */
+
 @Service(value = "analyticsService")
 public class AnalyticsService {
     private static final Logger logger = LoggerFactory.getLogger(AnalyticsService.class);
@@ -50,6 +51,25 @@ public class AnalyticsService {
 
         return classroomSubjectList;
     }
+
+
+
+    @Transactional
+    public List<ClassroomSubject> getALSubjects(Student student) {
+
+        YAnalyzer yAnalyzer = new YAnalyzer();
+        List<ClassroomSubject> classroomSubjectList = yAnalyzer.getALSubjects(student);
+
+        Iterator<ClassroomSubject> classroomSubjectIterator = classroomSubjectList.iterator();
+        while (classroomSubjectIterator.hasNext()) {
+            ClassroomSubject classroomSubject = classroomSubjectIterator.next();
+            Hibernate.initialize(classroomSubject.getSubjectIdsubject());
+            // Hibernate.initialize(classroomSubject.getExams());
+        }
+
+        return classroomSubjectList;
+    }
+
 
     @Transactional
     public Student getStudenById(int id) {
@@ -107,7 +127,7 @@ public class AnalyticsService {
         while (matchingProfilesIterator.hasNext()) {
 
             Student student = matchingProfilesIterator.next();
-            StudentGeneralexamProfile studentGeneralexamProfile = studentHelper.getStudentProfileViaStudentID(student.getId());
+            StudentGeneralexamProfile studentGeneralexamProfile = studentHelper.getStudentProfileViaStudentID(student);
 
             matchingProfilesGeneralExam.add(studentGeneralexamProfile);
         }
@@ -117,9 +137,9 @@ public class AnalyticsService {
     }
 
     @Transactional
-    public List<Exam> getNotSyncedExams(){
+    public List<Exam> getNotSyncedExams() {
         SyncExamination syncExamination = new SyncExamination();
-        List<Exam> examList= syncExamination.getNotSyncedExams();
+        List<Exam> examList = syncExamination.getNotSyncedExams();
         //Hibernate needs lazy initialization of internal objects
         Iterator<Exam> iterator = examList.iterator();
         while (iterator.hasNext()) {
@@ -131,5 +151,6 @@ public class AnalyticsService {
         return examList;
 
     }
+
 
 }

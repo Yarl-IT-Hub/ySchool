@@ -129,6 +129,24 @@ public class YAnalyzer {
         return lt;
     }
 
+
+    public List<ClassroomSubject> getALSubjects(Student student) {
+
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        //student_classroom_subject data is not ready yet
+        //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        //so using this as temporary ,but this may violate optional subject...
+        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        classroomSubjectCR.add(Restrictions.eq("cl.grade", 13));
+        List<ClassroomSubject> lt = classroomSubjectCR.list();
+
+        return lt;
+    }
+
+
+
+
     public List<Integer> getNeighbours() {
 
         List<String> subjects = new ArrayList<String>();

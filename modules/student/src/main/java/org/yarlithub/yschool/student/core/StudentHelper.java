@@ -52,10 +52,10 @@ public class StudentHelper {
         return null;
     }
 
-    public StudentGeneralexamProfile getStudentProfileViaStudentID(Integer id) {
+    public StudentGeneralexamProfile getStudentProfileViaStudentID(Student student) {
         Criteria studentGeneralExamProfilesCR = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
 
-        studentGeneralExamProfilesCR.add(Restrictions.eq("studentIdstudent", String.valueOf(id)));
+        studentGeneralExamProfilesCR.add(Restrictions.eq("studentIdstudent", student));
 
         List<StudentGeneralexamProfile> lt =  studentGeneralExamProfilesCR.list();
         return lt.get(0);
