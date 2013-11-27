@@ -5,6 +5,8 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,17 +19,14 @@ import java.util.List;
  */
 
 public class MatchingStudentProfile {
-    @Autowired
-    private AnalyticsService analyticsService;
+
     private Student student;
-    private List<ClassroomSubject> olSubjects = new ArrayList<ClassroomSubject>();
-    private List<ClassroomSubject> alSubjects = new ArrayList<ClassroomSubject>();
+    private DataModel<ClassroomSubject> olSubjects ;
+    private DataModel<ClassroomSubject> alSubjects ;
 
     public MatchingStudentProfile(Student student) {
         this.setStudent(student);
-        this.setOlSubjects(analyticsService.getOLSubjects(student));
-        this.setAlSubjects(analyticsService.getALSubjects(student));
-    }
+         }
 
     public Student getStudent() {
         return student;
@@ -37,19 +36,19 @@ public class MatchingStudentProfile {
         this.student = student;
     }
 
-    public List<ClassroomSubject> getOlSubjects() {
+    public DataModel<ClassroomSubject> getOlSubjects() {
         return olSubjects;
     }
 
-    public void setOlSubjects(List<ClassroomSubject> olSubjects) {
+    public void setOlSubjects(DataModel<ClassroomSubject> olSubjects) {
         this.olSubjects = olSubjects;
     }
 
-    public List<ClassroomSubject> getAlSubjects() {
+    public DataModel<ClassroomSubject> getAlSubjects() {
         return alSubjects;
     }
 
-    public void setAlSubjects(List<ClassroomSubject> alSubjects) {
+    public void setAlSubjects(DataModel<ClassroomSubject> alSubjects) {
         this.alSubjects = alSubjects;
     }
 }

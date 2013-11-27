@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.jasperreports.JasperReportsUtils;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.model.ListDataModel;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
@@ -39,6 +41,15 @@ public class AnalyticsBean implements Serializable {
     private Student student;
 
     private CartesianChartModel linearModel;
+    private MatchingStudentProfile matchingStudentProfile;
+
+    public MatchingStudentProfile getMatchingStudentProfile() {
+        return matchingStudentProfile;
+    }
+
+    public void setMatchingStudentProfile(MatchingStudentProfile matchingStudentProfile) {
+        this.matchingStudentProfile = matchingStudentProfile;
+    }
 
     public AnalyticsBean(){
         createLinearModel();
@@ -54,6 +65,10 @@ public class AnalyticsBean implements Serializable {
 
     public boolean preloadStudent() {
         this.setStudent(analyticsService.getStudent());
+        matchingStudentProfile = new MatchingStudentProfile(this.getStudent());
+        matchingStudentProfile.setOlSubjects(new ListDataModel<ClassroomSubject>(analyticsService.getOLSubjects(this.getStudent())));
+        matchingStudentProfile.setAlSubjects(new ListDataModel<ClassroomSubject>(analyticsService.getALSubjects(this.getStudent())));
+
         return true;
 
     }

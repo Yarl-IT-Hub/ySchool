@@ -5,6 +5,7 @@ package org.yarlithub.yschool.analytics.core;
 import com.arima.classanalyzer.analyzer.ProfileMatcher;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
+import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
@@ -132,16 +133,40 @@ public class YAnalyzer {
 
     public List<ClassroomSubject> getALSubjects(Student student) {
 
-        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
-        //student_classroom_subject data is not ready yet
-        //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
-        //so using this as temporary ,but this may violate optional subject...
-        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        Criteria classroomCR = dataLayerYschool.createCriteria(Classroom.class);
+        classroomCR.add(Restrictions.eq("grade", 13));
+        classroomCR.createAlias("classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        List<Classroom> classroomList = classroomCR.list();
+        if(classroomList.get(0).getDivision().equalsIgnoreCase("Unknown")){
+            /*al stream unknown students*/
+            return null;
+        } else{
+             if(classroomList.get(0).getDivision().equalsIgnoreCase("Arts")){
+             /*arts stram have to check optional subjects*/
+                 Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+                 //student_classroom_subject data is only available for arts AL stidents
+                 classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+                 //so using this as temporary ,but this may violate optional subject...
+                 classroomSubjectCR.createAlias("classroomIdclass", "cl").add(Restrictions.eq("cl.grade", 13));
+                 List<ClassroomSubject> lt = classroomSubjectCR.list();
+                 return lt;
+             }
+            else{
+                 /*AL maths, com, bio students only 3 compulsury subjects*/
+                 Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+                 //student_classroom_subject data is not ready yet
+                 //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+                 //so using this as temporary ,but this may violate optional subject...
+                 classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
 
-        classroomSubjectCR.add(Restrictions.eq("cl.grade", 13));
-        List<ClassroomSubject> lt = classroomSubjectCR.list();
+                 classroomSubjectCR.add(Restrictions.eq("cl.grade", 13));
+                 List<ClassroomSubject> lt = classroomSubjectCR.list();
 
-        return lt;
+                 return lt;
+             }
+        }
+
+
     }
 
 

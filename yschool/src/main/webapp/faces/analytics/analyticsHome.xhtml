@@ -32,8 +32,14 @@
             test Analytics home <br/>           <br/>
             Student name check
             .
-            #{analyticsBean.student.name}
+            #{analyticsBean.student.name}   <br/>
 
+            matching profile check
+            <ui:fragment rendered="#{analyticsBean.matchingStudentProfile.alSubjects.rowAvailable}">
+            <ui:repeat value="#{analyticsBean.matchingStudentProfile.alSubjects}" var="matchprofilie">
+                   #{matchprofilie.subjectIdsubject.name}
+              </ui:repeat>
+            </ui:fragment>
         </div>
 
        <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
