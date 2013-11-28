@@ -1,14 +1,10 @@
-package org.yarlithub.yschool.web.analytics;
+package org.yarlithub.yschool.analytics.core;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.service.AnalyticsService;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 
 import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -21,27 +17,45 @@ import java.util.List;
 public class MatchingStudentProfile {
 
     private Student student;
-    private DataModel<ClassroomSubject> olSubjects ;
-    private DataModel<SubjectResult> alSubjects ;
-
+    private DataModel<SubjectResult> olSubjects;
+    private DataModel<SubjectResult> alSubjects;
+    private int islandRank;
+    private double zScore;
 
     public MatchingStudentProfile(Student student) {
         this.setStudent(student);
-         }
+           }
+
+    public int getIslandRank() {
+        return islandRank;
+    }
+
+    public void setIslandRank(int islandRank) {
+        this.islandRank = islandRank;
+    }
+
+    public double getzScore() {
+        return zScore;
+    }
+
+    public void setzScore(double zScore) {
+        this.zScore = zScore;
+    }
 
     public Student getStudent() {
         return student;
+
     }
 
     public void setStudent(Student student) {
         this.student = student;
     }
 
-    public DataModel<ClassroomSubject> getOlSubjects() {
+    public DataModel<SubjectResult> getOlSubjects() {
         return olSubjects;
     }
 
-    public void setOlSubjects(DataModel<ClassroomSubject> olSubjects) {
+    public void setOlSubjects(DataModel<SubjectResult> olSubjects) {
         this.olSubjects = olSubjects;
     }
 
@@ -52,4 +66,6 @@ public class MatchingStudentProfile {
     public void setAlSubjects(DataModel<SubjectResult> alSubjects) {
         this.alSubjects = alSubjects;
     }
+
+
 }

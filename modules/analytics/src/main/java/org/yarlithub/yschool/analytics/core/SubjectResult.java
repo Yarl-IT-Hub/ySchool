@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.web.analytics;
+package org.yarlithub.yschool.analytics.core;
 
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 
@@ -15,6 +15,7 @@ public class SubjectResult {
 
     public SubjectResult(ClassroomSubject classroomSubject, String result) {
         this.classroomSubject = classroomSubject;
+
         this.result = result;
     }
 

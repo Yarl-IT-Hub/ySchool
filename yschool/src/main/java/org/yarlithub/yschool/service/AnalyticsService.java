@@ -52,14 +52,15 @@ public class AnalyticsService {
         return classroomSubjectList;
     }
 
-
-
     @Transactional
     public List<ClassroomSubject> getALSubjects(Student student) {
 
         YAnalyzer yAnalyzer = new YAnalyzer();
         List<ClassroomSubject> classroomSubjectList = yAnalyzer.getALSubjects(student);
-
+        if(classroomSubjectList==null){
+            /*some students are unknown at AL streams yet*/
+            return null;
+        }
         Iterator<ClassroomSubject> classroomSubjectIterator = classroomSubjectList.iterator();
         while (classroomSubjectIterator.hasNext()) {
             ClassroomSubject classroomSubject = classroomSubjectIterator.next();
@@ -71,12 +72,18 @@ public class AnalyticsService {
     }
 
     @Transactional
-    public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject){
+    public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject) {
         YAnalyzer yAnalyzer = new YAnalyzer();
-        return yAnalyzer.getALSubjectsResult( student, classroomSubject);
+        return yAnalyzer.getALSubjectsResult(student, classroomSubject);
 
     }
 
+    @Transactional
+    public String getOLSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+        YAnalyzer yAnalyzer = new YAnalyzer();
+        return yAnalyzer.getOLSubjectsResult(student, classroomSubject);
+
+    }
 
     @Transactional
     public Student getStudenById(int id) {
@@ -84,6 +91,7 @@ public class AnalyticsService {
         Student student = getStudent.getStudentByID(id);
         //Hibernate needs lazy initialization of internal objects
         Hibernate.initialize(student.getClassroomStudents());
+        Hibernate.initialize(student.getStudentGeneralexamProfiles());
         Iterator<ClassroomStudent> classroomStudentIterator = student.getClassroomStudents().iterator();
         while (classroomStudentIterator.hasNext()) {
             ClassroomStudent classroomStudent = classroomStudentIterator.next();
@@ -115,9 +123,10 @@ public class AnalyticsService {
 
             int admissionNumber = adminNoIterator.next();
             Student student = studentHelper.getStudentByAdmissionNo(admissionNumber);
-
+                   Hibernate.initialize((StudentGeneralexamProfile) student.getStudentGeneralexamProfiles().toArray()[0]);
             studentList.add(student);
-            //  Hibernate.initialize(student);
+//            Hibernate.initialize(Student.class);
+//            Hibernate.initialize(StudentGeneralexamProfile.class);
 
         }
 
@@ -156,6 +165,28 @@ public class AnalyticsService {
             Hibernate.initialize(exam.getExamTypeIdexamType());
         }
         return examList;
+
+    }
+
+    @Transactional
+    public int getStudentIslandRank(Student student) {
+
+           YAnalyzer yAnalyzer =new YAnalyzer();
+        return yAnalyzer.getStudentIslandRank(student);
+
+    }
+
+    @Transactional
+    public double getStudentzScore(Student student) {
+        YAnalyzer yAnalyzer =new YAnalyzer();
+        return yAnalyzer.getStudentZscore(student);
+
+    }
+
+    @Transactional
+    public String checkStream(Student student) {
+        YAnalyzer yAnalyzer =new YAnalyzer();
+        return yAnalyzer.checkStream(student);
 
     }
 

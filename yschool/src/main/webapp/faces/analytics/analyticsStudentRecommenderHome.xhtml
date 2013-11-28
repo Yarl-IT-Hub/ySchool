@@ -10,14 +10,14 @@
         <title>ySchool: Student Analytics </title>
 
         <div>
-            <f:event listener="#{analyticsStudentHomeBean.preloadStudent}" type="preRenderView"/>
+            <f:event listener="#{analyticsStudentRecommenderHomeBean.preloadStudent}" type="preRenderView"/>
         </div>
 
     </ui:define>
 
     <ui:define name="student-content">
 
-        <div class="span6">
+        <div class="span7">
 
             <ul class="breadcrumb">
                 <li>
@@ -40,7 +40,7 @@
         </div>
 
 
-        <div class="span4">
+        <div class="span2">
             <!--Examination search bar with filter-->
             <form class="navbar-search pull-left">
                 <input type="text" class="search-query" placeholder="Search"> </input>
@@ -48,7 +48,7 @@
         </div>
 
 
-        <div class="span9">
+        <div class="span11">
 
             <div class="span8">
                 <h:panelGrid columns="1">
@@ -76,9 +76,8 @@
                             <div class="accordion-inner">
                                 A/L Stream Recommender assists in the decision making process of a new student about to
                                 enter the advanced level. This Pie Chart illustrates the choice of streams done by the
-                                matching profiles in the past. That is the 'decision' of the student alike. This chart
-                                assist the decision making regarding the stream selection, via exhibiting the past
-                                decisions taken by the students whose performance are alike. The profiles can be viewed
+                                matching profiles in the past. The success and failure are decided according to the
+                                UGC handbook and the district is set to Jaffna. The profiles can be viewed
                                 by clicking the 'View ' button,above. Please note that some profiles
                                 may not be revealed according the enforced policies.
                             </div>
@@ -92,12 +91,12 @@
 
         </div>
 
-        <div class="span9">
+        <div class="span11">
             <div class="span3">
 
-                <p:pieChart id="arts" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                <p:pieChart id="arts" value="#{analyticsStudentRecommenderHomeBean.pieModelArts}"
                             legendPosition="w" showDataLabels="true"
-                            title="Arts: Success vs Failure" style="width:250px;height:200px"
+                            title="Arts" style="width:250px;height:200px"
                             sliceMargin="5"
                             diameter="100"/>
             </div>
@@ -105,9 +104,9 @@
 
             <div class="span3">
 
-                <p:pieChart id="commerce" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                <p:pieChart id="commerce" value="#{analyticsStudentRecommenderHomeBean.pieModelCom}"
                             legendPosition="w" showDataLabels="true"
-                            title="Science: Success vs Failure" style="width:250px;height:200px"
+                            title="Commerce" style="width:250px;height:200px"
                             sliceMargin="5"
                             diameter="100"/>
             </div>
@@ -115,9 +114,9 @@
 
             <div class="span3">
 
-                <p:pieChart id="maths" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                <p:pieChart id="maths" value="#{analyticsStudentRecommenderHomeBean.pieModelMaths}"
                             legendPosition="w" showDataLabels="true"
-                            title="Science: Success vs Failure" style="width:250px;height:200px"
+                            title="Physical Science" style="width:250px;height:200px"
                             sliceMargin="5"
                             diameter="100"/>
             </div>
@@ -125,9 +124,9 @@
 
             <div class="span3">
 
-                <p:pieChart id="science" value="#{analyticsStudentRecommenderHomeBean.pieModelStreamSuccess}"
+                <p:pieChart id="science" value="#{analyticsStudentRecommenderHomeBean.pieModelBio}"
                             legendPosition="w" showDataLabels="true"
-                            title="Science: Success vs Failure" style="width:250px;height:200px"
+                            title="Biological Science" style="width:250px;height:200px"
                             sliceMargin="5"
                             diameter="100"/>
             </div>
@@ -146,12 +145,6 @@
                                      class="btn btn-info btn-large"/>
                 </div>
 
-                <div class="span2 offset1">
-                    <h:commandButton type="submit" value="Profiles"
-                                     action="#{analyticsStudentRecommenderHomeBean.navigateToStreamProfiles_Science}"
-                                     class="btn btn-info btn-large"/>
-                </div>
-
 
                 <div class="span2 offset1">
                     <h:commandButton type="submit" value="Profiles"
@@ -159,6 +152,12 @@
                                      class="btn btn-info btn-large"/>
                 </div>
 
+
+                <div class="span2 offset1">
+                    <h:commandButton type="submit" value="Profiles"
+                                     action="#{analyticsStudentRecommenderHomeBean.navigateToStreamProfiles_Science}"
+                                     class="btn btn-info btn-large"/>
+                </div>
 
             </h:form>
 

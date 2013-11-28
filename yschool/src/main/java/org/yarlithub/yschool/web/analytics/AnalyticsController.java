@@ -21,6 +21,8 @@ public class AnalyticsController implements Serializable {
 
     private Student student;
     private String stream;
+    private String profileStream;
+
 
     public Student getStudent() {
         return student;
@@ -28,11 +30,6 @@ public class AnalyticsController implements Serializable {
 
     public void setStudent(Student student) {
         this.student = student;
-    }
-
-    public void setCurrentStudent(Student student) {
-        this.student = student;
-
     }
 
     public String getStream() {
@@ -43,9 +40,11 @@ public class AnalyticsController implements Serializable {
         this.stream = stream;
     }
 
-    public void setCurrentStream(String stream) {
-        this.stream = stream;
+    public String getProfileStream() {
+        return profileStream;
+    }
 
-
+    public void setProfileStream(String profileStream) {
+        this.profileStream = profileStream;
     }
 }

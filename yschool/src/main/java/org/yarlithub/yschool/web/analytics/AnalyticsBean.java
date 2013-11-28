@@ -4,18 +4,17 @@ import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.jasperreports.JasperReportsUtils;
+import org.yarlithub.yschool.analytics.core.MatchingStudentProfile;
+import org.yarlithub.yschool.analytics.core.SubjectResult;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.model.ListDataModel;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartSeries;
 
 

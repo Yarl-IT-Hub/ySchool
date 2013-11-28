@@ -127,47 +127,42 @@ public class YAnalyzer {
         return lt;
     }
 
-
     public List<ClassroomSubject> getALSubjects(Student student) {
 
         Criteria classroomCR = dataLayerYschool.createCriteria(Classroom.class);
         classroomCR.add(Restrictions.eq("grade", 13));
         classroomCR.createAlias("classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
         List<Classroom> classroomList = classroomCR.list();
-        if(classroomList.get(0).getDivision().equalsIgnoreCase("Unknown")){
+        if (classroomList.get(0).getDivision().equalsIgnoreCase("Unknown")) {
             /*al stream unknown students*/
             return null;
-        } else{
-             if(classroomList.get(0).getDivision().equalsIgnoreCase("Arts")){
+        } else {
+            if (classroomList.get(0).getDivision().equalsIgnoreCase("Arts")) {
              /*arts stram have to check optional subjects*/
-                 Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
-                 //student_classroom_subject data is only available for arts AL stidents
-                 classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
-                 //so using this as temporary ,but this may violate optional subject...
-                 classroomSubjectCR.createAlias("classroomIdclass", "cl").add(Restrictions.eq("cl.grade", 13));
-                 List<ClassroomSubject> lt = classroomSubjectCR.list();
-                 return lt;
-             }
-            else{
+                Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+                //student_classroom_subject data is only available for arts AL stidents
+                classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+                //so using this as temporary ,but this may violate optional subject...
+                classroomSubjectCR.createAlias("classroomIdclass", "cl").add(Restrictions.eq("cl.grade", 13));
+                List<ClassroomSubject> lt = classroomSubjectCR.list();
+                return lt;
+            } else {
                  /*AL maths, com, bio students only 3 compulsury subjects*/
-                 Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
-                 //student_classroom_subject data is not ready yet
-                 //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
-                 //so using this as temporary ,but this may violate optional subject...
-                 classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+                Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+                //student_classroom_subject data is not ready yet
+                //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+                //so using this as temporary ,but this may violate optional subject...
+                classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
 
-                 classroomSubjectCR.add(Restrictions.eq("cl.grade", 13));
-                 List<ClassroomSubject> lt = classroomSubjectCR.list();
+                classroomSubjectCR.add(Restrictions.eq("cl.grade", 13));
+                List<ClassroomSubject> lt = classroomSubjectCR.list();
 
-                 return lt;
-             }
+                return lt;
+            }
         }
 
 
     }
-
-
-
 
     public List<Integer> getNeighbours() {
 
@@ -206,16 +201,61 @@ public class YAnalyzer {
 
     }
 
-
     public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject) {
 
 
         Criteria resultCR = dataLayerYschool.createCriteria(Results.class);
-        resultCR.add(Restrictions.eq("studentIdstudent",student));
+        resultCR.add(Restrictions.eq("studentIdstudent", student));
         resultCR.createAlias("examIdexam", "ex").add(Restrictions.eq("ex.classroomSubjectIdclassroomSubject", classroomSubject));
         List<Results> resultList = resultCR.list();
-         return resultList.get(0).getResults();
+        if (resultList.size() > 0) {
+            return resultList.get(0).getResults();
+        }
+        return "not available";
     }
+
+
+    public String getOLSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+
+
+        Criteria marksCR = dataLayerYschool.createCriteria(Marks.class);
+        marksCR.add(Restrictions.eq("studentIdstudent", student));
+        marksCR.createAlias("examIdexam", "ex").add(Restrictions.eq("ex.classroomSubjectIdclassroomSubject", classroomSubject));
+        List<Marks> resultList = marksCR.list();
+        if (resultList.size() > 0) {
+            return String.valueOf(resultList.get(0).getMarks());
+        }
+        return "not available";
+    }
+
+    public int getStudentIslandRank(Student student) {
+        Criteria islsndrankCR = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+        islsndrankCR.add(Restrictions.eq("studentIdstudent", student));
+        List<StudentGeneralexamProfile> studentGeneralexamProfile = islsndrankCR.list();
+
+        return studentGeneralexamProfile.get(0).getAlIslandRank();
+
+    }
+
+    public double getStudentZscore(Student student) {
+        Criteria zScore = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
+        zScore.add(Restrictions.eq("studentIdstudent", student));
+        List<StudentGeneralexamProfile> studentGeneralexamProfile = zScore.list();
+        return studentGeneralexamProfile.get(0).getZscore();
+
+    }
+
+    public String checkStream(Student student) {
+
+        Criteria classRoomStudent = dataLayerYschool.createCriteria(ClassroomStudent.class);
+        classRoomStudent.add(Restrictions.eq("studentIdstudent", student));
+        classRoomStudent.createAlias("classroomIdclass", "class").add(Restrictions.eq("class.grade", 13));
+
+
+        List<ClassroomStudent> classRoomStudents = classRoomStudent.list();
+        return classRoomStudents.get(0).getClassroomIdclass().getDivision();
+    }
+
 }
 
 
