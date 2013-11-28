@@ -4,187 +4,216 @@
                 xmlns:f="http://java.sun.com/jsf/core"
         >
 
-    <ui:define name="yhead">
-        <title>ySchool: Student Analytics </title>
+<ui:define name="yhead">
+    <title>ySchool: Student Analytics </title>
 
-        <div>
-            <f:event listener="#{analyticsStudentRecommenderStreamBean.preloadProfiles}" type="preRenderView"/>
-        </div>
+    <div>
+        <f:event listener="#{analyticsStudentRecommenderStreamBean.preloadProfiles}" type="preRenderView"/>
+    </div>
 
-    </ui:define>
+</ui:define>
 
-    <ui:define name="student-content">
+<ui:define name="student-content">
 
-        <div class="span7">
+    <div class="span7">
 
-            <ul class="breadcrumb">
-                <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-                </li>
-                <li>
-                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
-                </li>
+        <ul class="breadcrumb">
+            <li>
+                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+            </li>
+            <li>
+                <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
+            </li>
 
-                <li>
-                    <a href="#">#{analyticsStudentHomeBean.student.fullName}</a> <span
-                        class="divider">></span><!-- need to get the Student ID -->
-                </li>
+            <li>
+                <a href="#">#{analyticsStudentHomeBean.student.fullName}</a> <span
+                    class="divider">></span><!-- need to get the Student ID -->
+            </li>
 
-                <li>
-                    <a href="/yschool/faces/analytics/analyticsStudentRecommenderHome.xhtml">Recommender Home</a> <span
-                        class="divider">></span>
-                </li>
-
-
-                <li>
-                    <a href="/yschool/faces/analytics/analyticsStudentRecommenderStream.xhtml">Profiles</a>
-                </li>
-
-            </ul>
-        </div>
+            <li>
+                <a href="/yschool/faces/analytics/analyticsStudentRecommenderHome.xhtml">Recommender Home</a> <span
+                    class="divider">></span>
+            </li>
 
 
-        <div class="span2">
-            <!--Examination search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
+            <li>
+                <a href="/yschool/faces/analytics/analyticsStudentRecommenderStream.xhtml">Profiles</a>
+            </li>
+
+        </ul>
+    </div>
 
 
-        <div class="span11">
+    <div class="span2">
+        <!--Examination search bar with filter-->
+        <form class="navbar-search pull-left">
+            <input type="text" class="search-query" placeholder="Search"> </input>
+        </form>
+    </div>
 
-            <ui:repeat value="#{analyticsStudentRecommenderStreamBean.matchingStudentProfileStream}"
-                       var="matchingProfile">
 
-                <div class="accordion-group">
+    <div class="span11">
 
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
-                           href="#collapseOne">
-                            Profile Match :
-                            #{matchingProfile.student.fullName} <!-- student name/index or both-->
+        <ui:repeat value="#{analyticsStudentRecommenderStreamBean.matchingStudentProfileStream}"
+                   var="matchingProfile">
 
-                        </a>
-                    </div>
+            <div class="accordion-group">
 
-                    <div id="collapseOne" class="accordion-body collapse in">
-                        <div class="accordion-inner">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                       href="#collapseOne">
+                        Profile Match :
+                        #{matchingProfile.student.fullName} <!-- student name/index or both-->
 
-                            <div class="span4"><img src="/yschool/ico/student.png" alt="myschool"/></div>
-                            <div class="span8"> The Adavanced Level Stream:
-                                #{analyticsStudentRecommenderStreamBean.currentStream}<br/>
+                    </a>
+                </div>
 
-                                <ui:fragment rendered="#{matchingProfile.alSubjects.rowAvailable}">
-                                    <ui:repeat
-                                            value="#{matchingProfile.alSubjects}"
-                                            var="subResults">
-                                        The Subject: #{subResults.classroomSubject.subjectIdsubject.name} Result:
-                                        #{subResults.result} <br/>
-                                    </ui:repeat>
+                <div id="collapseOne" class="accordion-body collapse in">
+                    <div class="accordion-inner">
 
-                                    The Island Rank: #{matchingProfile.islandRank}
-                                    <br/>
-                                    The Z-Score: #{matchingProfile.zScore} <br/>
-                                </ui:fragment>
+                        <div class="span4">
+                            <div class="span6"><img src="/yschool/ico/student.png" alt="myschool"/></div>
 
+                            <div class="span12">
+
+
+                                A/L Stream: #{analyticsStudentRecommenderStreamBean.currentStream}<br/>
+                                The Island Rank: #{matchingProfile.islandRank}
                                 <br/>
+                                The Z-Score: #{matchingProfile.zScore} <br/> <br/>
+                                <table class="table table-hover">
+                                    <tr>
+                                        <td> The Subject</td>
+                                        <td>The Result</td>
+                                    </tr>
+                                    <ui:fragment rendered="#{matchingProfile.alSubjects.rowAvailable}">
+                                        <ui:repeat
+                                                value="#{matchingProfile.alSubjects}"
+                                                var="subResults">
+                                            <tr>
+                                                <td> #{subResults.classroomSubject.subjectIdsubject.name}</td>
+                                                <td> #{subResults.result}</td>
+                                            </tr>
+                                        </ui:repeat>
+
+                                    </ui:fragment>
+                                </table>
+
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="span7 offset1">
+                            <div class="span11">
                                 The Ordinary Level Subjects and Results: <br/>
-                                <ui:fragment rendered="#{matchingProfile.olSubjects.rowAvailable}">
-                                    <ui:repeat
-                                            value="#{matchingProfile.olSubjects}"
-                                            var="subResults">
-                                        The Subject: #{subResults.classroomSubject.subjectIdsubject.name} Result:
-                                        #{subResults.result} <br/>
+                                <table class="table table-hover">
+                                    <tr>
+                                        <td> The Subject</td>
+                                        <td>The Marks</td>
+                                    </tr>
+                                    <ui:fragment rendered="#{matchingProfile.olSubjects.rowAvailable}">
+                                        <ui:repeat
+                                                value="#{matchingProfile.olSubjects}"
+                                                var="subResults">
+                                            <tr>
+                                                <td>#{subResults.classroomSubject.subjectIdsubject.name}</td>
+                                                <td>
+                                                    #{subResults.result}
+                                                </td>
+                                            </tr>
 
-                                    </ui:repeat>
+                                        </ui:repeat>
 
-                                </ui:fragment>
+                                    </ui:fragment>
+                                </table>
 
-                                <br/>
                             </div>
+
                         </div>
                     </div>
-
-
                 </div>
 
 
-                <div class="tabbable tabs-left">
-                    <ul class="nav nav-tabs">
-                        ...
-                    </ul>
-                    <div class="tab-content">
-                        ...
-                    </div>
+            </div>
+
+
+            <div class="tabbable tabs-left">
+                <ul class="nav nav-tabs">
+
+                </ul>
+                <div class="tab-content">
+
+                </div>
+            </div>
+
+        </ui:repeat>
+
+    </div>
+
+
+    <!--<div class="span11">
+
+        <br/> <br/> <br/> <br/>
+        <ui:repeat value="#{analyticsStudentRecommenderStreamBean.matchingProfilesWithSubRes}"
+                   var="matchingProfile">
+
+            <div class="accordion-group">
+
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                       href="#collapseOne">
+                        Profile Match :
+                        #{matchingProfile.student.fullName} &lt;!&ndash; student name/index or both&ndash;&gt;
+
+                    </a>
                 </div>
 
-            </ui:repeat>
+                <div id="collapseOne1" class="accordion-body collapse in">
+                    <div class="accordion-inner">
 
-        </div>
+                        <div class="span4"><img src="/yschool/ico/student.png" alt="myschool"/></div>
+                        <div class="span8"> The Adavanced Level Stream:
+                            #{matchingProfile.student.fullName}<br/>
 
+                            <ui:fragment rendered="#{matchingProfile.alSubjects.rowAvailable}">
+                                <ui:repeat
+                                        value="#{matchingProfile.alSubjects}"
+                                        var="subResults">
+                                    The Subject: #{subResults.classroomSubject.subjectIdsubject.name} Result:
+                                    #{subResults.result} <br/>
+                                </ui:repeat>
 
-        <!--<div class="span11">
-
-            <br/> <br/> <br/> <br/>
-            <ui:repeat value="#{analyticsStudentRecommenderStreamBean.matchingProfilesWithSubRes}"
-                       var="matchingProfile">
-
-                <div class="accordion-group">
-
-                    <div class="accordion-heading">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
-                           href="#collapseOne">
-                            Profile Match :
-                            #{matchingProfile.student.fullName} &lt;!&ndash; student name/index or both&ndash;&gt;
-
-                        </a>
-                    </div>
-
-                    <div id="collapseOne1" class="accordion-body collapse in">
-                        <div class="accordion-inner">
-
-                            <div class="span4"><img src="/yschool/ico/student.png" alt="myschool"/></div>
-                            <div class="span8"> The Adavanced Level Stream:
-                                #{matchingProfile.student.fullName}<br/>
-
-                                <ui:fragment rendered="#{matchingProfile.alSubjects.rowAvailable}">
-                                    <ui:repeat
-                                            value="#{matchingProfile.alSubjects}"
-                                            var="subResults">
-                                        The Subject: #{subResults.classroomSubject.subjectIdsubject.name} Result:
-                                        #{subResults.result} <br/>
-                                    </ui:repeat>
-
-                                    The Island Rank: #{matchingProfile.islandRank}
-                                    <br/>
-                                    The Z-Score: #{matchingProfile.zScore} <br/>
-                                </ui:fragment>
-
-                                The Ordinary Level Subjects and Results: #{matchingProfile.student.fullName} <br/>
+                                The Island Rank: #{matchingProfile.islandRank}
                                 <br/>
-                            </div>
+                                The Z-Score: #{matchingProfile.zScore} <br/>
+                            </ui:fragment>
+
+                            The Ordinary Level Subjects and Results: #{matchingProfile.student.fullName} <br/>
+                            <br/>
                         </div>
                     </div>
-
-
                 </div>
 
 
-                <div class="tabbable tabs-left">
-                    <ul class="nav nav-tabs">
-                        ...
-                    </ul>
-                    <div class="tab-content">
-                        ...
-                    </div>
+            </div>
+
+
+            <div class="tabbable tabs-left">
+                <ul class="nav nav-tabs">
+                    ...
+                </ul>
+                <div class="tab-content">
+                    ...
                 </div>
+            </div>
 
-            </ui:repeat>
+        </ui:repeat>
 
-        </div>-->
+    </div>-->
 
-    </ui:define>
+</ui:define>
 
 </ui:composition>
 

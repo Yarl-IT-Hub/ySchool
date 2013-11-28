@@ -228,7 +228,7 @@ public class AnalyticsStudentRecommenderStreamBean implements Serializable {
                 } else if (stream.contentEquals("Physical Science")) {
 
                     matchingStudentProfileClassMaths.add(matchingStudentProfile);
-                } else if (stream.contentEquals("Arts")) {
+                } else if (stream.contentEquals("Biological Science")) {
 
                     matchingStudentProfileClassScience.add(matchingStudentProfile);
                 }
