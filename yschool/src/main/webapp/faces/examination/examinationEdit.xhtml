@@ -17,7 +17,7 @@
 
     <ui:define name="examination-content">
 
-        <div class="span4">
+        <div class="span6">
             <!--Breadcrumb to help user "where you are?"-->
             <ul class="breadcrumb">
                 <li>
@@ -33,14 +33,14 @@
             </ul>
         </div>
 
-        <div class="span4">
+        <div class="span3">
             <!--Examination search bar with filter-->
             <form class="navbar-search pull-left">
                 <input type="text" class="search-query" placeholder="Search"> </input>
             </form>
         </div>
 
-        <div class="span2">
+        <div class="span3">
             <!--Add new exam Button-->
             <a href="/yschool/faces/examination/examinationNew.xhtml">
                 <Button class="btn btn-info btn-large"> Add New Exam</Button>
@@ -48,7 +48,7 @@
         </div>
 
 
-        <div class="span8">
+        <div class="span10">
             <div class='well'>
                 <p>
                     <h:outputText
@@ -69,7 +69,7 @@
 
         <ui:fragment rendered="#{!examinationHomeBean.marks.rowAvailable}">
             <h:form class="form-horizontal" enctype="multipart/form-data">
-                <div class="well span8">No marks entered yet.
+                <div class="well span10">No marks entered yet.
                     <br/>
                    Fill up <a
                             href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks Document</a> and upload it here.
@@ -89,7 +89,7 @@
 
         <ui:fragment rendered="#{examinationHomeBean.marks.rowAvailable}">
             <!--makrs list-->
-            <div class="span8">
+            <div class="span10">
                 <h:form>
                     <h:dataTable value="#{examinationHomeBean.marks}" var="marks" styleClass="table table-hover">
                         <h:column>
