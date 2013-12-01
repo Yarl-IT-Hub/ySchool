@@ -127,6 +127,20 @@ public class YAnalyzer {
         return lt;
     }
 
+    public List<ClassroomSubject> getOLSubjectsGradeEleven(Student student) {
+
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        //student_classroom_subject data is not ready yet
+        //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        //so using this as temporary ,but this may violate optional subject...
+        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        classroomSubjectCR.add(Restrictions.eq("cl.grade", 11));
+        List<ClassroomSubject> lt = classroomSubjectCR.list();
+
+        return lt;
+    }
+
     public List<ClassroomSubject> getALSubjects(Student student) {
 
         Criteria classroomCR = dataLayerYschool.createCriteria(Classroom.class);
@@ -214,7 +228,6 @@ public class YAnalyzer {
         return "not available";
     }
 
-
     public String getOLSubjectsResult(Student student, ClassroomSubject classroomSubject) {
 
 
@@ -254,6 +267,27 @@ public class YAnalyzer {
 
         List<ClassroomStudent> classRoomStudents = classRoomStudent.list();
         return classRoomStudents.get(0).getClassroomIdclass().getDivision();
+    }
+
+    public double getTermMarksForOLSub(Student student, ClassroomSubject classroomSubject, int term) {
+        Criteria marks = dataLayerYschool.createCriteria(Marks.class);
+        marks.add(Restrictions.eq("studentIdstudent", student));
+        marks.createAlias("examIdexam", "examId").add(Restrictions.eq("examId.classroomSubjectIdclassroomSubject", classroomSubject));
+
+        marks.add(Restrictions.eq("examId.term", term));
+        List<Marks> marksList = marks.list();
+        if (marksList == null) {
+            return -1;
+        } else if (marksList.isEmpty()) {
+            return -1;
+        } else {
+            if (marksList.get(0).getMarks() == null) {
+                return -1;
+            }
+
+
+        }
+        return marksList.get(0).getMarks();
     }
 
 }
