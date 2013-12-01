@@ -32,7 +32,7 @@
         </div>
 
         <ui:fragment rendered="#{analyticsSyncBean.allSynced}">
-            <div class="span8">
+            <div class="span10">
                 <div class="alert alert-success">
 
                     <p class="text text-center">
@@ -52,22 +52,22 @@
         </ui:fragment>
 
         <ui:fragment rendered="#{!analyticsSyncBean.allSynced}">
+            <div class="span10">
+                <div class="alert alert-danger">
 
-            <ui:fragment rendered="#{analyticsSyncBean.newExams.rowAvailable}">
-                <div class="span8">
-                    <div class="alert alert-danger">
-
-                        <p class="text text-center">
-                            The following data are not yet synced with CLASS Server. <br/>
-                            ress "Start Sync Now" button to sunc your data. <br/>
-                            Make sure you have an active internet connection and do not turn off your computer till the operation completes.
-                        </p>
-                    </div>
-
+                    <p class="text text-center">
+                        The following data are not yet synced with CLASS Server. <br/>
+                        ress "Start Sync Now" button to sunc your data. <br/>
+                        Make sure you have an active internet connection and do not turn off your computer till the operation completes.
+                    </p>
+                </div>
+                <ui:fragment rendered="#{analyticsSyncBean.newExams.rowAvailable}">
                     <ul class="thumbnails">
                         <!--empty list to avoid bootstrap first row margin bug-->
                         <li class="span8">
+                            <h4>New Examination Results added.</h4>
                         </li>
+
                         <ui:repeat value="#{analyticsSyncBean.newExams}" var="newexam">
                             <li class="thumbnail span8">
                                 <div class="span10">
@@ -88,17 +88,20 @@
                             </li>
                         </ui:repeat>
                     </ul>
+                </ui:fragment>
+                <!--new exams ui fragment ends-->
 
-
-                    <div class="span6 offset3">
-
-                        <a href="/yschool/faces/analytics/analyticsSync.xhtml">
-                            <Button class="btn btn-info btn-large">Start Sync Now</Button>
-                        </a>
-                    </div>
+                <div class="span6 offset3">
+                    <h:form>
+                        <h:commandButton type="submit" value="Start Sync Now"
+                                         action="#{analyticsSyncBean.startCLASSSync}"
+                                         class="btn btn-info btn-large"/>
+                    </h:form>
                 </div>
-            </ui:fragment>
+            </div>
+
         </ui:fragment>
+        <!--not all sync ui fragment ends-->
 
 
     </ui:define>

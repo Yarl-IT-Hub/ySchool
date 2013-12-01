@@ -163,6 +163,20 @@ public class AnalyticsService {
             Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
             Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
             Hibernate.initialize(exam.getExamTypeIdexamType());
+            Hibernate.initialize(exam.getResultss());
+            Hibernate.initialize(exam.getMarkss());
+            Iterator<Results> resultsIterator = exam.getResultss().iterator();
+            while(resultsIterator.hasNext()){
+                Results results = resultsIterator.next();
+                Hibernate.initialize(results);
+                Hibernate.initialize(results.getStudentIdstudent());
+            }
+            Iterator<Marks> marksIterator = exam.getMarkss().iterator();
+            while(marksIterator.hasNext()){
+                Marks marks = marksIterator.next();
+                Hibernate.initialize(marks);
+                Hibernate.initialize(marks.getStudentIdstudent());
+            }
         }
         return examList;
 

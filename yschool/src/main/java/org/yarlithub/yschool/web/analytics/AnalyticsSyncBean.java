@@ -62,4 +62,9 @@ public class AnalyticsSyncBean implements Serializable {
         }
     }
 
+    public String startCLASSSync(){
+
+                 return "AnalyticsSync";
+    }
+
 }
