@@ -53,11 +53,27 @@ public class AnalyticsService {
     }
 
     @Transactional
+    public List<ClassroomSubject> getOLSubjectsEleven(Student student) {
+
+        YAnalyzer yAnalyzer = new YAnalyzer();
+        List<ClassroomSubject> classroomSubjectList = yAnalyzer.getOLSubjectsGradeEleven(student);
+
+        Iterator<ClassroomSubject> classroomSubjectIterator = classroomSubjectList.iterator();
+        while (classroomSubjectIterator.hasNext()) {
+            ClassroomSubject classroomSubject = classroomSubjectIterator.next();
+            Hibernate.initialize(classroomSubject.getSubjectIdsubject());
+            // Hibernate.initialize(classroomSubject.getExams());
+        }
+
+        return classroomSubjectList;
+    }
+
+    @Transactional
     public List<ClassroomSubject> getALSubjects(Student student) {
 
         YAnalyzer yAnalyzer = new YAnalyzer();
         List<ClassroomSubject> classroomSubjectList = yAnalyzer.getALSubjects(student);
-        if(classroomSubjectList==null){
+        if (classroomSubjectList == null) {
             /*some students are unknown at AL streams yet*/
             return null;
         }
@@ -123,7 +139,7 @@ public class AnalyticsService {
 
             int admissionNumber = adminNoIterator.next();
             Student student = studentHelper.getStudentByAdmissionNo(admissionNumber);
-                   Hibernate.initialize((StudentGeneralexamProfile) student.getStudentGeneralexamProfiles().toArray()[0]);
+            Hibernate.initialize((StudentGeneralexamProfile) student.getStudentGeneralexamProfiles().toArray()[0]);
             studentList.add(student);
 //            Hibernate.initialize(Student.class);
 //            Hibernate.initialize(StudentGeneralexamProfile.class);
@@ -171,23 +187,29 @@ public class AnalyticsService {
     @Transactional
     public int getStudentIslandRank(Student student) {
 
-           YAnalyzer yAnalyzer =new YAnalyzer();
+        YAnalyzer yAnalyzer = new YAnalyzer();
         return yAnalyzer.getStudentIslandRank(student);
 
     }
 
     @Transactional
     public double getStudentzScore(Student student) {
-        YAnalyzer yAnalyzer =new YAnalyzer();
+        YAnalyzer yAnalyzer = new YAnalyzer();
         return yAnalyzer.getStudentZscore(student);
 
     }
 
     @Transactional
     public String checkStream(Student student) {
-        YAnalyzer yAnalyzer =new YAnalyzer();
+        YAnalyzer yAnalyzer = new YAnalyzer();
         return yAnalyzer.checkStream(student);
 
+    }
+
+    @Transactional
+    public double getTermMarksForOLSub(Student student, ClassroomSubject classroomSubject, int term) {
+        YAnalyzer yAnalyzer = new YAnalyzer();
+        return yAnalyzer.getTermMarksForOLSub(student, classroomSubject, term);
     }
 
 
