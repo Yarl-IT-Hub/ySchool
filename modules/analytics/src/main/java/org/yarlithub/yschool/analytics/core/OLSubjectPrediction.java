@@ -2,6 +2,7 @@ package org.yarlithub.yschool.analytics.core;
 
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 
+import org.primefaces.model.chart.CartesianChartModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,16 @@ public class OLSubjectPrediction {
     private ClassroomSubject olSubject;
     private List<String> predictedGrade = new ArrayList<String>();
     private List<Double> termMarks = new ArrayList<Double>();
+    private CartesianChartModel linearModelTermMarks;
+
+
+    public CartesianChartModel getLinearModelTermMarks() {
+        return linearModelTermMarks;
+    }
+
+    public void setLinearModelTermMarks(CartesianChartModel linearModelTermMarks) {
+        this.linearModelTermMarks = linearModelTermMarks;
+    }
 
     public ClassroomSubject getOlSubject() {
         return olSubject;

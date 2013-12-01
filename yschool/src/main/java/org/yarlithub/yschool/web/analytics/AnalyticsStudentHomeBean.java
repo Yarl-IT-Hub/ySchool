@@ -97,15 +97,12 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     }
 
-    private void createLinearModelTermMarks() {
+    private void createLinearModelTermMarks(OLSubjectPrediction olSubjectPrediction) {
         linearModelTermMarks = new CartesianChartModel();
 
 
         LineChartSeries termMarks = new LineChartSeries();
         termMarks.setLabel("Term Marks");
-        Iterator<OLSubjectPrediction> iterator = olSubjectPredictions.iterator();
-        OLSubjectPrediction olSubjectPrediction = iterator.next();
-
 
         if (olSubjectPrediction.getTermMarks().get(0) != -.1) {
             termMarks.set(1, olSubjectPrediction.getTermMarks().get(0));
@@ -123,7 +120,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
             termMarks.set(5, olSubjectPrediction.getTermMarks().get(4));
         }
 
-        if (olSubjectPrediction.getTermMarks().get(6) != -.1) {
+        if (olSubjectPrediction.getTermMarks().get(5) != -.1) {
             termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
         }
 
@@ -197,42 +194,16 @@ public class AnalyticsStudentHomeBean implements Serializable {
             OLSubjectPrediction olSubjectPrediction = new OLSubjectPrediction();
             olSubjectPrediction.setOlSubject(olSubject);
             olSubjectPrediction.setTermMarks(termMarks);
+            createLinearModelTermMarks(olSubjectPrediction);
 
+
+            olSubjectPrediction.setLinearModelTermMarks(linearModelTermMarks);
 
             olSubjectPredictions.add(olSubjectPrediction);
 
         }
 
         this.olSubjectPredictions = new ListDataModel<OLSubjectPrediction>(olSubjectPredictions);
-
-        createLinearModelTermMarks();
-
-
-        return true;
-    }
-
-    public boolean preload() {
-
-        this.student = analyticsService.getStudenById(1);
-        //  this.student=analyticsController.getStudent();
-        this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
-
-
-        double termMark = 0.0;
-
-        Iterator<ClassroomSubject> olsubjectIterator = oLSubjects.iterator();
-
-
-        ClassroomSubject olSubject = olsubjectIterator.next();
-
-
-        for (int term = 1; term <= 3; term++) {
-            termMark = analyticsService.getTermMarksForOLSub(this.student, olSubject, term);
-            termMarks.add(termMark);
-
-        }
-
-        createLinearModel();
 
 
         return true;

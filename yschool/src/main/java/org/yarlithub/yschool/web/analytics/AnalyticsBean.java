@@ -67,7 +67,7 @@ public class AnalyticsBean implements Serializable {
     public boolean preloadStudent() {
         this.setStudent(analyticsService.getStudent());
         matchingStudentProfile = new MatchingStudentProfile(this.getStudent());
-        matchingStudentProfile.setOlSubjects(new ListDataModel<ClassroomSubject>(analyticsService.getOLSubjects(this.getStudent())));
+       // matchingStudentProfile.setOlSubjects(new ListDataModel<ClassroomSubject>(analyticsService.getOLSubjects(this.getStudent())));
 
        // matchingStudentProfile.setAlSubjects(new ListDataModel<ClassroomSubject>(analyticsService.getALSubjects(this.getStudent())));
         List<SubjectResult> subjectResultList = new ArrayList<>();
