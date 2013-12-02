@@ -1,8 +1,8 @@
 package org.yarlithub.yschool.analytics.core;
 
+import org.primefaces.model.chart.CartesianChartModel;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 
-import org.primefaces.model.chart.CartesianChartModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +17,9 @@ public class OLSubjectPrediction {
     private ClassroomSubject olSubject;
     private List<String> predictedGrade = new ArrayList<String>();
     private List<Double> termMarks = new ArrayList<Double>();
+    private List<Integer> termMarksLower = new ArrayList<Integer>();
+    private List<Integer> termMarksUpper = new ArrayList<Integer>();
     private CartesianChartModel linearModelTermMarks;
-
 
     public CartesianChartModel getLinearModelTermMarks() {
         return linearModelTermMarks;
@@ -26,6 +27,22 @@ public class OLSubjectPrediction {
 
     public void setLinearModelTermMarks(CartesianChartModel linearModelTermMarks) {
         this.linearModelTermMarks = linearModelTermMarks;
+    }
+
+    public List<Integer> getTermMarksLower() {
+        return termMarksLower;
+    }
+
+    public void setTermMarksLower(List<Integer> termMarksLower) {
+        this.termMarksLower = termMarksLower;
+    }
+
+    public List<Integer> getTermMarksUpper() {
+        return termMarksUpper;
+    }
+
+    public void setTermMarksUpper(List<Integer> termMarksUpper) {
+        this.termMarksUpper = termMarksUpper;
     }
 
     public ClassroomSubject getOlSubject() {
@@ -51,6 +68,7 @@ public class OLSubjectPrediction {
     public void setTermMarks(List<Double> termMarks) {
         this.termMarks = termMarks;
     }
+
 
 
 }
