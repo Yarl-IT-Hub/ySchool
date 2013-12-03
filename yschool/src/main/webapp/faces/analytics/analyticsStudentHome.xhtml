@@ -59,18 +59,22 @@
                         </div>
                         <div class="accordion" id="accordion2">
 
-                            <ui:repeat value="#{analyticsStudentHomeBean.oLSubjects}" var="classroomSubject">
+                            <ui:repeat value="#{analyticsStudentHomeBean.olSubjectPredictions}" var="classroomSubject">
                                 <div class="accordion-group">
                                     <div class="accordion-heading">
                                         <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
                                            href="#collapseOne">
-                                            Grade : #{classroomSubject.subjectIdsubject.name}
+                                            Subject: #{classroomSubject.olSubject.subjectIdsubject.name}
+
+
+                                            <!--<ui:repeat value="#{classroomSubject.termMarks}" var="termMark"> Term mark:-->
+                                                <!--#{termMark} <br/></ui:repeat>-->
 
                                         </a>
                                     </div>
                                     <div id="collapseOne" class="accordion-body collapse in">
                                         <div class="accordion-inner">
-                                            <p:lineChart value="#{analyticsStudentHomeBean.linearModelTermMarks}"
+                                            <p:lineChart value="#{classroomSubject.linearModelTermMarks}"
                                                          legendPosition="e" zoom="true" animate="true"
                                                          title="
                                                           Chart" minY="0" maxY="100" style="width:300px;"/>

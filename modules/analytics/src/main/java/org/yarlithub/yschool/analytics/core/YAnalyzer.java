@@ -279,10 +279,10 @@ public class YAnalyzer {
         if (marksList == null) {
             return -1;
         } else if (marksList.isEmpty()) {
-            return -1;
+            return -2;
         } else {
             if (marksList.get(0).getMarks() == null) {
-                return -1;
+                return -3;
             }
 
 

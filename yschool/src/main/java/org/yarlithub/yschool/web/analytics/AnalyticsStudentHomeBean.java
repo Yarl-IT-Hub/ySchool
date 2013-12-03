@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static com.arima.classanalyzer.core.CFinal.predictNextTerm;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Jay Krish
@@ -45,7 +47,6 @@ public class AnalyticsStudentHomeBean implements Serializable {
     private DataModel aLSubjects;
     private CartesianChartModel linearModel;
     private CartesianChartModel linearModelTermMarks;
-    private List<Double> termMarks = new ArrayList<Double>();
 
     public Student getStudent() {
         return student;
@@ -53,6 +54,14 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    public DataModel<OLSubjectPrediction> getOlSubjectPredictions() {
+        return olSubjectPredictions;
+    }
+
+    public void setOlSubjectPredictions(DataModel<OLSubjectPrediction> olSubjectPredictions) {
+        this.olSubjectPredictions = olSubjectPredictions;
     }
 
     public DataModel getoLSubjects() {
@@ -71,41 +80,13 @@ public class AnalyticsStudentHomeBean implements Serializable {
         this.linearModel = linearModel;
     }
 
-    public List<Double> getTermMarks() {
-        return termMarks;
-    }
-
-    public void setTermMarks(List<Double> termMarks) {
-        this.termMarks = termMarks;
-    }
-
-    private void createLinearModel() {
-        linearModel = new CartesianChartModel();
-
-
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Term Marks (year ten)");
-
-        series1.set(1, termMarks.get(0));
-        series1.set(2, termMarks.get(1));
-        series1.set(3, termMarks.get(2));
-
-
-        linearModel.addSeries(series1);
-
-        setLinearModel(linearModel);
-
-    }
-
-    private void createLinearModelTermMarks() {
+    private void createLinearModelTermMarks(OLSubjectPrediction olSubjectPrediction) {
         linearModelTermMarks = new CartesianChartModel();
 
-
         LineChartSeries termMarks = new LineChartSeries();
-        termMarks.setLabel("Term Marks");
-        Iterator<OLSubjectPrediction> iterator = olSubjectPredictions.iterator();
-        OLSubjectPrediction olSubjectPrediction = iterator.next();
 
+
+        termMarks.setLabel("Term Marks");
 
         if (olSubjectPrediction.getTermMarks().get(0) != -.1) {
             termMarks.set(1, olSubjectPrediction.getTermMarks().get(0));
@@ -123,15 +104,76 @@ public class AnalyticsStudentHomeBean implements Serializable {
             termMarks.set(5, olSubjectPrediction.getTermMarks().get(4));
         }
 
-        if (olSubjectPrediction.getTermMarks().get(6) != -.1) {
+        if (olSubjectPrediction.getTermMarks().get(5) != -.1) {
             termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
         }
 
 
         linearModelTermMarks.addSeries(termMarks);
         // linearModel.addSeries(series2);
-        setLinearModel(linearModelTermMarks);
+        setLinearModelTermMarks(linearModelTermMarks);
 
+    }
+
+    private CartesianChartModel createLinearModelTermMarksForOlSub(OLSubjectPrediction olSubjectPrediction) {
+        CartesianChartModel model = new CartesianChartModel();
+
+        LineChartSeries termMarks = new LineChartSeries();
+
+
+        termMarks.setLabel("Term Marks");
+
+        if (olSubjectPrediction.getTermMarks().get(0) >= 0) {
+            termMarks.set(1, olSubjectPrediction.getTermMarks().get(0));
+        }
+        if (olSubjectPrediction.getTermMarks().get(1) >= 0) {
+            termMarks.set(2, olSubjectPrediction.getTermMarks().get(1));
+        }
+        if (olSubjectPrediction.getTermMarks().get(2) >= 0) {
+            termMarks.set(3, olSubjectPrediction.getTermMarks().get(2));
+        }
+        if (olSubjectPrediction.getTermMarks().get(3) >= 0) {
+            termMarks.set(4, olSubjectPrediction.getTermMarks().get(3));
+        }
+        if (olSubjectPrediction.getTermMarks().get(4) >= 0) {
+            termMarks.set(5, olSubjectPrediction.getTermMarks().get(4));
+        }
+
+        if (olSubjectPrediction.getTermMarks().get(5) >= 0) {
+            termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
+        }
+
+
+        LineChartSeries upperBound = new LineChartSeries();
+
+
+        upperBound.setLabel("Upper Bound");
+
+
+        upperBound.set(2, olSubjectPrediction.getTermMarksUpper().get(0));
+        upperBound.set(3, olSubjectPrediction.getTermMarksUpper().get(1));
+        upperBound.set(4, olSubjectPrediction.getTermMarksUpper().get(2));
+        upperBound.set(5, olSubjectPrediction.getTermMarksUpper().get(3));
+        upperBound.set(6, olSubjectPrediction.getTermMarksUpper().get(4));
+
+
+        LineChartSeries lowerBound = new LineChartSeries();
+
+
+        lowerBound.setLabel("Lower Bound");
+
+
+        lowerBound.set(2, olSubjectPrediction.getTermMarksLower().get(0));
+        lowerBound.set(3, olSubjectPrediction.getTermMarksLower().get(1));
+        lowerBound.set(4, olSubjectPrediction.getTermMarksLower().get(2));
+        lowerBound.set(5, olSubjectPrediction.getTermMarksLower().get(3));
+        lowerBound.set(6, olSubjectPrediction.getTermMarksLower().get(4));
+
+
+        model.addSeries(upperBound);
+        model.addSeries(termMarks);
+        model.addSeries(lowerBound);
+        return model;
     }
 
     public CartesianChartModel getLinearModelTermMarks() {
@@ -144,7 +186,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-        this.student = analyticsService.getStudenById(1);
+        this.student = analyticsService.getStudenById(5);
         //  this.student=analyticsController.getStudent();
         this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         this.oLSubjectsEleven = new ListDataModel(analyticsService.getOLSubjectsEleven(student));
@@ -156,9 +198,11 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
         Iterator<ClassroomSubject> olsubjectIterator = oLSubjects.iterator();
         Iterator<ClassroomSubject> olsubjectElevenIterator = oLSubjectsEleven.iterator();
-
+        OLSubjectPrediction olSubjectPrediction = null;
 
         while (true) {
+            List<Double> termMarks = new ArrayList<Double>();
+
             ClassroomSubject olSubject = null;
             ClassroomSubject olsubjectEleven = null;
 
@@ -172,13 +216,47 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
             }
 
+            ArrayList<Integer> previousTermMarks = new ArrayList<>();
+            ArrayList<Integer> predictedTermMarksLower = new ArrayList<>();
+            ArrayList<Integer> predictedTermMarksUpper = new ArrayList<>();
+            ArrayList<Integer> range = new ArrayList<>();
 
             for (int term = 1; term <= 3; term++) {
                 termMark = analyticsService.getTermMarksForOLSub(this.student, olSubject, term);
                 if (termMark >= 0 && termMark <= 100) {
+
                     termMarks.add(termMark);
-                } else {
+                    int mark = (int) termMark;
+
+                    previousTermMarks.add(mark);
+                    try {
+                        // range = predictNextTerm(null, 2008, 10, term, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+
+
+                        if (term < 3) {
+                            range = predictNextTerm(null, 2008, 10, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                        }
+
+                        if (term == 3) {
+                            range = predictNextTerm(null, 2009, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+
+                        }
+
+                    } catch (Exception e) {
+
+                    }
+
+
+                    predictedTermMarksLower.add(range.get(0));
+                    predictedTermMarksUpper.add(range.get(1));
+
+
+                } else if (termMark == -1) {
                     termMarks.add(-0.1);
+                } else if (termMark == -2) {
+                    termMarks.add(-0.2);
+                } else if (termMark == -3) {
+                    termMarks.add(-0.3);
                 }
 
             }
@@ -188,52 +266,60 @@ public class AnalyticsStudentHomeBean implements Serializable {
                 termMark = analyticsService.getTermMarksForOLSub(this.student, olsubjectEleven, term);
                 if (termMark >= 0 && termMark <= 100) {
                     termMarks.add(termMark);
-                } else {
+
+                    int mark = (int) termMark;
+
+                    previousTermMarks.add(mark);
+                    try {
+                        if (term < 3) {
+                            range = predictNextTerm(null, 2009, 11, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                        }
+
+                        if (term == 3) {
+                            //range = predictNextTerm(null, 2008, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+
+                        }
+
+                    } catch (Exception e) {
+
+                    }
+
+
+                    predictedTermMarksLower.add(range.get(0));
+                    predictedTermMarksUpper.add(range.get(1));
+                } else if (termMark == -1) {
                     termMarks.add(-0.1);
+                } else if (termMark == -2) {
+                    termMarks.add(-0.2);
+                } else if (termMark == -3) {
+                    termMarks.add(-0.3);
                 }
 
             }
 
-            OLSubjectPrediction olSubjectPrediction = new OLSubjectPrediction();
+            olSubjectPrediction = new OLSubjectPrediction();
             olSubjectPrediction.setOlSubject(olSubject);
             olSubjectPrediction.setTermMarks(termMarks);
+            olSubjectPrediction.setTermMarksUpper(predictedTermMarksUpper);
+            olSubjectPrediction.setTermMarksLower(predictedTermMarksLower);
 
+
+//            createLinearModelTermMarks(olSubjectPrediction);
+//            olSubjectPrediction.setLinearModelTermMarks(linearModelTermMarks);
 
             olSubjectPredictions.add(olSubjectPrediction);
+
 
         }
 
         this.olSubjectPredictions = new ListDataModel<OLSubjectPrediction>(olSubjectPredictions);
 
-        createLinearModelTermMarks();
+        Iterator<OLSubjectPrediction> iterator = olSubjectPredictions.iterator();
+        while (iterator.hasNext()) {
+            OLSubjectPrediction olSubjectPrediction_tmp = iterator.next();
 
-
-        return true;
-    }
-
-    public boolean preload() {
-
-        this.student = analyticsService.getStudenById(1);
-        //  this.student=analyticsController.getStudent();
-        this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
-
-
-        double termMark = 0.0;
-
-        Iterator<ClassroomSubject> olsubjectIterator = oLSubjects.iterator();
-
-
-        ClassroomSubject olSubject = olsubjectIterator.next();
-
-
-        for (int term = 1; term <= 3; term++) {
-            termMark = analyticsService.getTermMarksForOLSub(this.student, olSubject, term);
-            termMarks.add(termMark);
-
+            olSubjectPrediction_tmp.setLinearModelTermMarks(createLinearModelTermMarksForOlSub(olSubjectPrediction_tmp));
         }
-
-        createLinearModel();
-
 
         return true;
     }

@@ -68,6 +68,7 @@ public class AnalyticsBean implements Serializable {
         this.setStudent(analyticsService.getStudent());
 
 
+
         return true;
 
     }
