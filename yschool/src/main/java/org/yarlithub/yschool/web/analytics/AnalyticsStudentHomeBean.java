@@ -171,6 +171,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
 
         model.addSeries(upperBound);
+        //upperBound.setMarkerStyle();
         model.addSeries(termMarks);
         model.addSeries(lowerBound);
         return model;
@@ -320,6 +321,57 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
             olSubjectPrediction_tmp.setLinearModelTermMarks(createLinearModelTermMarksForOlSub(olSubjectPrediction_tmp));
         }
+
+
+        Iterator<OLSubjectPrediction> iterator1 = olSubjectPredictions.iterator();
+
+        while (iterator1.hasNext()) {
+            OLSubjectPrediction olSubjectPrediction_tmp = iterator1.next();
+            // List<String> msgs = new ArrayList<>();
+            String msg = olSubjectPrediction_tmp.getMsg();
+
+
+//            int index = 0;
+//            while (index < olSubjectPrediction_tmp.getTermMarksLower().size()-1) {
+            //msgs = new ArrayList<>();
+
+            int recentIndex = olSubjectPrediction_tmp.getTermMarks().size() - 1;
+            double termMarks = olSubjectPrediction_tmp.getTermMarks().get(recentIndex);
+            double lower = olSubjectPrediction_tmp.getTermMarksLower().get(recentIndex - 1);
+            double upper = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 1);
+
+            if (upper >= termMarks && termMark >= lower) {
+                //index++;
+                continue;
+
+
+            }
+            if (upper < termMarks) {
+                // msgs.add(MessageStudentHome.appreciation);
+                olSubjectPrediction_tmp.setMsgValidation(MessageStudentHome.appreciation);
+                olSubjectPrediction_tmp.setMsgValidation_available(true);
+                olSubjectPrediction_tmp.setMsg(null);
+                olSubjectPrediction_tmp.setMsgWarning(null);
+                continue;
+            }
+            if (lower > termMarks) {
+                olSubjectPrediction_tmp.setMsgWarning(MessageStudentHome.warning);
+                olSubjectPrediction_tmp.setMsgWarning_available(true);
+                olSubjectPrediction_tmp.setMsg(null);
+                olSubjectPrediction_tmp.setMsgValidation(null);
+                continue;
+
+            }
+
+            olSubjectPrediction_tmp.setMsg_available(true);
+
+            //    index++;
+        }
+
+        // olSubjectPrediction_tmp.setMsgs(msg);
+
+        //   }
+
 
         return true;
     }
