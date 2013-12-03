@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.analytics.datasync;
+package org.yarlithub.yschool.web.analytics;
 
 /**
  * Created with IntelliJ IDEA.

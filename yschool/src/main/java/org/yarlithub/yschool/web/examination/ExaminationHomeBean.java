@@ -38,7 +38,7 @@ public class ExaminationHomeBean implements Serializable {
     }
 
     public boolean preloadLatestExams() {
-        exams = new ListDataModel(examinationService.listExams(0, 100));
+        exams = new ListDataModel(examinationService.listExams(0, 10));
         this.setExams(exams);
         return true;
     }

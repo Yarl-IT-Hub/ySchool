@@ -25,7 +25,7 @@ public class ExaminationLoader {
         marksDocReader.setSheet(0);
         DataLayerYschool DataLayerYschool = DataLayerYschoolImpl.getInstance();
 
-        for (int i = 2; i <= marksDocReader.getLastRowNumber(); i++) {
+        for (int i = 1; i <= marksDocReader.getLastRowNumber(); i++) {
             marksDocReader.setRow(i);
 
             //I n exam marks uploading spreadsheet :admission no column, name column(not needed), marks column

@@ -199,6 +199,12 @@ public class AnalyticsService {
     }
 
     @Transactional
+    public String PushNewExam(Exam exam){
+     SyncExamination syncExamination = new SyncExamination();
+        return syncExamination.PushNewExam(exam);
+    }
+
+    @Transactional
     public int getStudentIslandRank(Student student) {
 
         YAnalyzer yAnalyzer = new YAnalyzer();

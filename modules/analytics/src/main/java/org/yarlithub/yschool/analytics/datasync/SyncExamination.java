@@ -1,5 +1,8 @@
 package org.yarlithub.yschool.analytics.datasync;
 
+import com.arima.classanalyzer.datasync.CExam;
+import com.arima.classanalyzer.datasync.CMarks;
+import com.arima.classanalyzer.datasync.CResults;
 import com.arima.classanalyzer.datasync.Synchronizer;
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
@@ -8,10 +11,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
-import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
-import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
-import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
-import org.yarlithub.yschool.repository.model.obj.yschool.Results;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -61,46 +61,68 @@ public class SyncExamination {
         return examList;
     }
 
-    public String PushNewExam(Exam exam) throws JSONException {
+    public String PushNewExam(Exam exam) {
 
         Synchronizer synchronizer = new Synchronizer();
 
-        JSONObject jsonCExam = new JSONObject();
-        jsonCExam.put(Constants.SCHOOL_NO, 11086);
-        jsonCExam.put(Constants.EXAM_DATE, "2012-1-1");
-        jsonCExam.put(Constants.EXAM_GRADE, exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade());
-        jsonCExam.put(Constants.EXAM_DIVISION, exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getDivision());
-        jsonCExam.put(Constants.EXAM_TERM, exam.getTerm());
-        jsonCExam.put(Constants.EXAM_SUBJECT_ID, exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getId());
-        jsonCExam.put(Constants.EXAM_TYPE, exam.getExamTypeIdexamType().getId());
+        CExam cExam = new CExam();
+        cExam.setSchoolNo(11086);
+        cExam.setDate(exam.getDate());
+        cExam.setGrade(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade());
+        cExam.setDivision(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getDivision());
+        cExam.setTerm(exam.getTerm());
+        cExam.setSubjectId(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getId());
+        cExam.setExamType(exam.getExamTypeIdexamType().getId());
 
-        JSONArray jsonArray = new JSONArray();
         if(exam.getExamTypeIdexamType().getId()==Constants.GENERAL_EXAM){
            Iterator<Results> resultsIterator = exam.getResultss().iterator();
+            List<CResults> cResultsList=new ArrayList<CResults>();
             while(resultsIterator.hasNext()){
-                JSONObject jsonObject1 = new JSONObject();
                 Results results =resultsIterator.next();
-                jsonObject1.put(Constants.ADDMISSION_NO, results.getStudentIdstudent().getAdmissionNo());
-                jsonObject1.put(Constants.EXAM_RESULTS, results.getResults());
-                jsonArray.put(jsonObject1);
+                CResults cResults = new CResults();
+                cResults.setAdmissionNo(results.getStudentIdstudent().getAdmissionNo());
+                cResults.setResult(results.getResults());
+                  cResultsList.add(cResults);
             }
+           cExam.setcResultsList(cResultsList);
         }
 
-        if(exam.getExamTypeIdexamType().getId()==Constants.TERM_EXAM){
+        else{
+            /*term or CA exam */
             Iterator<Marks> marksIterator = exam.getMarkss().iterator();
+            List<CMarks> cMarksList=new ArrayList<CMarks>();
             while(marksIterator.hasNext()){
-                JSONObject jsonObject1 = new JSONObject();
                 Marks marks =marksIterator.next();
-                jsonObject1.put(Constants.ADDMISSION_NO, marks.getStudentIdstudent().getAdmissionNo());
-                jsonObject1.put(Constants.EXAM_RESULTS, marks.getMarks());
-                jsonArray.put(jsonObject1);
+                CMarks cMarks = new CMarks();
+                cMarks.setAdmissionNo(marks.getStudentIdstudent().getAdmissionNo());
+                cMarks.setMarks(marks.getMarks());
+                cMarksList.add(cMarks);
             }
+            cExam.setcMarksList(cMarksList);
         }
 
+        String results = synchronizer.pushExamPerformance(cExam);
+         if(results.startsWith(Constants.SUCCESS_MSG)){
+             /*take the returned class-examid and insert it into yschool sync table*/
+             String[] re = results.split(":");
+             int classExamId = Integer.valueOf(re[1]);
+             updateSyncExam(SyncStatus.SYNCED,classExamId,exam);
+         }
 
-        jsonCExam.put(Constants.PERFORMANCE_LIST, jsonArray);
+        return results;
+    }
 
-      //  return synchronizer.pushExamPerformance(jsonCExam);
-        return null;
+    private void updateSyncExam(int status, int classExamId, Exam exam) {
+        List<ExamSync> examSyncList = new ArrayList<>();
+        Criteria examSyncCR = dataLayerYschool.createCriteria(ExamSync.class);
+        examSyncCR.add(Restrictions.eq("examIdexam", exam));                        //String.valueOf(admissionNo)
+        examSyncList= examSyncCR.list();
+        ExamSync examSync =examSyncList.get(0);
+
+
+        examSync.setClassIdexam(classExamId);
+        examSync.setSyncStatus(status);
+        dataLayerYschool.save(examSync);
+        dataLayerYschool.flushSession();
     }
 }

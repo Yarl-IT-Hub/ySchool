@@ -10,9 +10,7 @@ import org.yarlithub.yschool.analytics.datasync.SyncExamination;
 import org.yarlithub.yschool.examination.core.ExaminationHelper;
 import org.yarlithub.yschool.examination.core.ExaminationCreator;
 import org.yarlithub.yschool.examination.core.ExaminationLoader;
-import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
-import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
-import org.yarlithub.yschool.repository.model.obj.yschool.Results;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 
 import java.io.IOException;
 import java.util.Date;
@@ -80,6 +78,10 @@ public class ExaminationService {
             Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
             Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
             Hibernate.initialize(exam.getExamTypeIdexamType());
+            Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
+            while (examSyncIterator.hasNext()){
+                Hibernate.initialize(examSyncIterator.next());
+            }
         }
         return exams;
     }
@@ -106,6 +108,11 @@ public class ExaminationService {
         while (resultsIterator.hasNext()) {
             Results results = resultsIterator.next();
             Hibernate.initialize(results.getStudentIdstudent());
+            Iterator<StudentGeneralexamProfile> studentGeneralexamProfileIterator = results.getStudentIdstudent().getStudentGeneralexamProfiles().iterator();
+            while (studentGeneralexamProfileIterator.hasNext()){
+                /*to print islandrank and zscore*/
+                Hibernate.initialize(studentGeneralexamProfileIterator.next());
+            }
         }
         return resultsList;
     }
@@ -134,7 +141,10 @@ public class ExaminationService {
         Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject());
         Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
         Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
-
+        Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
+        while (examSyncIterator.hasNext()){
+            Hibernate.initialize(examSyncIterator.next());
+        }
         return exam;
     }
 }

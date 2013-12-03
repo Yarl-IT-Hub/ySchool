@@ -10,6 +10,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
 
 
 /**
@@ -27,6 +29,8 @@ public class AnalyticsSyncBean implements Serializable {
     private DataModel<Exam> modifiedExams;
     @Autowired
     private AnalyticsService analyticsService;
+    @Autowired
+    private AnalyticsController analyticsController;
     private boolean allSynced;
 
     public boolean isAllSynced() {
@@ -55,16 +59,32 @@ public class AnalyticsSyncBean implements Serializable {
 
     public void preload() {
         setAllSynced(true);
-        newExams = new ListDataModel(analyticsService.getNotSyncedExams());
+        this.newExams = new ListDataModel(analyticsService.getNotSyncedExams());
         modifiedExams = new ListDataModel();
-        if (newExams != null || modifiedExams != null) {
+        if (newExams.isRowAvailable() || modifiedExams.isRowAvailable()) {
             setAllSynced(false);
         }
     }
 
     public String startCLASSSync(){
+        String returncode="Nothing here";
 
-                 return "AnalyticsSync";
+                     Iterator<Exam> newExamIterator  = newExams.iterator();
+                     while(newExamIterator.hasNext()){
+                         Exam exam=newExamIterator.next();
+                         returncode= analyticsService.PushNewExam(exam);
+                         if(!returncode.startsWith(Constants.SUCCESS_MSG)){
+                             break;
+                         }
+                     }
+
+        if(returncode.startsWith(Constants.SUCCESS_MSG)) {
+            return "AnalyticsSync";
+        }
+
+        analyticsController.setAnalyticsErrorMessage(returncode);
+        return "AnalyticsError";
+
     }
 
 }

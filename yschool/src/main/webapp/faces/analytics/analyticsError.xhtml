@@ -1,0 +1,69 @@
+<ui:composition template="/WEB-INF/templates/analytics-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="yhead">
+        <title>ySchool: Analytics Error</title>
+
+        <div>
+            <f:event listener="#{analyticsErrorBean.preloadError}" type="preRenderView"/>
+        </div>
+
+    </ui:define>
+
+
+    <ui:define name="student-content">
+
+        <div class="span6">
+        <ul class="breadcrumb">
+            <li>
+                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+            </li>
+            <li>
+                <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a>  <span class="divider">></span>
+            </li>
+            <li>
+                <a href="#">Error</a>  <span class="divider">></span>
+            </li>
+        </ul>
+    </div>
+
+
+
+        <div class="alert alert-danger span10">
+            <h4> An Error Occured </h4>
+            <p class="text text-center">
+                Nothing Serious, but an error occured during your last operation.<br/>
+                We will be looking on to that.
+
+
+            </p>
+        </div>
+
+        <div class="accordion span10" id="accordion2">
+                  <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                           href="#collapseOne">
+                            Till, you can view the technical details here.
+                              </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                                      #{analyticsErrorBean.errorMessage}
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+
+    </ui:define>
+
+
+
+
+</ui:composition>

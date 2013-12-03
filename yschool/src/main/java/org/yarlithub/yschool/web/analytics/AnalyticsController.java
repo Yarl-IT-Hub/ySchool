@@ -22,6 +22,7 @@ public class AnalyticsController implements Serializable {
     private Student student;
     private String stream;
     private String profileStream;
+    private String analyticsErrorMessage;
 
 
     public Student getStudent() {
@@ -46,5 +47,13 @@ public class AnalyticsController implements Serializable {
 
     public void setProfileStream(String profileStream) {
         this.profileStream = profileStream;
+    }
+
+    public String getAnalyticsErrorMessage() {
+        return analyticsErrorMessage;
+    }
+
+    public void setAnalyticsErrorMessage(String analyticsErrorMessage) {
+        this.analyticsErrorMessage = analyticsErrorMessage;
     }
 }
