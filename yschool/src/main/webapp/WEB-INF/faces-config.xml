@@ -162,5 +162,16 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
 
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/faces/analytics/analyticsSearchResults.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>viewAnalyticsStudent</from-outcome>
+            <to-view-id>/faces/analytics/analyticsStudentHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+
+    </navigation-rule>
+
 
 </faces-config>

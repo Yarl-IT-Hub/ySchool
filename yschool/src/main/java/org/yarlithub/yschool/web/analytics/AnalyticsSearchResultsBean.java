@@ -95,12 +95,6 @@ public class AnalyticsSearchResultsBean implements Serializable {
         return "viewAnalyticsSearchResults";
     }
 
-    public String viewAnalyticsStudentAjax(){
-        setStudent(studentsSearchResultAjax.getRowData());
-        analyticsController.setStudent(student);
-        return "viewAnalyticsStudent";
-    }
-
     public String viewAnalyticsStudent(){
         setStudent(searchResults.getRowData());
         analyticsController.setStudent(student);

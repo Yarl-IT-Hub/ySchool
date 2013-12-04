@@ -19,63 +19,96 @@
     <ui:define name="student-content">
 
 
-            <div class="span6">
-                <ul class="breadcrumb">
-                    <li>
-                        <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-                    </li>
-                    <li>
-                        <a href="#">Analytics</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Analytics</a><span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Student Search Results</a>
+                </li>
+            </ul>
+        </div>
 
-            <div class="span3">
-                <!--Examination search bar with filter-->
+        <div class="span3">
+            <!--Examination search bar with filter-->
 
-                <input type="text" class="search-query" placeholder="Search"> </input>
-
-
+            <input type="text" class="search-query" placeholder="Search"> </input>
 
 
-            </div>
+        </div>
 
-            <div class="span2">
-                <Button class="btn btn-info btn-large"> Search</Button>
-            </div>
+        <div class="span2">
+            <Button class="btn btn-info btn-large"> Search</Button>
+        </div>
 
-            <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
-            <div class="span9">
+        <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+        <div class="row-fluid span9">
 
-                    <ui:fragment rendered="#{analyticsSearchResultsBean.searchResults.rowAvailable}">
+            <ui:fragment rendered="#{analyticsSearchResultsBean.searchResults.rowAvailable}">
+
+                <!--<h:dataTable value="{analyticsSearchResultsBean.searchResults}" var="results"-->
+                <!--styleClass="table table-hover">-->
+                <!--<h:column>-->
+                <!--&lt;!&ndash; column header &ndash;&gt;-->
+                <!--<f:facet name="header">Addmission No</f:facet>-->
+                <!--{ results.admissionNo}-->
+                <!--</h:column>-->
+                <!--<h:column>-->
+                <!--&lt;!&ndash; column header &ndash;&gt;-->
+                <!--<f:facet name="header">Name</f:facet>-->
+                <!--{results.name}-->
+                <!--</h:column>-->
+
+                <!--<h:column>-->
+
+                <!--<h:commandButton type="submit" value="View" styleClass="btn"-->
+                <!--action="{analyticsSearchResultsBean.viewAnalyticsStudent}"/>-->
+
+                <!--</h:column>-->
+
+
+                <!--</h:dataTable>-->
+
+                <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
+                <ul class="thumbnails  span12">
+                    <ui:repeat value="#{analyticsSearchResultsBean.searchResults}" var="results">
+
+                        <li class="thumbnail span12">
+
+                            <div class="span10">
+                                <h5>
+
+                                    <h:outputText
+                                            value=" #{results.admissionNo}  "/>
+                                    <h:outputText
+                                            value="#{results.name}     "/>
+
+
+                                </h5>
+                            </div>
+
+                            <div class="box span2">
+
+                            </div>
+
+                        </li>
                         <h:form>
-                        <h:dataTable value="#{analyticsSearchResultsBean.searchResults}" var="results"
-                                     styleClass="table table-hover">
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">Addmission No</f:facet>
-                                #{ results.admissionNo}
-                            </h:column>
-                            <h:column>
-                                <!-- column header -->
-                                <f:facet name="header">Name</f:facet>
-                                #{results.name}
-                            </h:column>
-
-                            <h:column>
-
-                                <h:commandButton type="submit" value="View" styleClass="btn"
-                                                 action="#{analyticsSearchResultsBeanBean.viewAnalyticsStudent}"/>
-
-                            </h:column>
+                            <h:commandButton action="#{analyticsSearchResultsBean.viewAnalyticsStudent}" styleClass="btn btn-large" value="View..."
+                                             type="submit"
+                                    >
+                            </h:commandButton>
+                        </h:form>
+                    </ui:repeat>
+                </ul>
 
 
-                        </h:dataTable>
-                    </h:form>
-                    </ui:fragment>
+            </ui:fragment>
 
-            </div>
-
+        </div>
 
 
     </ui:define>
