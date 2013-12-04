@@ -24,10 +24,37 @@ public class OLSubjectPrediction {
     private String msg = "No Significant Change Detected";
     private String msgWarning = "No Significant Change Detected";
     private String msgValidation = "No Significant Change Detected";
-    private boolean msg_available=false;
-    private boolean msgWarning_available=false;
-    private boolean msgValidation_available=false;
+    private boolean msg_available = false;
+    private boolean msgWarning_available = false;
+    private boolean msgValidation_available = false;
+    private boolean isPredictionNotAvailable = false;
+    private boolean notAvailable = false;
+    private boolean check = false;
+    private boolean checkTermMarks=true;
 
+    public boolean isCheckTermMarks() {
+        return checkTermMarks;
+    }
+
+    public void setCheckTermMarks(boolean checkTermMarks) {
+        this.checkTermMarks = checkTermMarks;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
+    public boolean isPredictionNotAvailable() {
+        return isPredictionNotAvailable;
+    }
+
+    public void setPredictionNotAvailable(boolean predictionNotAvailable) {
+        isPredictionNotAvailable = predictionNotAvailable;
+    }
 
     public boolean isMsgValidation_available() {
         return msgValidation_available;
