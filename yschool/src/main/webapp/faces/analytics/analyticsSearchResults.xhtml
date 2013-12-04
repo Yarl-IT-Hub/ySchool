@@ -48,33 +48,32 @@
         <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
         <div class="row-fluid span9">
 
-            <ui:fragment rendered="#{analyticsSearchResultsBean.searchResults.rowAvailable}">
+            <!--<h:dataTable value="{analyticsSearchResultsBean.searchResults}" var="results"-->
+            <!--styleClass="table table-hover">-->
+            <!--<h:column>-->
+            <!--&lt;!&ndash; column header &ndash;&gt;-->
+            <!--<f:facet name="header">Addmission No</f:facet>-->
+            <!--{ results.admissionNo}-->
+            <!--</h:column>-->
+            <!--<h:column>-->
+            <!--&lt;!&ndash; column header &ndash;&gt;-->
+            <!--<f:facet name="header">Name</f:facet>-->
+            <!--{results.name}-->
+            <!--</h:column>-->
 
-                <!--<h:dataTable value="{analyticsSearchResultsBean.searchResults}" var="results"-->
-                <!--styleClass="table table-hover">-->
-                <!--<h:column>-->
-                <!--&lt;!&ndash; column header &ndash;&gt;-->
-                <!--<f:facet name="header">Addmission No</f:facet>-->
-                <!--{ results.admissionNo}-->
-                <!--</h:column>-->
-                <!--<h:column>-->
-                <!--&lt;!&ndash; column header &ndash;&gt;-->
-                <!--<f:facet name="header">Name</f:facet>-->
-                <!--{results.name}-->
-                <!--</h:column>-->
+            <!--<h:column>-->
 
-                <!--<h:column>-->
+            <!--<h:commandButton type="submit" value="View" styleClass="btn"-->
+            <!--action="{analyticsSearchResultsBean.viewAnalyticsStudent}"/>-->
 
-                <!--<h:commandButton type="submit" value="View" styleClass="btn"-->
-                <!--action="{analyticsSearchResultsBean.viewAnalyticsStudent}"/>-->
-
-                <!--</h:column>-->
+            <!--</h:column>-->
 
 
-                <!--</h:dataTable>-->
+            <!--</h:dataTable>-->
 
-                <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
-                <ul class="thumbnails  span12">
+            <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
+            <ul class="thumbnails  span12">
+                <h:form>
                     <ui:repeat value="#{analyticsSearchResultsBean.searchResults}" var="results">
 
                         <li class="thumbnail span12">
@@ -86,31 +85,24 @@
                                             value=" #{results.admissionNo}  "/>
                                     <h:outputText
                                             value="#{results.name}     "/>
-
-
                                 </h5>
                             </div>
 
                             <div class="box span2">
 
+                                <h:commandButton action="#{analyticsSearchResultsBean.viewAnalyticsStudent}"
+                                                 class="btn btn-large" value="View..."
+                                                 type="submit">
+                                </h:commandButton>
+
                             </div>
 
                         </li>
-                        <h:form>
-                            <h:commandButton action="#{analyticsSearchResultsBean.viewAnalyticsStudent}" styleClass="btn btn-large" value="View..."
-                                             type="submit"
-                                    >
-                            </h:commandButton>
-                        </h:form>
+
                     </ui:repeat>
-                </ul>
-
-
-            </ui:fragment>
-
+                </h:form>
+            </ul>
         </div>
-
-
     </ui:define>
 
 

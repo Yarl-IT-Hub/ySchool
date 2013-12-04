@@ -36,21 +36,8 @@ public class AnalyticsSearchResultsBean implements Serializable {
     private AnalyticsController analyticsController;
 
     private Student student;
-
-    private String searchKey = null;
-
-    private DataModel<Student> studentsSearchResultAjax;
-    private DataModel<Student> studentsSearchResult;
     private DataModel<Student> searchResults;
 
-
-
-    public AnalyticsSearchResultsBean() {
-        super();
-        studentsSearchResultAjax = new ListDataModel<Student>();
-        studentsSearchResult = new ListDataModel<Student>();
-
-    }
 
     public DataModel<Student> getSearchResults() {
         return searchResults;
@@ -60,57 +47,22 @@ public class AnalyticsSearchResultsBean implements Serializable {
         this.searchResults = searchResults;
     }
 
-    public DataModel<Student> getStudentsSearchResultAjax() {
-        return studentsSearchResultAjax;
-    }
 
-    public void setStudentsSearchResultAjax(DataModel<Student> studentsSearchResultAjax) {
-        this.studentsSearchResultAjax = studentsSearchResultAjax;
-    }
-
-    public DataModel<Student> getStudentsSearchResult() {
-        return studentsSearchResult;
-    }
-
-    public void setStudentsSearchResult(DataModel<Student> studentsSearchResult) {
-        this.studentsSearchResult = studentsSearchResult;
-    }
-
-    public String getSearchKey() {
-        return searchKey;
-    }
-
-    public void setSearchKey(String searchKey) {
-        this.searchKey = searchKey;
-    }
-
-    public void searchAjax() {
-
-        studentsSearchResultAjax = new ListDataModel<Student>(analyticsService.getStudentsNameLike(searchKey, 5));
-
-    }
-    public String search() {
-        studentsSearchResult = new ListDataModel<Student>(analyticsService.getStudentsNameLike(searchKey,10));
-         analyticsController.setSearchResults(analyticsService.getStudentsNameLike(searchKey,10));
-        return "viewAnalyticsSearchResults";
-    }
-
-    public String viewAnalyticsStudent(){
+    public String viewAnalyticsStudent() {
         setStudent(searchResults.getRowData());
-        analyticsController.setStudent(student);
+        analyticsController.setStudent(getStudent());
         return "viewAnalyticsStudent";
-    }
-
-    public Student getStudent() {
-        return student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
     }
 
+    public Student getStudent() {
+        return this.student;
+    }
+
     public boolean preloadStudent() {
-        this.setStudent(analyticsService.getStudent());
         this.setSearchResults(new ListDataModel<Student>(analyticsController.getSearchResults()));
         return true;
     }
