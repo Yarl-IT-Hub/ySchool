@@ -28,7 +28,7 @@
                 </li>
 
                 <li>
-                    <a href="#">#{analyticsStudentHomeBean.student.fullName}</a> <span
+                    <a href="#">#{analyticsStudentRecommenderHomeBean.student.fullName}</a> <span
                         class="divider">></span><!-- need to get the Student ID -->
                 </li>
 
@@ -53,6 +53,7 @@
             <div class="span8">
                 <h:panelGrid columns="1">
                     <p:pieChart id="matchingProfileSubjects"
+                                seriesColors="F0FFFF,FFB6C1,98FB98, D8BFD8"
                                 value="#{analyticsStudentRecommenderHomeBean.pieModelSubject}"
                                 legendPosition="e" showDataLabels="true"
                                 title="Matching Profiles: The Streams" style="width:600px;height:400px"
@@ -94,7 +95,8 @@
         <div class="span11">
             <div class="span3">
 
-                <p:pieChart id="arts" value="#{analyticsStudentRecommenderHomeBean.pieModelArts}"
+                <p:pieChart seriesColors="963419,32CD72" id="arts"
+                            value="#{analyticsStudentRecommenderHomeBean.pieModelArts}"
                             legendPosition="w" showDataLabels="true"
                             title="Arts" style="width:250px;height:200px"
                             sliceMargin="5"
@@ -104,7 +106,8 @@
 
             <div class="span3">
 
-                <p:pieChart id="commerce" value="#{analyticsStudentRecommenderHomeBean.pieModelCom}"
+                <p:pieChart seriesColors="963419,32CD72" id="commerce"
+                            value="#{analyticsStudentRecommenderHomeBean.pieModelCom}"
                             legendPosition="w" showDataLabels="true"
                             title="Commerce" style="width:250px;height:200px"
                             sliceMargin="5"
@@ -114,7 +117,8 @@
 
             <div class="span3">
 
-                <p:pieChart id="maths" value="#{analyticsStudentRecommenderHomeBean.pieModelMaths}"
+                <p:pieChart seriesColors="963419,32CD72" id="maths"
+                            value="#{analyticsStudentRecommenderHomeBean.pieModelMaths}"
                             legendPosition="w" showDataLabels="true"
                             title="Physical Science" style="width:250px;height:200px"
                             sliceMargin="5"
@@ -124,7 +128,8 @@
 
             <div class="span3">
 
-                <p:pieChart id="science" value="#{analyticsStudentRecommenderHomeBean.pieModelBio}"
+                <p:pieChart seriesColors="963419,32CD72" id="science"
+                            value="#{analyticsStudentRecommenderHomeBean.pieModelBio}"
                             legendPosition="w" showDataLabels="true"
                             title="Biological Science" style="width:250px;height:200px"
                             sliceMargin="5"

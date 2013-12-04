@@ -20,6 +20,90 @@ public class OLSubjectPrediction {
     private List<Integer> termMarksLower = new ArrayList<Integer>();
     private List<Integer> termMarksUpper = new ArrayList<Integer>();
     private CartesianChartModel linearModelTermMarks;
+    private List<String> msgs = new ArrayList<String>();
+    private String msg = "No Significant Change Detected";
+    private String msgWarning = "No Significant Change Detected";
+    private String msgValidation = "No Significant Change Detected";
+    private boolean msg_available = false;
+    private boolean msgWarning_available = false;
+    private boolean msgValidation_available = false;
+    private boolean isPredictionNotAvailable = false;
+    private boolean notAvailable = false;
+    private boolean check = false;
+    private boolean checkTermMarks=true;
+
+    public boolean isCheckTermMarks() {
+        return checkTermMarks;
+    }
+
+    public void setCheckTermMarks(boolean checkTermMarks) {
+        this.checkTermMarks = checkTermMarks;
+    }
+
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
+    public boolean isPredictionNotAvailable() {
+        return isPredictionNotAvailable;
+    }
+
+    public void setPredictionNotAvailable(boolean predictionNotAvailable) {
+        isPredictionNotAvailable = predictionNotAvailable;
+    }
+
+    public boolean isMsgValidation_available() {
+        return msgValidation_available;
+    }
+
+    public void setMsgValidation_available(boolean msgValidation_available) {
+        this.msgValidation_available = msgValidation_available;
+    }
+
+    public boolean isMsg_available() {
+        return msg_available;
+    }
+
+    public void setMsg_available(boolean msg_available) {
+        this.msg_available = msg_available;
+    }
+
+    public boolean isMsgWarning_available() {
+        return msgWarning_available;
+    }
+
+    public void setMsgWarning_available(boolean msgWarning_available) {
+        this.msgWarning_available = msgWarning_available;
+    }
+
+    public String getMsgWarning() {
+        return msgWarning;
+    }
+
+    public void setMsgWarning(String msgWarning) {
+
+        this.msgWarning = msgWarning;
+    }
+
+    public String getMsgValidation() {
+        return msgValidation;
+    }
+
+    public void setMsgValidation(String msgValidation) {
+        this.msgValidation = msgValidation;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
     public CartesianChartModel getLinearModelTermMarks() {
         return linearModelTermMarks;
@@ -27,6 +111,14 @@ public class OLSubjectPrediction {
 
     public void setLinearModelTermMarks(CartesianChartModel linearModelTermMarks) {
         this.linearModelTermMarks = linearModelTermMarks;
+    }
+
+    public List<String> getMsgs() {
+        return msgs;
+    }
+
+    public void setMsgs(List<String> msgs) {
+        this.msgs = msgs;
     }
 
     public List<Integer> getTermMarksLower() {
@@ -68,7 +160,6 @@ public class OLSubjectPrediction {
     public void setTermMarks(List<Double> termMarks) {
         this.termMarks = termMarks;
     }
-
 
 
 }

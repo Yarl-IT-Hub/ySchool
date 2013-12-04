@@ -119,7 +119,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
         CartesianChartModel model = new CartesianChartModel();
 
         LineChartSeries termMarks = new LineChartSeries();
-
+        LineChartSeries lowerBound = null;
 
         termMarks.setLabel("Term Marks");
 
@@ -144,35 +144,40 @@ public class AnalyticsStudentHomeBean implements Serializable {
         }
 
 
-        LineChartSeries upperBound = new LineChartSeries();
+        if (!olSubjectPrediction.isCheck()) {
+            LineChartSeries upperBound = new LineChartSeries();
 
 
-        upperBound.setLabel("Upper Bound");
+            upperBound.setLabel("Upper Bound");
 
 
-        upperBound.set(2, olSubjectPrediction.getTermMarksUpper().get(0));
-        upperBound.set(3, olSubjectPrediction.getTermMarksUpper().get(1));
-        upperBound.set(4, olSubjectPrediction.getTermMarksUpper().get(2));
-        upperBound.set(5, olSubjectPrediction.getTermMarksUpper().get(3));
-        upperBound.set(6, olSubjectPrediction.getTermMarksUpper().get(4));
+            upperBound.set(2, olSubjectPrediction.getTermMarksUpper().get(0));
+            upperBound.set(3, olSubjectPrediction.getTermMarksUpper().get(1));
+            upperBound.set(4, olSubjectPrediction.getTermMarksUpper().get(2));
+            upperBound.set(5, olSubjectPrediction.getTermMarksUpper().get(3));
+            upperBound.set(6, olSubjectPrediction.getTermMarksUpper().get(4));
 
 
-        LineChartSeries lowerBound = new LineChartSeries();
+            lowerBound = new LineChartSeries();
 
 
-        lowerBound.setLabel("Lower Bound");
+            lowerBound.setLabel("Lower Bound");
 
 
-        lowerBound.set(2, olSubjectPrediction.getTermMarksLower().get(0));
-        lowerBound.set(3, olSubjectPrediction.getTermMarksLower().get(1));
-        lowerBound.set(4, olSubjectPrediction.getTermMarksLower().get(2));
-        lowerBound.set(5, olSubjectPrediction.getTermMarksLower().get(3));
-        lowerBound.set(6, olSubjectPrediction.getTermMarksLower().get(4));
+            lowerBound.set(2, olSubjectPrediction.getTermMarksLower().get(0));
+            lowerBound.set(3, olSubjectPrediction.getTermMarksLower().get(1));
+            lowerBound.set(4, olSubjectPrediction.getTermMarksLower().get(2));
+            lowerBound.set(5, olSubjectPrediction.getTermMarksLower().get(3));
+            lowerBound.set(6, olSubjectPrediction.getTermMarksLower().get(4));
 
 
-        model.addSeries(upperBound);
+            model.addSeries(upperBound);
+        }
+        //upperBound.setMarkerStyle();
         model.addSeries(termMarks);
-        model.addSeries(lowerBound);
+        if (!olSubjectPrediction.isCheck()) {
+            model.addSeries(lowerBound);
+        }
         return model;
     }
 
@@ -186,7 +191,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-        this.student = analyticsService.getStudenById(5);
+        this.student = analyticsService.getStudenById(39);
         //  this.student=analyticsController.getStudent();
         this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         this.oLSubjectsEleven = new ListDataModel(analyticsService.getOLSubjectsEleven(student));
@@ -220,6 +225,8 @@ public class AnalyticsStudentHomeBean implements Serializable {
             ArrayList<Integer> predictedTermMarksLower = new ArrayList<>();
             ArrayList<Integer> predictedTermMarksUpper = new ArrayList<>();
             ArrayList<Integer> range = new ArrayList<>();
+            olSubjectPrediction = new OLSubjectPrediction();
+            boolean check = true;
 
             for (int term = 1; term <= 3; term++) {
                 termMark = analyticsService.getTermMarksForOLSub(this.student, olSubject, term);
@@ -228,36 +235,49 @@ public class AnalyticsStudentHomeBean implements Serializable {
                     termMarks.add(termMark);
                     int mark = (int) termMark;
 
-                    previousTermMarks.add(mark);
-                    try {
-                        // range = predictNextTerm(null, 2008, 10, term, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                    if (check) {
+                        previousTermMarks.add(mark);
+                        try {
+                            // range = predictNextTerm(null, 2008, 10, term, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
 
 
-                        if (term < 3) {
-                            range = predictNextTerm(null, 2008, 10, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                            if (term < 3) {
+                                range = predictNextTerm(null, 2008, 10, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                            }
+
+                            if (term == 3) {
+                                range = predictNextTerm(null, 2009, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+
+                            }
+
+                        } catch (Exception e) {
+
                         }
-
-                        if (term == 3) {
-                            range = predictNextTerm(null, 2009, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
-
-                        }
-
-                    } catch (Exception e) {
-
                     }
 
 
-                    predictedTermMarksLower.add(range.get(0));
-                    predictedTermMarksUpper.add(range.get(1));
-
-
-                } else if (termMark == -1) {
-                    termMarks.add(-0.1);
-                } else if (termMark == -2) {
-                    termMarks.add(-0.2);
-                } else if (termMark == -3) {
-                    termMarks.add(-0.3);
                 }
+// else if (termMark == -1) {
+//                    termMarks.add(-0.1);
+//                } else if (termMark == -2) {
+//                    termMarks.add(-0.2);
+//                } else if (termMark == -3) {
+//                    termMarks.add(-0.3);
+//                }
+                else {
+                    check = false;
+                    termMark = -1.0;
+                    termMarks.add(termMark);
+                    range.add(-1);
+                    range.add(-1);
+                    olSubjectPrediction.setCheck(true);
+                    //break;
+
+                }
+
+
+                predictedTermMarksLower.add(range.get(0));
+                predictedTermMarksUpper.add(range.get(1));
 
             }
 
@@ -266,38 +286,56 @@ public class AnalyticsStudentHomeBean implements Serializable {
                 termMark = analyticsService.getTermMarksForOLSub(this.student, olsubjectEleven, term);
                 if (termMark >= 0 && termMark <= 100) {
                     termMarks.add(termMark);
-
+                    olSubjectPrediction.setCheckTermMarks(false);
                     int mark = (int) termMark;
 
-                    previousTermMarks.add(mark);
-                    try {
-                        if (term < 3) {
-                            range = predictNextTerm(null, 2009, 11, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                    if (check) {
+                        previousTermMarks.add(mark);
+                        try {
+                            if (term < 3) {
+                                range = predictNextTerm(null, 2009, 11, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                            }
+
+                            if (term == 3) {
+                                //range = predictNextTerm(null, 2008, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+
+                            }
+
+                        } catch (Exception e) {
+
                         }
-
-                        if (term == 3) {
-                            //range = predictNextTerm(null, 2008, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
-
-                        }
-
-                    } catch (Exception e) {
 
                     }
+                }
+
+                //else if (termMark == -1) {
+//                    termMarks.add(-0.1);
+//                } else if (termMark == -2) {
+//                    termMarks.add(-0.2);
+//                } else if (termMark == -3) {
+//                    termMarks.add(-0.3);
+//                }
+
+                else {
+                    check = false;
+                    termMark = -1.0;
+                    termMarks.add(termMark);
+                    range.add(-1);
+                    range.add(-1);
+                    olSubjectPrediction.setCheck(true);
+                    // break;
+
+                }
 
 
+                if (term < 3) {
                     predictedTermMarksLower.add(range.get(0));
                     predictedTermMarksUpper.add(range.get(1));
-                } else if (termMark == -1) {
-                    termMarks.add(-0.1);
-                } else if (termMark == -2) {
-                    termMarks.add(-0.2);
-                } else if (termMark == -3) {
-                    termMarks.add(-0.3);
                 }
 
             }
 
-            olSubjectPrediction = new OLSubjectPrediction();
+
             olSubjectPrediction.setOlSubject(olSubject);
             olSubjectPrediction.setTermMarks(termMarks);
             olSubjectPrediction.setTermMarksUpper(predictedTermMarksUpper);
@@ -319,7 +357,65 @@ public class AnalyticsStudentHomeBean implements Serializable {
             OLSubjectPrediction olSubjectPrediction_tmp = iterator.next();
 
             olSubjectPrediction_tmp.setLinearModelTermMarks(createLinearModelTermMarksForOlSub(olSubjectPrediction_tmp));
+
         }
+
+        Iterator<OLSubjectPrediction> iterator1 = olSubjectPredictions.iterator();
+
+        while (iterator1.hasNext()) {
+            OLSubjectPrediction olSubjectPrediction_tmp = iterator1.next();
+            // List<String> msgs = new ArrayList<>();
+            //  String msg = olSubjectPrediction_tmp.getMsg();
+
+            if (olSubjectPrediction_tmp.isCheck()) {
+                olSubjectPrediction_tmp.setMsg(null);
+                olSubjectPrediction_tmp.setMsgWarning(null);
+                olSubjectPrediction_tmp.setMsgValidation(null);
+
+                continue;
+            }
+//            int index = 0;
+//            while (index < olSubjectPrediction_tmp.getTermMarksLower().size()-1) {
+            //msgs = new ArrayList<>();
+
+            int recentIndex = olSubjectPrediction_tmp.getTermMarks().size() - 1;
+            double termMarks1;
+            termMarks1 = olSubjectPrediction_tmp.getTermMarks().get(recentIndex);
+            double lower = olSubjectPrediction_tmp.getTermMarksLower().get(recentIndex - 1);
+            double upper = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 1);
+
+            if (upper >= termMarks1 && termMark >= lower) {
+                //index++;
+                continue;
+
+
+            }
+            if (upper < termMarks1) {
+                // msgs.add(MessageStudentHome.appreciation);
+                olSubjectPrediction_tmp.setMsgValidation(MessageStudentHome.appreciation);
+                olSubjectPrediction_tmp.setMsgValidation_available(true);
+                olSubjectPrediction_tmp.setMsg(null);
+                olSubjectPrediction_tmp.setMsgWarning(null);
+                continue;
+            }
+            if (lower > termMarks1) {
+                olSubjectPrediction_tmp.setMsgWarning(MessageStudentHome.warning);
+                olSubjectPrediction_tmp.setMsgWarning_available(true);
+                olSubjectPrediction_tmp.setMsg(null);
+                olSubjectPrediction_tmp.setMsgValidation(null);
+                continue;
+
+            }
+
+            olSubjectPrediction_tmp.setMsg_available(true);
+
+            //    index++;
+        }
+
+        // olSubjectPrediction_tmp.setMsgs(msg);
+
+        //   }
+
 
         return true;
     }
