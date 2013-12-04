@@ -4,25 +4,16 @@ import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.yarlithub.yschool.analytics.core.MatchingStudentProfile;
-import org.yarlithub.yschool.analytics.core.SubjectResult;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.model.ListDataModel;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import org.primefaces.model.chart.CartesianChartModel;
-import org.primefaces.model.chart.LineChartSeries;
+import java.util.*;
 
 
 /**
@@ -32,7 +23,7 @@ import org.primefaces.model.chart.LineChartSeries;
  */
 
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "request")
 @Controller
 public class AnalyticsBean implements Serializable {
 
@@ -40,20 +31,43 @@ public class AnalyticsBean implements Serializable {
     @Autowired
     private AnalyticsService analyticsService;
     private Student student;
+    private int searchKeyVal;
+    private String searchKey =null;
 
-    private CartesianChartModel linearModel;
-    private MatchingStudentProfile matchingStudentProfile;
+    private static Map<String,Integer> studentsSearchResultMap;
 
-    public MatchingStudentProfile getMatchingStudentProfile() {
-        return matchingStudentProfile;
+    public static Map<String, Integer> getStudentsSearchResultMap() {
+        return studentsSearchResultMap;
     }
 
-    public void setMatchingStudentProfile(MatchingStudentProfile matchingStudentProfile) {
-        this.matchingStudentProfile = matchingStudentProfile;
+    public String getSearchKey() {
+        return searchKey;
     }
 
-    public AnalyticsBean(){
-        createLinearModel();
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
+
+    public int getSearchKeyVal() {
+        return searchKeyVal;
+    }
+
+    public void setSearchKeyVal(int searchKeyVal) {
+        this.searchKeyVal = searchKeyVal;
+    }
+
+    public void search() {
+        studentsSearchResultMap = new LinkedHashMap<String,Integer>();
+        List<Student> studentList=analyticsService.getStudentsNameLike(searchKey,5);
+        Iterator<Student> studentIterator = studentList.iterator();
+        while (studentIterator.hasNext()){
+            Student student1 =studentIterator.next();
+            studentsSearchResultMap.put(student1.getName(), student1.getId());
+        }
+    }
+
+    public void showSearchResults(){
+              setStudent(analyticsService.getStudenById(searchKeyVal));
     }
 
     public Student getStudent() {
@@ -66,52 +80,16 @@ public class AnalyticsBean implements Serializable {
 
     public boolean preloadStudent() {
         this.setStudent(analyticsService.getStudent());
-
-
-
         return true;
-
-    }
-    public CartesianChartModel getLinearModel() {
-
-        return linearModel;
     }
 
+    public void printReport() throws IOException, JRException {
+        HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+        httpServletResponse.addHeader("Content-disposition", "attachment; filename=report.pdf");
+        ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
 
-        public void printReport() throws IOException, JRException {
-            HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-            httpServletResponse.addHeader("Content-disposition", "attachment; filename=report.pdf");
-            ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
-
-            analyticsService.printReport(servletOutputStream);
-            FacesContext.getCurrentInstance().responseComplete();
-        }
-
-
-    private void createLinearModel() {
-        linearModel = new CartesianChartModel();
-
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
-
-        series1.set(1, 2);
-        series1.set(2, 1);
-        series1.set(3, 3);
-        series1.set(4, 6);
-        series1.set(5, 8);
-
-        LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
-        series2.setMarkerStyle("diamond");
-
-        series2.set(1, 6);
-        series2.set(2, 3);
-        series2.set(3, 2);
-        series2.set(4, 7);
-        series2.set(5, 9);
-
-        linearModel.addSeries(series1);
-        linearModel.addSeries(series2);
+        analyticsService.printReport(servletOutputStream);
+        FacesContext.getCurrentInstance().responseComplete();
     }
 
 }

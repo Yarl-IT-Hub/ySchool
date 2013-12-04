@@ -3,7 +3,8 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                >
 
     <ui:define name="yhead">
         <title>ySchool: Analytics</title>
@@ -18,49 +19,56 @@
     <ui:define name="student-content">
 
         <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-            </li>
-            <li>
-                <a href="#">Analytics</a>
-            </li>
-        </ul>
-    </div>
-
-        <div class="span5">
-            test Analytics home <br/>           <br/>
-            Student name check
-            .
-            #{analyticsBean.student.name}   <br/>
-
-
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Analytics</a>
+                </li>
+            </ul>
         </div>
 
-       <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+        <div class="span3">
+            <!--Examination search bar with filter-->
+            <form class="navbar-search pull-left">
+                <!--<searchKey type="text" class="search-query" placeholder="Search"> </searchKey>-->
 
-       <div class="span6">
-           <h:panelGrid columns="1">
+                <h:panelGroup layout="block" class="suggestbox">
+                    <!-- Process references -->
+
+                    <h:inputText id="userName" value="#{analyticsBean.searchKey}">
+                        <p:ajax event="keypress" listener="#{analyticsBean.search}" update="suggest_box"></p:ajax>
+                    </h:inputText>
+
+                    <h:panelGroup id="suggest_box">
+
+                        <h:selectOneListbox value="#{analyticsBean.searchKeyVal}" rendered="#{! empty analyticsBean.studentsSearchResultMap}">
+                            <f:selectItems value="#{analyticsBean.studentsSearchResultMap}" >
+                                <!--<p:ajax event="valueChange" listener="{analyticsBean.showSearchResults}" update="search-result"/>-->
+                            </f:selectItems>
+                        </h:selectOneListbox>
+
+                    </h:panelGroup>
 
 
-           <p:lineChart value="#{analyticsBean.linearModel}" legendPosition="e" zoom="true" animate="true"
-                        title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
+                </h:panelGroup>
 
-       </h:panelGrid>
-       </div>
+            </form>
+        </div>
 
+        <div class="span3">
+            <!--Add new exam Button-->
+            <a href="">
+                <Button class="btn btn-info btn-large"> What Here?</Button>
+            </a>
+        </div>
 
-
-        <div class="span8">
-        <h:form>
-        <h:commandButton type="submit" action="#{analyticsBean.printReport}" value="Generate Report (PDF)"
-                         class="btn btn-primary btn-large"/>
-        </h:form>
-    </div>
-
+        <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+        <div class="span9" id="search-result">
+                  #{analyticsBean.student.name}
+        </div>
     </ui:define>
-
-
 
 
 </ui:composition>

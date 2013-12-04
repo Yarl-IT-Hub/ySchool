@@ -125,6 +125,13 @@ public class AnalyticsService {
     }
 
     @Transactional
+    public List<Student> getStudentsNameLike(String regx, int maxNo) {
+       StudentHelper studentHelper = new StudentHelper();
+        return studentHelper.getStudentsNameLike(regx,maxNo);
+
+    }
+
+    @Transactional
     public void printReport(ServletOutputStream servletOutputStream) throws IOException, JRException {       // ServletOutputStream servletOutputStream
         JasperReport jasperReport = new JasperReport();
         jasperReport.printJasperReport(servletOutputStream);                        //  servletOutputStream
