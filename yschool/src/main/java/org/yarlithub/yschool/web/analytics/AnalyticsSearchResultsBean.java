@@ -15,6 +15,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -26,7 +27,7 @@ import java.io.Serializable;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class AnalyticsBean implements Serializable {
+public class AnalyticsSearchResultsBean implements Serializable {
 
 
     @Autowired
@@ -40,12 +41,23 @@ public class AnalyticsBean implements Serializable {
 
     private DataModel<Student> studentsSearchResultAjax;
     private DataModel<Student> studentsSearchResult;
+    private DataModel<Student> searchResults;
 
-    public AnalyticsBean() {
+
+
+    public AnalyticsSearchResultsBean() {
         super();
         studentsSearchResultAjax = new ListDataModel<Student>();
         studentsSearchResult = new ListDataModel<Student>();
 
+    }
+
+    public DataModel<Student> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(DataModel<Student> searchResults) {
+        this.searchResults = searchResults;
     }
 
     public DataModel<Student> getStudentsSearchResultAjax() {
@@ -90,7 +102,7 @@ public class AnalyticsBean implements Serializable {
     }
 
     public String viewAnalyticsStudent(){
-        setStudent(studentsSearchResult.getRowData());
+        setStudent(searchResults.getRowData());
         analyticsController.setStudent(student);
         return "viewAnalyticsStudent";
     }
@@ -105,16 +117,9 @@ public class AnalyticsBean implements Serializable {
 
     public boolean preloadStudent() {
         this.setStudent(analyticsService.getStudent());
+        this.setSearchResults(new ListDataModel<Student>(analyticsController.getSearchResults()));
         return true;
     }
 
-    public void printReport() throws IOException, JRException {
-        HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-        httpServletResponse.addHeader("Content-disposition", "attachment; filename=report.pdf");
-        ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
-
-        analyticsService.printReport(servletOutputStream);
-        FacesContext.getCurrentInstance().responseComplete();
-    }
 
 }

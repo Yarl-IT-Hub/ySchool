@@ -6,6 +6,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -24,6 +25,16 @@ public class AnalyticsController implements Serializable {
     private String profileStream;
     private String analyticsErrorMessage;
 
+    private List<Student> searchResults;
+
+
+    public List<Student> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Student> searchResults) {
+        this.searchResults = searchResults;
+    }
 
     public Student getStudent() {
         return student;

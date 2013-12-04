@@ -191,8 +191,8 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-        this.student = analyticsService.getStudenById(39);
-        //  this.student=analyticsController.getStudent();
+        //this.student = analyticsService.getStudenById(39);
+        this.student=analyticsController.getStudent();
         this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         this.oLSubjectsEleven = new ListDataModel(analyticsService.getOLSubjectsEleven(student));
 

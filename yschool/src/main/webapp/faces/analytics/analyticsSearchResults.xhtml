@@ -10,14 +10,14 @@
         <title>ySchool: Analytics</title>
 
         <div>
-            <f:event listener="#{analyticsBean.preloadStudent}" type="preRenderView"/>
+            <f:event listener="#{analyticsSearchResultsBean.preloadStudent}" type="preRenderView"/>
         </div>
 
     </ui:define>
 
 
     <ui:define name="student-content">
-        <h:form>
+
 
             <div class="span6">
                 <ul class="breadcrumb">
@@ -33,46 +33,23 @@
             <div class="span3">
                 <!--Examination search bar with filter-->
 
-                <!--<searchKey type="text" class="search-query" placeholder="Search"> </searchKey>-->
-
-                <p:inputText id="userName" value="#{analyticsBean.searchKey}">
-                    <!--onkeypress="if (event.keyCode == 13) {e.preventDefault();-->
-                    <!--inputEnter.onchange(); return false; }">-->
-                    <p:ajax event="keypress" listener="#{analyticsBean.searchAjax}" update="suggest_box"></p:ajax>
-                    <p:ajax event="change" listener="#{analyticsBean.search}"
-                            update="search-results"></p:ajax>
-                </p:inputText>
+                <input type="text" class="search-query" placeholder="Search"> </input>
 
 
-                <h:panelGroup id="suggest_box">
-                    <ui:fragment rendered="#{analyticsBean.studentsSearchResultAjax.rowAvailable}">
 
-                        <ui:repeat value="#{analyticsBean.studentsSearchResultAjax}" var="student">
-                            <h:commandLink value="#{student.name}" action="#{analyticsBean.viewAnalyticsStudentAjax}"
-                                           styleClass="thumbnail span11" type="submit">
-                            </h:commandLink>
-
-                        </ui:repeat>
-
-                    </ui:fragment>
-
-                </h:panelGroup>
 
             </div>
 
             <div class="span2">
-                <h:commandButton styleClass="btn btn-info btn-large" type="submit" action="#{analyticsBean.search}"
-                                 value="Search">
-
-                </h:commandButton>
+                <Button class="btn btn-info btn-large"> Search</Button>
             </div>
 
             <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
             <div class="span9">
-                <h:panelGroup id="search-results">
-                    <ui:fragment rendered="#{analyticsBean.studentsSearchResult.rowAvailable}">
 
-                        <h:dataTable value="#{analyticsBean.studentsSearchResult}" var="results"
+                    <ui:fragment rendered="#{analyticsSearchResultsBean.searchResults.rowAvailable}">
+                        <h:form>
+                        <h:dataTable value="#{analyticsSearchResultsBean.searchResults}" var="results"
                                      styleClass="table table-hover">
                             <h:column>
                                 <!-- column header -->
@@ -86,16 +63,21 @@
                             </h:column>
 
                             <h:column>
+
                                 <h:commandButton type="submit" value="View" styleClass="btn"
-                                                 action="#{analyticsBean.viewAnalyticsStudent}"/>
+                                                 action="#{analyticsSearchResultsBeanBean.viewAnalyticsStudent}"/>
+
                             </h:column>
+
+
                         </h:dataTable>
+                    </h:form>
                     </ui:fragment>
-                </h:panelGroup>
+
             </div>
 
 
-        </h:form>
+
     </ui:define>
 
 
