@@ -30,7 +30,69 @@ public class OLSubjectPrediction {
     private boolean isPredictionNotAvailable = false;
     private boolean notAvailable = false;
     private boolean check = false;
-    private boolean checkTermMarks=true;
+    private boolean checkTermMarks = true;
+    private String prediction_msg = "The Next Term Prediction: The Student is being consistent!";
+    private String prediction_msgWarning = "The Next Term Prediction: The Student is being consistent!";
+    private String prediction_msgValidation = "The Next Term Prediction: The Student is being consistent!";
+    private boolean prediction_msg_available = false;
+    private boolean prediction_msgWarning_available = false;
+    private boolean prediction_msgValidation_available = false;
+
+    public boolean isNotAvailable() {
+        return notAvailable;
+    }
+
+    public void setNotAvailable(boolean notAvailable) {
+        this.notAvailable = notAvailable;
+    }
+
+    public String getPrediction_msg() {
+        return prediction_msg;
+    }
+
+    public void setPrediction_msg(String prediction_msg) {
+        this.prediction_msg = prediction_msg;
+    }
+
+    public String getPrediction_msgWarning() {
+        return prediction_msgWarning;
+    }
+
+    public void setPrediction_msgWarning(String prediction_msgWarning) {
+        this.prediction_msgWarning = prediction_msgWarning;
+    }
+
+    public String getPrediction_msgValidation() {
+        return prediction_msgValidation;
+    }
+
+    public void setPrediction_msgValidation(String prediction_msgValidation) {
+        this.prediction_msgValidation = prediction_msgValidation;
+    }
+
+    public boolean isPrediction_msg_available() {
+        return prediction_msg_available;
+    }
+
+    public void setPrediction_msg_available(boolean prediction_msg_available) {
+        this.prediction_msg_available = prediction_msg_available;
+    }
+
+    public boolean isPrediction_msgWarning_available() {
+        return prediction_msgWarning_available;
+    }
+
+    public void setPrediction_msgWarning_available(boolean prediction_msgWarning_available) {
+        this.prediction_msgWarning_available = prediction_msgWarning_available;
+    }
+
+    public boolean isPrediction_msgValidation_available() {
+        return prediction_msgValidation_available;
+    }
+
+    public void setPrediction_msgValidation_available(boolean prediction_msgValidation_available) {
+        this.prediction_msgValidation_available = prediction_msgValidation_available;
+    }
 
     public boolean isCheckTermMarks() {
         return checkTermMarks;

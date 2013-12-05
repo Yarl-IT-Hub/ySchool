@@ -5,180 +5,215 @@
                 xmlns:p="http://primefaces.org/ui"
         >
 
-    <ui:define name="yhead">
-        <title>ySchool: Student Analytics </title>
+<ui:define name="yhead">
+    <title>ySchool: Student Analytics </title>
 
-        <div>
-            <f:event listener="#{analyticsStudentHomeBean.preloadStudent}" type="preRenderView"/>
-        </div>
+    <div>
+        <f:event listener="#{analyticsStudentHomeBean.preloadStudent}" type="preRenderView"/>
+    </div>
 
-    </ui:define>
+</ui:define>
 
-    <ui:define name="student-content">
+<ui:define name="student-content">
 
-        <div class="span6">
-            <ul class="breadcrumb">
-                <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-                </li>
-                <li>
-                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
-                </li>
+    <div class="span6">
+        <ul class="breadcrumb">
+            <li>
+                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+            </li>
+            <li>
+                <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
+            </li>
 
-                <li>
-                    <a href="#">#{analyticsStudentHomeBean.student.fullName}</a>  <!-- need to get the Student ID -->
-                </li>
+            <li>
+                <a href="#">#{analyticsStudentHomeBean.student.fullName}</a>  <!-- need to get the Student ID -->
+            </li>
 
+        </ul>
+    </div>
+
+    <div class="span9">
+
+        <div id="init-form" class="tabbable">
+            <ul class="nav nav-tabs">
+                <li><a href="#1" data-toggle="tab">Secondary Level</a></li>
+                <li><a href="#2" class="active" data-toggle="tab">Ordinary Level</a></li>
+                <li><a href="#3" data-toggle="tab">Advance Level</a></li>
             </ul>
-        </div>
+            <div class="tab-content">
 
-        <div class="span9">
+                <div class="span12 tab-pane active" id="2">
+                    <div class="well"> The grades obtained and the prediction range are plotted, click to view
+                        each subject.
+                    </div>
+                    <div class="accordion" id="accordion2">
 
-            <div id="init-form" class="tabbable">
-                <ul class="nav nav-tabs">
-                    <li><a href="#1" data-toggle="tab">Secondary Level</a></li>
-                    <li><a href="#2" class="active" data-toggle="tab">Ordinary Level</a></li>
-                    <li><a href="#3" data-toggle="tab">Advance Level</a></li>
-                </ul>
-                <div class="tab-content">
-
-                    <div class="span12 tab-pane active" id="2">
-                        <div class="well"> The grades obtained and the prediction range are plotted, click to view
-                            each subject.
-                        </div>
-                        <div class="accordion" id="accordion2">
-
-                            <ui:repeat value="#{analyticsStudentHomeBean.olSubjectPredictions}" var="classroomSubject">
-                                <div class="accordion-group">
-                                    <div class="accordion-heading">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
-                                           href="#collapseOne">
-                                            Subject: #{classroomSubject.olSubject.subjectIdsubject.name}
+                        <ui:repeat value="#{analyticsStudentHomeBean.olSubjectPredictions}" var="classroomSubject">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                       href="#collapseOne">
+                                        Subject: #{classroomSubject.olSubject.subjectIdsubject.name}
 
 
-                                            <!--<ui:repeat value="#{classroomSubject.termMarks}" var="termMark"> Term mark:-->
-                                            <!--#{termMark} <br/></ui:repeat>-->
+                                        <!--<ui:repeat value="#{classroomSubject.termMarks}" var="termMark"> Term mark:-->
+                                        <!--#{termMark} <br/></ui:repeat>-->
 
-                                        </a>
+                                    </a>
+                                </div>
+                                <div id="span6 collapseOne"
+                                     class="accordion-body collapse in">             <!-- collapse in-->
+                                    <div class="span8 accordion-inner">
+
+
+                                        <p:lineChart seriesColors="008000,FF8C00,ff0000"
+                                                     value="#{classroomSubject.linearModelTermMarks}"
+                                                     legendPosition="s" zoom="true" animate="true"
+                                                     title="
+                                                          Chart" minY="0" maxY="105" style="width:400px;height:300px"/>
+
+                                        <div class="offset2">
+                                            <p> Ordinary Level Terms (1-6) </p></div>
+                                        <br/>
+                                        <br/>
                                     </div>
-                                    <div id="span6 collapseOne"
-                                         class="accordion-body collapse in">             <!-- collapse in-->
-                                        <div class="span8 accordion-inner">
 
 
-                                            <p:lineChart seriesColors="008000,FF8C00,ff0000"
-                                                         value="#{classroomSubject.linearModelTermMarks}"
-                                                         legendPosition="s" zoom="true" animate="true"
-                                                         title="
-                                                          Chart" minY="0" maxY="100" style="width:400px;height:300px"/>
-
-                                            <div class="offset2">
-                                                <p> Ordinary Level Terms (1-6) </p></div>
-                                            <br/>
-                                            <br/>
-                                        </div>
+                                    <div class="span3">
 
 
-                                        <div class="span3">
-                                            <br/>
+                                        <br/><br/>
+                                        <br/>
+                                        <!-- #{classroomSubject.msg}
+                                         #{classroomSubject.msgWarning}
+                                         #{classroomSubject.msgValidation}-->
 
-                                            <br/>
-                                            <br/>
-                                            <br/>
-                                            <br/><br/>
-                                            <br/>
-                                            <!-- #{classroomSubject.msg}
-                                             #{classroomSubject.msgWarning}
-                                             #{classroomSubject.msgValidation}-->
+                                        <ui:fragment rendered="#{classroomSubject.checkTermMarks}">
+                                            <div class="alert alert-error">
 
-                                            <ui:fragment rendered="#{classroomSubject.checkTermMarks}">
+                                                <p>
+
+                                                    No Term Marks for this subject is available thus the graph
+                                                    cannot be rendered.
+
+                                                </p>
+
+
+                                            </div>
+
+                                        </ui:fragment>
+
+
+                                        <ui:fragment rendered="#{classroomSubject.check}">
+                                            <ui:fragment rendered="#{not classroomSubject.checkTermMarks}">
                                                 <div class="alert alert-error">
 
                                                     <p>
-
-                                                        No Term Marks for this subject is available thus the graph
-                                                        cannot be rendered.
-
-                                                    </p>
-
-
-                                                </div>
-
-                                            </ui:fragment>
-
-
-                                                <ui:fragment rendered="#{classroomSubject.check}">
-                                                    <ui:fragment rendered="#{not classroomSubject.checkTermMarks}">
-                                                    <div class="alert alert-error">
-
-                                                        <p>
-                                                            The data aren't comprehensive thus the prediction service is
-                                                            unavailable.
-
-                                                        </p>
-
-
-                                                    </div>
-                                                </ui:fragment>
-                                            </ui:fragment>
-
-
-                                            <ui:fragment rendered="#{classroomSubject.msgWarning_available}">
-                                                <div class="alert alert-error">
-
-                                                    <p>
-                                                        #{classroomSubject.msgWarning}
+                                                        The data aren't comprehensive thus the prediction service is
+                                                        unavailable.
 
                                                     </p>
 
 
                                                 </div>
                                             </ui:fragment>
+                                        </ui:fragment>
 
 
-                                            <ui:fragment rendered="#{classroomSubject.msgValidation_available}">
-                                                <div class="alert alert-success">
+                                        <ui:fragment rendered="#{classroomSubject.msgWarning_available}">
+                                            <div class="alert alert-error">
 
-                                                    <p> #{classroomSubject.msgValidation}
+                                                <p>
+                                                    #{classroomSubject.msgWarning}
 
-
-                                                    </p>
-
-
-                                                </div>
-                                            </ui:fragment>
-
-                                            <ui:fragment rendered="#{classroomSubject.msg_available}">
-                                                <div class="alert alert-info">
-
-                                                    <p> #{classroomSubject.msg}
-
-                                                    </p>
+                                                </p>
 
 
-                                                </div>
-                                            </ui:fragment>
+                                            </div>
+                                        </ui:fragment>
 
-                                        </div>
+
+                                        <ui:fragment rendered="#{classroomSubject.msgValidation_available}">
+                                            <div class="alert alert-success">
+
+                                                <p> #{classroomSubject.msgValidation}
+
+
+                                                </p>
+
+
+                                            </div>
+                                        </ui:fragment>
+
+                                        <ui:fragment rendered="#{classroomSubject.msg_available}">
+                                            <div class="alert alert-info">
+
+                                                <p> #{classroomSubject.msg}
+
+                                                </p>
+
+
+                                            </div>
+                                        </ui:fragment>
+
+
+                                        <ui:fragment rendered="#{classroomSubject.prediction_msg_available}">
+                                            <div class="alert alert-info">
+
+                                                <p> #{classroomSubject.prediction_msg}
+
+                                                </p>
+
+
+                                            </div>
+                                        </ui:fragment>
+
+
+                                        <ui:fragment rendered="#{classroomSubject.prediction_msgWarning_available}">
+                                            <div class="alert alert-error">
+
+                                                <p>
+                                                    #{classroomSubject.prediction_msgWarning}
+
+                                                </p>
+
+
+                                            </div>
+                                        </ui:fragment>
+
+
+                                        <ui:fragment rendered="#{classroomSubject.prediction_msgValidation_available}">
+                                            <div class="alert alert-success">
+
+                                                <p> #{classroomSubject.prediction_msgValidation}
+
+
+                                                </p>
+
+
+                                            </div>
+                                        </ui:fragment>
+
                                     </div>
                                 </div>
+                            </div>
 
 
-                            </ui:repeat>
+                        </ui:repeat>
 
 
-                        </div>
-                        <!--accodion ends-->
-                        <!--tab-pane 2 ends-->
                     </div>
-
-
+                    <!--accodion ends-->
+                    <!--tab-pane 2 ends-->
                 </div>
-                <!--tabbable ends-->
+
+
             </div>
-
-
+            <!--tabbable ends-->
         </div>
-    </ui:define>
+
+
+    </div>
+</ui:define>
 
 </ui:composition>

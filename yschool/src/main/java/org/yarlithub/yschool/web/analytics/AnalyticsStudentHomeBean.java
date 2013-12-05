@@ -80,40 +80,40 @@ public class AnalyticsStudentHomeBean implements Serializable {
         this.linearModel = linearModel;
     }
 
-    private void createLinearModelTermMarks(OLSubjectPrediction olSubjectPrediction) {
-        linearModelTermMarks = new CartesianChartModel();
-
-        LineChartSeries termMarks = new LineChartSeries();
-
-
-        termMarks.setLabel("Term Marks");
-
-        if (olSubjectPrediction.getTermMarks().get(0) != -.1) {
-            termMarks.set(1, olSubjectPrediction.getTermMarks().get(0));
-        }
-        if (olSubjectPrediction.getTermMarks().get(1) != -.1) {
-            termMarks.set(2, olSubjectPrediction.getTermMarks().get(1));
-        }
-        if (olSubjectPrediction.getTermMarks().get(2) != -.1) {
-            termMarks.set(3, olSubjectPrediction.getTermMarks().get(2));
-        }
-        if (olSubjectPrediction.getTermMarks().get(3) != -.1) {
-            termMarks.set(4, olSubjectPrediction.getTermMarks().get(3));
-        }
-        if (olSubjectPrediction.getTermMarks().get(4) != -.1) {
-            termMarks.set(5, olSubjectPrediction.getTermMarks().get(4));
-        }
-
-        if (olSubjectPrediction.getTermMarks().get(5) != -.1) {
-            termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
-        }
-
-
-        linearModelTermMarks.addSeries(termMarks);
-        // linearModel.addSeries(series2);
-        setLinearModelTermMarks(linearModelTermMarks);
-
-    }
+//    private void createLinearModelTermMarks(OLSubjectPrediction olSubjectPrediction) {
+//        linearModelTermMarks = new CartesianChartModel();
+//
+//        LineChartSeries termMarks = new LineChartSeries();
+//
+//
+//        termMarks.setLabel("Term Marks");
+//
+//        if (olSubjectPrediction.getTermMarks().get(0) != -.1) {
+//            termMarks.set(1, olSubjectPrediction.getTermMarks().get(0));
+//        }
+//        if (olSubjectPrediction.getTermMarks().get(1) != -.1) {
+//            termMarks.set(2, olSubjectPrediction.getTermMarks().get(1));
+//        }
+//        if (olSubjectPrediction.getTermMarks().get(2) != -.1) {
+//            termMarks.set(3, olSubjectPrediction.getTermMarks().get(2));
+//        }
+//        if (olSubjectPrediction.getTermMarks().get(3) != -.1) {
+//            termMarks.set(4, olSubjectPrediction.getTermMarks().get(3));
+//        }
+//        if (olSubjectPrediction.getTermMarks().get(4) != -.1) {
+//            termMarks.set(5, olSubjectPrediction.getTermMarks().get(4));
+//        }
+//
+////        if (olSubjectPrediction.getTermMarks().get(5) != -.1) {
+////            termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
+////        }
+//
+//
+//        linearModelTermMarks.addSeries(termMarks);
+//        // linearModel.addSeries(series2);
+//        setLinearModelTermMarks(linearModelTermMarks);
+//
+//    }
 
     private CartesianChartModel createLinearModelTermMarksForOlSub(OLSubjectPrediction olSubjectPrediction) {
         CartesianChartModel model = new CartesianChartModel();
@@ -139,9 +139,9 @@ public class AnalyticsStudentHomeBean implements Serializable {
             termMarks.set(5, olSubjectPrediction.getTermMarks().get(4));
         }
 
-        if (olSubjectPrediction.getTermMarks().get(5) >= 0) {
-            termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
-        }
+//        if (olSubjectPrediction.getTermMarks().get(5) >= 0) {
+//            termMarks.set(6, olSubjectPrediction.getTermMarks().get(5));
+//        }
 
 
         if (!olSubjectPrediction.isCheck()) {
@@ -191,8 +191,8 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-        //this.student = analyticsService.getStudenById(39);
-        this.student=analyticsController.getStudent();
+        this.student = analyticsService.getStudenById(39);
+        //  this.student=analyticsController.getStudent();
         this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         this.oLSubjectsEleven = new ListDataModel(analyticsService.getOLSubjectsEleven(student));
 
@@ -378,12 +378,31 @@ public class AnalyticsStudentHomeBean implements Serializable {
 //            while (index < olSubjectPrediction_tmp.getTermMarksLower().size()-1) {
             //msgs = new ArrayList<>();
 
-            int recentIndex = olSubjectPrediction_tmp.getTermMarks().size() - 1;
+            int recentIndex = olSubjectPrediction_tmp.getTermMarks().size() - 2;
             double termMarks1;
             termMarks1 = olSubjectPrediction_tmp.getTermMarks().get(recentIndex);
-            double lower = olSubjectPrediction_tmp.getTermMarksLower().get(recentIndex - 1);
-            double upper = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 1);
+            double lower = olSubjectPrediction_tmp.getTermMarksLower().get(recentIndex - 2);
+            double upper = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 2);
+            double upper_prediction = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 1);
+            double lower_prediction = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 1);
 
+
+            if (upper < upper_prediction) {
+                olSubjectPrediction_tmp.setPrediction_msgValidation(MessageStudentHome.future_positive);
+                olSubjectPrediction_tmp.setPrediction_msgValidation_available(true);
+            }
+
+            if (lower > lower_prediction) {
+                olSubjectPrediction_tmp.setPrediction_msgWarning(MessageStudentHome.future_negative
+                );
+                olSubjectPrediction_tmp.setPrediction_msgWarning_available(true);
+            }
+
+            else{
+                olSubjectPrediction_tmp.setPrediction_msg(MessageStudentHome.future_information
+                );
+                olSubjectPrediction_tmp.setPrediction_msg_available(true);
+            }
             if (upper >= termMarks1 && termMark >= lower) {
                 //index++;
                 continue;
@@ -405,9 +424,10 @@ public class AnalyticsStudentHomeBean implements Serializable {
                 olSubjectPrediction_tmp.setMsgValidation(null);
                 continue;
 
+            } else {
+                olSubjectPrediction_tmp.setMsg_available(true);
             }
 
-            olSubjectPrediction_tmp.setMsg_available(true);
 
             //    index++;
         }
