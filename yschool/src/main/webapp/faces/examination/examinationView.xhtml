@@ -236,6 +236,32 @@
     </ui:fragment>
         <!--CLASS datasync-->
 
+
+        <!--exam standard check-->
+        <ui:fragment rendered="#{!examinationViewBean.comparisonAvailable}">
+
+            <li class="thumbnail span9">
+                <h:form id="checkstandard" class="form-horizontal" enctype="multipart/form-data">
+                <p class="lead"> CLASS Exam Standard Check</p>
+
+                <div class="alert alert-danger">
+
+                    <p>
+                        Check the standard of this exam with CLASS.
+                    </p>
+                </div>
+                <div class="span4 offset4">
+                    <h:commandButton value="Check Standard" styleClass="btn btn-large btn-info"
+                                     action="#{examinationViewBean.checkStandard}" type="submit">
+                    </h:commandButton>
+
+                </div>
+            </h:form>
+
+            </li>
+        </ui:fragment>
+        <!--end exam standatd check-->
+
     </ui:fragment>
 
 </ul>

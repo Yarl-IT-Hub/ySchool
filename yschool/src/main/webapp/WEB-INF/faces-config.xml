@@ -96,6 +96,11 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/analytics/analyticsSync.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>CheckStandard</from-outcome>
+            <to-view-id>/faces/analytics/analyticsExaminationHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
