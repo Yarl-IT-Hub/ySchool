@@ -191,7 +191,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-        this.student = analyticsService.getStudenById(39);
+       // this.student = analyticsService.getStudenById(39);
         //  this.student=analyticsController.getStudent();
         this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         this.oLSubjectsEleven = new ListDataModel(analyticsService.getOLSubjectsEleven(student));
@@ -396,9 +396,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
                 olSubjectPrediction_tmp.setPrediction_msgWarning(MessageStudentHome.future_negative
                 );
                 olSubjectPrediction_tmp.setPrediction_msgWarning_available(true);
-            }
-
-            else{
+            } else {
                 olSubjectPrediction_tmp.setPrediction_msg(MessageStudentHome.future_information
                 );
                 olSubjectPrediction_tmp.setPrediction_msg_available(true);
