@@ -11,6 +11,7 @@ import org.yarlithub.yschool.service.ExaminationService;
 import org.yarlithub.yschool.web.analytics.AnalyticsController;
 import org.yarlithub.yschool.web.util.YDateUtils;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -26,7 +27,7 @@ import java.util.Calendar;
  */
 
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class ExaminationViewBean implements Serializable {
     public boolean generalExam;
@@ -47,6 +48,11 @@ public class ExaminationViewBean implements Serializable {
 
     private int currentRowIslandRank;
     private double currentRowZScore;
+
+    @PostConstruct
+    public void init(){
+         this.preloadExam();
+    }
 
     public Exam getExam() {
         return exam;
