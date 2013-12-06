@@ -2,8 +2,8 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
         >
-
     <ui:define name="yhead">
         <title>ySchool: Student Analytics </title>
 
@@ -32,10 +32,39 @@
         </div>
 
         <div class="span9">
+            <div class="span4">
 
+                <p:lineChart seriesColors="FF8C00,008000"
+                             value="#{analyticsExaminationHomeBean.overallComp}"
+                             legendPosition="ne" zoom="true" animate="true"
+                             title="Overall Similarity" minY="0" maxY="80" style="width:400px;height:300px"/>
+
+            </div>
+
+            <div class="offset2 span4">
+
+                <p:lineChart seriesColors="FF8C00,008000"
+                             value="#{analyticsExaminationHomeBean.individualComp}"
+                             legendPosition="n" zoom="true" animate="true"
+                             title="Individual Similarity" minY="0" maxY="8" style="width:400px;height:300px"/>
+
+            </div>
+
+
+            <div class="span12">
+
+                <p:barChart seriesColors="008000,FF8C00"
+                            value="#{analyticsExaminationHomeBean.indivSim}"
+                            legendPosition="n" zoom="true" animate="true"
+                            title="Individual Similarity" minY="0" maxY="8" style="width:1000px;height:300px"/>
+
+            </div>
 
 
         </div>
+
     </ui:define>
 
 </ui:composition>
+
+

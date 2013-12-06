@@ -134,7 +134,7 @@ public class AnalyticsService {
     @Transactional
     public void printReport(ServletOutputStream servletOutputStream) throws IOException, JRException {       // ServletOutputStream servletOutputStream
         JasperReport jasperReport = new JasperReport();
-        jasperReport.printJasperReport(servletOutputStream);                        //  servletOutputStream
+       jasperReport.printJasperReport(servletOutputStream);                        //  servletOutputStream
     }
 
     @Transactional
