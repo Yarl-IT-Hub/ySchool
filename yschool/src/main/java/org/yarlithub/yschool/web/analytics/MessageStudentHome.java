@@ -10,8 +10,8 @@ package org.yarlithub.yschool.web.analytics;
 public class MessageStudentHome {
     public static String warning = "Current Term: Detected a performance drop!";
     public static String appreciation = "Current Term: Significant performance improvement detected!";
-    public static String info_positive = "Current Term: Improvement detected! ";
-    public static String info_negative = "Current Term: Drawback detected! ";
+    public static String info_consis = "Current Term: No significant improvement detected! ";
+    public static String info_consistent = "Current Term: Drawback detected! ";
     public static String future_negative = "The Next Term Prediction: Drawback detected!";
     public static String future_positive = "The Next Term Prediction: The performance is improveing, expecting a better result next time!";
     public static String future_information = "The Next Term Prediction: The Student is being consistent!";

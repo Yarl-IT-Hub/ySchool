@@ -191,8 +191,8 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
     public boolean preloadStudent() {
 
-       // this.student = analyticsService.getStudenById(39);
-        //  this.student=analyticsController.getStudent();
+        // this.student = analyticsService.getStudenById(39);
+        this.student = analyticsController.getStudent();
         this.oLSubjects = new ListDataModel(analyticsService.getOLSubjects(student));
         this.oLSubjectsEleven = new ListDataModel(analyticsService.getOLSubjectsEleven(student));
 
@@ -293,7 +293,7 @@ public class AnalyticsStudentHomeBean implements Serializable {
                         previousTermMarks.add(mark);
                         try {
                             if (term < 3) {
-                                range = predictNextTerm(null, 2009, 11, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                                range = predictNextTerm(null, 2008, 11, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
                             }
 
                             if (term == 3) {
@@ -378,9 +378,9 @@ public class AnalyticsStudentHomeBean implements Serializable {
 //            while (index < olSubjectPrediction_tmp.getTermMarksLower().size()-1) {
             //msgs = new ArrayList<>();
 
-            int recentIndex = olSubjectPrediction_tmp.getTermMarks().size() - 2;
+            int recentIndex = olSubjectPrediction_tmp.getTermMarks().size() - 1;
             double termMarks1;
-            termMarks1 = olSubjectPrediction_tmp.getTermMarks().get(recentIndex);
+            termMarks1 = olSubjectPrediction_tmp.getTermMarks().get(recentIndex - 1);
             double lower = olSubjectPrediction_tmp.getTermMarksLower().get(recentIndex - 2);
             double upper = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 2);
             double upper_prediction = olSubjectPrediction_tmp.getTermMarksUpper().get(recentIndex - 1);
@@ -390,19 +390,20 @@ public class AnalyticsStudentHomeBean implements Serializable {
             if (upper < upper_prediction) {
                 olSubjectPrediction_tmp.setPrediction_msgValidation(MessageStudentHome.future_positive);
                 olSubjectPrediction_tmp.setPrediction_msgValidation_available(true);
-            }
-
-            if (lower > lower_prediction) {
+            } else if (lower > lower_prediction) {
                 olSubjectPrediction_tmp.setPrediction_msgWarning(MessageStudentHome.future_negative
                 );
                 olSubjectPrediction_tmp.setPrediction_msgWarning_available(true);
-            } else {
-                olSubjectPrediction_tmp.setPrediction_msg(MessageStudentHome.future_information
-                );
+            } else if (lower <= lower_prediction || upper_prediction <= upper) {
+                olSubjectPrediction_tmp.setPrediction_msg(MessageStudentHome.future_information);
                 olSubjectPrediction_tmp.setPrediction_msg_available(true);
             }
-            if (upper >= termMarks1 && termMark >= lower) {
+
+
+            if (upper >= termMarks1 && termMarks1 >= lower) {
                 //index++;
+                olSubjectPrediction_tmp.setMsg(MessageStudentHome.info_consis);
+                olSubjectPrediction_tmp.setMsg_available(true);
                 continue;
 
 
@@ -440,4 +441,3 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
 
 }
-

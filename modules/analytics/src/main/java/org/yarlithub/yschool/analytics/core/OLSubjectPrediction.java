@@ -21,7 +21,7 @@ public class OLSubjectPrediction {
     private List<Integer> termMarksUpper = new ArrayList<Integer>();
     private CartesianChartModel linearModelTermMarks;
     private List<String> msgs = new ArrayList<String>();
-    private String msg = "No Significant Change Detected";
+    private String msg = "Current Term: No Significant Change Detected";
     private String msgWarning = "No Significant Change Detected";
     private String msgValidation = "No Significant Change Detected";
     private boolean msg_available = false;
