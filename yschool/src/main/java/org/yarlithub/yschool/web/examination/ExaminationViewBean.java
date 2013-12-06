@@ -8,6 +8,7 @@ import org.yarlithub.yschool.analytics.datasync.SyncStatus;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.service.ExaminationService;
+import org.yarlithub.yschool.web.analytics.AnalyticsController;
 import org.yarlithub.yschool.web.util.YDateUtils;
 
 import javax.faces.bean.ManagedBean;
@@ -33,10 +34,13 @@ public class ExaminationViewBean implements Serializable {
     private ExaminationService examinationService;
     @Autowired
     private ExaminationController examinationController;
+    @Autowired
+    private AnalyticsController analyticsController;
     private Exam exam;
     private boolean synced;
     private DataModel marksORresults;
     private UploadedFile marksORresultsFile;
+    private boolean comparisonAvailable;
     private int yearInt;
     private int dateInt;
     private String monthString;
@@ -120,9 +124,25 @@ public class ExaminationViewBean implements Serializable {
         this.synced = synced;
     }
 
+    public boolean isComparisonAvailable() {
+        return comparisonAvailable;
+    }
+
+    public void setComparisonAvailable(boolean comparisonAvailable) {
+        this.comparisonAvailable = comparisonAvailable;
+    }
+
     public void preloadExam() {
 
         this.setExam(examinationService.getExambyId(examinationController.getExam().getId()));
+
+        setComparisonAvailable(false);
+        if(getExam().getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade()==11 &&
+                getExam().getTerm()==3){
+                setComparisonAvailable(true);
+        }
+
+
 
         setSynced(true);
         if(!exam.getExamSyncs().isEmpty()){
@@ -162,5 +182,10 @@ public class ExaminationViewBean implements Serializable {
     public String syncCLASS() {
         return "AnalyticsSync";
 
+    }
+
+    public String checkStandard(){
+        analyticsController.setExam(this.getExam());
+        return "CheckStandard";
     }
 }
