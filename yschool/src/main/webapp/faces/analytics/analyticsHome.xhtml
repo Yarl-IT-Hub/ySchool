@@ -46,7 +46,9 @@
 
                 <h:panelGroup id="suggest_box">
                     <ui:fragment rendered="#{analyticsBean.studentsSearchResultAjax.rowAvailable}">
-
+                        <h:commandLink value=""
+                                       styleClass="thumbnail span11" type="submit">
+                        </h:commandLink>
                         <ui:repeat value="#{analyticsBean.studentsSearchResultAjax}" var="student">
                             <h:commandLink value="#{student.name}" action="#{analyticsBean.viewAnalyticsStudentAjax}"
                                            styleClass="thumbnail span11" type="submit">
@@ -70,7 +72,7 @@
             <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
             <div class="span9">
                 <h:panelGroup id="search-results">
-                    <ui:fragment rendered="#{analyticsBean.studentsSearchResult.rowAvailable}">
+                    <ui:fragment rendered="{analyticsBean.studentsSearchResult.rowAvailable}">
 
                         <h:dataTable value="#{analyticsBean.studentsSearchResult}" var="results"
                                      styleClass="table table-hover">

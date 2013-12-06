@@ -84,6 +84,7 @@ public class AnalyticsBean implements Serializable {
     }
 
     public String viewAnalyticsStudentAjax(){
+        studentsSearchResultAjax = new ListDataModel<Student>(analyticsService.getStudentsNameLike(searchKey,10));
         setStudent(studentsSearchResultAjax.getRowData());
         analyticsController.setStudent(student);
         return "viewAnalyticsStudent";

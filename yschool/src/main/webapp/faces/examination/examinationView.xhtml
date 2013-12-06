@@ -238,10 +238,10 @@
 
 
         <!--exam standard check-->
-        <ui:fragment rendered="#{!examinationViewBean.comparisonAvailable}">
+        <ui:fragment rendered="#{examinationViewBean.comparisonAvailable}">
 
             <li class="thumbnail span9">
-                <h:form id="checkstandard" class="form-horizontal" enctype="multipart/form-data">
+
                 <p class="lead"> CLASS Exam Standard Check</p>
 
                 <div class="alert alert-danger">
@@ -251,12 +251,12 @@
                     </p>
                 </div>
                 <div class="span4 offset4">
-                    <h:commandButton value="Check Standard" styleClass="btn btn-large btn-info"
-                                     action="#{examinationViewBean.checkStandard}" type="submit">
-                    </h:commandButton>
+                    <a href="/yschool/faces/analytics/analyticsExaminationHome.xhtml">
+                        <Button class="btn btn-info btn-large">Check Standard</Button>
+                    </a>
 
                 </div>
-            </h:form>
+
 
             </li>
         </ui:fragment>
