@@ -37,6 +37,19 @@ public class OLSubjectPrediction {
     private boolean prediction_msg_available = false;
     private boolean prediction_msgWarning_available = false;
     private boolean prediction_msgValidation_available = false;
+    private String idForAccordion;
+
+    public OLSubjectPrediction() {
+        this.setIdForAccordion(this.toString().substring(58, 62));
+    }
+
+    public String getIdForAccordion() {
+        return idForAccordion;
+    }
+
+    public void setIdForAccordion(String idForAccordion) {
+        this.idForAccordion = idForAccordion;
+    }
 
     public boolean isNotAvailable() {
         return notAvailable;
