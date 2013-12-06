@@ -41,9 +41,71 @@ public class AnalyticsExaminationHomeBean implements Serializable {
     private CartesianChartModel linearModelTermMarks;
 
 
+    public StudentService getStudentService() {
+        return studentService;
+    }
 
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
-    public boolean preloadStudent() {
+    public AnalyticsService getAnalyticsService() {
+        return analyticsService;
+    }
+
+    public void setAnalyticsService(AnalyticsService analyticsService) {
+        this.analyticsService = analyticsService;
+    }
+
+    public AnalyticsController getAnalyticsController() {
+        return analyticsController;
+    }
+
+    public void setAnalyticsController(AnalyticsController analyticsController) {
+        this.analyticsController = analyticsController;
+    }
+
+    public Exam getExam() {
+        return exam;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
+
+    public DataModel<OLSubjectPrediction> getOlSubjectPredictions() {
+        return olSubjectPredictions;
+    }
+
+    public void setOlSubjectPredictions(DataModel<OLSubjectPrediction> olSubjectPredictions) {
+        this.olSubjectPredictions = olSubjectPredictions;
+    }
+
+    public DataModel getaLSubjects() {
+        return aLSubjects;
+    }
+
+    public void setaLSubjects(DataModel aLSubjects) {
+        this.aLSubjects = aLSubjects;
+    }
+
+    public CartesianChartModel getLinearModel() {
+        return linearModel;
+    }
+
+    public void setLinearModel(CartesianChartModel linearModel) {
+        this.linearModel = linearModel;
+    }
+
+    public CartesianChartModel getLinearModelTermMarks() {
+        return linearModelTermMarks;
+    }
+
+    public void setLinearModelTermMarks(CartesianChartModel linearModelTermMarks) {
+        this.linearModelTermMarks = linearModelTermMarks;
+    }
+
+    public boolean preloadExam() {
 
         return true;
 

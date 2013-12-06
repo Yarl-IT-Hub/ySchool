@@ -16,54 +16,57 @@
 
 <ui:define name="student-content">
 
-    <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-            </li>
-            <li>
-                <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
-            </li>
+<div class="span6">
+    <ul class="breadcrumb">
+        <li>
+            <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+        </li>
+        <li>
+            <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
+        </li>
 
-            <li>
-                <a href="#">#{analyticsStudentHomeBean.student.fullName}</a>  <!-- need to get the Student ID -->
-            </li>
+        <li>
+            <a href="#">#{analyticsStudentHomeBean.student.fullName}</a>  <!-- need to get the Student ID -->
+        </li>
 
+    </ul>
+</div>
+
+
+<div class="span9">
+
+    <div id="init-form" class="tabbable">
+        <ul class="nav nav-tabs">
+            <li><a href="#1" data-toggle="tab">Secondary Level</a></li>
+            <li><a href="#2" class="active" data-toggle="tab">Ordinary Level</a></li>
+            <li><a href="#3" data-toggle="tab">Advance Level</a></li>
         </ul>
-    </div>
+        <div class="tab-content">
 
-    <div class="span9">
+            <div class="span12 tab-pane active" id="2">
+                <div class="well"> The grades obtained and the prediction range are plotted, click to view
+                    each subject.
+                </div>
+                <div class="accordion" id="accordion2">
 
-        <div id="init-form" class="tabbable">
-            <ul class="nav nav-tabs">
-                <li><a href="#1" data-toggle="tab">Secondary Level</a></li>
-                <li><a href="#2" class="active" data-toggle="tab">Ordinary Level</a></li>
-                <li><a href="#3" data-toggle="tab">Advance Level</a></li>
-            </ul>
-            <div class="tab-content">
-
-                <div class="span12 tab-pane active" id="2">
-                    <div class="well"> The grades obtained and the prediction range are plotted, click to view
-                        each subject.
-                    </div>
-                    <div class="accordion" id="accordion2">
-
-                        <ui:repeat value="#{analyticsStudentHomeBean.olSubjectPredictions}" var="classroomSubject">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
-                                       href="#collapseOne">
-                                        Subject: #{classroomSubject.olSubject.subjectIdsubject.name}
+                    <ui:repeat value="#{analyticsStudentHomeBean.olSubjectPredictions}" var="classroomSubject">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                                   href="##{classroomSubject.olSubject.subjectIdsubject.subjectCode}">
+                                    Subject: #{classroomSubject.olSubject.subjectIdsubject.name}
 
 
-                                        <!--<ui:repeat value="#{classroomSubject.termMarks}" var="termMark"> Term mark:-->
-                                        <!--#{termMark} <br/></ui:repeat>-->
+                                    <!--<ui:repeat value="#{classroomSubject.termMarks}" var="termMark"> Term mark:-->
+                                    <!--#{termMark} <br/></ui:repeat>-->
 
-                                    </a>
-                                </div>
-                                <div id="span6 collapseOne"
-                                     class="accordion-body collapse in">             <!-- collapse in-->
-                                    <div class="span7 accordion-inner">
+                                </a>
+                            </div>
+
+                            <div id="#{classroomSubject.olSubject.subjectIdsubject.subjectCode}"
+                                 class="accordion-body collapse">             <!-- collapse in-->
+                                <div class="accordion-inner">
+                                    <div class="span7">
 
 
                                         <p:lineChart seriesColors="008000,FF8C00,ff0000"
@@ -195,25 +198,27 @@
                                         </ui:fragment>
 
                                     </div>
+
                                 </div>
                             </div>
+                        </div>
 
 
-                        </ui:repeat>
+                    </ui:repeat>
 
 
-                    </div>
-                    <!--accodion ends-->
-                    <!--tab-pane 2 ends-->
                 </div>
-
-
+                <!--accodion ends-->
+                <!--tab-pane 2 ends-->
             </div>
-            <!--tabbable ends-->
+
+
         </div>
-
-
+        <!--tabbable ends-->
     </div>
+
+
+</div>
 </ui:define>
 
 </ui:composition>

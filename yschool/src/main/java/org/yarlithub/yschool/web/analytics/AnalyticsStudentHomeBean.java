@@ -439,5 +439,10 @@ public class AnalyticsStudentHomeBean implements Serializable {
         return true;
     }
 
+    public String viewMatchingProfiles() {
+
+        return "Success";
+
+    }
 
 }
