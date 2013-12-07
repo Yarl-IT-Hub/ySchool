@@ -12,6 +12,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.service.AnalyticsService;
 import org.yarlithub.yschool.service.ExaminationService;
 import org.yarlithub.yschool.service.StudentService;
+import org.yarlithub.yschool.web.examination.ExaminationController;
 
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
@@ -38,7 +39,7 @@ public class AnalyticsExaminationHomeBean implements Serializable {
     @Autowired
     private AnalyticsService analyticsService;
     @Autowired
-    private AnalyticsController analyticsController;
+    private ExaminationController examinationController;
     private Exam exam;
     private CartesianChartModel overallComp;
     private CartesianChartModel individualComp;
@@ -151,30 +152,6 @@ public class AnalyticsExaminationHomeBean implements Serializable {
         this.jacScore = jacScore;
     }
 
-    public StudentService getStudentService() {
-        return studentService;
-    }
-
-    public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
-    }
-
-    public AnalyticsService getAnalyticsService() {
-        return analyticsService;
-    }
-
-    public void setAnalyticsService(AnalyticsService analyticsService) {
-        this.analyticsService = analyticsService;
-    }
-
-    public AnalyticsController getAnalyticsController() {
-        return analyticsController;
-    }
-
-    public void setAnalyticsController(AnalyticsController analyticsController) {
-        this.analyticsController = analyticsController;
-    }
-
     public Exam getExam() {
         return exam;
     }
@@ -240,14 +217,20 @@ public class AnalyticsExaminationHomeBean implements Serializable {
         int i = 0;
         while (termIterator.hasNext()) {
             i++;
-            termGrade.set(i, termIterator.next());
+            int k = termIterator.next();
+            if (i % 5 == 0) {
+                termGrade.set(i, k);
+            }
         }
 
         Iterator<Integer> generalIterator = generalIntegerArrayList.iterator();
         i = 0;
         while (generalIterator.hasNext()) {
             i++;
-            generalGrade.set(i, generalIterator.next());
+            int k = generalIterator.next();
+            if (i % 5== 0) {
+                generalGrade.set(i, k);
+            }
 
         }
         model.addSeries(termGrade);
@@ -284,15 +267,24 @@ public class AnalyticsExaminationHomeBean implements Serializable {
         Iterator<Integer> termIterator = termIntegerArrayList.iterator();
         int i = 0;
         while (termIterator.hasNext()) {
+
+            int k = termIterator.next();
+            if (i % 5 == 0) {
+                termGrade.set(i, k);
+            }
             i++;
-            termGrade.set(i, termIterator.next());
         }
 
         Iterator<Integer> generalIterator = generalIntegerArrayList.iterator();
         i = 0;
         while (generalIterator.hasNext()) {
+
+            int k = generalIterator.next();
+            if (i % 5 == 0) {
+                generalGrade.set(i, k);
+            }
+
             i++;
-            generalGrade.set(i, generalIterator.next());
 
         }
 
@@ -304,9 +296,10 @@ public class AnalyticsExaminationHomeBean implements Serializable {
 
     public boolean preloadExam() {
         ExamStandard examStandard = new ExamStandard();
-        exam = examinationService.getExambyId(2);
+        exam = examinationController.getExam();
+        // exam =examinationService.getExambyId(2);
         try {
-            examStandard = ExamComparator.getExamStandard(11086, 2009, this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade(), this.exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getName());
+            examStandard = ExamComparator.getExamStandard(11086, this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getYear(), this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade(), this.exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getName());
         } catch (Exception e) {
             //To change body of catch statement use File | Settings | File Templates.
         }

@@ -39,32 +39,73 @@
                              legendPosition="ne" zoom="true" animate="true"
                              title="Overall Similarity" minY="0" maxY="80" style="width:400px;height:300px"/>
 
-            </div>
 
-            <div class="offset2 span4">
+                <div class="accordion" id="subjectDescription">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#subjectDescription"
+                               href="#subDescription">
+                                Overall Similarity: Interpretation
+                            </a>
+                        </div>
+                        <div id="subDescription" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                A/L Stream Recommender assists in the decision making process of a new student about to
+                                enter the advanced level. This Pie Chart illustrates the choice of streams done by the
+                                matching profiles in the past. The success and failure are decided according to the
+                                UGC handbook and the district is set to Jaffna. The profiles can be viewed
+                                by clicking the 'View ' button,above. Please note that some profiles
+                                may not be revealed according the enforced policies.
+                            </div>
+                        </div>
+                    </div>
 
-                <p:lineChart seriesColors="FF8C00,008000"
-                             value="#{analyticsExaminationHomeBean.individualComp}"
-                             legendPosition="n" zoom="true" animate="true"
-                             title="Individual Similarity" minY="0" maxY="8" style="width:400px;height:300px"/>
+                </div>
 
-            </div>
-
-
-            <div class="span12">
-
-                <p:barChart seriesColors="008000,FF8C00"
-                            value="#{analyticsExaminationHomeBean.indivSim}"
-                            legendPosition="n" zoom="true" animate="true"
-                            title="Individual Similarity" minY="0" maxY="8" style="width:1000px;height:300px"/>
 
             </div>
 
 
         </div>
 
-    </ui:define>
+        <div class="offset3 span4">
 
-</ui:composition>
+            <p:lineChart seriesColors="FF8C00,008000"
+                         value="#{analyticsExaminationHomeBean.individualComp}"
+                         legendPosition="ne" zoom="true" animate="true"
+                         title="Individual Similarity" minY="0" maxY="8" style="width:400px;height:300px"/>
+
+
+            <div class="accordion" id="subjectDescription1">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#subjectDescription"
+                           href="#subDescription">
+                            Individual Similarity: Interpretation
+                        </a>
+                    </div>
+                    <div id="subDescription1" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            A/L Stream Recommender assists in the decision making process of a new student about to
+                            enter the advanced level. This Pie Chart illustrates the choice of streams done by the
+                            matching profiles in the past. The success and failure are decided according to the
+                            UGC handbook and the district is set to Jaffna. The profiles can be viewed
+                            by clicking the 'View ' button,above. Please note that some profiles
+                            may not be revealed according the enforced policies.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</ui:define>
+
+        </ui:composition>
 
 
