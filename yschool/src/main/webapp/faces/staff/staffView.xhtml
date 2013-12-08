@@ -7,7 +7,7 @@
 
     <ui:define name="yhead">
         <div>
-            <f:event listener="#{staffHomeBean.preLoad}" type="preRenderView"/>
+            <f:event listener="#{staffViewBean.preLoad}" type="preRenderView"/>
 
             <f:metadata>
                 <f:viewParam name="staff" value="{staffBean.staffDataModel}"/>
@@ -45,34 +45,30 @@
         <div class="span10">
             <div class="row-fluid" id="staff-home-contents">
 
+                <table class="table table-hover">
+                        <tr>
+                            <th>Staff ID</th>
+                            <th>Name</th>
+                            <th>Full Name</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>#{staffViewBean.staff.staffid}</td>
+                            <td>#{staffViewBean.staff.name}</td>
+                            <td>#{staffViewBean.staff.fullName}</td>
+                            <td><h:commandButton value="Edit" action="#" type="submit" styleClass="btn btn-mini"/></td>
+                            <td><h:commandButton value="Delete" action="#" type="submit" styleClass="btn btn-mini"/></td>
+                        </tr>
+                </table>
+
                     <div>
-                        <h:form>
-                            <h:dataTable value="#{staffHomeBean.staffDataModel}" var="staff"
-                                         styleClass="table table-hover">
-                                <h:column>
-                                    <!-- column header -->
-                                    <f:facet name="header">Staff No</f:facet>
-                                    #{ staff.staffid}
-                                </h:column>
-                                <h:column>
-                                    <!-- column header -->
-                                    <f:facet name="header">Name</f:facet>
-                                    #{staff.fullName}
-                                </h:column>
 
-                                <h:column>
-                                    <h:commandButton value="View" action="#{staffHomeBean.viewStaff}" type="submit"
-
-                                                     styleClass="btn btn-mini"/>
-                                </h:column>
-                            </h:dataTable>
-                        </h:form>
                     </div>
 
 
             </div>
         </div>
-
     </ui:define>
 
 </ui:composition>
