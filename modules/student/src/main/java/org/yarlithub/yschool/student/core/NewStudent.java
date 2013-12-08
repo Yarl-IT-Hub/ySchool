@@ -1,11 +1,13 @@
 package org.yarlithub.yschool.student.core;
 
+import org.hibernate.Criteria;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class NewStudent {
@@ -23,12 +25,22 @@ public class NewStudent {
         student.setAddress(address);
         //TODO: hage to get bytestream to send database.
         //student.setPhoto(photo);
-
-
-
         dataLayerYschool.save(student);
         dataLayerYschool.flushSession();
         //TODO: save method does not indicates/returns success/failure
         return true;
+    }
+
+    public List<Student> getAllStudent()
+    {
+         return dataLayerYschool.getCurrentSession().createCriteria(Student.class,"from student").list();
+    }
+
+    public void deleteStudent(Integer StudentId) {
+        Student student = (Student) dataLayerYschool.getCurrentSession().load(
+                Student.class, StudentId);
+        if (null != student) {
+            this.dataLayerYschool.getCurrentSession().delete(student);
+        }
     }
 }

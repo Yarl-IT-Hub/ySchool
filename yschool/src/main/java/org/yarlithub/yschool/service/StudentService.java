@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.student.core.NewStudent;
 import java.util.Date;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Jay Krish
@@ -25,6 +28,19 @@ public class StudentService {
         NewStudent newStudent= new NewStudent();
         boolean success = newStudent.addNewStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
         return success;
+    }
+
+    @Transactional
+    public List<Student> getStudents() {
+        NewStudent student=new NewStudent();
+        return  student.getAllStudent();
+    }
+
+    @Transactional
+    public void deleteStudent(Integer studentId)
+    {
+        NewStudent student=new NewStudent();
+        student.deleteStudent(studentId);
     }
 
 }
