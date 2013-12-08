@@ -3,7 +3,8 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+        >
 
     <ui:define name="yhead">
         <title>ySchool: Analytics</title>
@@ -16,56 +17,88 @@
 
 
     <ui:define name="student-content">
-
-        <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-            </li>
-            <li>
-                <a href="#">Analytics</a>
-            </li>
-        </ul>
-    </div>
-
-        <div class="span5">
-            test Analytics home <br/>           <br/>
-            Student name check
-            .
-            #{analyticsBean.student.name}   <br/>
-
-            matching profile check
-            <ui:fragment rendered="#{analyticsBean.matchingStudentProfile.alSubjects.rowAvailable}">
-            <ui:repeat value="#{analyticsBean.matchingStudentProfile.alSubjects}" var="subjectResult">
-                   #{subjectResult.classroomSubject.subjectIdsubject.name}  Results: #{subjectResult.result}
-              </ui:repeat>
-            </ui:fragment>
-        </div>
-
-       <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
-
-       <div class="span6">
-           <h:panelGrid columns="1">
-
-
-           <p:lineChart value="#{analyticsBean.linearModel}" legendPosition="e" zoom="true" animate="true"
-                        title="Linear Chart" minY="0" maxY="10" style="width:300px;"/>
-
-       </h:panelGrid>
-       </div>
-
-
-
-        <div class="span8">
         <h:form>
-        <h:commandButton type="submit" action="#{analyticsBean.printReport}" value="Generate Report (PDF)"
-                         class="btn btn-primary btn-large"/>
+
+            <div class="span6">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    </li>
+                    <li>
+                        <a href="#">Analytics</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="span3">
+                <!--Examination search bar with filter-->
+
+                <!--<searchKey type="text" class="search-query" placeholder="Search"> </searchKey>-->
+
+                <p:inputText id="userName" value="#{analyticsBean.searchKey}">
+                    <!--onkeypress="if (event.keyCode == 13) {e.preventDefault();-->
+                    <!--inputEnter.onchange(); return false; }">-->
+                    <p:ajax event="keypress" listener="#{analyticsBean.searchAjax}" update="suggest_box"></p:ajax>
+                    <p:ajax event="change" listener="#{analyticsBean.search}"
+                            update="search-results"></p:ajax>
+                </p:inputText>
+
+
+                <h:panelGroup id="suggest_box">
+                    <ui:fragment rendered="#{analyticsBean.studentsSearchResultAjax.rowAvailable}">
+                        <h:commandLink value=""
+                                       styleClass="thumbnail span11" type="submit">
+                        </h:commandLink>
+                        <ui:repeat value="#{analyticsBean.studentsSearchResultAjax}" var="student">
+                            <h:commandLink value="#{student.name}" action="#{analyticsBean.viewAnalyticsStudentAjax}"
+                                           styleClass="thumbnail span11" type="submit">
+                            </h:commandLink>
+
+                        </ui:repeat>
+
+                    </ui:fragment>
+
+                </h:panelGroup>
+
+            </div>
+
+            <div class="span2">
+                <h:commandButton styleClass="btn btn-info btn-large" type="submit" action="#{analyticsBean.search}"
+                                 value="Search">
+
+                </h:commandButton>
+            </div>
+
+            <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+            <div class="span9">
+                <h:panelGroup id="search-results">
+                    <ui:fragment rendered="{analyticsBean.studentsSearchResult.rowAvailable}">
+
+                        <h:dataTable value="#{analyticsBean.studentsSearchResult}" var="results"
+                                     styleClass="table table-hover">
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Addmission No</f:facet>
+                                #{ results.admissionNo}
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Name</f:facet>
+                                #{results.name}
+                            </h:column>
+
+                            <h:column>
+                                <h:commandButton type="submit" value="View" styleClass="btn"
+                                                 action="#{analyticsBean.viewAnalyticsStudent}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </ui:fragment>
+                </h:panelGroup>
+            </div>
+
+
         </h:form>
-    </div>
-
     </ui:define>
-
-
 
 
 </ui:composition>

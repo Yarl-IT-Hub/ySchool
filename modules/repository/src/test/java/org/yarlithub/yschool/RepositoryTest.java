@@ -10,10 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
-import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
-import org.yarlithub.yschool.repository.model.obj.yschool.UserRole;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
@@ -136,12 +133,12 @@ public class RepositoryTest {
 
         Criteria studentGeneralExamProfiles = dataLayerYschool.createCriteria(StudentGeneralexamProfile.class);
 
-       // studentGeneralExamProfiles.createAlias("admissionNo", "adNo");
+        // studentGeneralExamProfiles.createAlias("admissionNo", "adNo");
 
-       studentGeneralExamProfiles.add(Restrictions.eq("alIslandRank", 18952));
+        studentGeneralExamProfiles.add(Restrictions.eq("alIslandRank", 18952));
         List<StudentGeneralexamProfile> adProfiles = studentGeneralExamProfiles.list();
 
-      //  Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        //  Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
 
 
         //student_classroom_subject data is not ready yet
@@ -155,6 +152,28 @@ public class RepositoryTest {
         //List<ClassroomSubject> lt = classroomSubjectCR.list();
         System.out.println(adProfiles);
 
+
+        student = dataLayerYschool.getStudent(17);
+
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        //student_classroom_subject data is not ready yet
+        //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+        //so using this as temporary ,but this may violate optional subject...
+        classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
+
+        classroomSubjectCR.add(Restrictions.eq("cl.grade", 11));
+        List<ClassroomSubject> lt = classroomSubjectCR.list();
+        System.out.println("\n\n\n\n");
+
+
+        Criteria marks = dataLayerYschool.createCriteria(Marks.class);
+        marks.add(Restrictions.eq("studentIdstudent", student));
+        marks.createAlias("examIdexam", "examId").add(Restrictions.eq("examId.classroomSubjectIdclassroomSubject", lt.get(0)));
+
+        marks.add(Restrictions.eq("examId.term", 3));
+        List<Marks> marksList = marks.list();
+        System.out.println("\n\n\n\n");
+        System.out.println(marksList);
 
     }
 }

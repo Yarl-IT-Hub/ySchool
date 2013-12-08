@@ -1,0 +1,111 @@
+<ui:composition template="/WEB-INF/templates/analytics-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+        >
+    <ui:define name="yhead">
+        <title>ySchool: Student Analytics </title>
+
+        <div>
+            <f:event listener="#{analyticsExaminationHomeBean.preloadExam}" type="preRenderView"/>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="student-content">
+
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myhome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
+                </li>
+
+                <li>
+                    <a href="#">#{analyticsExaminationHomeBean.exam.id}</a>  <!-- need to get the Student ID -->
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="span9">
+            <div class="span4">
+
+                <p:lineChart seriesColors="FF8C00,008000"
+                             value="#{analyticsExaminationHomeBean.overallComp}"
+                             legendPosition="ne" zoom="true" animate="true"
+                             title="Overall Similarity" minY="0" maxY="80" style="width:400px;height:300px"/>
+
+
+                <div class="accordion" id="subjectDescription">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#subjectDescription"
+                               href="#subDescription">
+                                Overall Similarity: Interpretation
+                            </a>
+                        </div>
+                        <div id="subDescription" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                A/L Stream Recommender assists in the decision making process of a new student about to
+                                enter the advanced level. This Pie Chart illustrates the choice of streams done by the
+                                matching profiles in the past. The success and failure are decided according to the
+                                UGC handbook and the district is set to Jaffna. The profiles can be viewed
+                                by clicking the 'View ' button,above. Please note that some profiles
+                                may not be revealed according the enforced policies.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="offset3 span4">
+
+            <p:lineChart seriesColors="FF8C00,008000"
+                         value="#{analyticsExaminationHomeBean.individualComp}"
+                         legendPosition="ne" zoom="true" animate="true"
+                         title="Individual Similarity" minY="0" maxY="8" style="width:400px;height:300px"/>
+
+
+            <div class="accordion" id="subjectDescription1">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#subjectDescription"
+                           href="#subDescription">
+                            Individual Similarity: Interpretation
+                        </a>
+                    </div>
+                    <div id="subDescription1" class="accordion-body collapse in">
+                        <div class="accordion-inner">
+                            A/L Stream Recommender assists in the decision making process of a new student about to
+                            enter the advanced level. This Pie Chart illustrates the choice of streams done by the
+                            matching profiles in the past. The success and failure are decided according to the
+                            UGC handbook and the district is set to Jaffna. The profiles can be viewed
+                            by clicking the 'View ' button,above. Please note that some profiles
+                            may not be revealed according the enforced policies.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</ui:define>
+
+        </ui:composition>
+
+

@@ -1,0 +1,109 @@
+<ui:composition template="/WEB-INF/templates/analytics-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+        >
+
+    <ui:define name="yhead">
+        <title>ySchool: Analytics</title>
+
+        <div>
+            <f:event listener="#{analyticsSearchResultsBean.preloadStudent}" type="preRenderView"/>
+        </div>
+
+    </ui:define>
+
+
+    <ui:define name="student-content">
+
+
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/analytics/analyticsHome.xhtml">Analytics</a><span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Student Search Results</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span3">
+            <!--Examination search bar with filter-->
+
+            <input type="text" class="search-query" placeholder="Search"> </input>
+
+
+        </div>
+
+        <div class="span2">
+            <Button class="btn btn-info btn-large"> Search</Button>
+        </div>
+
+        <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
+        <div class="row-fluid span9">
+
+            <!--<h:dataTable value="{analyticsSearchResultsBean.searchResults}" var="results"-->
+            <!--styleClass="table table-hover">-->
+            <!--<h:column>-->
+            <!--&lt;!&ndash; column header &ndash;&gt;-->
+            <!--<f:facet name="header">Addmission No</f:facet>-->
+            <!--{ results.admissionNo}-->
+            <!--</h:column>-->
+            <!--<h:column>-->
+            <!--&lt;!&ndash; column header &ndash;&gt;-->
+            <!--<f:facet name="header">Name</f:facet>-->
+            <!--{results.name}-->
+            <!--</h:column>-->
+
+            <!--<h:column>-->
+
+            <!--<h:commandButton type="submit" value="View" styleClass="btn"-->
+            <!--action="{analyticsSearchResultsBean.viewAnalyticsStudent}"/>-->
+
+            <!--</h:column>-->
+
+
+            <!--</h:dataTable>-->
+
+            <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
+            <ul class="thumbnails  span12">
+                <h:form>
+                    <ui:repeat value="#{analyticsSearchResultsBean.searchResults}" var="results">
+
+                        <li class="thumbnail span12">
+
+                            <div class="span10">
+                                <h5>
+
+                                    <h:outputText
+                                            value=" #{results.admissionNo}  "/>
+                                    <h:outputText
+                                            value="#{results.name}     "/>
+                                </h5>
+                            </div>
+
+                            <div class="box span2">
+
+                                <h:commandButton action="#{analyticsSearchResultsBean.viewAnalyticsStudent}"
+                                                 class="btn btn-large" value="View..."
+                                                 type="submit">
+                                </h:commandButton>
+
+                            </div>
+
+                        </li>
+
+                    </ui:repeat>
+                </h:form>
+            </ul>
+        </div>
+    </ui:define>
+
+
+</ui:composition>

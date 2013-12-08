@@ -2,10 +2,12 @@ package org.yarlithub.yschool.web.analytics;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -22,7 +24,20 @@ public class AnalyticsController implements Serializable {
     private Student student;
     private String stream;
     private String profileStream;
+    private String analyticsErrorMessage;
 
+    private Exam exam;
+
+    private List<Student> searchResults;
+
+
+    public List<Student> getSearchResults() {
+        return searchResults;
+    }
+
+    public void setSearchResults(List<Student> searchResults) {
+        this.searchResults = searchResults;
+    }
 
     public Student getStudent() {
         return student;
@@ -46,5 +61,21 @@ public class AnalyticsController implements Serializable {
 
     public void setProfileStream(String profileStream) {
         this.profileStream = profileStream;
+    }
+
+    public String getAnalyticsErrorMessage() {
+        return analyticsErrorMessage;
+    }
+
+    public void setAnalyticsErrorMessage(String analyticsErrorMessage) {
+        this.analyticsErrorMessage = analyticsErrorMessage;
+    }
+
+    public Exam getExam() {
+        return exam;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
     }
 }

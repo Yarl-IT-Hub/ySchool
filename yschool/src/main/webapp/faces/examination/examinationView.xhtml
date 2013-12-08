@@ -48,13 +48,13 @@
     </a>
 </div>
 
-<ul class="thumbnails span12">
+<ul class="thumbnails">
 
     <!--avoid bootstrap first list margin bug!-->
-    <li class="span10"></li>
+    <li ></li>
 
     <!--Exam details-->
-    <li class="thumbnail span10">
+    <li class="thumbnail  span9">
         <div class="span10">
             <p class="lead">Exam Details</p>
             <h5>
@@ -88,7 +88,7 @@
 
     <ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
         <!--upload marks-->
-        <li class="thumbnail span10">
+        <li class="thumbnail  span9">
             <h:form id="form_marksupload" class="form-horizontal" enctype="multipart/form-data">
                 <div class="well span9 offset1">
                     <p class="lead text-center">Upload Results</p>
@@ -116,7 +116,7 @@
     <ui:fragment rendered="#{examinationViewBean.marksORresults.rowAvailable}">
 
         <!--exam marks or results section-->
-        <li class="thumbnail span10">
+        <li class="thumbnail  span9">
             <div class="accordion span12" id="accordion1">
                 <div class="accordion-group">
                     <div class="accordion-heading">
@@ -187,12 +187,12 @@
                                             <h:column>
                                                 <!-- column header -->
                                                 <f:facet name="header">Island Rank</f:facet>
-                                                1
+                                                #{examinationViewBean.currentRowIslandRank}
                                             </h:column>
                                             <h:column>
                                                 <!-- column header -->
                                                 <f:facet name="header">z Score</f:facet>
-                                                4
+                                                #{examinationViewBean.currentRowZScore}
                                             </h:column>
                                             <h:column>
                                                 <h:commandButton value="Edit" styleClass="btn btn-mini"/>
@@ -212,12 +212,13 @@
         <!--end exam marks or results section-->
 
         <!--li CLASS datasnyc -->
-        <li class="thumbnail span10">
+    <ui:fragment rendered="#{!examinationViewBean.synced}">
+        <li class="thumbnail span9">
             <p class="lead"> CLASS Data Sync</p>
 
-            <div class="alert alert-info">
+            <div class="alert alert-danger">
 
-                <p class="text text-center">
+                <p>
                     This Exam marks are not synced with CLASS Server yet. <br/>
                     Press Sync Now button to synchronize this Exam with CLASS Server. <br/>
                     Make sure you have an active internet connection till synchronization ends.
@@ -230,10 +231,36 @@
                 </a>
             </div>
 
-
             <!--CLASS datasync-->
         </li>
+    </ui:fragment>
         <!--CLASS datasync-->
+
+
+        <!--exam standard check-->
+        <ui:fragment rendered="#{examinationViewBean.comparisonAvailable}">
+
+            <li class="thumbnail span9">
+
+                <p class="lead"> CLASS Exam Standard Check</p>
+
+                <div class="alert alert-danger">
+
+                    <p>
+                        Check the standard of this exam with CLASS.
+                    </p>
+                </div>
+                <div class="span4 offset4">
+                    <a href="/yschool/faces/analytics/analyticsExaminationHome.xhtml">
+                        <Button class="btn btn-info btn-large">Check Standard</Button>
+                    </a>
+
+                </div>
+
+
+            </li>
+        </ui:fragment>
+        <!--end exam standatd check-->
 
     </ui:fragment>
 

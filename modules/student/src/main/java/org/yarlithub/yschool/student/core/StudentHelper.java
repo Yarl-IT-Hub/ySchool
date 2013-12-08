@@ -1,6 +1,7 @@
 package org.yarlithub.yschool.student.core;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
@@ -50,6 +51,20 @@ public class StudentHelper {
             return student;
         }
         return null;
+    }
+
+    /**
+     *
+     * @param regx
+     * @param maxNo
+     * @return
+     */
+    public List<Student> getStudentsNameLike(String regx, int maxNo) {
+        Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
+        studentCR.add(Restrictions.like("name", regx, MatchMode.ANYWHERE));
+        studentCR.setMaxResults(maxNo);
+        List<Student> studentList = studentCR.list();
+        return studentList;
     }
 
     public StudentGeneralexamProfile getStudentProfileViaStudentID(Student student) {

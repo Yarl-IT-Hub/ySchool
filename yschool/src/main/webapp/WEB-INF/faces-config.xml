@@ -29,7 +29,7 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         </navigation-case>
         <navigation-case>
             <from-outcome>login</from-outcome>
-            <to-view-id>/faces/home/myHome.xhtml</to-view-id>
+            <to-view-id>/faces/home/myhome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -38,7 +38,7 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         <from-view-id>/faces/setup/setup.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>success</from-outcome>
-            <to-view-id>/faces/home/myHome.xhtml</to-view-id>
+            <to-view-id>/faces/home/myhome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -96,6 +96,11 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/analytics/analyticsSync.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>CheckStandard</from-outcome>
+            <to-view-id>/faces/analytics/analyticsExaminationHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -134,6 +139,42 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/analytics/analyticsStudentRecommenderStream.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/faces/analytics/analyticsSync.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>AnalyticsError</from-outcome>
+            <to-view-id>/faces/analytics/analyticsError.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/faces/analytics/analyticsHome.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>viewAnalyticsStudent</from-outcome>
+            <to-view-id>/faces/analytics/analyticsStudentHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>viewAnalyticsSearchResults</from-outcome>
+            <to-view-id>/faces/analytics/analyticsSearchResults.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/faces/analytics/analyticsSearchResults.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>viewAnalyticsStudent</from-outcome>
+            <to-view-id>/faces/analytics/analyticsStudentHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
 
     </navigation-rule>
 
