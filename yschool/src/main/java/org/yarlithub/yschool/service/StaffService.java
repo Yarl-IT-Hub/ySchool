@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.staff.core.NewStaff;
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
+import org.yarlithub.yschool.staff.core.NewStaff;
 
 import java.util.List;
 /**
@@ -31,7 +31,8 @@ public class StaffService {
     @Transactional
     public List<Staff> getStaff(){
         NewStaff newStaff= new NewStaff();
-        return newStaff.getAllStaff();
+
+        return newStaff.listAllStaffs();
 
     }
 

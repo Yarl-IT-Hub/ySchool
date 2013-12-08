@@ -1,5 +1,6 @@
 package org.yarlithub.yschool.staff.core;
 
+import org.hibernate.Criteria;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
@@ -37,8 +38,9 @@ public class NewStaff {
         return true;
     }
 
-    public List<Staff> getAllStaff(){
-        return dataLayerYschool.getCurrentSession().createCriteria(Staff.class).list();
+    public List<Staff> listAllStaffs(){
+        Criteria staffCriteria = dataLayerYschool.createCriteria(Staff.class);
+        return  staffCriteria.list();
 
     }
 
