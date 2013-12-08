@@ -4,6 +4,9 @@ import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
+
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Jay Krish
@@ -27,10 +30,16 @@ public class NewStaff {
 
 
 
+
         dataLayerYschool.save(staff);
         dataLayerYschool.flushSession();
         //TODO: save method does not indicates/returns success/failure
         return true;
+    }
+
+    public List<Staff> getAllStaff(){
+        return dataLayerYschool.getCurrentSession().createCriteria(Staff.class).list();
+
     }
 
 }

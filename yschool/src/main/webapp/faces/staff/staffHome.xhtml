@@ -1,7 +1,20 @@
 <ui:composition template="/WEB-INF/templates/staff-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
+    <ui:define name="yhead">
+        <div>
+            <f:event listener="#{staffBean.preloadStaff}" type="preRenderView"/>
+
+            <f:metadata>
+                <f:viewParam name="staff" value="{staffBean.staffs}"/>
+            </f:metadata >
+        </div>
+
+    </ui:define>
 <ui:define name="staff-content">
 
     <div class="span4">
@@ -30,7 +43,71 @@
     </div>
 
     <div class="span10">
-        test Staff home.
+        <div class="row-fluid" id="staff-home-contents">
+            <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
+            <ul class="thumbnails">
+                <!--empty list to avoid bootstrap first row margin bug-->
+                <li class="span8">
+                </li>
+
+
+                    <li class="span8">
+
+                        <div class="span10">
+                            <table class="table table-bordered table-hover">
+                                <tr>
+                                    <th>Staff ID</th>
+                                    <th>Name</th>
+                                    <th>Full Name</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+
+                                <ui:repeat value="#{staffBean.staffs}" var="staff">
+                                <tr>
+                                    <td>
+                                        <h:outputText
+                                                value="#{staff.staffid}"/>
+                                    </td>
+                                    <td>
+                                        <h:outputText
+                                                value="#{staff.name}"/>
+                                    </td>
+                                    <td>
+                                        <h:outputText
+                                                value="#{staff.fullName}"/>
+                                    </td>
+                                    <td>
+                                        <h:commandButton class="btn btn-small" value="Edit" action="#"
+                                                         type="submit">
+
+                                        </h:commandButton>
+                                    </td>
+                                    <td>
+                                        <h:commandButton class="btn btn-small" value="Delete" action="#"
+                                                         type="submit">
+
+                                        </h:commandButton>
+                                    </td>
+
+                                </tr>
+                                </ui:repeat>
+                            </table>
+
+                            <h5>
+
+
+
+
+                            </h5>
+                        </div>
+
+
+                    </li>
+
+
+            </ul>
+        </div>
     </div>
 </ui:define>
 
