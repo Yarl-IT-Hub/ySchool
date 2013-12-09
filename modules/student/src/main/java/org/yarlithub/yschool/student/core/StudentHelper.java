@@ -3,6 +3,7 @@ package org.yarlithub.yschool.student.core;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
@@ -74,6 +75,15 @@ public class StudentHelper {
 
         List<StudentGeneralexamProfile> lt =  studentGeneralExamProfilesCR.list();
         return lt.get(0);
+
+    }
+
+
+    public List<Classroom> getCurrentClasses(int grade){
+        Criteria classroomCriteria = dataLayerYschool.createCriteria(Classroom.class);
+        //classroomCriteria.add(Restrictions.eq("year",2008));
+        classroomCriteria.add(Restrictions.eq("grade",grade));
+        return classroomCriteria.list();
 
     }
 }
