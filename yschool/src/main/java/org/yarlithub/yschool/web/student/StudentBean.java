@@ -33,7 +33,6 @@ public class StudentBean implements Serializable {
     private Date dob;
     private String gender;
     private String address;
-    private DataModel students;
 
     @Autowired
     private StudentService studentService;
@@ -92,26 +91,6 @@ public class StudentBean implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public DataModel getStudents() {
-        return students;
-    }
-
-    public void setStudents(DataModel students) {
-        this.students = students;
-    }
-
-    public boolean preloadstudents() {
-        students = new ListDataModel(studentService.getStudents());
-        this.setStudents(students);
-        return true;
-    }
-
-    public String preloaddelete(Integer studentId)
-    {
-        studentService.deleteStudent(studentId);
-        return "delete_this_student";
     }
 
     public String addStudent() {

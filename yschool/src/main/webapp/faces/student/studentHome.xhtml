@@ -3,12 +3,12 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="yhead">
-    <div>
-        <f:event listener="#{studentHomeBean.preloadstudents}" type="preRenderView"/>
-        <f:metadata>
-            <f:viewParam name="student" value="{studentHomeBean.student}"/>
-        </f:metadata >
-    </div>
+        <div>
+            <f:event listener="#{studentHomeBean.preloadstudents}" type="preRenderView"/>
+            <f:metadata>
+                <f:viewParam name="student" value="{studentHomeBean.student}"/>
+            </f:metadata>
+        </div>
     </ui:define>
 
     <ui:define name="student-content">
@@ -47,18 +47,19 @@
         </div>
         <!-- end student New -->
         <ui:repeat value="#{studentHomeBean.gradeDataModel}" var="grade">
-          <div class="thumbnails span10" >
-              <h3>
-                  Grade #{grade.grade}
-              </h3>
-              <ui:repeat value="#{grade.classroomDataModel}" var="classroom">
-                  <h:commandButton value="#{classroom.division}"   type="submit" styleClass="btn btn-large">
-                  </h:commandButton>
+            <div class="span10">
+                <h3>
+                    Grade #{grade.grade}
+                </h3>
+                <ui:repeat value="#{grade.classroomDataModel}" var="classroom">
+                    <h:commandButton value="#{classroom.division}" action="#{studentHomeBean.viewStudent}" type="submit"
+                                     styleClass="btn btn-large">
+                    </h:commandButton>
 
 
-              </ui:repeat>
+                </ui:repeat>
 
-          </div>
+            </div>
 
 
         </ui:repeat>

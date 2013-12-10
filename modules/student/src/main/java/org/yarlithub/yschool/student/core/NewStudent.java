@@ -30,17 +30,4 @@ public class NewStudent {
         //TODO: save method does not indicates/returns success/failure
         return true;
     }
-
-    public List<Student> getAllStudent()
-    {
-         return dataLayerYschool.getCurrentSession().createCriteria(Student.class,"from student").list();
-    }
-
-    public void deleteStudent(Integer StudentId) {
-        Student student = (Student) dataLayerYschool.getCurrentSession().load(
-                Student.class, StudentId);
-        if (null != student) {
-            this.dataLayerYschool.getCurrentSession().delete(student);
-        }
-    }
 }
