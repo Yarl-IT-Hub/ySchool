@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.service.StudentService;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-
-
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.lang.String;
@@ -33,7 +31,6 @@ public class StudentBean implements Serializable {
     private Date dob;
     private String gender;
     private String address;
-    private DataModel students;
 
     @Autowired
     private StudentService studentService;
@@ -94,25 +91,6 @@ public class StudentBean implements Serializable {
         this.address = address;
     }
 
-    public DataModel getStudents() {
-        return students;
-    }
-
-    public void setStudents(DataModel students) {
-        this.students = students;
-    }
-
-    public boolean preloadstudents() {
-        students = new ListDataModel(studentService.getStudents());
-        this.setStudents(students);
-        return true;
-    }
-
-    public String preloaddelete(Integer studentId)
-    {
-        studentService.deleteStudent(studentId);
-        return "delete_this_student";
-    }
 
     public String addStudent() {
 

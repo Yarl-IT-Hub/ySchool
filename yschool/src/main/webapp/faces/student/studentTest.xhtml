@@ -1,65 +1,62 @@
 <ui:composition template="/WEB-INF/templates/student-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
-
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="yhead">
         <div>
             <f:event listener="#{studentViewBean.preload}" type="preRenderView"/>
             <f:metadata>
-                <f:viewParam name="student" value="{studentBean.student}"/>
+                <f:viewParam name="student" value="{studentViewBean.preload}"/>
             </f:metadata>
         </div>
-
     </ui:define>
 
     <ui:define name="student-content">
 
-        <div class="span3">
+        <div class="span6">
             <!--Breadcrumb to help user "where you are?"-->
             <ul class="breadcrumb">
                 <li>
                     <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
                 </li>
                 <li>
-                    <a href="#">Student</a><span class="divider">></span>
-                </li>
-                <li>
-                    <a href="#">StudentList</a>
+                    <a href="#">Student</a>
                 </li>
             </ul>
         </div>
 
-        <div class="span3">
+        <div class="span2">
             <!--Student search bar with filter-->
             <form class="navbar-search pull-left">
                 <input type="text" class="search-query" placeholder="Search"> </input>
             </form>
         </div>
-
-        <div class="span2">
+        <div class="span1">
             <a href="/yschool/faces/student/studentSearch.xhtml">
-                <Button class="btn btn-primary btn-large">Search</Button>
+                <Button class="btn btn-primary btn-large">^
+                </Button>
             </a>
         </div>
 
-        <div class="span2">
+        <!--student New-->
+        <div class="span3">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
                 <Button class="btn btn-primary btn-large"> Add New Student</Button>
             </a>
         </div>
+        <!-- end student New -->
+        <h:form>
+            <h:dataTable value="#{studentViewBean.listStudents}" var="results"
+                         styleClass="table table-hover">
+                <h:column>
+                    <!-- column header -->
+                    <f:facet name="header">Addmission No</f:facet>
+                    #{ results.studentIdstudent.admissionNo}
+                </h:column>
+            </h:dataTable>
+        </h:form>
 
-        <div class="span10">
-            <div class="control-group span10 offset1">
-
-                #{studentViewBean.student.name}
-                #{studentViewBean.student.fullName}
-
-            </div>
-        </div>
     </ui:define>
 
 </ui:composition>
