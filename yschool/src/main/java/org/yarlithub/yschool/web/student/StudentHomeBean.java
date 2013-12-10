@@ -31,6 +31,10 @@ public class StudentHomeBean implements Serializable {
     @Autowired
     private StudentService studentService;
 
+    @Autowired
+   private StudentController studentController;
+
+
 
 
     public DataModel<Grade> getGradeDataModel() {
@@ -51,7 +55,6 @@ public class StudentHomeBean implements Serializable {
 
     public boolean preloadstudents() {
 
-
         Grade grade10=new Grade(10);
         List<Classroom> classroomList10=studentService.getCurrentClasses(10);
         grade10.setClassroomDataModel(new ListDataModel<Classroom>(classroomList10));
@@ -65,7 +68,17 @@ public class StudentHomeBean implements Serializable {
         gradelist.add(grade10);
         gradelist.add(grade11);
         gradeDataModel =new ListDataModel<Grade>(gradelist);
+
+        studentDataModel = new ListDataModel(studentService.getStudent());
+        this.setStudentDataModel(studentDataModel);
+
         return true;
+    }
+
+    public String viewStudent() {
+        Student student = studentDataModel.getRowData();
+        studentController.setStudent(student);
+        return "ViewStudent";
     }
 
 

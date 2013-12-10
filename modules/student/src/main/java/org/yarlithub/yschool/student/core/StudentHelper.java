@@ -3,11 +3,11 @@ package org.yarlithub.yschool.student.core;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
-import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
+import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
+import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +86,20 @@ public class StudentHelper {
         return classroomCriteria.list();
 
     }
+
+    public List<Student> listAllStudent(){
+        Criteria studentCriteria = dataLayerYschool.createCriteria(Student.class);
+        return  studentCriteria.list();
+
+    }
+
+    public List<ClassroomStudent> getClassroomStudent(Integer idstudent) {
+        Classroom classroom=dataLayerYschool.getClassroom(idstudent);
+        Criteria resultsCriteria = dataLayerYschool.createCriteria(ClassroomStudent.class);
+        resultsCriteria.add(Restrictions.eq("idclassroomstudent", classroom));
+        return resultsCriteria.list();
+    }
+
 }
 
 

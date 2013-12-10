@@ -9,8 +9,10 @@ import org.yarlithub.yschool.student.core.NewStudent;
 import java.util.Date;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.student.core.StudentHelper;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -27,12 +29,29 @@ public class StudentService {
         return success;
     }
 
-
-
     @Transactional
     public List<Classroom> getCurrentClasses(int grade){
         StudentHelper student=new StudentHelper();
         return student.getCurrentClasses(grade);
+    }
+
+    @Transactional
+    public List<Student> getStudent(){
+        StudentHelper studentHelper=new StudentHelper();
+         return studentHelper.listAllStudent();
+    }
+
+    @Transactional
+    public List<ClassroomStudent> getClassroomStudent(Integer idstudent) {
+        StudentHelper studentHelper=new StudentHelper();
+        List<ClassroomStudent> classroomStudentList = studentHelper.getClassroomStudent(idstudent);
+        //Hibernate needs lazy initialization of internal objects
+        Iterator<ClassroomStudent> classroomStudentIterator = classroomStudentList.iterator();
+         while (classroomStudentIterator.hasNext()) {
+             ClassroomStudent classroomStudents = classroomStudentIterator.next();
+            Hibernate.initialize(classroomStudents.getStudentIdstudent());
+        }
+        return classroomStudentList;
     }
 
 }

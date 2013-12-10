@@ -29,12 +29,12 @@
                 <input type="text" class="search-query" placeholder="Search"> </input>
             </form>
         </div>
-		
-		<div class="span2">
-	   <a href="/yschool/faces/student/studentSearch.xhtml">
-            <Button class="btn btn-primary btn-large">Search</Button>
-        </a>
-	   </div>
+
+        <div class="span2">
+            <a href="/yschool/faces/student/studentSearch.xhtml">
+                <Button class="btn btn-primary btn-large">Search</Button>
+            </a>
+        </div>
 
         <div class="span2">
             <!--Add new student Button-->
@@ -82,16 +82,16 @@
                             </div>
                         </div>
 
-                <div class="control-group">
-                    <label class="control-label" for="nameWithInitial">Initials</label>
+                        <div class="control-group">
+                            <label class="control-label" for="nameWithInitial">Initials</label>
 
-                    <div class="controls">
-                        <h:inputText id="nameWithInitial" value="#{studentBean.name_wt_initial}" required="true"
-                                     requiredMessage="NameWithInitial is required">
-                        </h:inputText>
-                        <h:message for="nameWithInitial" errorStyle="color : red"/>
-                    </div>
-                </div>
+                            <div class="controls">
+                                <h:inputText id="nameWithInitial" value="#{studentBean.name_wt_initial}" required="true"
+                                             requiredMessage="NameWithInitial is required">
+                                </h:inputText>
+                                <h:message for="nameWithInitial" errorStyle="color : red"/>
+                            </div>
+                        </div>
                         <div class="control-group">
                             <label class="control-label" for="Dob">Date Of Birth</label>
 
@@ -129,9 +129,11 @@
                         <div class="control-group">
                             <div class="controls">
                                 <ul class="breadcrumb">
-                                    <li><h:commandButton value="Clear All" type="reset" class="btn btn-primary btn-large"/>
+                                    <li><h:commandButton value="Clear All" type="reset"
+                                                         class="btn btn-primary btn-large"/>
                                     </li>
-                                    <li><h:commandButton type="submit" value="Add This Student" action="#{studentBean.addStudent}"
+                                    <li><h:commandButton type="submit" value="Add This Student"
+                                                         action="#{studentBean.addStudent}"
                                                          class="btn btn-primary btn-large"/></li>
 
                                 </ul>
