@@ -5,8 +5,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.service.StudentService;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-
-
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 import java.lang.String;
@@ -92,6 +90,7 @@ public class StudentBean implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
 
     public String addStudent() {
 
