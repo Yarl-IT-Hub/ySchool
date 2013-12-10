@@ -32,7 +32,14 @@ public class StudentService {
     @Transactional
     public List<Classroom> getCurrentClasses(int grade){
         StudentHelper student=new StudentHelper();
-        return student.getCurrentClasses(grade);
+        List<Classroom> classroomList = student.getCurrentClasses(grade);
+        Iterator<Classroom> classroomIterator = classroomList.iterator();
+        while (classroomIterator.hasNext()){
+            Classroom classroom = classroomIterator.next();
+            Hibernate.initialize(classroom.getGradeIdgrade());
+            Hibernate.initialize(classroom.getDivisionIddivision());
+        }
+        return classroomList;
     }
 
     @Transactional

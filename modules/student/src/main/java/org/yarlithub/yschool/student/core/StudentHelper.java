@@ -81,8 +81,8 @@ public class StudentHelper {
 
     public List<Classroom> getCurrentClasses(int grade){
         Criteria classroomCriteria = dataLayerYschool.createCriteria(Classroom.class);
-        //classroomCriteria.add(Restrictions.eq("year",2008));
-        classroomCriteria.add(Restrictions.eq("grade",grade));
+        /*using createAlias to join two tables*/
+        classroomCriteria.createAlias("gradeIdgrade","cg").add(Restrictions.eq("cg.grade",grade));
         return classroomCriteria.list();
 
     }
