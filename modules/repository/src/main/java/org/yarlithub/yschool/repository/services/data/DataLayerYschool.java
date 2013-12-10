@@ -9,9 +9,11 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRolePK;
+import org.yarlithub.yschool.repository.model.obj.yschool.Division;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
+import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.Role;
@@ -193,6 +195,25 @@ public interface DataLayerYschool {
      ClassAnalyzerClassifier getClassAnalyzerClassifier(final Integer id);  
 
     /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Division obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteDivision(final Integer id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Division object
+     */
+    Division loadDivision(final Integer id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     Division getDivision(final Integer id);  
+
+    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Exam obj) directly
      * @param id Identifier to delete
      */
@@ -248,6 +269,25 @@ public interface DataLayerYschool {
      * @return An object of type T
      */
      ExamType getExamType(final Integer id);  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Grade obj) directly
+     * @param id Identifier to delete
+     */
+    void deleteGrade(final Integer id);
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Grade object
+     */
+    Grade loadGrade(final Integer id);
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     Grade getGrade(final Integer id);  
 
     /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Marks obj) directly

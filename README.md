@@ -4,7 +4,7 @@ A simple web based school management system.
 ####Version####
 
 * ySchool Version : 1.0-SNAPSHOT
-* Build Number   : 1.0.58
+* Build Number   : 1.0.59
 
 ####Main Technologies####
 
@@ -18,10 +18,11 @@ A simple web based school management system.
 1. Install WAMP/LAMP server.
    Import the SQL schema yschool/docs/ySchool_V1.1.sql into mysql server to create yschool database for you.
 2. Install git setup and fork ySchool.
-3. Install Maven, go to directory containing yschool root in command-prompt/terminal and run
+3. Install Maven, go to directory containing yschool project root in command-prompt/terminal and run
    ```mvn install:install-file -Dfile=yschool\modules\repository\lib\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar```
    ```mvn install:install-file -Dfile=yschool\modules\analytics\lib\class-analyzer-1.0.3.jar -DgroupId=com.arima.classanalyzer -DartifactId=class-analyzer -Dversion=1.0.3 -Dpackaging=jar```
+4. Now jump into yschool project root directory and run
    ```mvn clean install```
-4. Run the command from yschool main module (yschool/yschool)
-   ```mvn clean jetty:run-war``` 
-5. Open localhost:8080/yschool in your browser to see ySchool up and running.
+5. Run the command from yschool main module (yschool/yschool)
+   ```mvn clean jetty:run-war```
+6. Open localhost:8080/yschool in your browser to see ySchool up and running.

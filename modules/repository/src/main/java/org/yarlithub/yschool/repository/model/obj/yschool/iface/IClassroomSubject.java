@@ -36,18 +36,18 @@ public interface IClassroomSubject {
 	void setClassroomSubjectHasStaffHasRoles(final Set<ClassroomSubjectHasStaffHasRole> classroomSubjectHasStaffHasRole);
 
     /**
-     * Return the value associated with the column: classroomIdclass.
-	 * @return A Classroom object (this.classroomIdclass)
+     * Return the value associated with the column: classroomIdclassroom.
+	 * @return A Classroom object (this.classroomIdclassroom)
 	 */
-	Classroom getClassroomIdclass();
+	Classroom getClassroomIdclassroom();
 	
 
   
     /**  
-     * Set the value related to the column: classroomIdclass.
-	 * @param classroomIdclass the classroomIdclass value you wish to set
+     * Set the value related to the column: classroomIdclassroom.
+	 * @param classroomIdclassroom the classroomIdclassroom value you wish to set
 	 */
-	void setClassroomIdclass(final Classroom classroomIdclass);
+	void setClassroomIdclassroom(final Classroom classroomIdclassroom);
 
     /**
      * Return the value associated with the column: exam.

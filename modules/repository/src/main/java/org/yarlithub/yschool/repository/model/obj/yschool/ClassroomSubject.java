@@ -52,7 +52,7 @@ public class ClassroomSubject implements Cloneable, Serializable, IPojoGenEntity
 	private Set<ClassroomSubjectHasStaffHasRole> classroomSubjectHasStaffHasRoles = new HashSet<ClassroomSubjectHasStaffHasRole>();
 
 	/** Field mapping. */
-	private Classroom classroomIdclass;
+	private Classroom classroomIdclassroom;
 	/** Field mapping. */
 	private Set<Exam> exams = new HashSet<Exam>();
 
@@ -78,13 +78,13 @@ public class ClassroomSubject implements Cloneable, Serializable, IPojoGenEntity
 	}
 	
 	/** Constructor taking a given ID.
-	 * @param classroomIdclass Classroom object;
+	 * @param classroomIdclassroom Classroom object;
 	 * @param id Integer object;
 	 * @param subjectIdsubject Subject object;
 	 */
-	public ClassroomSubject(Classroom classroomIdclass, Integer id, Subject subjectIdsubject) {
+	public ClassroomSubject(Classroom classroomIdclassroom, Integer id, Subject subjectIdsubject) {
 
-		this.classroomIdclass = classroomIdclass;
+		this.classroomIdclassroom = classroomIdclassroom;
 		this.id = id;
 		this.subjectIdsubject = subjectIdsubject;
 	}
@@ -134,26 +134,26 @@ public class ClassroomSubject implements Cloneable, Serializable, IPojoGenEntity
 	}
 
     /**
-     * Return the value associated with the column: classroomIdclass.
-	 * @return A Classroom object (this.classroomIdclass)
+     * Return the value associated with the column: classroomIdclassroom.
+	 * @return A Classroom object (this.classroomIdclassroom)
 	 */
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "classroom_idclass", nullable = false )
-	public Classroom getClassroomIdclass() {
-		return this.classroomIdclass;
+	@JoinColumn(name = "classroom_idclassroom", nullable = false )
+	public Classroom getClassroomIdclassroom() {
+		return this.classroomIdclassroom;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: classroomIdclass.
-	 * @param classroomIdclass the classroomIdclass value you wish to set
+     * Set the value related to the column: classroomIdclassroom.
+	 * @param classroomIdclassroom the classroomIdclassroom value you wish to set
 	 */
-	public void setClassroomIdclass(final Classroom classroomIdclass) {
-		this.classroomIdclass = classroomIdclass;
+	public void setClassroomIdclassroom(final Classroom classroomIdclassroom) {
+		this.classroomIdclassroom = classroomIdclassroom;
 	}
 
     /**
@@ -286,7 +286,7 @@ public class ClassroomSubject implements Cloneable, Serializable, IPojoGenEntity
 		if (this.getClassroomSubjectHasStaffHasRoles() != null) {
 			copy.getClassroomSubjectHasStaffHasRoles().addAll(this.getClassroomSubjectHasStaffHasRoles());
 		}
-		copy.setClassroomIdclass(this.getClassroomIdclass());
+		copy.setClassroomIdclassroom(this.getClassroomIdclassroom());
 		if (this.getExams() != null) {
 			copy.getExams().addAll(this.getExams());
 		}
@@ -354,7 +354,7 @@ public class ClassroomSubject implements Cloneable, Serializable, IPojoGenEntity
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((getClassroomIdclass() == null) && (that.getClassroomIdclass() == null)) || (getClassroomIdclass() != null && getClassroomIdclass().getId().equals(that.getClassroomIdclass().getId())));	
+		result = result && (((getClassroomIdclassroom() == null) && (that.getClassroomIdclassroom() == null)) || (getClassroomIdclassroom() != null && getClassroomIdclassroom().getId().equals(that.getClassroomIdclassroom().getId())));	
 		result = result && (((getSubjectIdsubject() == null) && (that.getSubjectIdsubject() == null)) || (getSubjectIdsubject() != null && getSubjectIdsubject().getId().equals(that.getSubjectIdsubject().getId())));	
 		return result;
 	}

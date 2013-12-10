@@ -4,6 +4,8 @@ import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.Division;
+import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 import org.yarlithub.yschool.repository.model.obj.yschool.Section;
 
 
@@ -74,32 +76,32 @@ public interface IClassroom {
 	void setClassroomSubjects(final Set<ClassroomSubject> classroomSubject);
 
     /**
-     * Return the value associated with the column: division.
-	 * @return A String object (this.division)
+     * Return the value associated with the column: divisionIddivision.
+	 * @return A Division object (this.divisionIddivision)
 	 */
-	String getDivision();
+	Division getDivisionIddivision();
 	
 
   
     /**  
-     * Set the value related to the column: division.
-	 * @param division the division value you wish to set
+     * Set the value related to the column: divisionIddivision.
+	 * @param divisionIddivision the divisionIddivision value you wish to set
 	 */
-	void setDivision(final String division);
+	void setDivisionIddivision(final Division divisionIddivision);
 
     /**
-     * Return the value associated with the column: grade.
-	 * @return A Integer object (this.grade)
+     * Return the value associated with the column: gradeIdgrade.
+	 * @return A Grade object (this.gradeIdgrade)
 	 */
-	Integer getGrade();
+	Grade getGradeIdgrade();
 	
 
   
     /**  
-     * Set the value related to the column: grade.
-	 * @param grade the grade value you wish to set
+     * Set the value related to the column: gradeIdgrade.
+	 * @param gradeIdgrade the gradeIdgrade value you wish to set
 	 */
-	void setGrade(final Integer grade);
+	void setGradeIdgrade(final Grade gradeIdgrade);
 
     /**
      * Return the value associated with the column: id.

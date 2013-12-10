@@ -47,7 +47,7 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 	
 
 	/** Field mapping. */
-	private Classroom classroomIdclass;
+	private Classroom classroomIdclassroom;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
@@ -70,13 +70,13 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 	}
 	
 	/** Constructor taking a given ID.
-	 * @param classroomIdclass Classroom object;
+	 * @param classroomIdclassroom Classroom object;
 	 * @param id Integer object;
 	 * @param studentIdstudent Student object;
 	 */
-	public ClassroomStudent(Classroom classroomIdclass, Integer id, Student studentIdstudent) {
+	public ClassroomStudent(Classroom classroomIdclassroom, Integer id, Student studentIdstudent) {
 
-		this.classroomIdclass = classroomIdclass;
+		this.classroomIdclassroom = classroomIdclassroom;
 		this.id = id;
 		this.studentIdstudent = studentIdstudent;
 	}
@@ -95,26 +95,26 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
  
 
     /**
-     * Return the value associated with the column: classroomIdclass.
-	 * @return A Classroom object (this.classroomIdclass)
+     * Return the value associated with the column: classroomIdclassroom.
+	 * @return A Classroom object (this.classroomIdclassroom)
 	 */
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@JoinColumn(name = "classroom_idclass", nullable = false )
-	public Classroom getClassroomIdclass() {
-		return this.classroomIdclass;
+	@JoinColumn(name = "classroom_idclassroom", nullable = false )
+	public Classroom getClassroomIdclassroom() {
+		return this.classroomIdclassroom;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: classroomIdclass.
-	 * @param classroomIdclass the classroomIdclass value you wish to set
+     * Set the value related to the column: classroomIdclassroom.
+	 * @param classroomIdclassroom the classroomIdclassroom value you wish to set
 	 */
-	public void setClassroomIdclass(final Classroom classroomIdclass) {
-		this.classroomIdclass = classroomIdclass;
+	public void setClassroomIdclassroom(final Classroom classroomIdclassroom) {
+		this.classroomIdclassroom = classroomIdclassroom;
 	}
 
     /**
@@ -213,7 +213,7 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 		
         final ClassroomStudent copy = (ClassroomStudent)super.clone();
 
-		copy.setClassroomIdclass(this.getClassroomIdclass());
+		copy.setClassroomIdclassroom(this.getClassroomIdclassroom());
 		copy.setId(this.getId());
 		if (this.getStudentClassroomSubjects() != null) {
 			copy.getStudentClassroomSubjects().addAll(this.getStudentClassroomSubjects());
@@ -278,7 +278,7 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((getClassroomIdclass() == null) && (that.getClassroomIdclass() == null)) || (getClassroomIdclass() != null && getClassroomIdclass().getId().equals(that.getClassroomIdclass().getId())));	
+		result = result && (((getClassroomIdclassroom() == null) && (that.getClassroomIdclassroom() == null)) || (getClassroomIdclassroom() != null && getClassroomIdclassroom().getId().equals(that.getClassroomIdclassroom().getId())));	
 		result = result && (((getStudentIdstudent() == null) && (that.getStudentIdstudent() == null)) || (getStudentIdstudent() != null && getStudentIdstudent().getId().equals(that.getStudentIdstudent().getId())));	
 		return result;
 	}

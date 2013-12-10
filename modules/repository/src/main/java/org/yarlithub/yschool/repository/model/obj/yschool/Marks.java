@@ -32,7 +32,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IMarks;
 public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977427L;
+	private static final long serialVersionUID = -558977425L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -47,6 +47,8 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	private Exam examIdexam;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Integer isabsent;
 	/** Field mapping. */
 	private Double marks;
 	/** Field mapping. */
@@ -70,14 +72,16 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 	/** Constructor taking a given ID.
 	 * @param examIdexam Exam object;
 	 * @param id Integer object;
+	 * @param isabsent Integer object;
 	 * @param modifiedTime Date object;
 	 * @param studentIdstudent Student object;
 	 */
-	public Marks(Exam examIdexam, Integer id, Date modifiedTime, 					
-			Student studentIdstudent) {
+	public Marks(Exam examIdexam, Integer id, Integer isabsent, 					
+			Date modifiedTime, Student studentIdstudent) {
 
 		this.examIdexam = examIdexam;
 		this.id = id;
+		this.isabsent = isabsent;
 		this.modifiedTime = modifiedTime;
 		this.studentIdstudent = studentIdstudent;
 	}
@@ -147,6 +151,27 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 		SAVED_HASHES.put( id, this.hashCode );
 		}
 		this.id = id;
+	}
+
+    /**
+     * Return the value associated with the column: isabsent.
+	 * @return A Integer object (this.isabsent)
+	 */
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Integer getIsabsent() {
+		return this.isabsent;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: isabsent.
+	 * @param isabsent the isabsent value you wish to set
+	 */
+	public void setIsabsent(final Integer isabsent) {
+		this.isabsent = isabsent;
 	}
 
     /**
@@ -225,6 +250,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 
 		copy.setExamIdexam(this.getExamIdexam());
 		copy.setId(this.getId());
+		copy.setIsabsent(this.getIsabsent());
 		copy.setMarks(this.getMarks());
 		copy.setModifiedTime(this.getModifiedTime());
 		copy.setStudentIdstudent(this.getStudentIdstudent());
@@ -242,6 +268,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("id: " + this.getId() + ", ");
+		sb.append("isabsent: " + this.getIsabsent() + ", ");
 		sb.append("marks: " + this.getMarks() + ", ");
 		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		return sb.toString();		
@@ -290,6 +317,7 @@ public class Marks implements Cloneable, Serializable, IPojoGenEntity, IMarks {
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getExamIdexam() == null) && (that.getExamIdexam() == null)) || (getExamIdexam() != null && getExamIdexam().getId().equals(that.getExamIdexam().getId())));	
+		result = result && (((getIsabsent() == null) && (that.getIsabsent() == null)) || (getIsabsent() != null && getIsabsent().equals(that.getIsabsent())));
 		result = result && (((getMarks() == null) && (that.getMarks() == null)) || (getMarks() != null && getMarks().equals(that.getMarks())));
 		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getStudentIdstudent() == null) && (that.getStudentIdstudent() == null)) || (getStudentIdstudent() != null && getStudentIdstudent().getId().equals(that.getStudentIdstudent().getId())));	

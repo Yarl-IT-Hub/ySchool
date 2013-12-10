@@ -4,6 +4,7 @@ package org.yarlithub.yschool.analytics.core;
 
 import com.arima.classanalyzer.analyzer.ProfileMatcher;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.*;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
@@ -20,6 +21,7 @@ import java.util.List;
  * Time: 9:05 AM
  * To change this template use File | Settings | File Templates.
  */
+//TODO: Have to change classroom division grade parameters according to ySchool-1.0.5
 public class YAnalyzer {
 
     public static List<StudentGeneralexamProfile> theList = new ArrayList<StudentGeneralexamProfile>();
@@ -147,11 +149,12 @@ public class YAnalyzer {
         classroomCR.add(Restrictions.eq("grade", 13));
         classroomCR.createAlias("classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
         List<Classroom> classroomList = classroomCR.list();
-        if (classroomList.get(0).getDivision().equalsIgnoreCase("Unknown")) {
+        Hibernate.initialize(classroomList.get(0).getDivisionIddivision());
+        if (classroomList.get(0).getDivisionIddivision().getDivision().equalsIgnoreCase("Unknown")) {
             /*al stream unknown students*/
             return null;
         } else {
-            if (classroomList.get(0).getDivision().equalsIgnoreCase("Arts")) {
+            if (classroomList.get(0).getDivisionIddivision().getDivision().equalsIgnoreCase("Arts")) {
              /*arts stram have to check optional subjects*/
                 Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
                 //student_classroom_subject data is only available for arts AL stidents
@@ -266,7 +269,8 @@ public class YAnalyzer {
 
 
         List<ClassroomStudent> classRoomStudents = classRoomStudent.list();
-        return classRoomStudents.get(0).getClassroomIdclass().getDivision();
+        Hibernate.initialize( classRoomStudents.get(0).getClassroomIdclassroom().getDivisionIddivision());
+        return classRoomStudents.get(0).getClassroomIdclassroom().getDivisionIddivision().getDivision();
     }
 
     public double getTermMarksForOLSub(Student student, ClassroomSubject classroomSubject, int term) {

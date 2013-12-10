@@ -34,7 +34,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISchool;
 public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977424L;
+	private static final long serialVersionUID = -558977422L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -47,6 +47,8 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
 
 	/** Field mapping. */
 	private String address;
+	/** Field mapping. */
+	private String appKey;
 	/** Field mapping. */
 	private String district;
 	/** Field mapping. */
@@ -122,6 +124,27 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
 	 */
 	public void setAddress(final String address) {
 		this.address = address;
+	}
+
+    /**
+     * Return the value associated with the column: appKey.
+	 * @return A String object (this.appKey)
+	 */
+	@Basic( optional = true )
+	@Column( name = "app_key", length = 45  )
+	public String getAppKey() {
+		return this.appKey;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: appKey.
+	 * @param appKey the appKey value you wish to set
+	 */
+	public void setAppKey(final String appKey) {
+		this.appKey = appKey;
 	}
 
     /**
@@ -324,6 +347,7 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
         final School copy = (School)super.clone();
 
 		copy.setAddress(this.getAddress());
+		copy.setAppKey(this.getAppKey());
 		copy.setDistrict(this.getDistrict());
 		copy.setId(this.getId());
 		copy.setModifiedTime(this.getModifiedTime());
@@ -348,6 +372,7 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("address: " + this.getAddress() + ", ");
+		sb.append("appKey: " + this.getAppKey() + ", ");
 		sb.append("district: " + this.getDistrict() + ", ");
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
@@ -401,6 +426,7 @@ public class School implements Cloneable, Serializable, IPojoGenEntity, ISchool 
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
 		result = result && (((getAddress() == null) && (that.getAddress() == null)) || (getAddress() != null && getAddress().equals(that.getAddress())));
+		result = result && (((getAppKey() == null) && (that.getAppKey() == null)) || (getAppKey() != null && getAppKey().equals(that.getAppKey())));
 		result = result && (((getDistrict() == null) && (that.getDistrict() == null)) || (getDistrict() != null && getDistrict().equals(that.getDistrict())));
 		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getName() == null) && (that.getName() == null)) || (getName() != null && getName().equals(that.getName())));

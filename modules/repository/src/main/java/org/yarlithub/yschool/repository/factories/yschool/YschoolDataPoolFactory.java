@@ -20,9 +20,11 @@ public class YschoolDataPoolFactory {
 	/** Table commit order. */
     private static final Multimap<String, String> tableDeps = ArrayListMultimap.create();
 	/** DB commit order. */
-	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "UserRole", "Subject", "StudentSync", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "ExamType", "ExamSync", "Exam", "Classroom", "ClassAnalyzerClassifier"};
+	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "Classroom", "UserRole", "Subject", "StudentSync", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "Grade", "ExamType", "ExamSync", "Exam", "Division", "ClassAnalyzerClassifier"};
 	static{
 		// Store table deps for possible use. 
+ 		tableDeps.put("Classroom", "Division");
+ 		tableDeps.put("Classroom", "Grade");
  		tableDeps.put("ClassroomHasStaffHasRole", "Classroom");
  		tableDeps.put("ClassroomHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("ClassroomStudent", "Classroom");
@@ -56,7 +58,7 @@ public class YschoolDataPoolFactory {
     public static Classroom getClassroom() {
 
         Classroom classroom =  getClassroom(
-	        null);
+	        getDivision(), getGrade(), null);
 
 		return classroom;
        
@@ -64,13 +66,19 @@ public class YschoolDataPoolFactory {
 
      /**
      * Data pool factory for Classroom.
+     * @param divisionIddivision A valid Division object
+     * @param gradeIdgrade A valid Grade object
      * @param sectionIdsection A valid Section object
      * @return Classroom A Classroom object
      */
-    public static Classroom getClassroom(Section sectionIdsection) {
+    public static Classroom getClassroom(Division divisionIddivision, Grade gradeIdgrade, Section sectionIdsection) {
         Classroom classroom = new Classroom();     
-        classroom.setDivision(BasicDataGenerator.generateRandomString(45));
-        classroom.setGrade(BasicDataGenerator.generateRandomInt());
+		if (divisionIddivision != null) {
+			divisionIddivision.addClassroom (classroom);
+		}
+		if (gradeIdgrade != null) {
+			gradeIdgrade.addClassroom (classroom);
+		}
         classroom.setModifiedTime(BasicDataGenerator.generateDate());
 		if (sectionIdsection != null) {
 			sectionIdsection.addClassroom (classroom);
@@ -108,13 +116,13 @@ public class YschoolDataPoolFactory {
 
      /**
      * Data pool factory for ClassroomHasStaffHasRolePK.
-     * @param classroomIdclass A valid Classroom object
+     * @param classroomIdclassroom A valid Classroom object
      * @param staffHasRoleIdstaffHasRole A valid StaffHasRole object
      * @return ClassroomHasStaffHasRolePK A ClassroomHasStaffHasRolePK object
      */
-    public static ClassroomHasStaffHasRolePK getClassroomHasStaffHasRolePK(Classroom classroomIdclass, StaffHasRole staffHasRoleIdstaffHasRole) {
+    public static ClassroomHasStaffHasRolePK getClassroomHasStaffHasRolePK(Classroom classroomIdclassroom, StaffHasRole staffHasRoleIdstaffHasRole) {
         ClassroomHasStaffHasRolePK classroomHasStaffHasRolePK = new ClassroomHasStaffHasRolePK();     
-        classroomHasStaffHasRolePK.setClassroomIdclass(classroomIdclass);
+        classroomHasStaffHasRolePK.setClassroomIdclassroom(classroomIdclassroom);
         classroomHasStaffHasRolePK.setStaffHasRoleIdstaffHasRole(staffHasRoleIdstaffHasRole);
 
         return classroomHasStaffHasRolePK;
@@ -135,14 +143,14 @@ public class YschoolDataPoolFactory {
 
      /**
      * Data pool factory for ClassroomStudent.
-     * @param classroomIdclass A valid Classroom object
+     * @param classroomIdclassroom A valid Classroom object
      * @param studentIdstudent A valid Student object
      * @return ClassroomStudent A ClassroomStudent object
      */
-    public static ClassroomStudent getClassroomStudent(Classroom classroomIdclass, Student studentIdstudent) {
+    public static ClassroomStudent getClassroomStudent(Classroom classroomIdclassroom, Student studentIdstudent) {
         ClassroomStudent classroomStudent = new ClassroomStudent();     
-		if (classroomIdclass != null) {
-			classroomIdclass.addClassroomStudent (classroomStudent);
+		if (classroomIdclassroom != null) {
+			classroomIdclassroom.addClassroomStudent (classroomStudent);
 		}
 		if (studentIdstudent != null) {
 			studentIdstudent.addClassroomStudent (classroomStudent);
@@ -166,14 +174,14 @@ public class YschoolDataPoolFactory {
 
      /**
      * Data pool factory for ClassroomSubject.
-     * @param classroomIdclass A valid Classroom object
+     * @param classroomIdclassroom A valid Classroom object
      * @param subjectIdsubject A valid Subject object
      * @return ClassroomSubject A ClassroomSubject object
      */
-    public static ClassroomSubject getClassroomSubject(Classroom classroomIdclass, Subject subjectIdsubject) {
+    public static ClassroomSubject getClassroomSubject(Classroom classroomIdclassroom, Subject subjectIdsubject) {
         ClassroomSubject classroomSubject = new ClassroomSubject();     
-		if (classroomIdclass != null) {
-			classroomIdclass.addClassroomSubject (classroomSubject);
+		if (classroomIdclassroom != null) {
+			classroomIdclassroom.addClassroomSubject (classroomSubject);
 		}
 		if (subjectIdsubject != null) {
 			subjectIdsubject.addClassroomSubject (classroomSubject);
@@ -241,6 +249,19 @@ public class YschoolDataPoolFactory {
         classAnalyzerClassifier.setYear(BasicDataGenerator.generateRandomInt());
 
         return classAnalyzerClassifier;
+    }
+
+    /**
+     * Data pool factory for Division.
+     * @return DivisionA Division object
+     */
+    public static Division getDivision() {
+
+        Division division = new Division();    
+        
+        division.setDivision(BasicDataGenerator.generateRandomString(45));
+
+        return division;
     }
 
     /**
@@ -321,6 +342,19 @@ public class YschoolDataPoolFactory {
     }
 
     /**
+     * Data pool factory for Grade.
+     * @return GradeA Grade object
+     */
+    public static Grade getGrade() {
+
+        Grade grade = new Grade();    
+        
+        grade.setGrade(BasicDataGenerator.generateRandomInt());
+
+        return grade;
+    }
+
+    /**
      * Data pool factory for Marks.
      * @return Marks A Marks object
      */
@@ -344,6 +378,7 @@ public class YschoolDataPoolFactory {
 		if (examIdexam != null) {
 			examIdexam.addMarks (marks);
 		}
+        marks.setIsabsent(BasicDataGenerator.generateRandomInt());
         marks.setMarks(BasicDataGenerator.generateRandomDouble());
         marks.setModifiedTime(BasicDataGenerator.generateDate());
 		if (studentIdstudent != null) {
@@ -377,6 +412,7 @@ public class YschoolDataPoolFactory {
 		if (examIdexam != null) {
 			examIdexam.addResults (results);
 		}
+        results.setIsabsent(BasicDataGenerator.generateRandomInt());
         results.setModifiedTime(BasicDataGenerator.generateDate());
         results.setResults(BasicDataGenerator.generateRandomString(5));
 		if (studentIdstudent != null) {
@@ -408,6 +444,7 @@ public class YschoolDataPoolFactory {
         School school = new School();    
         
         school.setAddress(BasicDataGenerator.generateRandomString(45));
+        school.setAppKey(BasicDataGenerator.generateRandomString(45));
         school.setDistrict(BasicDataGenerator.generateRandomString(45));
         school.setModifiedTime(BasicDataGenerator.generateDate());
         school.setName(BasicDataGenerator.generateRandomString(45));

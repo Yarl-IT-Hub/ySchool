@@ -42,6 +42,20 @@ public interface IMarks {
 	void setId(final Integer id);
 
     /**
+     * Return the value associated with the column: isabsent.
+	 * @return A Integer object (this.isabsent)
+	 */
+	Integer getIsabsent();
+	
+
+  
+    /**  
+     * Set the value related to the column: isabsent.
+	 * @param isabsent the isabsent value you wish to set
+	 */
+	void setIsabsent(final Integer isabsent);
+
+    /**
      * Return the value associated with the column: marks.
 	 * @return A Double object (this.marks)
 	 */

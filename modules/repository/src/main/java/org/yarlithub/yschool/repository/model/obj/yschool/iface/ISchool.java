@@ -28,6 +28,20 @@ public interface ISchool {
 	void setAddress(final String address);
 
     /**
+     * Return the value associated with the column: appKey.
+	 * @return A String object (this.appKey)
+	 */
+	String getAppKey();
+	
+
+  
+    /**  
+     * Set the value related to the column: appKey.
+	 * @param appKey the appKey value you wish to set
+	 */
+	void setAppKey(final String appKey);
+
+    /**
      * Return the value associated with the column: district.
 	 * @return A String object (this.district)
 	 */

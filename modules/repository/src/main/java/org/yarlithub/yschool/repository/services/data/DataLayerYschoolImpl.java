@@ -10,9 +10,11 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRolePK;
+import org.yarlithub.yschool.repository.model.obj.yschool.Division;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
+import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
 import org.yarlithub.yschool.repository.model.obj.yschool.Results;
 import org.yarlithub.yschool.repository.model.obj.yschool.Role;
@@ -104,9 +106,11 @@ public class DataLayerYschoolImpl implements DataLayerYschool {
 	 	   		daoMap.put(ClassroomSubject.class, HibernateYschoolDaoFactory.getClassroomSubjectDao());
 	 	   		daoMap.put(ClassroomSubjectHasStaffHasRole.class, HibernateYschoolDaoFactory.getClassroomSubjectHasStaffHasRoleDao());
 	 	   		daoMap.put(ClassAnalyzerClassifier.class, HibernateYschoolDaoFactory.getClassAnalyzerClassifierDao());
+	 	   		daoMap.put(Division.class, HibernateYschoolDaoFactory.getDivisionDao());
 	 	   		daoMap.put(Exam.class, HibernateYschoolDaoFactory.getExamDao());
 	 	   		daoMap.put(ExamSync.class, HibernateYschoolDaoFactory.getExamSyncDao());
 	 	   		daoMap.put(ExamType.class, HibernateYschoolDaoFactory.getExamTypeDao());
+	 	   		daoMap.put(Grade.class, HibernateYschoolDaoFactory.getGradeDao());
 	 	   		daoMap.put(Marks.class, HibernateYschoolDaoFactory.getMarksDao());
 	 	   		daoMap.put(Results.class, HibernateYschoolDaoFactory.getResultsDao());
 	 	   		daoMap.put(Role.class, HibernateYschoolDaoFactory.getRoleDao());
@@ -331,6 +335,31 @@ public class DataLayerYschoolImpl implements DataLayerYschool {
     }  
 
     /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Division obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteDivision(final Integer id)  {
+        HibernateYschoolDaoFactory.getDivisionDao().delete(loadDivision(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Division object
+     */
+    public Division loadDivision(final Integer id) {
+        return HibernateYschoolDaoFactory.getDivisionDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public Division getDivision(final Integer id) {
+        return HibernateYschoolDaoFactory.getDivisionDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
      * Will load the object internally so consider using delete (Exam obj) directly
      * @param id Identifier to delete
      */
@@ -403,6 +432,31 @@ public class DataLayerYschoolImpl implements DataLayerYschool {
      */
      public ExamType getExamType(final Integer id) {
         return HibernateYschoolDaoFactory.getExamTypeDao().get(id);
+    }  
+
+    /** Deletes an object of a given Id. 
+     * Will load the object internally so consider using delete (Grade obj) directly
+     * @param id Identifier to delete
+     */
+    public void deleteGrade(final Integer id)  {
+        HibernateYschoolDaoFactory.getGradeDao().delete(loadGrade(id));
+    }
+	
+    /**
+     * Loads the given Object.
+     * @param id Identifier to load
+     * @return a Grade object
+     */
+    public Grade loadGrade(final Integer id) {
+        return HibernateYschoolDaoFactory.getGradeDao().load(id);
+    }
+    /**
+     * Loads the given Object.
+     * @param id Id to load
+     * @return An object of type T
+     */
+     public Grade getGrade(final Integer id) {
+        return HibernateYschoolDaoFactory.getGradeDao().get(id);
     }  
 
     /** Deletes an object of a given Id. 

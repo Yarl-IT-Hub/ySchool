@@ -119,6 +119,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 		return (ClassroomSubjectHasStaffHasRoleDao) getBean("classroomSubjectHasStaffHasRoleDaoImpl"); 
 	}
 	/**
+	 * Returns a DivisionDao instance.
+	 * 
+	 * @return a DivisionDao instance
+	 */
+	public static DivisionDao getDivisionDao() {
+		return (DivisionDao) getBean("divisionDaoImpl"); 
+	}
+	/**
 	 * Returns a ExamDao instance.
 	 * 
 	 * @return a ExamDao instance
@@ -141,6 +149,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 	 */
 	public static ExamTypeDao getExamTypeDao() {
 		return (ExamTypeDao) getBean("examTypeDaoImpl"); 
+	}
+	/**
+	 * Returns a GradeDao instance.
+	 * 
+	 * @return a GradeDao instance
+	 */
+	public static GradeDao getGradeDao() {
+		return (GradeDao) getBean("gradeDaoImpl"); 
 	}
 	/**
 	 * Returns a MarksDao instance.

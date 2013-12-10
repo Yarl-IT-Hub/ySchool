@@ -68,8 +68,8 @@ public class SyncExamination {
         CExam cExam = new CExam();
         cExam.setSchoolNo(11086);
         cExam.setDate(exam.getDate());
-        cExam.setGrade(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade());
-        cExam.setDivision(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getDivision());
+        cExam.setGrade(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getGradeIdgrade().getGrade());
+        cExam.setDivision(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getDivisionIddivision().getDivision());
         cExam.setTerm(exam.getTerm());
         cExam.setSubjectId(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getId());
         cExam.setExamType(exam.getExamTypeIdexamType().getId());

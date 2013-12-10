@@ -59,9 +59,9 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	private Set<ClassroomSubject> classroomSubjects = new HashSet<ClassroomSubject>();
 
 	/** Field mapping. */
-	private String division;
+	private Division divisionIddivision;
 	/** Field mapping. */
-	private Integer grade;
+	private Grade gradeIdgrade;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
@@ -85,17 +85,17 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	}
 	
 	/** Constructor taking a given ID.
-	 * @param division String object;
-	 * @param grade Integer object;
+	 * @param divisionIddivision Division object;
+	 * @param gradeIdgrade Grade object;
 	 * @param id Integer object;
 	 * @param modifiedTime Date object;
 	 * @param year Integer object;
 	 */
-	public Classroom(String division, Integer grade, Integer id, 					
+	public Classroom(Division divisionIddivision, Grade gradeIdgrade, Integer id, 					
 			Date modifiedTime, Integer year) {
 
-		this.division = division;
-		this.grade = grade;
+		this.divisionIddivision = divisionIddivision;
+		this.gradeIdgrade = gradeIdgrade;
 		this.id = id;
 		this.modifiedTime = modifiedTime;
 		this.year = year;
@@ -118,7 +118,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
      * Return the value associated with the column: classroomHasStaffHasRole.
 	 * @return A Set&lt;ClassroomHasStaffHasRole&gt; object (this.classroomHasStaffHasRole)
 	 */
- 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "id.classroomIdclass"  )
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "id.classroomIdclassroom"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( nullable = false  )
@@ -132,7 +132,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 * @param classroomHasStaffHasRole item to add
 	 */
 	public void addClassroomHasStaffHasRole(ClassroomHasStaffHasRole classroomHasStaffHasRole) {
-		classroomHasStaffHasRole.getId().setClassroomIdclass(this);
+		classroomHasStaffHasRole.getId().setClassroomIdclassroom(this);
 		this.classroomHasStaffHasRoles.add(classroomHasStaffHasRole);
 	}
 
@@ -149,7 +149,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
      * Return the value associated with the column: classroomStudent.
 	 * @return A Set&lt;ClassroomStudent&gt; object (this.classroomStudent)
 	 */
- 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomIdclass"  )
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomIdclassroom"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( nullable = false  )
@@ -163,7 +163,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 * @param classroomStudent item to add
 	 */
 	public void addClassroomStudent(ClassroomStudent classroomStudent) {
-		classroomStudent.setClassroomIdclass(this);
+		classroomStudent.setClassroomIdclassroom(this);
 		this.classroomStudents.add(classroomStudent);
 	}
 
@@ -180,7 +180,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
      * Return the value associated with the column: classroomSubject.
 	 * @return A Set&lt;ClassroomSubject&gt; object (this.classroomSubject)
 	 */
- 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomIdclass"  )
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomIdclassroom"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( nullable = false  )
@@ -194,7 +194,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 * @param classroomSubject item to add
 	 */
 	public void addClassroomSubject(ClassroomSubject classroomSubject) {
-		classroomSubject.setClassroomIdclass(this);
+		classroomSubject.setClassroomIdclassroom(this);
 		this.classroomSubjects.add(classroomSubject);
 	}
 
@@ -208,45 +208,49 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	}
 
     /**
-     * Return the value associated with the column: division.
-	 * @return A String object (this.division)
+     * Return the value associated with the column: divisionIddivision.
+	 * @return A Division object (this.divisionIddivision)
 	 */
+	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@Column( nullable = false, length = 45  )
-	public String getDivision() {
-		return this.division;
+	@JoinColumn(name = "division_iddivision", nullable = false )
+	public Division getDivisionIddivision() {
+		return this.divisionIddivision;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: division.
-	 * @param division the division value you wish to set
+     * Set the value related to the column: divisionIddivision.
+	 * @param divisionIddivision the divisionIddivision value you wish to set
 	 */
-	public void setDivision(final String division) {
-		this.division = division;
+	public void setDivisionIddivision(final Division divisionIddivision) {
+		this.divisionIddivision = divisionIddivision;
 	}
 
     /**
-     * Return the value associated with the column: grade.
-	 * @return A Integer object (this.grade)
+     * Return the value associated with the column: gradeIdgrade.
+	 * @return A Grade object (this.gradeIdgrade)
 	 */
+	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
+	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@Column( nullable = false  )
-	public Integer getGrade() {
-		return this.grade;
+	@JoinColumn(name = "grade_idgrade", nullable = false )
+	public Grade getGradeIdgrade() {
+		return this.gradeIdgrade;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: grade.
-	 * @param grade the grade value you wish to set
+     * Set the value related to the column: gradeIdgrade.
+	 * @param gradeIdgrade the gradeIdgrade value you wish to set
 	 */
-	public void setGrade(final Integer grade) {
-		this.grade = grade;
+	public void setGradeIdgrade(final Grade gradeIdgrade) {
+		this.gradeIdgrade = gradeIdgrade;
 	}
 
     /**
@@ -256,7 +260,7 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
     @Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Basic( optional = false )
-	@Column( name = "idclass", nullable = false  )
+	@Column( name = "idclassroom", nullable = false  )
 	public Integer getId() {
 		return this.id;
 		
@@ -365,8 +369,8 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 		if (this.getClassroomSubjects() != null) {
 			copy.getClassroomSubjects().addAll(this.getClassroomSubjects());
 		}
-		copy.setDivision(this.getDivision());
-		copy.setGrade(this.getGrade());
+		copy.setDivisionIddivision(this.getDivisionIddivision());
+		copy.setGradeIdgrade(this.getGradeIdgrade());
 		copy.setId(this.getId());
 		copy.setModifiedTime(this.getModifiedTime());
 		copy.setSectionIdsection(this.getSectionIdsection());
@@ -384,8 +388,6 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		
-		sb.append("division: " + this.getDivision() + ", ");
-		sb.append("grade: " + this.getGrade() + ", ");
 		sb.append("id: " + this.getId() + ", ");
 		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
 		sb.append("year: " + this.getYear());
@@ -434,8 +436,8 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((getDivision() == null) && (that.getDivision() == null)) || (getDivision() != null && getDivision().equals(that.getDivision())));
-		result = result && (((getGrade() == null) && (that.getGrade() == null)) || (getGrade() != null && getGrade().equals(that.getGrade())));
+		result = result && (((getDivisionIddivision() == null) && (that.getDivisionIddivision() == null)) || (getDivisionIddivision() != null && getDivisionIddivision().getId().equals(that.getDivisionIddivision().getId())));	
+		result = result && (((getGradeIdgrade() == null) && (that.getGradeIdgrade() == null)) || (getGradeIdgrade() != null && getGradeIdgrade().getId().equals(that.getGradeIdgrade().getId())));	
 		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
 		result = result && (((getSectionIdsection() == null) && (that.getSectionIdsection() == null)) || (getSectionIdsection() != null && getSectionIdsection().getId().equals(that.getSectionIdsection().getId())));	
 		result = result && (((getYear() == null) && (that.getYear() == null)) || (getYear() != null && getYear().equals(that.getYear())));
