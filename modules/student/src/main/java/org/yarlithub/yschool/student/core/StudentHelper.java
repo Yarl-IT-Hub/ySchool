@@ -93,11 +93,21 @@ public class StudentHelper {
 
     }
 
-    public List<ClassroomStudent> getClassroomStudent(Integer idstudent) {
-        Classroom classroom=dataLayerYschool.getClassroom(idstudent);
-        Criteria resultsCriteria = dataLayerYschool.createCriteria(ClassroomStudent.class);
-        resultsCriteria.add(Restrictions.eq("idclassroomstudent", classroom));
-        return resultsCriteria.list();
+    public List<Student> getClassroomStudent(Classroom classroom) {
+
+        Criteria studentCR = dataLayerYschool.createCriteria(Student.class);
+        studentCR.createAlias("classroomStudents","clst").add(Restrictions.eq("clst.classroomIdclassroom", classroom));
+        return studentCR.list();
+    }
+
+    public Student saveOrUpdate(Student student){
+        dataLayerYschool.saveOrUpdate(student);
+        return student;
+    }
+
+    public Student studentDelete(Student student){
+        dataLayerYschool.delete(student);
+        return student;
     }
 
 }

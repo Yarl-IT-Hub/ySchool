@@ -25,6 +25,7 @@ import java.util.List;
 public class StudentController implements Serializable {
 
     private Student student ;
+    private  Classroom classroom;
 
     public Student getStudent() {
         return student;
@@ -34,5 +35,12 @@ public class StudentController implements Serializable {
         this.student = student;
     }
 
+    public Classroom getClassroom() {
+        return classroom;
+    }
+
+    public void setClassroom(Classroom classroom) {
+        this.classroom = classroom;
+    }
 }
 

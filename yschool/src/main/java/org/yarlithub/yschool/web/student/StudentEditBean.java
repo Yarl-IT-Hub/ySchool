@@ -3,12 +3,12 @@ package org.yarlithub.yschool.web.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;
 
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
-
 
 /**
  * $LastChangedDate$
@@ -18,7 +18,7 @@ import java.io.Serializable;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class StudentViewBean implements Serializable {
+public class StudentEditBean implements Serializable {
 
     private Student student;
     @Autowired
@@ -40,18 +40,13 @@ public class StudentViewBean implements Serializable {
         return  true;
     }
 
-    public String editStudent(){
-        studentController.setStudent(student);
-        return "EditStudent";
+    public String editstudent(){
+        studentService.saveOrUpdate(student);
+        return "editStudent";
     }
 
-    public String studentDelete(){
-        studentService.studentDelete(student);
-        return "deleteStudent";
+    public String backToView(){
+        return "backToView";
     }
-
-    public String backTo(){
-        return "backStudentList";
-    }
-
 }
+
