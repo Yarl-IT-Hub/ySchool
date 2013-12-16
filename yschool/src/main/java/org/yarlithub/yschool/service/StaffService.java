@@ -5,9 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
-import org.yarlithub.yschool.staff.core.NewStaff;
+import org.yarlithub.yschool.staff.core.StaffCreator;
+import org.yarlithub.yschool.staff.core.StaffHelper;
 
 import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Jay Krish
@@ -23,17 +25,25 @@ public class StaffService {
 
     @Transactional
     public boolean addStaff(String staffID, String name, String fullname) {
-        NewStaff newStaff= new NewStaff();
-        boolean success = newStaff.addNewStaff(staffID, name, fullname);
+        StaffCreator staffCreator = new StaffCreator();
+        boolean success = staffCreator.addNewStaff(staffID, name, fullname);
         return success;
+        //StaffCreator staffCreator=new StaffCreator();
+
     }
 
     @Transactional
-    public List<Staff> getStaff(){
-        NewStaff newStaff= new NewStaff();
+    public List<Staff> getStaff() {
+        StaffHelper staffHelper = new StaffHelper();
 
-        return newStaff.listAllStaffs();
+        return staffHelper.listAllStaffs();
 
     }
 
+    @Transactional
+    public Staff saveOrUpdate(Staff staff) {
+        StaffHelper staffHelper = new StaffHelper();
+        staffHelper.saveOrUpdate(staff);
+        return staff;
+    }
 }
