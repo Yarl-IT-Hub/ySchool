@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.student.core.NewStudent;
+
 import java.util.Date;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
+import org.yarlithub.yschool.student.core.StudentCreator;
 import org.yarlithub.yschool.student.core.StudentHelper;
 
 import java.util.Iterator;
@@ -24,8 +24,8 @@ public class StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
     @Transactional
     public boolean addStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
-        NewStudent newStudent= new NewStudent();
-        boolean success = newStudent.addNewStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
+        StudentCreator studentCreator=new StudentCreator();
+        boolean success = studentCreator.addNewStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
         return success;
     }
 
@@ -49,17 +49,24 @@ public class StudentService {
     }
 
     @Transactional
-    public List<ClassroomStudent> getClassroomStudent(Integer idstudent) {
+    public List<Student> getClassroomStudent(Classroom classroom) {
         StudentHelper studentHelper=new StudentHelper();
-        List<ClassroomStudent> classroomStudentList = studentHelper.getClassroomStudent(idstudent);
-        //Hibernate needs lazy initialization of internal objects
-        Iterator<ClassroomStudent> classroomStudentIterator = classroomStudentList.iterator();
-         while (classroomStudentIterator.hasNext()) {
-             ClassroomStudent classroomStudents = classroomStudentIterator.next();
-            Hibernate.initialize(classroomStudents.getStudentIdstudent());
-        }
+        List<Student> classroomStudentList = studentHelper.getClassroomStudent(classroom);
         return classroomStudentList;
     }
 
+    @Transactional
+    public Student saveOrUpdate(Student student){
+        StudentHelper studentHelper=new StudentHelper();
+        studentHelper.saveOrUpdate(student);
+        return student;
+    }
+
+    @Transactional
+    public Student studentDelete(Student student){
+        StudentHelper studentHelper=new StudentHelper();
+        studentHelper.studentDelete(student);
+        return student;
+    }
 }
 

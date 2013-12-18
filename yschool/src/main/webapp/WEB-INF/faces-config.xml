@@ -178,12 +178,85 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
     <navigation-rule>
         <from-view-id>/faces/student/studentHome.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>ViewStudent</from-outcome>
-            <to-view-id>/faces/student/StudentList.xhtml</to-view-id>
+            <from-outcome>ViewListStudents</from-outcome>
+            <to-view-id>/faces/student/studentList.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
 
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/faces/student/studentList.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>viewStudent</from-outcome>
+            <to-view-id>/faces/student/studentView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+
+
+    <navigation-rule>
+        <from-view-id>/faces/student/studentView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>EditStudent</from-outcome>
+            <to-view-id>/faces/student/studentEdit.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/faces/student/studentEdit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editStudent</from-outcome>
+            <to-view-id>/faces/student/studentView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+
+    <navigation-rule>
+        <from-view-id>/faces/student/studentEdit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>backToView</from-outcome>
+            <to-view-id>/faces/student/studentView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+
+    <navigation-rule>
+        <from-view-id>/faces/student/studentView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>deleteStudent</from-outcome>
+            <to-view-id>/faces/student/studentList.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+    <navigation-rule>
+        <from-view-id>/faces/student/studentView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>backStudentList</from-outcome>
+            <to-view-id>/faces/student/studentList.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+
+
+
+
 
 
     <navigation-rule>

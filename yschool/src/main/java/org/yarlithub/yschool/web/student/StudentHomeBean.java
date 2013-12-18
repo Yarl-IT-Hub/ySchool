@@ -26,7 +26,7 @@ import java.util.List;
 public class StudentHomeBean implements Serializable {
 
        private DataModel<Grade> gradeDataModel;
-       private  DataModel<Student> studentDataModel;
+//       private  DataModel<Student> studentDataModel;
 
     @Autowired
     private StudentService studentService;
@@ -45,13 +45,6 @@ public class StudentHomeBean implements Serializable {
         this.gradeDataModel = gradeDataModel;
     }
 
-    public DataModel<Student> getStudentDataModel() {
-        return studentDataModel;
-    }
-
-    public void setStudentDataModel(DataModel<Student> studentDataModel) {
-        this.studentDataModel = studentDataModel;
-    }
 
     public boolean preloadstudents() {
 
@@ -69,17 +62,15 @@ public class StudentHomeBean implements Serializable {
         gradelist.add(grade11);
         gradeDataModel =new ListDataModel<Grade>(gradelist);
 
-        studentDataModel = new ListDataModel(studentService.getStudent());
-        this.setStudentDataModel(studentDataModel);
 
         return true;
     }
 
-    public String viewStudent() {
-        Student student = studentDataModel.getRowData();
-        studentController.setStudent(student);
-        return "ViewStudent";
+    public String viewClassroom() {
+         Grade grade = gradeDataModel.getRowData();
+         Classroom classroom=grade.getClassroomDataModel().getRowData();
+        studentController.setClassroom(classroom);
+        return "ViewListStudents";
     }
-
 
 }
