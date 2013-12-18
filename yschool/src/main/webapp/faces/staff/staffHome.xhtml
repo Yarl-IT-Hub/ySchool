@@ -6,11 +6,7 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
     <ui:define name="yhead">
-        <div>
-            <f:event listener="#{staffHomeBean.preLoad}" type="preRenderView"/>
-
-
-        </div>
+        <title>Staff Home</title>
 
     </ui:define>
     <ui:define name="staff-content">
@@ -40,67 +36,34 @@
             </a>
         </div>
 
-        <div class="span10">
+        <div class="span8">
             <div class="row-fluid" id="staff-home-contents">
 
-                    <!--<div>-->
-                        <!--<h:form>-->
-                            <!--<h:dataTable value="{staffHomeBean.staffDataModel}" var="staff"-->
-                                         <!--styleClass="table table-hover">-->
-                                <!--<h:column>-->
-                                    <!--&lt;!&ndash; column header &ndash;&gt;-->
-                                    <!--<f:facet name="header">Staff No</f:facet>-->
-                                    <!--{ staff.staffid}-->
-                                <!--</h:column>-->
-                                <!--<h:column>-->
-                                    <!--&lt;!&ndash; column header &ndash;&gt;-->
-                                    <!--<f:facet name="header">Name</f:facet>-->
-                                    <!--{staff.fullName}-->
-                                <!--</h:column>-->
+                <div>
+                    <h:form>
+                        <h:dataTable value="#{staffHomeBean.staffDataModel}" var="staff"
+                                     styleClass="table table-hover">
+                            <h:column>
+                                <div>
+                                    <img src="/yschool/ico/staff-small.png" class="img-circle"></img>
+                                </div>
 
-                                <!--<h:column>-->
-                                    <!--<h:commandButton value="View" action="{staffHomeBean.viewStaff}" type="submit"-->
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Staffs </f:facet>
+                                #{staff.fullName}
+                                <br/>
+                                Staff ID: #{staff.staffid}
+                            </h:column>
 
-                                                     <!--styleClass="btn btn-mini"/>-->
-                                <!--</h:column>-->
-                            <!--</h:dataTable>-->
-                        <!--</h:form>-->
-                    <!--</div>-->
-
-
-
-                <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
-                <ul class="thumbnails">
-                    <!--empty list to avoid bootstrap first row margin bug-->
-                    <li class="span9">
-                    </li>
-
-                    <ui:repeat value="#{staffHomeBean.staffDataModel}" var="staff">
-                        <li class="thumbnail span9">
-
-                            <div class="span10">
-                                <h5>
-
-                                    <h:outputText
-                                            value=" #{staff.staffid}  "/>
-                                    <h:outputText
-                                            value="#{staff.name}     "/>
-                                </h5>
-                            </div>
-
-                            <div class="box span2">
-                                <h:form>
-                                    <h:commandButton class="btn btn-large" value="View..."
-                                                     type="submit"
-                                                     action="#{staffHomeBean.viewStaff}">
-
-                                    </h:commandButton>
-                                </h:form>
-                            </div>
-
-                        </li>
-                    </ui:repeat>
-                </ul>
+                            <h:column>
+                                <h:commandButton value="View" action="#{staffHomeBean.viewStaff}" type="submit"
+                                                 styleClass="btn"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
             </div>
         </div>
 
