@@ -16,7 +16,7 @@ import java.io.Serializable;
  */
 
 @ManagedBean
-@Scope(value = "request")
+@Scope(value = "session")
 @Controller
 public class StaffViewBean implements Serializable {
 
@@ -40,4 +40,13 @@ public class StaffViewBean implements Serializable {
         setStaff(staffController.getStaff());
         return  true;
     }
+    public String editStaff() {
+        staffController.setStaff(staff);
+        return "EditStaff";
+    }
+    public String backToHomeStaff() {
+        staffController.setStaff(staff);
+        return "BackToHomeStaff";
+    }
+
 }

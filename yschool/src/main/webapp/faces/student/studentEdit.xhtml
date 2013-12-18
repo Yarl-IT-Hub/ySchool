@@ -1,0 +1,134 @@
+<ui:composition template="/WEB-INF/templates/student-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+    <ui:define name="yhead">
+        <div>
+            <f:event listener="#{studentEditBean.preLoad}" type="preRenderView"/>
+        </div>
+    </ui:define>
+
+    <ui:define name="student-content">
+
+        <div class="span6">
+            <!--Breadcrumb to help user "where you are?"-->
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Student</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span2">
+            <!--Student search bar with filter-->
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search"> </input>
+            </form>
+        </div>
+        <div class="span1">
+            <a href="/yschool/faces/student/studentSearch.xhtml">
+                <Button class="btn btn-primary btn-large">^
+                </Button>
+            </a>
+        </div>
+
+        <!--student New-->
+        <div class="span3">
+            <!--Add new student Button-->
+            <a href="/yschool/faces/student/studentNew.xhtml">
+                <Button class="btn btn-primary btn-large"> Add New Student</Button>
+            </a>
+        </div>
+        <!-- end student New -->
+
+        <form class="form-horizontal">
+            <div>
+                <div>
+                    <img src="/yschool/ico/student.png" class="img-circle"></img>
+                </div>
+            </div>
+
+
+
+            <div class="control-group">
+                <label class="control-label">AdmissionNo</label>
+                <div class="controls">
+                    <h:inputText id="Admision_No" value="#{studentEditBean.student.admissionNo}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">StudentName</label>
+                <div class="controls">
+                    <h:inputText id="Name" value="#{studentEditBean.student.name}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">FullName</label>
+                <div class="controls">
+                    <h:inputText id="fullname" value="#{studentEditBean.student.fullName}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">NameWithInitial</label>
+                <div class="controls">
+                    <h:inputText id="NameWithInitial" value="#{studentEditBean.student.nameWtInitial}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Date Of Birth</label>
+                <div class="controls">
+                    <h:inputText id="dob" value="#{studentEditBean.student.dob}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Gender</label>
+                <div class="controls">
+                    <h:inputText id="Gender" value="#{studentEditBean.student.gender}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">Address</label>
+                <div class="controls">
+                    <h:inputText id="address" value="#{studentEditBean.student.address}">
+                    </h:inputText>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+
+                    <h:form>
+                    <h:commandButton value="Back" action="#{studentEditBean.backToView}" type="submit" styleClass="btn btn-default">
+                     </h:commandButton>
+
+                   <h:commandButton value="Save" action="#{studentEditBean.editstudent}" type="submit" styleClass="btn btn-default">
+                          </h:commandButton>
+                  </h:form>
+
+
+
+
+                </div>
+            </div>
+
+
+        </form>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,18 +1,15 @@
 package org.yarlithub.yschool.student.core;
 
-import org.hibernate.Criteria;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 
 import java.util.Date;
-import java.util.List;
 
 
-public class NewStudent {
+public class StudentCreator {
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
-
     public boolean addNewStudent(String admission_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
 
         Student student = YschoolDataPoolFactory.getStudent();
@@ -29,6 +26,6 @@ public class NewStudent {
         dataLayerYschool.flushSession();
         //TODO: save method does not indicates/returns success/failure
         return true;
-
     }
+
 }

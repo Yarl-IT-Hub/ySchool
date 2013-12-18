@@ -5,11 +5,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.service.StaffService;
 import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
-import javax.faces.model.DataModel;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import javax.swing.*;
 import java.io.Serializable;
 
 /**
@@ -28,6 +28,7 @@ public class StaffBean implements Serializable {
     private String fullname;
     private DataModel staffs;
     //private UploadedFile photo;
+
 
     @Autowired
     private StaffService staffService;

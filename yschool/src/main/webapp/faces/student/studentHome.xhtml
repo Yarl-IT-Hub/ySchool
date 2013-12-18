@@ -5,9 +5,7 @@
     <ui:define name="yhead">
         <div>
             <f:event listener="#{studentHomeBean.preloadstudents}" type="preRenderView"/>
-            <f:metadata>
-                <f:viewParam name="student" value="{studentHomeBean.student}"/>
-            </f:metadata>
+
         </div>
     </ui:define>
 
@@ -52,9 +50,11 @@
                     Grade #{grade.grade}
                 </h3>
                 <ui:repeat value="#{grade.classroomDataModel}" var="classroom">
-                    <h:commandButton value="#{classroom.divisionIddivision.division}" action="#{studentHomeBean.viewStudent}" type="submit"
+                    <h:form class="span2">
+                        <h:commandButton value="#{classroom.divisionIddivision.division}" action="#{studentHomeBean.viewClassroom}" type="submit"
                                      styleClass="btn btn-large">
                     </h:commandButton>
+                    </h:form>
 
 
                 </ui:repeat>

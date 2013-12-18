@@ -20,7 +20,6 @@ import java.io.Serializable;
 public class StaffController implements Serializable {
 
 
-
     private Staff staff;
 
     public Staff getStaff() {

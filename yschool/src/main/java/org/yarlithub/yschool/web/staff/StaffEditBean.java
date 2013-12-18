@@ -7,8 +7,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.service.StaffService;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 
 /**
@@ -20,32 +18,34 @@ import java.io.Serializable;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class StaffHomeBean implements Serializable {
+public class StaffEditBean implements Serializable {
 
-    private DataModel<Staff> staffDataModel;
-    //private UploadedFile photo;
+    private  Staff staff;
+
     @Autowired
     private StaffService staffService;
     @Autowired
     private StaffController staffController;
 
-    public DataModel getStaffDataModel() {
-        return staffDataModel;
+
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setStaffDataModel(DataModel staffDataModel) {
-        this.staffDataModel = staffDataModel;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
-    public boolean preLoad() {
-        staffDataModel = new ListDataModel(staffService.getStaff());
-        this.setStaffDataModel(staffDataModel);
-        return true;
+    public  boolean preLoad(){
+        setStaff(staffController.getStaff());
+        return  true;
     }
-
-    public String viewStaff() {
-        Staff staff = staffDataModel.getRowData();
+    public String updateStaff() {
+        staffService.saveOrUpdate(staff);
+        return "UpdateStaff";
+    }
+    public String backToViewStaff() {
         staffController.setStaff(staff);
-        return "ViewStaff";
+        return "BackToViewStaff";
     }
 }

@@ -7,10 +7,7 @@
 
     <ui:define name="yhead">
         <div>
-            <f:event listener="#{studentViewBean.preload}" type="preRenderView"/>
-            <f:metadata>
-                <f:viewParam name="student" value="{studentBean.student}"/>
-            </f:metadata>
+            <f:event listener="#{studentListBean.preload}" type="preRenderView"/>
         </div>
 
     </ui:define>
@@ -55,8 +52,15 @@
         <div class="span10">
             <div class="control-group span10 offset1">
 
-                #{studentViewBean.student.name}
-                #{studentViewBean.student.fullName}
+                <ui:repeat value="#{studentListBean.listStudents}" var="student">
+                #{student.fullName}
+                #{student.admissionNo}
+                   <h:form>
+                       <h:commandButton value="View" action="#{studentListBean.viewStudent}" type="submit"
+
+                                      styleClass="btn btn-mini"/>
+                   </h:form>
+                </ui:repeat>
 
             </div>
         </div>
