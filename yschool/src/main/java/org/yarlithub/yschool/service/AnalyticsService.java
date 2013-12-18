@@ -111,7 +111,7 @@ public class AnalyticsService {
         Iterator<ClassroomStudent> classroomStudentIterator = student.getClassroomStudents().iterator();
         while (classroomStudentIterator.hasNext()) {
             ClassroomStudent classroomStudent = classroomStudentIterator.next();
-            Hibernate.initialize(classroomStudent.getClassroomIdclass());
+            Hibernate.initialize(classroomStudent.getClassroomIdclassroom());
             Hibernate.initialize(classroomStudent.getStudentClassroomSubjects());
         }
         return student;
@@ -183,7 +183,7 @@ public class AnalyticsService {
         Iterator<Exam> iterator = examList.iterator();
         while (iterator.hasNext()) {
             Exam exam = iterator.next();
-            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
+            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom());
             Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
             Hibernate.initialize(exam.getExamTypeIdexamType());
             Hibernate.initialize(exam.getResultss());

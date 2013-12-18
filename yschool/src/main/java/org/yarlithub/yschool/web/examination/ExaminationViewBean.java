@@ -143,7 +143,7 @@ public class ExaminationViewBean implements Serializable {
         this.setExam(examinationService.getExambyId(examinationController.getExam().getId()));
 
         setComparisonAvailable(false);
-        if(getExam().getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade()==11 &&
+        if(getExam().getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getGradeIdgrade().getGrade()==11 &&
                 getExam().getTerm()==3){
                 setComparisonAvailable(true);
         }

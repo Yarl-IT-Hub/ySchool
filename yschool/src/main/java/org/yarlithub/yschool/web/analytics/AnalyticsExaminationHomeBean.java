@@ -299,7 +299,7 @@ public class AnalyticsExaminationHomeBean implements Serializable {
         exam = examinationController.getExam();
         // exam =examinationService.getExambyId(2);
         try {
-            examStandard = ExamComparator.getExamStandard(11086, this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getYear(), this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass().getGrade(), this.exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getName());
+            examStandard = ExamComparator.getExamStandard(11086, this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getYear(), this.exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getGradeIdgrade().getGrade(), this.exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getName());
         } catch (Exception e) {
             //To change body of catch statement use File | Settings | File Templates.
         }

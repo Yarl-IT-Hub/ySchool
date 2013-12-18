@@ -75,7 +75,7 @@ public class ExaminationService {
         Iterator<Exam> iterator = exams.iterator();
         while (iterator.hasNext()) {
             Exam exam = iterator.next();
-            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
+            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom());
             Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
             Hibernate.initialize(exam.getExamTypeIdexamType());
             Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
@@ -140,7 +140,7 @@ public class ExaminationService {
         Hibernate.initialize(exam.getExamTypeIdexamType());
         Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject());
         Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
-        Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclass());
+        Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom());
         Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
         while (examSyncIterator.hasNext()){
             Hibernate.initialize(examSyncIterator.next());
