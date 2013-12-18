@@ -7,12 +7,9 @@
 
     <ui:define name="yhead">
         <div>
-            <f:event listener="#{staffViewBean.preLoad}" type="preRenderView"/>
+            <f:event listener="#{staffEditBean.preLoad}" type="preRenderView"/>
 
-            <f:metadata>
-                <f:viewParam name="staff" value="{staffBean.staffDataModel}"/>
-            </f:metadata>
-        </div>
+          </div>
 
     </ui:define>
     <ui:define name="staff-content">
@@ -56,19 +53,20 @@
                     <div class="control-group">
                         <label class="control-label">Staff ID</label>
                         <div class="controls">
-                            <label class="control-label">#{staffViewBean.staff.staffid}</label>
+                            <h:inputText type="text" id="inputID" value="#{staffEditBean.staff.staffid}"/>
                         </div>
                     </div>
+
                     <div class="control-group">
                         <label class="control-label">Name</label>
                         <div class="controls">
-                            <label class="control-label">#{staffViewBean.staff.name}</label>
+                           <input type="text" id="inputName" value="#{staffEditBean.staff.name}"/>
                         </div>
                     </div>
                     <div class="control-group">
                         <label class="control-label">Full Name</label>
                         <div class="controls">
-                            <label class="control-label">#{staffViewBean.staff.fullName}</label>
+                            <input type="text" id="inputFullName" value="#{staffEditBean.staff.fullName}"/>
                         </div>
                     </div>
                     <div class="control-group">
@@ -79,17 +77,17 @@
                             <h:form>
                                 <h:commandButton class="btn btn-default" value="Back"
                                                  type="submit"
-                                                 action="#{staffViewBean.backToHomeStaff}">
-                                </h:commandButton>
+                                                 action="#{staffEditBean.backToViewStaff}">
 
-                            <!--<h:commandButton value="Edit" action="" type="submit" styleClass="btn btn-default"/>-->
-
-                                <h:commandButton class="btn btn-default" value="Edit"
-                                                 type="submit"
-                                                 action="#{staffViewBean.editStaff}">
                                 </h:commandButton>
+                                    <h:commandButton class="btn btn-default" value="Update"
+                                                     type="submit"
+                                                     action="#{staffEditBean.updateStaff}">
+
+                                    </h:commandButton>
                             </h:form>
                             <h:commandButton value="Delete" action="#" type="submit" styleClass="btn btn-default"/>
+
                         </div>
                     </div>
 
@@ -98,6 +96,7 @@
 
             </div>
         </div>
+
     </ui:define>
 
 </ui:composition>

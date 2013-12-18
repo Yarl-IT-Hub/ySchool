@@ -139,8 +139,42 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         </navigation-case>
 
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/faces/staff/staffView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>EditStaff</from-outcome>
+            <to-view-id>/faces/staff/staffEdit.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
 
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/faces/staff/staffEdit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>UpdateStaff</from-outcome>
+            <to-view-id>/faces/staff/staffView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
 
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/faces/staff/staffView.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>BackToHomeStaff</from-outcome>
+            <to-view-id>/faces/staff/staffHome.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/faces/staff/staffEdit.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>BackToViewStaff</from-outcome>
+            <to-view-id>/faces/staff/staffView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
+    </navigation-rule>
     <navigation-rule>
         <from-view-id>/faces/student/studentHome.xhtml</from-view-id>
         <navigation-case>
