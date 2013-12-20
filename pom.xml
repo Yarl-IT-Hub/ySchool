@@ -23,6 +23,7 @@
         <module>modules/staff</module>
 		<module>modules/examination</module>
 		<module>modules/analytics</module>
+        <module>modules/classroom</module>
     </modules>
 
     <dependencies>

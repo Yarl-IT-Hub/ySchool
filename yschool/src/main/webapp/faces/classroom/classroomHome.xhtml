@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/templates/classroom-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="yhead">
+        <title>Classroom Home</title>
+    </ui:define>
+
+    <ui:define name="classroom-content">
+
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Classroom Home</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="span3">
+            <!--Examination search bar with filter-->
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search"> </input>
+            </form>
+        </div>
+
+        <div class="span3">
+            <!--Add new exam Button-->
+            <a href="/yschool/faces/examination/examinationNew.xhtml">
+                <Button class="btn btn-info btn-large">New Grade-View</Button>
+            </a>
+        </div>
+
+        <ui:repeat value="#{classroomHomeBean.gradeDataModel}" var="gradeView">
+            <ui:fragment rendered="#{gradeView.classroomDataModel.rowAvailable}">
+            <div class="span10">
+                <h3>
+                    Grade #{gradeView.grade.grade}
+                </h3>
+                <ui:repeat value="#{gradeView.classroomDataModel}" var="classroom">
+                    <h:form styleClass="span2 offset0">
+                        <h:commandButton value="#{classroom.divisionIddivision.division}"  type="submit"
+                                         styleClass="btn btn-large">
+                        </h:commandButton>
+                    </h:form>
+                </ui:repeat>
+            </div>
+            </ui:fragment>
+        </ui:repeat>
+
+    </ui:define>
+
+</ui:composition>
