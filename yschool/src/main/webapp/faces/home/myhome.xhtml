@@ -4,115 +4,85 @@
 
     <ui:define name="yhead">
         <title>ySchool Home</title>
-        <style type="text/css">
-            a.thumbnail {
-                background-color: 888;
-            }
 
-            a.thumbnail:hover {
-                background-color: f88;
-            }
-        </style>
     </ui:define>
 
     <ui:define name="ybody-content">
-        <div class="row-fluid">
-            <div class="span8 offset2">
-                <h3 align="center">Welcome to ySchool</h3>
 
-                <ul class="thumbnails">
-                    <li class="span4">
+        <div class="row">
+            <h3 align="center">Welcome to ySchool</h3>
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="/yschool/faces/classroom/classroomHome.xhtml">
+                            <img src="/yschool/ico/arrangements.png" alt="myschool" align="center"/>
+
+                            <div class="caption">
+                                <h5 align="center">Classrooms</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
                         <a href="/yschool/faces/student/studentHome.xhtml">
-                            <div class="thumbnail">
+                            <img src="/yschool/ico/student.png" alt="myschool" align="center"/>
 
-                                <img src="/yschool/ico/student.png" alt="myschool" align="center"/>
-
-                                <div class="caption">
-                                    <h5 align="center">Students</h5>
-
-                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                                </div>
+                            <div class="caption">
+                                <h5 align="center">Students</h5>
                             </div>
                         </a>
-                    </li>
-                    <li class="span4">
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
                         <a href="/yschool/faces/staff/staffHome.xhtml">
-                            <div class="thumbnail">
+                            <img src="/yschool/ico/staff.png" alt="myschool" align="center"/>
 
-                                <img src="/yschool/ico/staff.png" alt="myschool" align="center"/>
-
-                                <div class="caption">
-                                    <h5 align="center">Staffs</h5>
-
-                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-                                </div>
+                            <div class="caption">
+                                <h5 align="center">Staffs</h5>
                             </div>
                         </a>
-                    </li>
-                    <li class="span4">
-                        <a href="/yschool/faces/examination/examinationHome.xhtml">
-                            <div class="thumbnail">
-                                <img src="/yschool/ico/examinations.png" alt="examinations" align="center"/>
-
-                                <div class="caption">
-                                    <h5 align="center">Examinations</h5>
-
-                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-
-                </ul>
-
-                <ul class="thumbnails">
-                    <li class="span4">
-                        <a href="/yschool/faces/arrangements/arrangementsHome.xhtml">
-                            <div class="thumbnail">
-                                <img src="/yschool/ico/arrangements.png" alt="arrangements" align="center"/>
-
-                                <div class="caption">
-                                    <h5 align="center">Arrangements</h5>
-
-                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4">
-                        <a href="/yschool/faces/settings/settingsHome.xhtml">
-                            <div class="thumbnail">
-                                <img src="/yschool/ico/settings.png" alt="settings" align="center"/>
-
-                                <div class="caption">
-                                    <h5 align="center">Settings</h5>
-
-                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="span4">
-                        <a href="/yschool/faces/analytics/analyticsHome.xhtml">
-                            <div class="thumbnail">
-                                <img src="/yschool/ico/analytics.png" alt="settings" align="center"/>
-
-                                <div class="caption">
-                                    <h5 align="center">Analytics</h5>
-
-                                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>-->
-
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-
+                    </div>
+                </div>
             </div>
-            <!--/sapan8 offset2-->
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="/yschool/faces/examination/examinationHome.xhtml">
+                            <img src="/yschool/ico/examinations.png" alt="myschool" align="center"/>
+
+                            <div class="caption">
+                                <h5 align="center">Examinations</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="/yschool/faces/settings/settingsHome.xhtml">
+                            <img src="/yschool/ico/settings.png" alt="myschool" align="center"/>
+
+                            <div class="caption">
+                                <h5 align="center">Settings</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="/yschool/faces/analytics/analyticsHome.xhtml">
+                            <img src="/yschool/ico/analytics.png" alt="myschool" align="center"/>
+
+                            <div class="caption">
+                                <h5 align="center">Analytics</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--/sapan8 col-md-col-md-offset-2-->
         </div>
         <!--row fluid-->
 

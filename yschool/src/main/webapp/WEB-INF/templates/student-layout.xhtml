@@ -2,13 +2,13 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="ybody-content">
-        <div class="row-fluid">
+        <div class="row">
             <ui:include src="/WEB-INF/templates/sidebar.xhtml"></ui:include>
             <!--TODO: show sidebar active links-->
             <!--<script type="text/javascript">-->
             <!--makeLinkActive("analytics");-->
             <!--</script>-->
-            <div class="offset2">
+            <div class="col-md-offset-2">
                 <ui:insert name="student-content">
                     Default Student Content student layout.
                 </ui:insert>

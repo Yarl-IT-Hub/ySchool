@@ -19,21 +19,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content=""/>
-    <link href="/yschool/css/bootstrap.css" rel="stylesheet"/>
-
+    <!--<link href="/yschool/css/bootstrap.css" rel="stylesheet"/>-->
+    <link href="/yschool/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--<link href="/yschool/css/bootstrap-theme.min.css" rel="stylesheet"/>-->
+    <link href="/yschool/css/docs.css" rel="stylesheet"/>
+    <link href="/yschool/css/pygments-manni.css" rel="stylesheet"/>
     <style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
+        .thumbnail {
+            background-color: rgb(249, 242, 253);
         }
 
-        .sidebar-nav {
-            padding: 9px 0;
+        .thumbnail:hover {
+            background-color: rgb(230, 204, 244);
+        }
+        a:hover{
+            text-decoration: none;
         }
     </style>
 
-    <link href="/yschool/css/bootstrap-responsive.css" rel="stylesheet"/>
-    <link rel="shortcut icon" href="/yschool/images/favicon.ico"/>
+    <!--<link href="/yschool/css/bootstrap-responsive.css" rel="stylesheet"/>-->
+    <link rel="shortcut icon" href="/yschool/img/arimalogo-favicon.png"/>
     <script type="text/javascript" src="/yschool/js/yschool/yschool.js"></script>
 
     <!--Insert header info according to page in ui:define-->
@@ -45,56 +50,90 @@
 </h:head>
 
 <h:body>
+
     <p:idleMonitor timeout="10000"
                    onidle="PF('idleDialog').show()" onactive="PF('idleDialog').hide()"/>
     <p:dialog header="Power Saving Mode" resizable="false"
               widgetVar="idleDialog" modal="true" width="400">
-        <h:outputText value="Dude, are you there?" />
+        <h:outputText value="Hello, are you there?"/>
     </p:dialog>
 
     <div id="ybody-header">
         <ui:insert name="ybody-hader">
 
-            <div class="navbar navbar-fixed-top">
-                <!--The top bar with home and sigin in information-->
-                <div class="navbar-inner">
-                    <div class="container-fluid">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
 
-                        <!--TODO: if a session logged in=> goto yschool home-->
-                        <a class="brand" href="/yschool/faces/home/myHome" id ="yschoolhome">ySchool Home</a>
+            <header class="navbar navbar-fixed-top bs-docs-nav" role="banner"
+                    style="background-color: rgb(70, 20, 100);">
 
-                        <!--TODO: Implement a date, time dispaly here-->
+                <div class="container">
+                    <div class="navbar-header">
 
-                        <div class="nav-collapse">
-                            <ul class="nav pull-right">
-                                <!--TODO: if session logged in => show username with useraccount link-->
-                                <li class="dropdown">
-                                    <a href="#"
-                                       class="dropdown-toggle"
-                                       data-toggle="dropdown">
-                                        Welcome to ySchool
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#"> Log In </a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#contact">Contact</a></li>
-                            </ul>
-                        </div>
-                        <!--/.nav-collapse -->
+                        <!--<a class="navbar-brand" href="/yschool/faces/home/myHome.xhtml">-->
+                        <!--ySchool-->
+                        <!--</a>-->
                     </div>
-                    <!--/.container-fluid-->
+                    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a class="navbar-brand" href="/yschool/faces/home/myHome.xhtml">
+                                    ySchool
+                                </a>
+                            </li>
+                            <li></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <form class="navbar-form navbar-left" role="search" action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search"
+                                           style="background: rgb(255, 255, 240);"/>
+
+                                    <div class="input-group-btn">
+                                        <!--<button type="button" class="btn btn-default" tabindex="-1">-->
+                                        <!--<span class="caret"></span>-->
+                                        <!--</button>-->
+                                        <button class="btn btn-default dropdown-toggle" tabindex="-1"
+                                                data-toggle="dropdown" type="button">
+                                                <!--style="background-color:rgb(70,20,100);">-->
+                                            <!--<span class="caret"></span>--> More
+                                            <span class="sr-only"> Toggle Dropdown  </span>
+                                        </button>
+                                        <ul class="dropdown-menu pull-right" role="menu">
+                                            <li>
+                                                <select class="form-control">
+                                                    <option>Students</option>
+                                                    <option>Staffs</option>
+                                                    <option>Subjects</option>
+                                                    <option>Classroom</option>
+                                                </select>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <button type="button" class="btn btn-default">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                    Search
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <li class="dropdown active">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome to ySchool <b
+                                        class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Sign In</a></li>
+                                    <li><a href="#">Settings</a></li>
+                                    <li><a href="#">Updates</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Sign Out</a></li>
+                                </ul>
+                            </li>
+                            <li class="active"><a href="#">Help</a></li>
+                        </ul>
+                    </nav>
                 </div>
-                <!--/.navbar-inner-->
-            </div>
-            <!--/.navbar-fixed-top-->
+            </header>
 
         </ui:insert>
     </div>
@@ -117,30 +156,22 @@
     <!-- Placed at the end of the document so the pages load faster -->
 
     <!--ussing primefaces library's jquery to avoid conflicts with bootstap-->
-    <!--<script src="/yschool/js/jquery.js" type="text/javascript"></script>-->
-    <h:outputScript library="primefaces" name="jquery/jquery.js" />
-    <h:outputScript target="head">
-        // Add the $() function
-        $ = jQuery;
-        // Now you can use it
-        $(document).ready(function() {
-        ...
-        });
-    </h:outputScript>
-    <script src="/yschool/js/jquery.dataTables.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-transition.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-alert.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-modal.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-dropdown.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-scrollspy.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-tab.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-tooltip.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-popover.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-button.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-collapse.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-carousel.js" type="text/javascript"></script>
-    <script src="/yschool/js/bootstrap-typeahead.js" type="text/javascript"></script>
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+    <!--<h:outputScript target="head">-->
+    <!--// Add the $() function-->
+    <!--$ = jQuery;-->
+    <!--// Now you can use it-->
+    <!--$(document).ready(function() {-->
+    <!--...-->
+    <!--});-->
+    <!--</h:outputScript>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
 
+    <!--<script src="/yschool/js/bootstrap.js" type="text/javascript"></script>-->
+    <script src="/yschool/js/bootstrap.min.js" type="text/javascript"></script>
+    <!--<script src="/yschool/js/application.js" type="text/javascript"></script>-->
+    <!--<script src="/yschool/js/holder.js" type="text/javascript"></script>-->
+    <!--<script src="/yschool/js/widgets.js" type="text/javascript"></script>-->
 
 </h:body>
 </html>
