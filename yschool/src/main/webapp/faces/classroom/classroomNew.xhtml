@@ -1,0 +1,89 @@
+<ui:composition template="/WEB-INF/templates/classroom-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="yhead">
+        <title>Classroom Home</title>
+    </ui:define>
+
+    <ui:define name="classroom-content">
+        <div class="row-fluid">
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                </li>
+                <li>
+                    <a href="#">Classroom Home</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="span3">
+            <!--Examination search bar with filter-->
+            <form class="navbar-search pull-left">
+                <input type="text" class="search-query" placeholder="Search"> </input>
+            </form>
+        </div>
+
+        <div class="span3">
+            <!--Add new exam Button-->
+            <a href="/yschool/faces/examination/examinationNew.xhtml">
+                <Button class="btn btn-info btn-large">New Grade-View</Button>
+            </a>
+        </div>
+        </div>
+
+
+        <div class="row-fluid">
+        <div class="span10">
+            <h:form>
+
+                <ui:repeat value="#{classroomHomeBean.gradeDataModel}" var="gradeView">
+                    <ui:fragment rendered="#{gradeView.classroomDataModel.rowAvailable}">
+
+                        <!--<div class="modal"-->
+                             <!--style="position:relative;width:100%;left:30%">-->
+
+                        <p:panel header="Grade #{gradeView.grade.grade}">
+
+                                <!--<h4 style="margin:0 0;">-->
+                                    <!---->
+                                <!--</h4>-->
+
+                                <div class="span9">
+                                    <ui:repeat value="#{gradeView.classroomDataModel}" var="classroom">
+                                        <div class="span2">
+                                            <!--<div class="span10 offset1">-->
+                                            <h:commandLink type="submit"
+                                                           styleClass="btn btn-large span10 offset1">
+                                                #{classroom.divisionIddivision.division}
+                                            </h:commandLink>
+                                            <!--</div>-->
+                                        </div>
+                                    </ui:repeat>
+                                </div>
+                                <div class="span2">
+                                    <h:commandLink type="submit"
+                                                   styleClass="btn btn-large">
+                                        <i class="icon-pencil"></i> edit
+                                    </h:commandLink>
+                                </div>
+
+                        </p:panel>
+                        <!--</div>-->
+
+
+                    </ui:fragment>
+                </ui:repeat>
+
+            </h:form>
+
+        </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

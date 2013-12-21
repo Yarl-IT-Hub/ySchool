@@ -12,6 +12,7 @@
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 
@@ -33,10 +34,6 @@
 
     <link href="/yschool/css/bootstrap-responsive.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="/yschool/images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="/yschool/images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="/yschool/images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="/yschool/images/apple-touch-icon-114x114.png"/>
-
     <script type="text/javascript" src="/yschool/js/yschool/yschool.js"></script>
 
     <!--Insert header info according to page in ui:define-->
@@ -48,6 +45,13 @@
 </h:head>
 
 <h:body>
+    <p:idleMonitor timeout="10000"
+                   onidle="PF('idleDialog').show()" onactive="PF('idleDialog').hide()"/>
+    <p:dialog header="Power Saving Mode" resizable="false"
+              widgetVar="idleDialog" modal="true" width="400">
+        <h:outputText value="Dude, are you there?" />
+    </p:dialog>
+
     <div id="ybody-header">
         <ui:insert name="ybody-hader">
 
