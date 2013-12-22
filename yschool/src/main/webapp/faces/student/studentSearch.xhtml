@@ -3,121 +3,106 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:p="http://primefaces.org/ui">
+        >
 
     <ui:define name="student-content">
 
         <div class="span3">
             <!--Breadcrumb to help user "where you are?"-->
-            <ul class="breadcrumb">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
                 <li>
-                    <a href="#">Student</a><span class="divider">></span>
+                    <a href="#">Student</a><span class="divider"/>
                 </li>
-                <li>
-                    <a href="#">Search</a>
+                <li class="active">
+                    Search
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
-        <div class="span2">
-            <a href="/yschool/faces/student/studentSearch.xhtml">
-                <Button class="btn btn-primary btn-large">Search</Button>
-            </a>
-        </div>
-        <div class="span2">
+        <div class="col-md-2">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Student</Button>
+                <Button class="btn btn-info btn-lg"> Add New Student</Button>
             </a>
         </div>
 
-        <div class="span8">
+        <div class="col-md-8">
             <div class="well sidebar-nav">
                 <h:form class="form-horizontal" enctype="multipart/form-data">
                     <fieldset>
-                        <div class="control-group span6 offset1">
+                        <div class="form-group col-md-6 col-md-offset-1">
                             <label class="control-label" for="Admision_No">Admision No</label>
 
-                            <div class="controls">
-                                <h:inputText id="Admision_No" value="" required="true"
-                                             requiredMessage="Admision_No is required">
-                                </h:inputText>
-                                <h:message for="Admision_No" errorStyle="color : red"/>
-                            </div>
+                            <h:inputText id="Admision_No" value="" required="true"
+                                         requiredMessage="Admision_No is required">
+                            </h:inputText>
+                            <h:message for="Admision_No" errorStyle="color : red"/>
+
                         </div>
                     </fieldset>
                     <fieldset>
-                        <div class="control-group span6 offset1">
+                        <div class="form-group col-md-6 col-md-offset-1">
                             <label class="control-label" for="name">Name</label>
 
-                            <div class="controls">
-                                <h:inputText id="name" value="" required="true"
-                                             requiredMessage="Name is required">
-                                </h:inputText>
-                                <h:message for="name" errorStyle="color : red"/>
-                            </div>
+                            <h:inputText id="name" value="" required="true"
+                                         requiredMessage="Name is required">
+                            </h:inputText>
+                            <h:message for="name" errorStyle="color : red"/>
+
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <div class="control-group span3 offset1">
+                        <div class="form-group col-md-3 col-md-offset-1">
                             <label class="control-label" for="grade">Grade</label>
 
-                            <div class="controls">
-                                <h:selectOneMenu id="grade"
-                                                 value="" required="true" requiredMessage="Grade is required">
+                            <h:selectOneMenu id="grade"
+                                             value="" required="true" requiredMessage="Grade is required">
 
-                                    <f:selectItem id="grade5" itemLabel="5" itemValue="5"/>
-                                    <f:selectItem id="grade6" itemLabel="6" itemValue="6"/>
-                                    <f:selectItem id="grade7" itemLabel="7" itemValue="7"/>
-                                    <f:selectItem id="grade8" itemLabel="8" itemValue="8"/>
-                                    <f:selectItem id="grade9" itemLabel="9" itemValue="9"/>
-                                    <f:selectItem id="grade10" itemLabel="10" itemValue="10"/>
-                                    <f:selectItem id="grade11" itemLabel="11" itemValue="11"/>
+                                <f:selectItem id="grade5" itemLabel="5" itemValue="5"/>
+                                <f:selectItem id="grade6" itemLabel="6" itemValue="6"/>
+                                <f:selectItem id="grade7" itemLabel="7" itemValue="7"/>
+                                <f:selectItem id="grade8" itemLabel="8" itemValue="8"/>
+                                <f:selectItem id="grade9" itemLabel="9" itemValue="9"/>
+                                <f:selectItem id="grade10" itemLabel="10" itemValue="10"/>
+                                <f:selectItem id="grade11" itemLabel="11" itemValue="11"/>
 
 
-                                </h:selectOneMenu>
-                                <h:message for="grade" errorStyle="color : red"/>
-                            </div>
+                            </h:selectOneMenu>
+                            <h:message for="grade" errorStyle="color : red"/>
+
                         </div>
                     </fieldset>
 
                     <fieldset>
-                        <div class="control-group span3 offset1">
+                        <div class="form-group col-md-3 col-md-offset-1">
                             <label class="control-label" for="division">Division</label>
 
-                            <div class="controls">
-                                <h:selectOneMenu id="division"
-                                                 value="" required="true" requiredMessage="Division is required">
+                            <h:selectOneMenu id="division"
+                                             value="" required="true" requiredMessage="Division is required">
 
-                                    <f:selectItem id="divisiona" itemLabel="A" itemValue="A"/>
-                                    <f:selectItem id="divisionb" itemLabel="B" itemValue="B"/>
-                                    <f:selectItem id="divisionc" itemLabel="C" itemValue="C"/>
-                                    <f:selectItem id="divisiond" itemLabel="D" itemValue="D"/>
-                                    <f:selectItem id="divisione" itemLabel="E" itemValue="E"/>
-                                    <f:selectItem id="divisionf" itemLabel="F" itemValue="F"/>
-                                </h:selectOneMenu>
-                                <h:message for="division" errorStyle="color : red"/>
-                            </div>
+                                <f:selectItem id="divisiona" itemLabel="A" itemValue="A"/>
+                                <f:selectItem id="divisionb" itemLabel="B" itemValue="B"/>
+                                <f:selectItem id="divisionc" itemLabel="C" itemValue="C"/>
+                                <f:selectItem id="divisiond" itemLabel="D" itemValue="D"/>
+                                <f:selectItem id="divisione" itemLabel="E" itemValue="E"/>
+                                <f:selectItem id="divisionf" itemLabel="F" itemValue="F"/>
+                            </h:selectOneMenu>
+                            <h:message for="division" errorStyle="color : red"/>
+
                         </div>
                     </fieldset>
                     <fieldset>
-                        <div class="control-group span10 offset1">
-                            <div class="controls">
+                        <div class="form-group col-md-10 col-md-offset-1">
+
 	<span class="btn-group" data-toggle="buttons-radio">
-	<h:commandButton class="btn btn-primary btn-large" value="Search">
+	<h:commandButton class="btn btn-primary btn-lg" value="Search">
     </h:commandButton>
 	</span>
-                            </div>
+
                         </div>
                     </fieldset>
 

@@ -3,144 +3,138 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:p="http://primefaces.org/ui"
         >
+    <ui:define name="yhead">
+    <title>
+        Add New Student
+    </title>
+    </ui:define>
 
     <ui:define name="student-content">
 
-        <div class="span3">
+        <div class="col-md-8">
             <!--Breadcrumb to help user "where you are?"-->
-            <ul class="breadcrumb">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
                 <li>
-                    <a href="/yschool/faces/student/studentHome.xhtml">Student</a> <span class="divider">></span>
+                    <a href="/yschool/faces/student/studentHome.xhtml">Students</a>
                 </li>
-                <li>
-                    <a href="#">Add New Student</a>
+                <li class="active">
+                    Add New Student
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
-
-        <div class="span3">
-            <a href="/yschool/faces/student/studentSearch.xhtml">
-                <Button class="btn btn-primary btn-large">Search</Button>
-            </a>
-        </div>
-
-        <div class="span3">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Student</Button>
+                <Button class="btn btn-info btn-lg"> Add New Student</Button>
             </a>
         </div>
 
-        <div class="span10">
+        <div class="col-md-10">
 
-            <h:form class="form-horizontal" enctype="multipart/form-data">
-                <div class="tab-content">
+            <h:form class="form-horizontal col-md-8" enctype="multipart/form-data">
 
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="Admision_No">Admision No</label>
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="Admision-No">Admision No.</label>
 
-                            <div class="controls">
-                                <h:inputText id="Admision_No" value="#{studentBean.admission_No}" required="true"
-                                             requiredMessage="Admision_No is required">
-                                </h:inputText>
-                                <h:message for="Admision_No" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <h:inputText id="Admision-No" value="#{studentBean.admission_No}" required="true"
+                                         requiredMessage="Admision No is required" class="form-control">
+                            </h:inputText>
+                            <p:watermark for="Admision-No" value="Admision No."/>
+                            <h:message for="Admision-No" errorStyle="color : red"/>
                         </div>
+                    </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="name">Name</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="name">Name</label>
 
-                            <div class="controls">
-                                <h:inputText id="name" value="#{studentBean.name}" required="true"
-                                             requiredMessage="Name is required">
-                                </h:inputText>
-                                <h:message for="name" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <h:inputText id="name" value="#{studentBean.name}" required="true"
+                                         requiredMessage="Name is required" class="form-control">
+                            </h:inputText>
+                            <p:watermark for="name" value="Name"/>
+                            <h:message for="name" errorStyle="color : red"/>
                         </div>
+                    </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="fullName">Full Name</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="fullName">Full Name</label>
 
-                            <div class="controls">
-                                <h:inputText id="fullName" value="#{studentBean.fullname}" required="true"
-                                             requiredMessage="fullName is required">
-                                </h:inputText>
-                                <h:message for="fullName" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <h:inputText id="fullName" value="#{studentBean.fullname}" required="true"
+                                         requiredMessage="Full Name is required" class="form-control">
+                            </h:inputText>
+                            <p:watermark for="fullName" value="Full Name"/>
+                            <h:message for="fullName" errorStyle="color : red"/>
                         </div>
+                    </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="nameWithInitial">Initials</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="nameWithInitial">Initial</label>
 
-                            <div class="controls">
-                                <h:inputText id="nameWithInitial" value="#{studentBean.name_wt_initial}" required="true"
-                                             requiredMessage="NameWithInitial is required">
-                                </h:inputText>
-                                <h:message for="nameWithInitial" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <h:inputText id="initial" value="#{studentBean.name_wt_initial}" required="true"
+                                         requiredMessage="Initial is required" class="form-control">
+                            </h:inputText>
+                            <p:watermark for="initial" value="Initial"/>
+                            <h:message for="initial" errorStyle="color : red"/>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="Dob">Date Of Birth</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="popupCal">Date Of Birth</label>
 
-                            <div class="controls">
-                                <h:inputText id="Dob" value="#{studentBean.dob}" required="true"
-                                             requiredMessage="Dob is required">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"></f:convertDateTime>
-                                </h:inputText>
-                                <h:message for="Dob" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <p:calendar value="#{studentBean.dob}" id="popupCal"
+                                        requiredMessage="Select a Date"/>
+                            <p:message for="popupCal" errorStyle="color : red"/>
+
+                            <p:watermark for="popupCal" value="Date of Birth"/>
+                            <h:message for="popupCal" errorStyle="color : red"/>
                         </div>
-                        <div class="control-group">
-                            <label class="control-label" for="Genter">Gender</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="gender">Gender</label>
 
-                            <div class="controls">
-                                <h:selectOneMenu id="Genter"
-                                                 value="#{studentBean.gender}">
-                                    <f:selectItem id="male" itemLabel="Male" itemValue="Male"/>
-                                    <f:selectItem id="female" itemLabel="Female" itemValue="Female"/>
-                                </h:selectOneMenu>
-                                <h:message for="user-role" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <h:selectOneMenu id="gender" class="form-control"
+                                             value="#{studentBean.gender}">
+                                <f:selectItem id="male" itemLabel="Male" itemValue="Male"/>
+                                <f:selectItem id="female" itemLabel="Female" itemValue="Female"/>
+                            </h:selectOneMenu>
+                            <h:message for="gender" errorStyle="color : red"/>
                         </div>
+                    </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="Address">Address</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="Address">Address</label>
 
-                            <div class="controls">
-                                <h:inputText id="Address" value="#{studentBean.address}" required="true"
-                                             requiredMessage="Address is required">
-                                </h:inputText>
-                                <h:message for="Address" errorStyle="color : red"/>
-                            </div>
+                        <div class="col-md-8">
+                            <h:inputText id="Address" value="#{studentBean.address}" required="true"
+                                         requiredMessage="Address is required" class="form-control">
+                            </h:inputText>
+                            <p:watermark for="Address" value="Address"/>
+                            <h:message for="Address" errorStyle="color : red"/>
                         </div>
-                        <div class="control-group">
-                            <div class="controls">
-                                <ul class="breadcrumb">
-                                    <li><h:commandButton value="Clear All" type="reset"
-                                                         class="btn btn-primary btn-large"/>
-                                    </li>
-                                    <li><h:commandButton type="submit" value="Add This Student"
-                                                         action="#{studentBean.addStudent}"
-                                                         class="btn btn-primary btn-large"/></li>
+                    </div>
+                    <div class="form-group col-md-offset-4">
 
-                                </ul>
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
+                        <h:commandButton value="Clear All" type="reset"
+                                         class="btn btn-default btn-lg"/>
+
+                        <h:commandButton type="submit" value="Add This Student"
+                                         action="#{studentBean.addStudent}"
+                                         class="btn btn-default btn-lg"/>
+
+                    </div>
+                </fieldset>
+
             </h:form>
         </div>
     </ui:define>

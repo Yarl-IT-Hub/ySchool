@@ -3,9 +3,13 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui">
+        >
 
     <ui:define name="yhead">
+        <title>
+            Students List
+        </title>
+
         <div>
             <f:event listener="#{studentListBean.preload}" type="preRenderView"/>
         </div>
@@ -14,66 +18,54 @@
 
     <ui:define name="student-content">
 
-        <div class="span3">
+        <div class="col-md-8">
             <!--Breadcrumb to help user "where you are?"-->
-            <ul class="breadcrumb">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
                 <li>
-                    <a href="#">Student</a><span class="divider">></span>
+                    <a href="/yschool/faces/student/studentHome.xhtml">Students</a>
                 </li>
-                <li>
-                    <a href="#">StudentList</a>
+                <li class="active">
+                    StudentList
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
 
-        <div class="span3">
-            <a href="/yschool/faces/student/studentSearch.xhtml">
-                <Button class="btn btn-primary btn-large">Search</Button>
-            </a>
-        </div>
-
-        <div class="span3">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Student</Button>
+                <Button class="btn btn-info btn-lg"> Add New Student</Button>
             </a>
         </div>
 
-        <div class="span10">
-            <div class="control-group span10 offset1">
+        <div class="col-md-10">
+            <div class="control-group col-md-10 col-md-offset-1">
                 <h:form>
                     <h:dataTable value="#{studentListBean.listStudents}" var="student"
                                  styleClass="table table-hover">
-                    <h:column>
-                        <div>
-                            <img src="/yschool/ico/student-small.png" class="img-circle"></img>
-                        </div>
+                        <h:column>
+                            <div>
+                                <img src="/yschool/ico/student-small.png" class="img-circle"></img>
+                            </div>
 
-                    </h:column>
+                        </h:column>
 
                         <h:column>
                             <!-- column header -->
                             <f:facet name="header">Students </f:facet>
                             #{student.fullName}
                             <br/>
-                            Student admissionNo: #{student.admissionNo}
+                            AdmissionNo: #{student.admissionNo}
                         </h:column>
 
                         <h:column>
                             <h:commandButton value="View" action="#{studentListBean.viewStudent}" type="submit"
                                              styleClass="btn"/>
                         </h:column>
-                </h:dataTable>
+                    </h:dataTable>
                 </h:form>
 
             </div>

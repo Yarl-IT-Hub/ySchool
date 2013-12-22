@@ -3,57 +3,52 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="yhead">
+        <title>
+            Students Home
+        </title>
+
         <div>
             <f:event listener="#{studentHomeBean.preloadstudents}" type="preRenderView"/>
 
         </div>
+
     </ui:define>
 
     <ui:define name="student-content">
 
-        <div class="span3">
+        <div class="col-md-8">
             <!--Breadcrumb to help user "where you are?"-->
-            <ul class="breadcrumb">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
-                <li>
-                    <a href="#">Student</a>
+                <li class="active">
+                    Students
                 </li>
-            </ul>
-        </div>
-
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
-        <div class="span3">
-            <a href="/yschool/faces/student/studentSearch.xhtml">
-                <Button class="btn btn-primary btn-large">^
-                </Button>
-            </a>
+            </ol>
         </div>
 
         <!--student New-->
-        <div class="span3">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Student</Button>
+                <Button class="btn btn-info btn-lg"> Add New Student</Button>
             </a>
         </div>
         <!-- end student New -->
+        Change it to only a student specific search stuffs in the middle.
+        No need this lalyout, these are moved to Classrooms.
         <ui:repeat value="#{studentHomeBean.gradeDataModel}" var="grade">
-            <div class="span10">
+            <div class="col-md-10">
                 <h3>
                     Grade #{grade.grade}
                 </h3>
                 <ui:repeat value="#{grade.classroomDataModel}" var="classroom">
-                    <h:form class="span2">
-                        <h:commandButton value="#{classroom.divisionIddivision.division}" action="#{studentHomeBean.viewClassroom}" type="submit"
-                                     styleClass="btn btn-large">
-                    </h:commandButton>
+                    <h:form class="col-md-2">
+                        <h:commandButton value="#{classroom.divisionIddivision.division}"
+                                         action="#{studentHomeBean.viewClassroom}" type="submit"
+                                         styleClass="btn btn-lg">
+                        </h:commandButton>
                     </h:form>
 
 
