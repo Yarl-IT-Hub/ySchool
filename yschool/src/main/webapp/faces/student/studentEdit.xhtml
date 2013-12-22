@@ -10,7 +10,7 @@
 
     <ui:define name="student-content">
 
-        <div class="span6">
+        <div class="span3">
             <!--Breadcrumb to help user "where you are?"-->
             <ul class="breadcrumb">
                 <li>
@@ -22,20 +22,19 @@
             </ul>
         </div>
 
-        <div class="span2">
+        <div class="span3">
             <!--Student search bar with filter-->
             <form class="navbar-search pull-left">
                 <input type="text" class="search-query" placeholder="Search"> </input>
             </form>
         </div>
-        <div class="span1">
+
+        <div class="span3">
             <a href="/yschool/faces/student/studentSearch.xhtml">
-                <Button class="btn btn-primary btn-large">^
-                </Button>
+                <Button class="btn btn-primary btn-large">Search</Button>
             </a>
         </div>
 
-        <!--student New-->
         <div class="span3">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
@@ -44,6 +43,8 @@
         </div>
         <!-- end student New -->
 
+        <div class="span10">
+        <div class="row-fluid" id="student-home-contents">
         <form class="form-horizontal">
             <div>
                 <div>
@@ -128,6 +129,8 @@
 
 
         </form>
+        </div>
+        </div>
 
     </ui:define>
 

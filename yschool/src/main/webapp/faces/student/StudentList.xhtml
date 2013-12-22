@@ -36,13 +36,13 @@
             </form>
         </div>
 
-        <div class="span2">
+        <div class="span3">
             <a href="/yschool/faces/student/studentSearch.xhtml">
                 <Button class="btn btn-primary btn-large">Search</Button>
             </a>
         </div>
 
-        <div class="span2">
+        <div class="span3">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
                 <Button class="btn btn-primary btn-large"> Add New Student</Button>
@@ -51,16 +51,30 @@
 
         <div class="span10">
             <div class="control-group span10 offset1">
+                <h:form>
+                    <h:dataTable value="#{studentListBean.listStudents}" var="student"
+                                 styleClass="table table-hover">
+                    <h:column>
+                        <div>
+                            <img src="/yschool/ico/student-small.png" class="img-circle"></img>
+                        </div>
 
-                <ui:repeat value="#{studentListBean.listStudents}" var="student">
-                #{student.fullName}
-                #{student.admissionNo}
-                   <h:form>
-                       <h:commandButton value="View" action="#{studentListBean.viewStudent}" type="submit"
+                    </h:column>
 
-                                      styleClass="btn btn-mini"/>
-                   </h:form>
-                </ui:repeat>
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Students </f:facet>
+                            #{student.fullName}
+                            <br/>
+                            Student admissionNo: #{student.admissionNo}
+                        </h:column>
+
+                        <h:column>
+                            <h:commandButton value="View" action="#{studentListBean.viewStudent}" type="submit"
+                                             styleClass="btn"/>
+                        </h:column>
+                </h:dataTable>
+                </h:form>
 
             </div>
         </div>
