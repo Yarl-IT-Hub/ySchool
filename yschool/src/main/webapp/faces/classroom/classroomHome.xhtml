@@ -23,8 +23,8 @@
 
             <div class="col-md-4">
                 <!--Add new exam Button-->
-                <a href="/yschool/faces/examination/examinationNew.xhtml">
-                    <Button class="btn btn-info btn-lg">New Grade-View</Button>
+                <a href="/yschool/faces/classroom/classroomNew.xhtml">
+                    <Button class="btn btn-info btn-lg">New Grade View</Button>
                 </a>
             </div>
         </div>
@@ -39,7 +39,7 @@
                         <h:form>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Grade #{gradeView.grade.grade}
+                                    Grade View #{gradeView.grade.grade}
                                     <div class="pull-right">
                                         <h:commandLink type="submit"
                                                        styleClass="btn">
@@ -54,8 +54,8 @@
                                             <div class="col-md-2">
 
                                                 <h:commandLink type="submit" styleClass="thumbnail"
-                                                               style="text-align: center;text-decoration: none;"
-                                                               value="#{classroom.divisionIddivision.division}"
+                                                               style="text-align: center;text-decoration: none; color:#000000;"
+                                                               value="#{gradeView.grade.grade} #{classroom.divisionIddivision.division}"
                                                         >
                                                     <br/>
                                                     Not Assigned
