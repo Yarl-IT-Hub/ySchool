@@ -1,6 +1,7 @@
 <ui:composition template="/WEB-INF/templates/master-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
 
@@ -13,70 +14,136 @@
 
 
     <ui:define name="ybody-content">
-        <div class="row-fluid">
-            <div class="span8 offset2">
-                <div class="hero-unit">
-                    <h1><h:outputText value="#{msg.yschool}"/></h1>
+        <div class="row">
+            <div class="col-md-12">
+                <div style="margin-top:5%">
+                    <div class="col-md-8">
 
-                    <p><h:outputText value="#{msg.intro}"/></p>
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <!-- Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
 
-                    <h:form>
-                        <div id="login-model" class="modal hide fade in" style="display: none; ">
-                            <div class="modal-header">
-                                <a class="close" data-dismiss="modal">×</a>
+                            <!-- Wrapper for slides -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="/yschool/img/welcome.png" alt="yschool welcome image"/>
 
-                                <h3>LogIn to ySchool</h3>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="control-group">
-                                    <label class="control-label" for="uname">User name</label>
-
-                                    <div class="controls">
-                                        <h:inputText id="uname" value="#{loginBean.userName}" required="true"
-                                                     requiredMessage=" User name is required">
-
-                                        </h:inputText>
-                                        <h:message for="uname" errorStyle="color : red"/>
+                                    <div class="carousel-caption">
+                                        <!--Welcome to ySchool-->
                                     </div>
                                 </div>
-                                <div class="control-group">
-                                    <label class="control-label" for="upwd">Password</label>
+                                <div class="item">
+                                    <img src="/yschool/img/predic1.png" alt="yschool prediction image"/>
 
-                                    <div class="controls">
-                                        <h:inputText id="upwd" value="#{loginBean.password}" required="true"
-                                                     requiredMessage=" Password is required">
-
-                                        </h:inputText>
-                                        <h:message for="upwd" errorStyle="color : red"/>
+                                    <div class="carousel-caption">
+                                        <!--Advanced Student Performance Predictions-->
                                     </div>
                                 </div>
+                                <div class="item">
+                                    <img src="/yschool/img/recommendhome.png" alt="yschool recommondation image"/>
 
+                                    <div class="carousel-caption">
+                                        <!--A/L Stream recommondatinos for students-->
+                                    </div>
+                                </div>
                             </div>
-                            <div class="modal-footer">
-                                <h:commandButton class="btn btn-success" action="#{loginBean.login}" value="Log In"/>
-                                <a href="#" class="btn" data-dismiss="modal">Cancel</a>
-                            </div>
+
+                            <!-- Controls -->
+                            <!--<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">-->
+                                <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+                            <!--</a>-->
+                            <!--<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">-->
+                                <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+                            <!--</a>-->
                         </div>
-                        <!--/Model-->
+                    </div>
 
-                    </h:form>
 
-                    <h:form>
+                    <div class="col-md-3">
+
+                        <h2><h:outputText value="#{msg.yschool}"/></h2>
+
+                        <h5><h:outputText value="#{msg.intro}"/></h5>
+
                         <!--<h:commandButton data-toggle="modal" action="success" value="Log In" class="btn btn-primary btn-large"/>-->
                         <!--<button><a  href="#login-model" class="btn btn-primary btn-large">Lon In</a></button>-->
-                        <a data-toggle="modal" align="center" href="#login-model" class="btn btn-primary btn-large">
-                            <Button class="btn btn-primary btn-large"> Log In</Button>
 
-                        </a>
+                        <!--<Button class="btn btn-primary btn-large" data-toggle="modal" align="center"-->
+                        <!--data-target="#login-model"> Log In-->
+                        <!--</Button>-->
 
-                        <h:commandButton align="center" action="setup" value="Setup ySchool now"
-                                         class="btn btn-primary btn-large"/>
-                    </h:form>
-                    <!--<h:commandButton align="center" data-toggle="modal" action="#login-model" value="Log In" class="btn btn-primary btn-large"/>-->
-                    <!--<p><a data-toggle="modal" align="center" href="#login-model" class="btn btn-primary btn-large">Lon In</a></p>-->
+
+                        <!--Model-->
+                        <h:form role="form">
+                            <!--<div id="login-model" class="modal-large fade" role="dialog" aria-hidden="true" tabindex="-1"-->
+                            <!--aria-labelledby="loginModalLabel">-->
+                            <!--<div class="modal-dialog">-->
+                            <!--<div class="modal-content">-->
+                            <!--<div class="modal-header">-->
+                            <!--<a class="close" data-dismiss="modal">×</a>-->
+
+                            <!--<h3 class="modal-title" id="loginModalLabel">LogIn to ySchool</h3>-->
+
+                            <!--</div>-->
+                            <!--<div class="modal-body">-->
+
+                            <div class="input-group input-group-lg">
+                                <!--<label class="control-label col-md-4" for="uname">User name</label>-->
+
+
+                                <h:inputText id="focusedInput" value="#{loginBean.userName}"
+                                             required="true" styleClass="form-control col-md-8"
+                                             requiredMessage=" User name is required">
+
+                                </h:inputText>
+                                <p:watermark for="focusedInput" value="User Name"/>
+                                <h:message for="focusedInput" errorStyle="color : red"/>
+
+                            </div>
+                            <div class="input-group input-group-lg"  style="margin-top:5%">
+                                <!--<label class="control-label col-md-4" for="upwd">Password</label>-->
+
+
+                                <h:inputText id="upwd" value="#{loginBean.password}" required="true"
+                                             styleClass="form-control col-md-8" requiredMessage=" Password is required">
+
+                                </h:inputText>
+                                <p:watermark for="upwd" value="Password"/>
+                                <h:message for="upwd" errorStyle="color : red"/>
+
+                            </div>
+
+                            <!--</div>-->
+                            <!--<div class="modal-footer">-->
+                            <div class="col-md-10"  style="margin-top:5%">
+                                <h:commandButton class="btn btn-info btn-lg" action="#{loginBean.login}"
+                                                 value="Log In"/>
+                            </div>
+                            <!--<a href="#" class="btn" data-dismiss="modal">Cancel</a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;/Model&ndash;&gt;-->
+                        </h:form>
+                        <h:form>
+                            <h5><label class="control-label col-md-10"  style="margin-top:5%">New to ySchool?</label> </h5>
+
+                            <div class="col-md-10">
+                                <h:commandButton align="center" action="setup" value="Setup ySchool now"
+                                                 class="btn btn-info btn-lg"/>
+                            </div>
+                        </h:form>
+
+                        <!--<h:commandButton align="center" data-toggle="modal" action="#login-model" value="Log In" class="btn btn-primary btn-large"/>-->
+                        <!--<p><a data-toggle="modal" align="center" href="#login-model" class="btn btn-primary btn-large">Lon In</a></p>-->
+                    </div>
+
                 </div>
-
             </div>
         </div>
     </ui:define>
