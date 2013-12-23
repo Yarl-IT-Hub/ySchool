@@ -12,67 +12,67 @@
             <f:metadata>
                 <f:viewParam name="staff" value="{staffBean.staffDataModel}"/>
             </f:metadata>
-        </div>
 
+        </div>
+        <title>
+            #{staffViewBean.staff.name}
+        </title>
     </ui:define>
     <ui:define name="staff-content">
 
-        <div class="span6">
-            <ul class="breadcrumb">
+        <div class="col-md-6">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
-                <li>
-                    <a href="#">Staffs</a>
+                <li class="active">
+                   Staffs
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
 
-        <div class="span3">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/staff/staffNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Staff</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Staff
+                </Button>
             </a>
         </div>
 
-        <div class="span10">
-            <div class="row-fluid" id="staff-home-contents">
+        <div class="col-md-10">
+            <div class="row" id="staff-home-contents">
 
-
-                <form class="form-horizontal">
-                    <div>
+                    <div class="col-md-3">
                         <div>
                             <img src="/yschool/ico/student.png" class="img-circle"></img>
                         </div>
                     </div>
 
-                    <div class="control-group">
-                        <label class="control-label">Staff ID</label>
-                        <div class="controls">
+                <div class="col-md-7">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label   col-md-4">Staff ID</label>
+                        <div class="col-md-8">
                             <label class="control-label">#{staffViewBean.staff.staffid}</label>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label">Name</label>
-                        <div class="controls">
+                    <div class="form-group">
+                        <label class="control-label  col-md-4">Name</label>
+                        <div class="col-md-8">
                             <label class="control-label">#{staffViewBean.staff.name}</label>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <label class="control-label">Full Name</label>
-                        <div class="controls">
+                    <div class="form-group">
+                        <label class="control-label  col-md-4">Full Name</label>
+                        <div class="col-md-8">
                             <label class="control-label">#{staffViewBean.staff.fullName}</label>
                         </div>
                     </div>
-                    <div class="control-group">
-                        <div class="controls">
+                    <div class="form-group">
+                        <div class="col-md-offset-4">
 
 
 
@@ -95,7 +95,7 @@
 
 
                 </form>
-
+                </div>
             </div>
         </div>
     </ui:define>

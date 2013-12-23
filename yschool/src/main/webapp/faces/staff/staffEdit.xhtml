@@ -9,91 +9,93 @@
         <div>
             <f:event listener="#{staffEditBean.preLoad}" type="preRenderView"/>
 
-          </div>
-
+        </div>
+        <title>
+            #{staffEditBean.staff.name}
+        </title>
     </ui:define>
     <ui:define name="staff-content">
 
-        <div class="span6">
-            <ul class="breadcrumb">
+        <div class="col-md-6">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
-                <li>
-                    <a href="#">Staffs</a>
+                <li class="active">
+                    Staffs
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
-
-        <div class="span3">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/staff/staffNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Staff</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Staff
+                </Button>
             </a>
         </div>
 
-        <div class="span10">
-            <div class="row-fluid" id="staff-home-contents">
+        <div class="col-md-10">
+            <div class="row" id="staff-home-contents">
 
 
-                <form class="form-horizontal">
+                <div class="col-md-3">
                     <div>
-                        <div>
-                            <img src="/yschool/ico/student.png" class="img-circle"></img>
-                        </div>
+                        <img src="/yschool/ico/student.png" class="img-circle"></img>
                     </div>
+                </div>
 
-                    <div class="control-group">
-                        <label class="control-label">Staff ID</label>
-                        <div class="controls">
-                            <h:inputText type="text" id="inputID" value="#{staffEditBean.staff.staffid}"/>
+                <div class="col-md-7">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Staff ID</label>
+
+                            <div class="col-md-8">
+                                <h:inputText type="text" id="inputID" value="#{staffEditBean.staff.staffid}"
+                                             class="form-control"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="control-group">
-                        <label class="control-label">Name</label>
-                        <div class="controls">
-                           <h:inputText type="text" id="inputName" value="#{staffEditBean.staff.name}"/>
+                        <div class="form-group">
+                            <label class="control-label control-label col-md-4">Name</label>
+
+                            <div class="col-md-8">
+                                <h:inputText type="text" id="inputName" value="#{staffEditBean.staff.name}"
+                                             class="form-control"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <label class="control-label">Full Name</label>
-                        <div class="controls">
-                            <h:inputText type="text" id="inputFullName" value="#{staffEditBean.staff.fullName}"/>
+                        <div class="form-group">
+                            <label class="control-label control-label col-md-4">Full Name</label>
+
+                            <div class="col-md-8">
+                                <h:inputText type="text" id="inputFullName" value="#{staffEditBean.staff.fullName}"
+                                             class="form-control"/>
+                            </div>
                         </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="controls">
+                        <div class="form-group">
+                            <div class="col-md-offset4">
+                                <h:form>
+                                    <h:commandButton class="btn btn-default" value="Back"
+                                                     type="submit"
+                                                     action="#{staffEditBean.backToViewStaff}">
 
-
-
-                            <h:form>
-                                <h:commandButton class="btn btn-default" value="Back"
-                                                 type="submit"
-                                                 action="#{staffEditBean.backToViewStaff}">
-
-                                </h:commandButton>
+                                    </h:commandButton>
                                     <h:commandButton class="btn btn-default" value="Update"
                                                      type="submit"
                                                      action="#{staffEditBean.updateStaff}">
 
                                     </h:commandButton>
-                            </h:form>
-                            <h:commandButton value="Delete" action="#" type="submit" styleClass="btn btn-default"/>
+                                </h:form>
+                                <h:commandButton value="Delete" action="#" type="submit" styleClass="btn btn-default"/>
 
+                            </div>
                         </div>
-                    </div>
 
 
-                </form>
-
+                    </form>
+                </div>
             </div>
         </div>
 

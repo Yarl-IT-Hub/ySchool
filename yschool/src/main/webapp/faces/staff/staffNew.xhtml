@@ -2,88 +2,94 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:t="http://myfaces.apache.org/tomahawk"
         >
+    <ui:define name="yhead">
+        <title>
+            Add New Staff
+        </title>
+    </ui:define>
 
     <ui:define name="staff-content">
 
-        <div class="span4">
-            <ul class="breadcrumb">
+        <div class="col-md-8">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
                 <li>
-                    <a href="/yschool/faces/staff/staffHome.xhtml">Staffs</a> <span class="divider">></span>
+                    <a href="/yschool/faces/staff/staffHome.xhtml">Staffs</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#">Add New Staff</a>
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span4">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
 
-        <div class="span2">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/staff/staffNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Staff</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Staff
+                </Button>
             </a>
         </div>
 
-        <div class="span10">
+        <div class="col-md-10">
 
             <h:form class="form-horizontal" enctype="multipart/form-data">
-                <div class="tab-content">
+
 
                     <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="Staff_Id">Staff ID/No.</label>
+                        <div class="form-group">
+                            <label class="control-label  col-md-4" for="Staff_Id">Staff ID/No.</label>
 
-                            <div class="controls">
+                            <div class="col-md-8">
                                 <h:inputText id="Staff_Id" value="#{staffBean.staffID}" required="true"
-                                             requiredMessage="Staff_Id is required">
+                                             requiredMessage="Staff_Id is required" class="form-control">
                                 </h:inputText>
+                                <p:watermark for="Staff_Id" value="Staff ID/No."/>
                                 <h:message for="Staff_Id" errorStyle="color : red"/>
                             </div>
                         </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="name">Name</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="name">Name</label>
 
-                            <div class="controls">
+                            <div class="col-md-8">
                                 <h:inputText id="name" value="#{staffBean.name}" required="true"
-                                             requiredMessage="Name is required">
+                                             requiredMessage="Name is required" class="form-control">
                                 </h:inputText>
+                                <p:watermark for="name" value="Name"/>
                                 <h:message for="name" errorStyle="color : red"/>
                             </div>
                         </div>
 
-                        <div class="control-group">
-                            <label class="control-label" for="fullName">Full Name</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="fullName">Full Name</label>
 
-                            <div class="controls">
+                            <div class="col-md-8">
                                 <h:inputText id="fullName" value="#{staffBean.fullname}" required="true"
-                                             requiredMessage="fullName is required">
+                                             requiredMessage="fullName is required" class="form-control">
                                 </h:inputText>
+                                <p:watermark for="fullName" value="Full Name"/>
                                 <h:message for="fullName" errorStyle="color : red"/>
                             </div>
                         </div>
 
-                        <div class="controls">
-                            <ul class="breadcrumb">
-                                <li><h:commandButton value="Clear All" type="reset" class="btn btn-primary btn-large"/>
-                                </li>
-                                <li><h:commandButton type="submit" action="#{staffBean.addStaff}" value="Add This Staff"
-                                                     class="btn btn-primary btn-large"/></li>
-                            </ul>
+                        <div class="form-group">
+                        <div class=" col-md-offset-4">
+                                <h:commandButton value="Clear All" type="reset" styleClass="btn btn-default"/>
+
+                               <h:commandButton type="submit" action="#{staffBean.addStaff}" value="Add This Staff"
+                                                styleClass="btn btn-default"/>
+                            </div>
                         </div>
                     </fieldset>
-                </div>
+
             </h:form>
         </div>
     </ui:define>

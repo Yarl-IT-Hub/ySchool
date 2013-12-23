@@ -11,33 +11,29 @@
     </ui:define>
     <ui:define name="staff-content">
 
-        <div class="span6">
-            <ul class="breadcrumb">
+        <div class="col-md-8">
+            <ol class="breadcrumb">
                 <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="#">Staffs</a>
                 </li>
-            </ul>
+            </ol>
         </div>
 
-        <div class="span3">
-            <!--Student search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
-
-        <div class="span3">
+        <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/staff/staffNew.xhtml">
-                <Button class="btn btn-primary btn-large"> Add New Staff</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Staff
+                </Button>
             </a>
         </div>
 
-        <div class="span8">
-            <div class="row-fluid" id="staff-home-contents">
+        <div class="col-md-8">
+            <div class="row" id="staff-home-contents">
 
                 <div>
                     <h:form>
@@ -59,7 +55,7 @@
 
                             <h:column>
                                 <h:commandButton value="View" action="#{staffHomeBean.viewStaff}" type="submit"
-                                                 styleClass="btn"/>
+                                                 styleClass="btn btn-default"/>
                             </h:column>
                         </h:dataTable>
                     </h:form>
