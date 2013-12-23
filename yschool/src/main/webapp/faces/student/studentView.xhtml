@@ -34,90 +34,107 @@
         <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-info btn-lg"> Add New Student</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Student
+                </Button>
             </a>
         </div>
         <!-- end student New -->
 
         <div class="col-md-10">
-        <div class="row" id="student-home-contents">
+            <div class="row" id="student-home-contents">
 
-        <form class="form-horizontal">
-            <div>
-                <div>
-                    <img src="/yschool/ico/student.png" class="img-circle"></img>
+
+                <div class="col-md-3">
+                    <div>
+                        <img src="/yschool/ico/student.png" class="img-circle"></img>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">AdmissionNo:</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.admissionNo}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">StudentName:</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.name}</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">FullName</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.fullName}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">NameWithInitial</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.nameWtInitial}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Date Of Birth</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.dob}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Gender</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.gender}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Address</label>
+
+                            <div class="col-md-8">
+                                <label class="control-label">#{studentViewBean.student.address}</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class=" col-md-offset-4">
+
+                                <h:form>
+                                    <h:commandButton value="Back" action="#{studentViewBean.backTo}" type="submit"
+                                                     styleClass="btn btn-default">
+                                    </h:commandButton>
+
+
+                                    <h:commandButton value="Edit" action="#{studentViewBean.editStudent}" type="submit"
+                                                     styleClass="btn btn-default">
+                                    </h:commandButton>
+
+                                    <h:commandButton value="Delete" action="#{studentViewBean.studentDelete}"
+                                                     type="submit"
+                                                     styleClass="btn btn-default">
+                                    </h:commandButton>
+                                </h:form>
+
+
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4">AdmissionNo:</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.admissionNo}</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4">StudentName:</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.name}</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="control-label col-md-4">FullName</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.fullName}</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4">NameWithInitial</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.nameWtInitial}</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4">Date Of Birth</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.dob}</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4">Gender</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.gender}</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label class="control-label col-md-4">Address</label>
-                <div class="col-md-8">
-                    <label class="control-label">#{studentViewBean.student.address}</label>
-                </div>
-            </div>
-
-            <div class="control-group col-md-offset-4">
-                <div >
-
-                    <h:form>
-                    <h:commandButton value="Back" action="#{studentViewBean.backTo}" type="submit" styleClass="btn btn-lg btn-default">
-                     </h:commandButton>
-
-
-                    <h:commandButton value="Edit" action="#{studentViewBean.editStudent}" type="submit" styleClass="btn btn-lg btn-default">
-                    </h:commandButton>
-
-                      <h:commandButton value="Delete" action="#{studentViewBean.studentDelete}" type="submit" styleClass="btn btn-lg btn-default">
-                        </h:commandButton>
-                    </h:form>
-
-
-                </div>
-            </div>
-
-        </form>
-        </div>
         </div>
 
     </ui:define>

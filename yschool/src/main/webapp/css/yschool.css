@@ -1,0 +1,23 @@
+.thumbnail {
+    background-color: rgb(249, 242, 253);
+}
+
+.thumbnail:hover {
+     background-color: rgb(230, 204, 244);
+ }
+
+a:hover{
+    text-decoration: none;
+}
+
+.ynavbar-dark{
+    background-color: rgb(70, 20, 100);
+}
+
+.ynavbar-dark a:hover, .ynavbar-active{
+    background-color: rgb(80, 20, 110);
+}
+
+a .ynavbar-dark:hover, .ynavbar-active{
+    background-color: rgb(80, 20, 110);
+}

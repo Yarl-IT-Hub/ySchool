@@ -37,103 +37,111 @@
         <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-info btn-lg"> Add New Student</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Student
+                </Button>
             </a>
         </div>
         <!-- end student New -->
 
         <div class="col-md-10">
             <div class="row" id="student-home-contents">
-                <form class="form-horizontal">
+
+                <div class="col-md-3">
                     <div>
-                        <div>
-                            <img src="/yschool/ico/student.png" class="img-circle"></img>
-                        </div>
+                        <img src="/yschool/ico/student.png" class="img-circle"></img>
                     </div>
+                </div>
 
+                <div class="col-md-7">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-4">AdmissionNo</label>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">AdmissionNo</label>
-
-                        <div class="col-md-8">
-                            <h:inputText id="Admision_No" value="#{studentEditBean.student.admissionNo}"
-                                         class="form-control">
-                            </h:inputText>
+                            <div class="col-md-8">
+                                <h:inputText id="Admision_No" value="#{studentEditBean.student.admissionNo}"
+                                             class="form-control">
+                                </h:inputText>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">StudentName</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">StudentName</label>
 
-                        <div class="col-md-8">
-                            <h:inputText id="Name" value="#{studentEditBean.student.name}" class="form-control">
-                            </h:inputText>
+                            <div class="col-md-8">
+                                <h:inputText id="Name" value="#{studentEditBean.student.name}" class="form-control">
+                                </h:inputText>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">FullName</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">FullName</label>
 
-                        <div class="col-md-8">
-                            <h:inputText id="fullname" value="#{studentEditBean.student.fullName}" class="form-control">
-                            </h:inputText>
+                            <div class="col-md-8">
+                                <h:inputText id="fullname" value="#{studentEditBean.student.fullName}"
+                                             class="form-control">
+                                </h:inputText>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">NameWithInitial</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">NameWithInitial</label>
 
-                        <div class="col-md-8">
-                            <h:inputText id="NameWithInitial" value="#{studentEditBean.student.nameWtInitial}"
-                                         class="form-control">
-                            </h:inputText>
+                            <div class="col-md-8">
+                                <h:inputText id="NameWithInitial" value="#{studentEditBean.student.nameWtInitial}"
+                                             class="form-control">
+                                </h:inputText>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">Date Of Birth</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Date Of Birth</label>
 
-                        <div class="col-md-8">
-                            <p:calendar value="#{studentEditBean.student.dob}" id="popupCal"
-                                        requiredMessage="Select a Date"/>
+                            <div class="col-md-8">
+                                <p:calendar value="#{studentEditBean.student.dob}" id="popupCal"
+                                            requiredMessage="Select a Date"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">Gender</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Gender</label>
 
-                        <div class="col-md-8">
-                            <h:inputText id="Gender" value="#{studentEditBean.student.gender}" class="form-control">
-                            </h:inputText>
+                            <div class="col-md-8">
+                                <h:inputText id="Gender" value="#{studentEditBean.student.gender}" class="form-control">
+                                </h:inputText>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label class="control-label col-md-4">Address</label>
+                        <div class="form-group">
+                            <label class="control-label col-md-4">Address</label>
 
-                        <div class="col-md-8">
-                            <h:inputText id="address" value="#{studentEditBean.student.address}" class="form-control">
-                            </h:inputText>
+                            <div class="col-md-8">
+                                <h:inputText id="address" value="#{studentEditBean.student.address}"
+                                             class="form-control">
+                                </h:inputText>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-4">
+                        <div class="form-group">
+                            <div class="col-md-offset-4">
 
-                            <h:form>
-                                <h:commandButton value="Back" action="#{studentEditBean.backToView}" type="submit"
-                                                 styleClass="btn btn-lg btn-default">
-                                </h:commandButton>
+                                <h:form>
+                                    <h:commandButton value="Back" action="#{studentEditBean.backToView}" type="submit"
+                                                     styleClass="btn btn-default">
+                                    </h:commandButton>
 
-                                <h:commandButton value="Update" action="#{studentEditBean.editstudent}" type="submit"
-                                                 styleClass="btn btn-lg btn-default">
-                                </h:commandButton>
-                            </h:form>
+                                    <h:commandButton value="Update" action="#{studentEditBean.editstudent}"
+                                                     type="submit"
+                                                     styleClass="btn  btn-default">
+                                    </h:commandButton>
+                                </h:form>
+                            </div>
                         </div>
-                    </div>
 
 
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 

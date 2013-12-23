@@ -6,9 +6,9 @@
                 xmlns:p="http://primefaces.org/ui"
         >
     <ui:define name="yhead">
-    <title>
-        Add New Student
-    </title>
+        <title>
+            Add New Student
+        </title>
     </ui:define>
 
     <ui:define name="student-content">
@@ -31,7 +31,10 @@
         <div class="col-md-4">
             <!--Add new student Button-->
             <a href="/yschool/faces/student/studentNew.xhtml">
-                <Button class="btn btn-info btn-lg"> Add New Student</Button>
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Student
+                </Button>
             </a>
         </div>
 
@@ -123,15 +126,15 @@
                             <h:message for="Address" errorStyle="color : red"/>
                         </div>
                     </div>
-                    <div class="form-group col-md-offset-4">
-
+                    <div class="form-group">
+                        <div class=" col-md-offset-4">
                         <h:commandButton value="Clear All" type="reset"
-                                         class="btn btn-default btn-lg"/>
+                                         class="btn btn-default"/>
 
                         <h:commandButton type="submit" value="Add This Student"
                                          action="#{studentBean.addStudent}"
-                                         class="btn btn-default btn-lg"/>
-
+                                         class="btn btn-default"/>
+                        </div>
                     </div>
                 </fieldset>
 

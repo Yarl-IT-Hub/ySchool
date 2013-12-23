@@ -5,10 +5,9 @@
 
         <div class="row" style="margin-top: 20px;">
             <ui:include src="/WEB-INF/templates/sidebar.xhtml"></ui:include>
-            <!--TODO: show sidebar active links-->
-            <!--<script type="text/javascript">-->
-            <!--makeLinkActive("analytics");-->
-            <!--</script>-->
+            <script>
+                makeSidebarActive('sidebar-examination-thumbnail');
+            </script>
             <div class="col-md-offset-2">
             <ui:insert name="examination-content">
                 Default Examination Content from examination layout.
