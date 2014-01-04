@@ -26,6 +26,7 @@ import java.util.List;
  * Time: 5:01 AM
  * To change this template use File | Settings | File Templates.
  */
+//TODO: redo due to database change to subject module
 public class SyncExamination {
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
@@ -68,10 +69,10 @@ public class SyncExamination {
         CExam cExam = new CExam();
         cExam.setSchoolNo(11086);
         cExam.setDate(exam.getDate());
-        cExam.setGrade(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getGradeIdgrade().getGrade());
-        cExam.setDivision(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom().getDivisionIddivision().getDivision());
+        cExam.setGrade(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getGradeIdgrade().getGrade());
+        cExam.setDivision(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getDivisionIddivision().getDivision());
         cExam.setTerm(exam.getTerm());
-        cExam.setSubjectId(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject().getId());
+        cExam.setSubjectId(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule().getId());
         cExam.setExamType(exam.getExamTypeIdexamType().getId());
 
         if(exam.getExamTypeIdexamType().getId()==Constants.GENERAL_EXAM){

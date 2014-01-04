@@ -16,6 +16,7 @@ import java.util.*;
  * Time: 9:05 AM
  * To change this template use File | Settings | File Templates.
  */
+//TODO: have to change according to subject modules database change.
 public class ExaminationCreator {
 
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
@@ -40,7 +41,7 @@ public class ExaminationCreator {
 
         //Using class id and subject get the relation table calsssubject id
         Subject subject = dataLayerYschool.getSubject(subjectid);
-        ClassroomSubject classSubject = getClassroomSubject(classroom, subject);
+        ClassroomModule classSubject = getClassroomSubject(classroom, subject);
         if (classSubject == null) {
             return null;
         }
@@ -81,7 +82,7 @@ public class ExaminationCreator {
         while (classiter.hasNext()) {
             Classroom classroom = (Classroom) classiter.next();
             Subject subject = dataLayerYschool.getSubject(subjectid);
-            ClassroomSubject classroomSubject = getClassroomSubject(classroom, subject);
+            ClassroomModule classroomSubject = getClassroomSubject(classroom, subject);
             if (classroomSubject != null) {
                 //iteratively enter exams for each divisions.
                 examList.add(insertExam(date, term, examType, classroomSubject));
@@ -93,27 +94,27 @@ public class ExaminationCreator {
         return null;
     }
 
-    private Exam insertExam(Date date, int term, ExamType examType, ClassroomSubject classSubject) {
+    private Exam insertExam(Date date, int term, ExamType examType, ClassroomModule classSubject) {
 
         Exam exam = YschoolDataPoolFactory.getExam();
         exam.setDate(date);
         exam.setTerm(term);
-        exam.setClassroomSubjectIdclassroomSubject(classSubject);
+        exam.setClassroomModuleIdclassroomModule(classSubject);
         exam.setExamTypeIdexamType(examType);
         dataLayerYschool.save(exam);
         dataLayerYschool.flushSession();
         return exam;
     }
 
-    private ClassroomSubject getClassroomSubject(Classroom classroom, Subject subject) {
+    private ClassroomModule getClassroomSubject(Classroom classroom, Subject subject) {
 
-        Criteria getclassCriteria = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        Criteria getclassCriteria = dataLayerYschool.createCriteria(ClassroomModule.class);
         getclassCriteria.add(Restrictions.eq("classroomIdclass", classroom));
         getclassCriteria.add(Restrictions.eq("subjectIdsubject", subject));
-        List<ClassroomSubject> list = getclassCriteria.list();
+        List<ClassroomModule> list = getclassCriteria.list();
         if (list.size() > 0) {
             int classroomsubjectid = list.get(0).getId();
-            ClassroomSubject classroomSubject = dataLayerYschool.getClassroomSubject(classroomsubjectid);
+            ClassroomModule classroomSubject = dataLayerYschool.getClassroomModule(classroomsubjectid);
             return classroomSubject;
         }
         return null;

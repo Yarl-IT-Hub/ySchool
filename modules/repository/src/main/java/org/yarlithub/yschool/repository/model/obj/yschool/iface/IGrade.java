@@ -1,6 +1,7 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
+import org.yarlithub.yschool.repository.model.obj.yschool.Module;
 
 
 /** 
@@ -58,6 +59,25 @@ public interface IGrade {
 	 * @param id the id value you wish to set
 	 */
 	void setId(final Integer id);
+
+    /**
+     * Return the value associated with the column: module.
+	 * @return A Set&lt;Module&gt; object (this.module)
+	 */
+	Set<Module> getModules();
+	
+	/**
+	 * Adds a bi-directional link of type Module to the modules set.
+	 * @param module item to add
+	 */
+	void addModule(Module module);
+
+  
+    /**  
+     * Set the value related to the column: module.
+	 * @param module the module value you wish to set
+	 */
+	void setModules(final Set<Module> module);
 
 	// end of interface
 }

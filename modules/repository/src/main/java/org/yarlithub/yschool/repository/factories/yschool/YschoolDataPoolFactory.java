@@ -20,22 +20,24 @@ public class YschoolDataPoolFactory {
 	/** Table commit order. */
     private static final Multimap<String, String> tableDeps = ArrayListMultimap.create();
 	/** DB commit order. */
-	private static final String[] commitOrder = new String[]{"User", "StudentClassroomSubject", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Marks", "ClassroomSubjectHasStaffHasRole", "ClassroomSubject", "ClassroomStudent", "ClassroomHasStaffHasRole", "Classroom", "UserRole", "Subject", "StudentSync", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "Grade", "ExamType", "ExamSync", "Exam", "Division", "ClassAnalyzerClassifier"};
+	private static final String[] commitOrder = new String[]{"StudentClassroomModule", "ClassroomModuleHasStaffHasRole", "ClassroomModule", "User", "SectionHasStaffHasRole", "SchoolHasStaffHasRole", "Results", "Module", "Marks", "ClassroomStudent", "ClassroomHasStaffHasRole", "Classroom", "UserRole", "Subject", "StudentSync", "StudentGeneralexamProfile", "Student", "StaffHasRole", "Staff", "Section", "School", "Role", "Grade", "ExamType", "ExamSync", "Exam", "Division", "ClassAnalyzerClassifier"};
 	static{
 		// Store table deps for possible use. 
  		tableDeps.put("Classroom", "Division");
  		tableDeps.put("Classroom", "Grade");
  		tableDeps.put("ClassroomHasStaffHasRole", "Classroom");
  		tableDeps.put("ClassroomHasStaffHasRole", "StaffHasRole");
+ 		tableDeps.put("ClassroomModule", "Classroom");
+ 		tableDeps.put("ClassroomModule", "Module");
+ 		tableDeps.put("ClassroomModuleHasStaffHasRole", "ClassroomModule");
+ 		tableDeps.put("ClassroomModuleHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("ClassroomStudent", "Classroom");
  		tableDeps.put("ClassroomStudent", "Student");
- 		tableDeps.put("ClassroomSubject", "Classroom");
- 		tableDeps.put("ClassroomSubject", "Subject");
- 		tableDeps.put("ClassroomSubjectHasStaffHasRole", "ClassroomSubject");
- 		tableDeps.put("ClassroomSubjectHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("ExamSync", "Exam");
  		tableDeps.put("Marks", "Exam");
  		tableDeps.put("Marks", "Student");
+ 		tableDeps.put("Module", "Grade");
+ 		tableDeps.put("Module", "Subject");
  		tableDeps.put("Results", "Exam");
  		tableDeps.put("Results", "Student");
  		tableDeps.put("SchoolHasStaffHasRole", "School");
@@ -44,8 +46,8 @@ public class YschoolDataPoolFactory {
  		tableDeps.put("SectionHasStaffHasRole", "StaffHasRole");
  		tableDeps.put("StaffHasRole", "Role");
  		tableDeps.put("StaffHasRole", "Staff");
- 		tableDeps.put("StudentClassroomSubject", "ClassroomStudent");
- 		tableDeps.put("StudentClassroomSubject", "ClassroomSubject");
+ 		tableDeps.put("StudentClassroomModule", "ClassroomModule");
+ 		tableDeps.put("StudentClassroomModule", "ClassroomStudent");
  		tableDeps.put("StudentGeneralexamProfile", "Student");
  		tableDeps.put("StudentSync", "Student");
  		tableDeps.put("User", "UserRole");
@@ -129,6 +131,77 @@ public class YschoolDataPoolFactory {
     }
 
     /**
+     * Data pool factory for ClassroomModule.
+     * @return ClassroomModule A ClassroomModule object
+     */
+    public static ClassroomModule getClassroomModule() {
+
+        ClassroomModule classroomModule =  getClassroomModule(
+	        getClassroom(), getModule());
+
+		return classroomModule;
+       
+    }
+
+     /**
+     * Data pool factory for ClassroomModule.
+     * @param classroomIdclassroom A valid Classroom object
+     * @param moduleIdmodule A valid Module object
+     * @return ClassroomModule A ClassroomModule object
+     */
+    public static ClassroomModule getClassroomModule(Classroom classroomIdclassroom, Module moduleIdmodule) {
+        ClassroomModule classroomModule = new ClassroomModule();     
+		if (classroomIdclassroom != null) {
+			classroomIdclassroom.addClassroomModule (classroomModule);
+		}
+		if (moduleIdmodule != null) {
+			moduleIdmodule.addClassroomModule (classroomModule);
+		}
+
+        return classroomModule;
+    }
+
+    /**
+     * Data pool factory for ClassroomModuleHasStaffHasRole.
+     * @return ClassroomModuleHasStaffHasRoleA ClassroomModuleHasStaffHasRole object
+     */
+    public static ClassroomModuleHasStaffHasRole getClassroomModuleHasStaffHasRole() {
+
+        ClassroomModuleHasStaffHasRole classroomModuleHasStaffHasRole = new ClassroomModuleHasStaffHasRole();    
+        
+        classroomModuleHasStaffHasRole.setId(getClassroomModuleHasStaffHasRolePK());
+
+        return classroomModuleHasStaffHasRole;
+    }
+
+    /**
+     * Data pool factory for ClassroomModuleHasStaffHasRolePK.
+     * @return ClassroomModuleHasStaffHasRolePK A ClassroomModuleHasStaffHasRolePK object
+     */
+    public static ClassroomModuleHasStaffHasRolePK getClassroomModuleHasStaffHasRolePK() {
+
+        ClassroomModuleHasStaffHasRolePK classroomModuleHasStaffHasRolePK =  getClassroomModuleHasStaffHasRolePK(
+	        getClassroomModule(), getStaffHasRole());
+
+		return classroomModuleHasStaffHasRolePK;
+       
+    }
+
+     /**
+     * Data pool factory for ClassroomModuleHasStaffHasRolePK.
+     * @param classroomModuleIdclassroomModule A valid ClassroomModule object
+     * @param staffHasRoleIdstaffHasRole A valid StaffHasRole object
+     * @return ClassroomModuleHasStaffHasRolePK A ClassroomModuleHasStaffHasRolePK object
+     */
+    public static ClassroomModuleHasStaffHasRolePK getClassroomModuleHasStaffHasRolePK(ClassroomModule classroomModuleIdclassroomModule, StaffHasRole staffHasRoleIdstaffHasRole) {
+        ClassroomModuleHasStaffHasRolePK classroomModuleHasStaffHasRolePK = new ClassroomModuleHasStaffHasRolePK();     
+        classroomModuleHasStaffHasRolePK.setClassroomModuleIdclassroomModule(classroomModuleIdclassroomModule);
+        classroomModuleHasStaffHasRolePK.setStaffHasRoleIdstaffHasRole(staffHasRoleIdstaffHasRole);
+
+        return classroomModuleHasStaffHasRolePK;
+    }
+
+    /**
      * Data pool factory for ClassroomStudent.
      * @return ClassroomStudent A ClassroomStudent object
      */
@@ -157,77 +230,6 @@ public class YschoolDataPoolFactory {
 		}
 
         return classroomStudent;
-    }
-
-    /**
-     * Data pool factory for ClassroomSubject.
-     * @return ClassroomSubject A ClassroomSubject object
-     */
-    public static ClassroomSubject getClassroomSubject() {
-
-        ClassroomSubject classroomSubject =  getClassroomSubject(
-	        getClassroom(), getSubject());
-
-		return classroomSubject;
-       
-    }
-
-     /**
-     * Data pool factory for ClassroomSubject.
-     * @param classroomIdclassroom A valid Classroom object
-     * @param subjectIdsubject A valid Subject object
-     * @return ClassroomSubject A ClassroomSubject object
-     */
-    public static ClassroomSubject getClassroomSubject(Classroom classroomIdclassroom, Subject subjectIdsubject) {
-        ClassroomSubject classroomSubject = new ClassroomSubject();     
-		if (classroomIdclassroom != null) {
-			classroomIdclassroom.addClassroomSubject (classroomSubject);
-		}
-		if (subjectIdsubject != null) {
-			subjectIdsubject.addClassroomSubject (classroomSubject);
-		}
-
-        return classroomSubject;
-    }
-
-    /**
-     * Data pool factory for ClassroomSubjectHasStaffHasRole.
-     * @return ClassroomSubjectHasStaffHasRoleA ClassroomSubjectHasStaffHasRole object
-     */
-    public static ClassroomSubjectHasStaffHasRole getClassroomSubjectHasStaffHasRole() {
-
-        ClassroomSubjectHasStaffHasRole classroomSubjectHasStaffHasRole = new ClassroomSubjectHasStaffHasRole();    
-        
-        classroomSubjectHasStaffHasRole.setId(getClassroomSubjectHasStaffHasRolePK());
-
-        return classroomSubjectHasStaffHasRole;
-    }
-
-    /**
-     * Data pool factory for ClassroomSubjectHasStaffHasRolePK.
-     * @return ClassroomSubjectHasStaffHasRolePK A ClassroomSubjectHasStaffHasRolePK object
-     */
-    public static ClassroomSubjectHasStaffHasRolePK getClassroomSubjectHasStaffHasRolePK() {
-
-        ClassroomSubjectHasStaffHasRolePK classroomSubjectHasStaffHasRolePK =  getClassroomSubjectHasStaffHasRolePK(
-	        getClassroomSubject(), getStaffHasRole());
-
-		return classroomSubjectHasStaffHasRolePK;
-       
-    }
-
-     /**
-     * Data pool factory for ClassroomSubjectHasStaffHasRolePK.
-     * @param classroomSubjectIdclassroomSubject A valid ClassroomSubject object
-     * @param staffHasRoleIdstaffHasRole A valid StaffHasRole object
-     * @return ClassroomSubjectHasStaffHasRolePK A ClassroomSubjectHasStaffHasRolePK object
-     */
-    public static ClassroomSubjectHasStaffHasRolePK getClassroomSubjectHasStaffHasRolePK(ClassroomSubject classroomSubjectIdclassroomSubject, StaffHasRole staffHasRoleIdstaffHasRole) {
-        ClassroomSubjectHasStaffHasRolePK classroomSubjectHasStaffHasRolePK = new ClassroomSubjectHasStaffHasRolePK();     
-        classroomSubjectHasStaffHasRolePK.setClassroomSubjectIdclassroomSubject(classroomSubjectIdclassroomSubject);
-        classroomSubjectHasStaffHasRolePK.setStaffHasRoleIdstaffHasRole(staffHasRoleIdstaffHasRole);
-
-        return classroomSubjectHasStaffHasRolePK;
     }
 
     /**
@@ -279,14 +281,14 @@ public class YschoolDataPoolFactory {
 
      /**
      * Data pool factory for Exam.
-     * @param classroomSubjectIdclassroomSubject A valid ClassroomSubject object
+     * @param classroomModuleIdclassroomModule A valid ClassroomModule object
      * @param examTypeIdexamType A valid ExamType object
      * @return Exam A Exam object
      */
-    public static Exam getExam(ClassroomSubject classroomSubjectIdclassroomSubject, ExamType examTypeIdexamType) {
+    public static Exam getExam(ClassroomModule classroomModuleIdclassroomModule, ExamType examTypeIdexamType) {
         Exam exam = new Exam();     
-		if (classroomSubjectIdclassroomSubject != null) {
-			classroomSubjectIdclassroomSubject.addExam (exam);
+		if (classroomModuleIdclassroomModule != null) {
+			classroomModuleIdclassroomModule.addExam (exam);
 		}
         exam.setDate(BasicDataGenerator.generateDate());
 		if (examTypeIdexamType != null) {
@@ -386,6 +388,39 @@ public class YschoolDataPoolFactory {
 		}
 
         return marks;
+    }
+
+    /**
+     * Data pool factory for Module.
+     * @return Module A Module object
+     */
+    public static Module getModule() {
+
+        Module module =  getModule(
+	        getGrade(), getSubject());
+
+		return module;
+       
+    }
+
+     /**
+     * Data pool factory for Module.
+     * @param gradeIdgrade A valid Grade object
+     * @param subjectIdsubject A valid Subject object
+     * @return Module A Module object
+     */
+    public static Module getModule(Grade gradeIdgrade, Subject subjectIdsubject) {
+        Module module = new Module();     
+		if (gradeIdgrade != null) {
+			gradeIdgrade.addModule (module);
+		}
+        module.setIsOptional(BasicDataGenerator.generateRandomBoolean());
+        module.setModifiedTime(BasicDataGenerator.generateDate());
+		if (subjectIdsubject != null) {
+			subjectIdsubject.addModule (module);
+		}
+
+        return module;
     }
 
     /**
@@ -621,35 +656,35 @@ public class YschoolDataPoolFactory {
     }
 
     /**
-     * Data pool factory for StudentClassroomSubject.
-     * @return StudentClassroomSubject A StudentClassroomSubject object
+     * Data pool factory for StudentClassroomModule.
+     * @return StudentClassroomModule A StudentClassroomModule object
      */
-    public static StudentClassroomSubject getStudentClassroomSubject() {
+    public static StudentClassroomModule getStudentClassroomModule() {
 
-        StudentClassroomSubject studentClassroomSubject =  getStudentClassroomSubject(
-	        getClassroomStudent(), getClassroomSubject());
+        StudentClassroomModule studentClassroomModule =  getStudentClassroomModule(
+	        getClassroomModule(), getClassroomStudent());
 
-		return studentClassroomSubject;
+		return studentClassroomModule;
        
     }
 
      /**
-     * Data pool factory for StudentClassroomSubject.
+     * Data pool factory for StudentClassroomModule.
+     * @param classroomModuleIdclassroomModule A valid ClassroomModule object
      * @param classroomStudentIdclassroomStudent A valid ClassroomStudent object
-     * @param classroomSubjectIdclassroomSubject A valid ClassroomSubject object
-     * @return StudentClassroomSubject A StudentClassroomSubject object
+     * @return StudentClassroomModule A StudentClassroomModule object
      */
-    public static StudentClassroomSubject getStudentClassroomSubject(ClassroomStudent classroomStudentIdclassroomStudent, ClassroomSubject classroomSubjectIdclassroomSubject) {
-        StudentClassroomSubject studentClassroomSubject = new StudentClassroomSubject();     
+    public static StudentClassroomModule getStudentClassroomModule(ClassroomModule classroomModuleIdclassroomModule, ClassroomStudent classroomStudentIdclassroomStudent) {
+        StudentClassroomModule studentClassroomModule = new StudentClassroomModule();     
+		if (classroomModuleIdclassroomModule != null) {
+			classroomModuleIdclassroomModule.addStudentClassroomModule (studentClassroomModule);
+		}
 		if (classroomStudentIdclassroomStudent != null) {
-			classroomStudentIdclassroomStudent.addStudentClassroomSubject (studentClassroomSubject);
+			classroomStudentIdclassroomStudent.addStudentClassroomModule (studentClassroomModule);
 		}
-		if (classroomSubjectIdclassroomSubject != null) {
-			classroomSubjectIdclassroomSubject.addStudentClassroomSubject (studentClassroomSubject);
-		}
-        studentClassroomSubject.setModifiedTime(BasicDataGenerator.generateDate());
+        studentClassroomModule.setModifiedTime(BasicDataGenerator.generateDate());
 
-        return studentClassroomSubject;
+        return studentClassroomModule;
     }
 
     /**
@@ -720,10 +755,9 @@ public class YschoolDataPoolFactory {
 
         Subject subject = new Subject();    
         
-        subject.setIsOptional(BasicDataGenerator.generateRandomBoolean());
         subject.setModifiedTime(BasicDataGenerator.generateDate());
-        subject.setName(BasicDataGenerator.generateRandomString(45));
-        subject.setSubjectCode(BasicDataGenerator.generateRandomString(45));
+        subject.setSubjectCode(BasicDataGenerator.generateRandomString(100));
+        subject.setSubjectName(BasicDataGenerator.generateRandomString(100));
 
         return subject;
     }

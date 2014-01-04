@@ -23,8 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroom;
 
 
@@ -53,10 +53,10 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	private Set<ClassroomHasStaffHasRole> classroomHasStaffHasRoles = new HashSet<ClassroomHasStaffHasRole>();
 
 	/** Field mapping. */
-	private Set<ClassroomStudent> classroomStudents = new HashSet<ClassroomStudent>();
+	private Set<ClassroomModule> classroomModules = new HashSet<ClassroomModule>();
 
 	/** Field mapping. */
-	private Set<ClassroomSubject> classroomSubjects = new HashSet<ClassroomSubject>();
+	private Set<ClassroomStudent> classroomStudents = new HashSet<ClassroomStudent>();
 
 	/** Field mapping. */
 	private Division divisionIddivision;
@@ -146,6 +146,37 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	}
 
     /**
+     * Return the value associated with the column: classroomModule.
+	 * @return A Set&lt;ClassroomModule&gt; object (this.classroomModule)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomIdclassroom"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<ClassroomModule> getClassroomModules() {
+		return this.classroomModules;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type ClassroomModule to the classroomModules set.
+	 * @param classroomModule item to add
+	 */
+	public void addClassroomModule(ClassroomModule classroomModule) {
+		classroomModule.setClassroomIdclassroom(this);
+		this.classroomModules.add(classroomModule);
+	}
+
+  
+    /**  
+     * Set the value related to the column: classroomModule.
+	 * @param classroomModule the classroomModule value you wish to set
+	 */
+	public void setClassroomModules(final Set<ClassroomModule> classroomModule) {
+		this.classroomModules = classroomModule;
+	}
+
+    /**
      * Return the value associated with the column: classroomStudent.
 	 * @return A Set&lt;ClassroomStudent&gt; object (this.classroomStudent)
 	 */
@@ -174,37 +205,6 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 	 */
 	public void setClassroomStudents(final Set<ClassroomStudent> classroomStudent) {
 		this.classroomStudents = classroomStudent;
-	}
-
-    /**
-     * Return the value associated with the column: classroomSubject.
-	 * @return A Set&lt;ClassroomSubject&gt; object (this.classroomSubject)
-	 */
- 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomIdclassroom"  )
- 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
-	@Basic( optional = false )
-	@Column( nullable = false  )
-	public Set<ClassroomSubject> getClassroomSubjects() {
-		return this.classroomSubjects;
-		
-	}
-	
-	/**
-	 * Adds a bi-directional link of type ClassroomSubject to the classroomSubjects set.
-	 * @param classroomSubject item to add
-	 */
-	public void addClassroomSubject(ClassroomSubject classroomSubject) {
-		classroomSubject.setClassroomIdclassroom(this);
-		this.classroomSubjects.add(classroomSubject);
-	}
-
-  
-    /**  
-     * Set the value related to the column: classroomSubject.
-	 * @param classroomSubject the classroomSubject value you wish to set
-	 */
-	public void setClassroomSubjects(final Set<ClassroomSubject> classroomSubject) {
-		this.classroomSubjects = classroomSubject;
 	}
 
     /**
@@ -363,11 +363,11 @@ public class Classroom implements Cloneable, Serializable, IPojoGenEntity, IClas
 		if (this.getClassroomHasStaffHasRoles() != null) {
 			copy.getClassroomHasStaffHasRoles().addAll(this.getClassroomHasStaffHasRoles());
 		}
+		if (this.getClassroomModules() != null) {
+			copy.getClassroomModules().addAll(this.getClassroomModules());
+		}
 		if (this.getClassroomStudents() != null) {
 			copy.getClassroomStudents().addAll(this.getClassroomStudents());
-		}
-		if (this.getClassroomSubjects() != null) {
-			copy.getClassroomSubjects().addAll(this.getClassroomSubjects());
 		}
 		copy.setDivisionIddivision(this.getDivisionIddivision());
 		copy.setGradeIdgrade(this.getGradeIdgrade());
