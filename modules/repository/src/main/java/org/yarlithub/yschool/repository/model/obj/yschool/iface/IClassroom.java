@@ -2,8 +2,8 @@ package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Date;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomStudent;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
 import org.yarlithub.yschool.repository.model.obj.yschool.Division;
 import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 import org.yarlithub.yschool.repository.model.obj.yschool.Section;
@@ -38,6 +38,25 @@ public interface IClassroom {
 	void setClassroomHasStaffHasRoles(final Set<ClassroomHasStaffHasRole> classroomHasStaffHasRole);
 
     /**
+     * Return the value associated with the column: classroomModule.
+	 * @return A Set&lt;ClassroomModule&gt; object (this.classroomModule)
+	 */
+	Set<ClassroomModule> getClassroomModules();
+	
+	/**
+	 * Adds a bi-directional link of type ClassroomModule to the classroomModules set.
+	 * @param classroomModule item to add
+	 */
+	void addClassroomModule(ClassroomModule classroomModule);
+
+  
+    /**  
+     * Set the value related to the column: classroomModule.
+	 * @param classroomModule the classroomModule value you wish to set
+	 */
+	void setClassroomModules(final Set<ClassroomModule> classroomModule);
+
+    /**
      * Return the value associated with the column: classroomStudent.
 	 * @return A Set&lt;ClassroomStudent&gt; object (this.classroomStudent)
 	 */
@@ -55,25 +74,6 @@ public interface IClassroom {
 	 * @param classroomStudent the classroomStudent value you wish to set
 	 */
 	void setClassroomStudents(final Set<ClassroomStudent> classroomStudent);
-
-    /**
-     * Return the value associated with the column: classroomSubject.
-	 * @return A Set&lt;ClassroomSubject&gt; object (this.classroomSubject)
-	 */
-	Set<ClassroomSubject> getClassroomSubjects();
-	
-	/**
-	 * Adds a bi-directional link of type ClassroomSubject to the classroomSubjects set.
-	 * @param classroomSubject item to add
-	 */
-	void addClassroomSubject(ClassroomSubject classroomSubject);
-
-  
-    /**  
-     * Set the value related to the column: classroomSubject.
-	 * @param classroomSubject the classroomSubject value you wish to set
-	 */
-	void setClassroomSubjects(final Set<ClassroomSubject> classroomSubject);
 
     /**
      * Return the value associated with the column: divisionIddivision.

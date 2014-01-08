@@ -37,67 +37,67 @@ public class AnalyticsService {
     private static final Logger logger = LoggerFactory.getLogger(AnalyticsService.class);
 
     @Transactional
-    public List<ClassroomSubject> getOLSubjects(Student student) {
+    public List<ClassroomModule> getOLSubjects(Student student) {
 
         YAnalyzer yAnalyzer = new YAnalyzer();
-        List<ClassroomSubject> classroomSubjectList = yAnalyzer.getOLSubjects(student);
+        List<ClassroomModule> ClassroomModuleList = yAnalyzer.getOLSubjects(student);
 
-        Iterator<ClassroomSubject> classroomSubjectIterator = classroomSubjectList.iterator();
-        while (classroomSubjectIterator.hasNext()) {
-            ClassroomSubject classroomSubject = classroomSubjectIterator.next();
-            Hibernate.initialize(classroomSubject.getSubjectIdsubject());
-            // Hibernate.initialize(classroomSubject.getExams());
+        Iterator<ClassroomModule> ClassroomModuleIterator = ClassroomModuleList.iterator();
+        while (ClassroomModuleIterator.hasNext()) {
+            ClassroomModule ClassroomModule = ClassroomModuleIterator.next();
+            Hibernate.initialize(ClassroomModule.getModuleIdmodule());
+            // Hibernate.initialize(ClassroomModule.getExams());
         }
 
-        return classroomSubjectList;
+        return ClassroomModuleList;
     }
 
     @Transactional
-    public List<ClassroomSubject> getOLSubjectsEleven(Student student) {
+    public List<ClassroomModule> getOLSubjectsEleven(Student student) {
 
         YAnalyzer yAnalyzer = new YAnalyzer();
-        List<ClassroomSubject> classroomSubjectList = yAnalyzer.getOLSubjectsGradeEleven(student);
+        List<ClassroomModule> ClassroomModuleList = yAnalyzer.getOLSubjectsGradeEleven(student);
 
-        Iterator<ClassroomSubject> classroomSubjectIterator = classroomSubjectList.iterator();
-        while (classroomSubjectIterator.hasNext()) {
-            ClassroomSubject classroomSubject = classroomSubjectIterator.next();
-            Hibernate.initialize(classroomSubject.getSubjectIdsubject());
-            // Hibernate.initialize(classroomSubject.getExams());
+        Iterator<ClassroomModule> ClassroomModuleIterator = ClassroomModuleList.iterator();
+        while (ClassroomModuleIterator.hasNext()) {
+            ClassroomModule ClassroomModule = ClassroomModuleIterator.next();
+            Hibernate.initialize(ClassroomModule.getModuleIdmodule());
+            // Hibernate.initialize(ClassroomModule.getExams());
         }
 
-        return classroomSubjectList;
+        return ClassroomModuleList;
     }
 
     @Transactional
-    public List<ClassroomSubject> getALSubjects(Student student) {
+    public List<ClassroomModule> getALSubjects(Student student) {
 
         YAnalyzer yAnalyzer = new YAnalyzer();
-        List<ClassroomSubject> classroomSubjectList = yAnalyzer.getALSubjects(student);
-        if (classroomSubjectList == null) {
+        List<ClassroomModule> ClassroomModuleList = yAnalyzer.getALSubjects(student);
+        if (ClassroomModuleList == null) {
             /*some students are unknown at AL streams yet*/
             return null;
         }
-        Iterator<ClassroomSubject> classroomSubjectIterator = classroomSubjectList.iterator();
-        while (classroomSubjectIterator.hasNext()) {
-            ClassroomSubject classroomSubject = classroomSubjectIterator.next();
-            Hibernate.initialize(classroomSubject.getSubjectIdsubject());
-            // Hibernate.initialize(classroomSubject.getExams());
+        Iterator<ClassroomModule> ClassroomModuleIterator = ClassroomModuleList.iterator();
+        while (ClassroomModuleIterator.hasNext()) {
+            ClassroomModule ClassroomModule = ClassroomModuleIterator.next();
+            Hibernate.initialize(ClassroomModule.getModuleIdmodule());
+            // Hibernate.initialize(ClassroomModule.getExams());
         }
 
-        return classroomSubjectList;
+        return ClassroomModuleList;
     }
 
     @Transactional
-    public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+    public String getALSubjectsResult(Student student, ClassroomModule ClassroomModule) {
         YAnalyzer yAnalyzer = new YAnalyzer();
-        return yAnalyzer.getALSubjectsResult(student, classroomSubject);
+        return yAnalyzer.getALSubjectsResult(student, ClassroomModule);
 
     }
 
     @Transactional
-    public String getOLSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+    public String getOLSubjectsResult(Student student, ClassroomModule ClassroomModule) {
         YAnalyzer yAnalyzer = new YAnalyzer();
-        return yAnalyzer.getOLSubjectsResult(student, classroomSubject);
+        return yAnalyzer.getOLSubjectsResult(student, ClassroomModule);
 
     }
 
@@ -112,7 +112,7 @@ public class AnalyticsService {
         while (classroomStudentIterator.hasNext()) {
             ClassroomStudent classroomStudent = classroomStudentIterator.next();
             Hibernate.initialize(classroomStudent.getClassroomIdclassroom());
-            Hibernate.initialize(classroomStudent.getStudentClassroomSubjects());
+            Hibernate.initialize(classroomStudent.getStudentClassroomModules());
         }
         return student;
     }
@@ -183,8 +183,8 @@ public class AnalyticsService {
         Iterator<Exam> iterator = examList.iterator();
         while (iterator.hasNext()) {
             Exam exam = iterator.next();
-            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getClassroomIdclassroom());
-            Hibernate.initialize(exam.getClassroomSubjectIdclassroomSubject().getSubjectIdsubject());
+            Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom());
+            Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule());
             Hibernate.initialize(exam.getExamTypeIdexamType());
             Hibernate.initialize(exam.getResultss());
             Hibernate.initialize(exam.getMarkss());
@@ -234,9 +234,9 @@ public class AnalyticsService {
     }
 
     @Transactional
-    public double getTermMarksForOLSub(Student student, ClassroomSubject classroomSubject, int term) {
+    public double getTermMarksForOLSub(Student student, ClassroomModule ClassroomModule, int term) {
         YAnalyzer yAnalyzer = new YAnalyzer();
-        return yAnalyzer.getTermMarksForOLSub(student, classroomSubject, term);
+        return yAnalyzer.getTermMarksForOLSub(student, ClassroomModule, term);
     }
 
 

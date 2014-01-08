@@ -1,6 +1,6 @@
 package org.yarlithub.yschool.analytics.core;
 
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.StudentGeneralexamProfile;
 
@@ -13,7 +13,7 @@ import javax.faces.model.DataModel;
  * Time: 2:08 PM
  * To change this template use File | Settings | File Templates.
  */
-
+//TODO: redo due to database change to subject moduley
 public class MatchingStudentProfile {
 
     private Student student;

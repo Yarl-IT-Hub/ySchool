@@ -1,6 +1,6 @@
 package org.yarlithub.yschool.analytics.core;
 
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,21 +9,22 @@ import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
  * Time: 6:27 PM
  * To change this template use File | Settings | File Templates.
  */
+//TODO: redo due to database change to subject module
 public class SubjectResult {
-    private ClassroomSubject classroomSubject;
+    private ClassroomModule classroomSubject;
     private String result;
 
-    public SubjectResult(ClassroomSubject classroomSubject, String result) {
+    public SubjectResult(ClassroomModule classroomSubject, String result) {
         this.classroomSubject = classroomSubject;
 
         this.result = result;
     }
 
-    public ClassroomSubject getClassroomSubject() {
+    public ClassroomModule getClassroomSubject() {
         return classroomSubject;
     }
 
-    public void setClassroomSubject(ClassroomSubject classroomSubject) {
+    public void setClassroomSubject(ClassroomModule classroomSubject) {
         this.classroomSubject = classroomSubject;
     }
 

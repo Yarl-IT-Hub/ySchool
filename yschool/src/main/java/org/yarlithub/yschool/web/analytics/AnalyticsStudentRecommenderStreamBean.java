@@ -6,7 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.analytics.core.MatchingStudentProfile;
 import org.yarlithub.yschool.analytics.core.SubjectResult;
 import org.yarlithub.yschool.analytics.core.YAnalyzer;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 import org.yarlithub.yschool.service.StudentService;
@@ -156,7 +157,7 @@ public class AnalyticsStudentRecommenderStreamBean implements Serializable {
         // this.matchingStudentGeneralExamProfiles = new ListDataModel(analyticsService.getStudentGeneralExamProfileByStudentList(matchingStudentProfiles));
 
 
-        // matchingStudentProfile.setAlSubjects(new ListDataModel<ClassroomSubject>(analyticsService.getALSubjects(this.getStudent())));
+        // matchingStudentProfile.setAlSubjects(new ListDataModel<ClassroomModule>(analyticsService.getALSubjects(this.getStudent())));
         List<SubjectResult> subjectResultListAL = null;
         List<SubjectResult> subjectResultListOL = null;
         List<MatchingStudentProfile> matchingStudentProfileClass = new ArrayList<>();
@@ -165,8 +166,8 @@ public class AnalyticsStudentRecommenderStreamBean implements Serializable {
         List<MatchingStudentProfile> matchingStudentProfileClassMaths = new ArrayList<>();
         List<MatchingStudentProfile> matchingStudentProfileClassScience = new ArrayList<>();
 
-        List<ClassroomSubject> classroomALSubjectList = new ArrayList<>();
-        List<ClassroomSubject> classroomOLSubjectList = new ArrayList<>();
+        List<ClassroomModule> classroomALSubjectList = new ArrayList<>();
+        List<ClassroomModule> classroomOLSubjectList = new ArrayList<>();
         Student student = new Student();
         MatchingStudentProfile matchingStudentProfile;
 
@@ -186,10 +187,10 @@ public class AnalyticsStudentRecommenderStreamBean implements Serializable {
             classroomALSubjectList = analyticsService.getALSubjects(student);
 
             if (classroomALSubjectList != null) {
-                Iterator<ClassroomSubject> classroomALSubjectIterator = classroomALSubjectList.iterator();
+                Iterator<ClassroomModule> classroomALSubjectIterator = classroomALSubjectList.iterator();
                 while (classroomALSubjectIterator.hasNext()) {
 
-                    ClassroomSubject classroomALSubject = classroomALSubjectIterator.next();
+                    ClassroomModule classroomALSubject = classroomALSubjectIterator.next();
                     String result = analyticsService.getALSubjectsResult(student, classroomALSubject);
                     SubjectResult subjectResult = new SubjectResult(classroomALSubject, result);
                     subjectResultListAL.add(subjectResult);
@@ -201,10 +202,10 @@ public class AnalyticsStudentRecommenderStreamBean implements Serializable {
 
 
                 if (classroomOLSubjectList != null) {
-                    Iterator<ClassroomSubject> classroomOLSubjectIterator = classroomOLSubjectList.iterator();
+                    Iterator<ClassroomModule> classroomOLSubjectIterator = classroomOLSubjectList.iterator();
                     while (classroomOLSubjectIterator.hasNext()) {
 
-                        ClassroomSubject classroomOLSubject = classroomOLSubjectIterator.next();
+                        ClassroomModule classroomOLSubject = classroomOLSubjectIterator.next();
                         String result = analyticsService.getOLSubjectsResult(student, classroomOLSubject);
                         SubjectResult subjectResult = new SubjectResult(classroomOLSubject, result);
                         subjectResultListOL.add(subjectResult);

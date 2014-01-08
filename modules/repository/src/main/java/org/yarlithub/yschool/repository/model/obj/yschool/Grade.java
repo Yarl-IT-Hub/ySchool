@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
+import org.yarlithub.yschool.repository.model.obj.yschool.Module;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IGrade;
 
 
@@ -51,6 +52,9 @@ public class Grade implements Cloneable, Serializable, IPojoGenEntity, IGrade {
 	private Integer grade;
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
+	/** Field mapping. */
+	private Set<Module> modules = new HashSet<Module>();
+
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -171,6 +175,37 @@ public class Grade implements Cloneable, Serializable, IPojoGenEntity, IGrade {
 		this.id = id;
 	}
 
+    /**
+     * Return the value associated with the column: module.
+	 * @return A Set&lt;Module&gt; object (this.module)
+	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "gradeIdgrade"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+	@Basic( optional = false )
+	@Column( nullable = false  )
+	public Set<Module> getModules() {
+		return this.modules;
+		
+	}
+	
+	/**
+	 * Adds a bi-directional link of type Module to the modules set.
+	 * @param module item to add
+	 */
+	public void addModule(Module module) {
+		module.setGradeIdgrade(this);
+		this.modules.add(module);
+	}
+
+  
+    /**  
+     * Set the value related to the column: module.
+	 * @param module the module value you wish to set
+	 */
+	public void setModules(final Set<Module> module) {
+		this.modules = module;
+	}
+
 
    /**
     * Deep copy.
@@ -187,6 +222,9 @@ public class Grade implements Cloneable, Serializable, IPojoGenEntity, IGrade {
 		}
 		copy.setGrade(this.getGrade());
 		copy.setId(this.getId());
+		if (this.getModules() != null) {
+			copy.getModules().addAll(this.getModules());
+		}
 		return copy;
 	}
 	
@@ -201,7 +239,7 @@ public class Grade implements Cloneable, Serializable, IPojoGenEntity, IGrade {
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("grade: " + this.getGrade() + ", ");
-		sb.append("id: " + this.getId());
+		sb.append("id: " + this.getId() + ", ");
 		return sb.toString();		
 	}
 
