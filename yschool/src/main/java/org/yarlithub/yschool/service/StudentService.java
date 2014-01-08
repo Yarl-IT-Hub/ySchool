@@ -1,17 +1,16 @@
 package org.yarlithub.yschool.service;
 
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.student.core.StudentCreator;
 import org.yarlithub.yschool.student.core.StudentHelper;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -67,6 +66,12 @@ public class StudentService {
         StudentHelper studentHelper=new StudentHelper();
         studentHelper.studentDelete(student);
         return student;
+    }
+    @Transactional
+    public List<Student> getStudentsNameLike(String regx, int maxNo) {
+        StudentHelper studentHelper = new StudentHelper();
+        return studentHelper.getStudentsNameLike(regx,maxNo);
+
     }
 }
 
