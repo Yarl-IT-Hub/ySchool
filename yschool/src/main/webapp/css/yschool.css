@@ -3,8 +3,8 @@
 }
 
 .thumbnail:hover {
-     background-color: rgb(230, 204, 244);
- }
+    background-color: rgb(230, 204, 244);
+}
 
 a:hover{
     text-decoration: none;
@@ -14,10 +14,35 @@ a:hover{
     background-color: rgb(70, 20, 100);
 }
 
-.ynavbar-dark a:hover, .ynavbar-active{
-    background-color: rgb(80, 20, 110);
+.ynavbar-dark .navbar-header a, .ynavbar-dark .navbar-collapse .navbar-topmenu{
+    color: rgb(235,215,245);
 }
 
-a .ynavbar-dark:hover, .ynavbar-active{
-    background-color: rgb(80, 20, 110);
+.ynavbar-dark .navbar-header a:hover, .ynavbar-dark .navbar-collapse .navbar-topmenu:hover {
+    color: rgb(255,255,255);
+    background-color: rgb(80, 20, 120);
+}
+
+#navbar-dark-top-search{
+    border: 0px none;
+    border-radius: 0px;
+    box-shadow: 5px 5px 15px rgb(150, 80, 150) inset;
+    background: rgb(80, 20, 110);
+}
+
+#navbar-dark-top-search-addon{
+    border: 0px none;
+    border-radius: 0px;
+    box-shadow: -5px 5px 15px rgb(150, 80, 150) inset;
+    background: rgb(80, 20, 110);
+    color: rgb(235,215,245);
+}
+
+#navbar-dark-top-search:focus{
+    border: 0px none;
+    border-radius: 0px;
+    box-shadow: 0px 10px 10px rgb(230, 180, 255) inset;
+    background: rgb(255, 255, 240);
+    width:200%;
+    float:right;
 }
