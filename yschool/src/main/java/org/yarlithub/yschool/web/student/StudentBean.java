@@ -3,15 +3,14 @@ package org.yarlithub.yschool.web.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.yarlithub.yschool.service.StudentService;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.service.StudentService;
+
 import javax.faces.bean.ManagedBean;
-import java.io.Serializable;
-import java.lang.String;
-import java.util.Date;
-import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import java.io.Serializable;
+import java.util.Date;
 
 
 /**
@@ -31,9 +30,20 @@ public class StudentBean implements Serializable {
     private Date dob;
     private String gender;
     private String address;
+    private Student student;
+    private String searchKey = null;
+    private DataModel<Student>studentsSearchResultAjax;
 
     @Autowired
     private StudentService studentService;
+
+    @Autowired
+    private StudentController studentController;
+
+    public StudentBean() {
+        super();
+        studentsSearchResultAjax = new ListDataModel<Student>();
+    }
 
     public String getAdmission_No() {
         return admission_No;
@@ -89,6 +99,44 @@ public class StudentBean implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
+
+    public DataModel<Student> getStudentsSearchResultAjax() {
+        return studentsSearchResultAjax;
+    }
+
+    public void setStudentsSearchResultAjax(DataModel<Student> studentsSearchResultAjax) {
+        this.studentsSearchResultAjax = studentsSearchResultAjax;
+    }
+
+
+    public String viewStudentAjax(){
+        studentsSearchResultAjax = new ListDataModel<Student>(studentService.getStudentsNameLike(searchKey,10));
+        setStudent(studentsSearchResultAjax.getRowData());
+        studentController.setStudent(student);
+        return "viewStudentAjax";
+    }
+
+    public boolean preLoad() {
+
+        this.setStudent(studentController.getStudent());
+        return  true;
     }
 
 
