@@ -20,7 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.Module;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISubject;
 
 
@@ -34,7 +34,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.ISubject;
 public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubject {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977408L;
+	private static final long serialVersionUID = -558977407L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -46,18 +46,16 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	
 
 	/** Field mapping. */
-	private Set<ClassroomSubject> classroomSubjects = new HashSet<ClassroomSubject>();
-
-	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
-	/** Field mapping. */
-	private Boolean isOptional;
 	/** Field mapping. */
 	private Date modifiedTime;
 	/** Field mapping. */
-	private String name;
+	private Set<Module> modules = new HashSet<Module>();
+
 	/** Field mapping. */
 	private String subjectCode;
+	/** Field mapping. */
+	private String subjectName;
 	/**
 	 * Default constructor, mainly for hibernate use.
 	 */
@@ -75,13 +73,13 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	/** Constructor taking a given ID.
 	 * @param id Integer object;
 	 * @param modifiedTime Date object;
-	 * @param name String object;
+	 * @param subjectName String object;
 	 */
-	public Subject(Integer id, Date modifiedTime, String name) {
+	public Subject(Integer id, Date modifiedTime, String subjectName) {
 
 		this.id = id;
 		this.modifiedTime = modifiedTime;
-		this.name = name;
+		this.subjectName = subjectName;
 	}
 	
  
@@ -96,37 +94,6 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		return Subject.class;
 	}
  
-
-    /**
-     * Return the value associated with the column: classroomSubject.
-	 * @return A Set&lt;ClassroomSubject&gt; object (this.classroomSubject)
-	 */
- 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "subjectIdsubject"  )
- 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
-	@Basic( optional = false )
-	@Column( nullable = false  )
-	public Set<ClassroomSubject> getClassroomSubjects() {
-		return this.classroomSubjects;
-		
-	}
-	
-	/**
-	 * Adds a bi-directional link of type ClassroomSubject to the classroomSubjects set.
-	 * @param classroomSubject item to add
-	 */
-	public void addClassroomSubject(ClassroomSubject classroomSubject) {
-		classroomSubject.setSubjectIdsubject(this);
-		this.classroomSubjects.add(classroomSubject);
-	}
-
-  
-    /**  
-     * Set the value related to the column: classroomSubject.
-	 * @param classroomSubject the classroomSubject value you wish to set
-	 */
-	public void setClassroomSubjects(final Set<ClassroomSubject> classroomSubject) {
-		this.classroomSubjects = classroomSubject;
-	}
 
     /**
      * Return the value associated with the column: id.
@@ -160,27 +127,6 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	}
 
     /**
-     * Return the value associated with the column: isOptional.
-	 * @return A Boolean object (this.isOptional)
-	 */
-	@Basic( optional = true )
-	@Column( name = "is_optional"  )
-	public Boolean isIsOptional() {
-		return this.isOptional;
-		
-	}
-	
-
-  
-    /**  
-     * Set the value related to the column: isOptional.
-	 * @param isOptional the isOptional value you wish to set
-	 */
-	public void setIsOptional(final Boolean isOptional) {
-		this.isOptional = isOptional;
-	}
-
-    /**
      * Return the value associated with the column: modifiedTime.
 	 * @return A Date object (this.modifiedTime)
 	 */
@@ -202,24 +148,34 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	}
 
     /**
-     * Return the value associated with the column: name.
-	 * @return A String object (this.name)
+     * Return the value associated with the column: module.
+	 * @return A Set&lt;Module&gt; object (this.module)
 	 */
+ 	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "subjectIdsubject"  )
+ 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
-	@Column( nullable = false, length = 45  )
-	public String getName() {
-		return this.name;
+	@Column( nullable = false  )
+	public Set<Module> getModules() {
+		return this.modules;
 		
 	}
 	
+	/**
+	 * Adds a bi-directional link of type Module to the modules set.
+	 * @param module item to add
+	 */
+	public void addModule(Module module) {
+		module.setSubjectIdsubject(this);
+		this.modules.add(module);
+	}
 
   
     /**  
-     * Set the value related to the column: name.
-	 * @param name the name value you wish to set
+     * Set the value related to the column: module.
+	 * @param module the module value you wish to set
 	 */
-	public void setName(final String name) {
-		this.name = name;
+	public void setModules(final Set<Module> module) {
+		this.modules = module;
 	}
 
     /**
@@ -227,7 +183,7 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 	 * @return A String object (this.subjectCode)
 	 */
 	@Basic( optional = true )
-	@Column( name = "subject_code", length = 45  )
+	@Column( name = "subject_code", length = 100  )
 	public String getSubjectCode() {
 		return this.subjectCode;
 		
@@ -243,6 +199,27 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		this.subjectCode = subjectCode;
 	}
 
+    /**
+     * Return the value associated with the column: subjectName.
+	 * @return A String object (this.subjectName)
+	 */
+	@Basic( optional = false )
+	@Column( name = "subject_name", nullable = false, length = 100  )
+	public String getSubjectName() {
+		return this.subjectName;
+		
+	}
+	
+
+  
+    /**  
+     * Set the value related to the column: subjectName.
+	 * @param subjectName the subjectName value you wish to set
+	 */
+	public void setSubjectName(final String subjectName) {
+		this.subjectName = subjectName;
+	}
+
 
    /**
     * Deep copy.
@@ -254,14 +231,13 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		
         final Subject copy = (Subject)super.clone();
 
-		if (this.getClassroomSubjects() != null) {
-			copy.getClassroomSubjects().addAll(this.getClassroomSubjects());
-		}
 		copy.setId(this.getId());
-		copy.setIsOptional(this.isIsOptional());
 		copy.setModifiedTime(this.getModifiedTime());
-		copy.setName(this.getName());
+		if (this.getModules() != null) {
+			copy.getModules().addAll(this.getModules());
+		}
 		copy.setSubjectCode(this.getSubjectCode());
+		copy.setSubjectName(this.getSubjectName());
 		return copy;
 	}
 	
@@ -276,10 +252,9 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("id: " + this.getId() + ", ");
-		sb.append("isOptional: " + this.isIsOptional() + ", ");
 		sb.append("modifiedTime: " + this.getModifiedTime() + ", ");
-		sb.append("name: " + this.getName() + ", ");
-		sb.append("subjectCode: " + this.getSubjectCode());
+		sb.append("subjectCode: " + this.getSubjectCode() + ", ");
+		sb.append("subjectName: " + this.getSubjectName());
 		return sb.toString();		
 	}
 
@@ -325,10 +300,9 @@ public class Subject implements Cloneable, Serializable, IPojoGenEntity, ISubjec
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((isIsOptional() == null) && (that.isIsOptional() == null)) || (isIsOptional() != null && isIsOptional().equals(that.isIsOptional())));
 		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));
-		result = result && (((getName() == null) && (that.getName() == null)) || (getName() != null && getName().equals(that.getName())));
 		result = result && (((getSubjectCode() == null) && (that.getSubjectCode() == null)) || (getSubjectCode() != null && getSubjectCode().equals(that.getSubjectCode())));
+		result = result && (((getSubjectName() == null) && (that.getSubjectName() == null)) || (getSubjectName() != null && getSubjectName().equals(that.getSubjectName())));
 		return result;
 	}
 	

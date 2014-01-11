@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.analytics.core.OLSubjectPrediction;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.AnalyticsService;
 import org.yarlithub.yschool.service.StudentService;
@@ -41,8 +41,8 @@ public class AnalyticsStudentHomeBean implements Serializable {
     private AnalyticsController analyticsController;
     private Student student;
     private DataModel secondarySubjects;
-    private DataModel<ClassroomSubject> oLSubjects;
-    private DataModel<ClassroomSubject> oLSubjectsEleven;
+    private DataModel<ClassroomModule> oLSubjects;
+    private DataModel<ClassroomModule> oLSubjectsEleven;
     private DataModel<OLSubjectPrediction> olSubjectPredictions;
     private DataModel aLSubjects;
     private CartesianChartModel linearModel;
@@ -201,15 +201,15 @@ public class AnalyticsStudentHomeBean implements Serializable {
 
         double termMark = 0.0;
 
-        Iterator<ClassroomSubject> olsubjectIterator = oLSubjects.iterator();
-        Iterator<ClassroomSubject> olsubjectElevenIterator = oLSubjectsEleven.iterator();
+        Iterator<ClassroomModule> olsubjectIterator = oLSubjects.iterator();
+        Iterator<ClassroomModule> olsubjectElevenIterator = oLSubjectsEleven.iterator();
         OLSubjectPrediction olSubjectPrediction = null;
 
         while (true) {
             List<Double> termMarks = new ArrayList<Double>();
 
-            ClassroomSubject olSubject = null;
-            ClassroomSubject olsubjectEleven = null;
+            ClassroomModule olSubject = null;
+            ClassroomModule olsubjectEleven = null;
 
             if (olsubjectIterator.hasNext() && olsubjectElevenIterator.hasNext()) {
                 olSubject = olsubjectIterator.next();
@@ -238,15 +238,15 @@ public class AnalyticsStudentHomeBean implements Serializable {
                     if (check) {
                         previousTermMarks.add(mark);
                         try {
-                            // range = predictNextTerm(null, 2008, 10, term, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                            // range = predictNextTerm(null, 2008, 10, term, olSubject.getModuleIdmodule().getName(), student.getId(), previousTermMarks);
 
 
                             if (term < 3) {
-                                range = predictNextTerm(null, 2008, 10, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                                range = predictNextTerm(null, 2008, 10, term + 1, olSubject.getModuleIdmodule().getSubjectIdsubject().getSubjectName(), student.getId(), previousTermMarks);
                             }
 
                             if (term == 3) {
-                                range = predictNextTerm(null, 2009, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                                range = predictNextTerm(null, 2009, 11, 1, olSubject.getModuleIdmodule().getSubjectIdsubject().getSubjectName(), student.getId(), previousTermMarks);
 
                             }
 
@@ -293,11 +293,11 @@ public class AnalyticsStudentHomeBean implements Serializable {
                         previousTermMarks.add(mark);
                         try {
                             if (term < 3) {
-                                range = predictNextTerm(null, 2008, 11, term + 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                                range = predictNextTerm(null, 2008, 11, term + 1, olSubject.getModuleIdmodule().getSubjectIdsubject().getSubjectName(), student.getId(), previousTermMarks);
                             }
 
                             if (term == 3) {
-                                //range = predictNextTerm(null, 2008, 11, 1, olSubject.getSubjectIdsubject().getName(), student.getId(), previousTermMarks);
+                                //range = predictNextTerm(null, 2008, 11, 1, olSubject.getModuleIdmodule().getName(), student.getId(), previousTermMarks);
 
                             }
 

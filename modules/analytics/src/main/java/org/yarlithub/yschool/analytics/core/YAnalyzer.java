@@ -22,6 +22,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 //TODO: Have to change classroom division grade parameters according to ySchool-1.0.5
+//TODO: redo due to database change to subject module
 public class YAnalyzer {
 
     public static List<StudentGeneralexamProfile> theList = new ArrayList<StudentGeneralexamProfile>();
@@ -100,7 +101,7 @@ public class YAnalyzer {
         studentGeneralExamProfiles.add(Restrictions.eq("adNo", 18746));
         List<StudentGeneralexamProfile> adProfiles = studentGeneralExamProfiles.list();
 
-        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomModule.class);
         //student_classroom_subject data is not ready yet
         //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
         //so using this as temporary ,but this may violate optional subject...
@@ -109,41 +110,41 @@ public class YAnalyzer {
         classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
 
         // classroomSubjectCR.add(Restrictions.eq("cl.grade", 10));
-        List<ClassroomSubject> lt = classroomSubjectCR.list();
+        List<ClassroomModule> lt = classroomSubjectCR.list();
         theList = adProfiles;
 
 
     }
 
-    public List<ClassroomSubject> getOLSubjects(Student student) {
+    public List<ClassroomModule> getOLSubjects(Student student) {
 
-        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomModule.class);
         //student_classroom_subject data is not ready yet
         //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
         //so using this as temporary ,but this may violate optional subject...
         classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
 
         classroomSubjectCR.add(Restrictions.eq("cl.grade", 10));
-        List<ClassroomSubject> lt = classroomSubjectCR.list();
+        List<ClassroomModule> lt = classroomSubjectCR.list();
 
         return lt;
     }
 
-    public List<ClassroomSubject> getOLSubjectsGradeEleven(Student student) {
+    public List<ClassroomModule> getOLSubjectsGradeEleven(Student student) {
 
-        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+        Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomModule.class);
         //student_classroom_subject data is not ready yet
         //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
         //so using this as temporary ,but this may violate optional subject...
         classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
 
         classroomSubjectCR.add(Restrictions.eq("cl.grade", 11));
-        List<ClassroomSubject> lt = classroomSubjectCR.list();
+        List<ClassroomModule> lt = classroomSubjectCR.list();
 
         return lt;
     }
 
-    public List<ClassroomSubject> getALSubjects(Student student) {
+    public List<ClassroomModule> getALSubjects(Student student) {
 
         Criteria classroomCR = dataLayerYschool.createCriteria(Classroom.class);
         classroomCR.add(Restrictions.eq("grade", 13));
@@ -156,23 +157,23 @@ public class YAnalyzer {
         } else {
             if (classroomList.get(0).getDivisionIddivision().getDivision().equalsIgnoreCase("Arts")) {
              /*arts stram have to check optional subjects*/
-                Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+                Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomModule.class);
                 //student_classroom_subject data is only available for arts AL stidents
                 classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
                 //so using this as temporary ,but this may violate optional subject...
                 classroomSubjectCR.createAlias("classroomIdclass", "cl").add(Restrictions.eq("cl.grade", 13));
-                List<ClassroomSubject> lt = classroomSubjectCR.list();
+                List<ClassroomModule> lt = classroomSubjectCR.list();
                 return lt;
             } else {
                  /*AL maths, com, bio students only 3 compulsury subjects*/
-                Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomSubject.class);
+                Criteria classroomSubjectCR = dataLayerYschool.createCriteria(ClassroomModule.class);
                 //student_classroom_subject data is not ready yet
                 //classroomSubjectCR.createAlias("studentClassroomSubjects", "stclsu").createAlias("stclsu.classroomStudentIdclassroomStudent", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
                 //so using this as temporary ,but this may violate optional subject...
                 classroomSubjectCR.createAlias("classroomIdclass", "cl").createAlias("cl.classroomStudents", "clst").add(Restrictions.eq("clst.studentIdstudent", student));
 
                 classroomSubjectCR.add(Restrictions.eq("cl.grade", 13));
-                List<ClassroomSubject> lt = classroomSubjectCR.list();
+                List<ClassroomModule> lt = classroomSubjectCR.list();
 
                 return lt;
             }
@@ -218,7 +219,7 @@ public class YAnalyzer {
 
     }
 
-    public String getALSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+    public String getALSubjectsResult(Student student, ClassroomModule classroomSubject) {
 
 
         Criteria resultCR = dataLayerYschool.createCriteria(Results.class);
@@ -231,7 +232,7 @@ public class YAnalyzer {
         return "not available";
     }
 
-    public String getOLSubjectsResult(Student student, ClassroomSubject classroomSubject) {
+    public String getOLSubjectsResult(Student student, ClassroomModule classroomSubject) {
 
 
         Criteria marksCR = dataLayerYschool.createCriteria(Marks.class);
@@ -273,7 +274,7 @@ public class YAnalyzer {
         return classRoomStudents.get(0).getClassroomIdclassroom().getDivisionIddivision().getDivision();
     }
 
-    public double getTermMarksForOLSub(Student student, ClassroomSubject classroomSubject, int term) {
+    public double getTermMarksForOLSub(Student student, ClassroomModule classroomSubject, int term) {
         Criteria marks = dataLayerYschool.createCriteria(Marks.class);
         marks.add(Restrictions.eq("studentIdstudent", student));
         marks.createAlias("examIdexam", "examId").add(Restrictions.eq("examId.classroomSubjectIdclassroomSubject", classroomSubject));

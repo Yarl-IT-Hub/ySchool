@@ -2,7 +2,7 @@ package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Set;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomModule;
 
 
 /** 
@@ -43,23 +43,23 @@ public interface IClassroomStudent {
 	void setId(final Integer id);
 
     /**
-     * Return the value associated with the column: studentClassroomSubject.
-	 * @return A Set&lt;StudentClassroomSubject&gt; object (this.studentClassroomSubject)
+     * Return the value associated with the column: studentClassroomModule.
+	 * @return A Set&lt;StudentClassroomModule&gt; object (this.studentClassroomModule)
 	 */
-	Set<StudentClassroomSubject> getStudentClassroomSubjects();
+	Set<StudentClassroomModule> getStudentClassroomModules();
 	
 	/**
-	 * Adds a bi-directional link of type StudentClassroomSubject to the studentClassroomSubjects set.
-	 * @param studentClassroomSubject item to add
+	 * Adds a bi-directional link of type StudentClassroomModule to the studentClassroomModules set.
+	 * @param studentClassroomModule item to add
 	 */
-	void addStudentClassroomSubject(StudentClassroomSubject studentClassroomSubject);
+	void addStudentClassroomModule(StudentClassroomModule studentClassroomModule);
 
   
     /**  
-     * Set the value related to the column: studentClassroomSubject.
-	 * @param studentClassroomSubject the studentClassroomSubject value you wish to set
+     * Set the value related to the column: studentClassroomModule.
+	 * @param studentClassroomModule the studentClassroomModule value you wish to set
 	 */
-	void setStudentClassroomSubjects(final Set<StudentClassroomSubject> studentClassroomSubject);
+	void setStudentClassroomModules(final Set<StudentClassroomModule> studentClassroomModule);
 
     /**
      * Return the value associated with the column: studentIdstudent.

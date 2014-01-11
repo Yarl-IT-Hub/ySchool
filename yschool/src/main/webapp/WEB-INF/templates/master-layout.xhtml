@@ -18,11 +18,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta name="author" content="arima"/>
 
     <link href="/yschool/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="/yschool/css/docs.css" rel="stylesheet"/>
-    <link href="/yschool/css/pygments-manni.css" rel="stylesheet"/>
+    <!--<link href="/yschool/css/docs.css" rel="stylesheet"/>-->
+    <!--<link href="/yschool/css/pygments-manni.css" rel="stylesheet"/>-->
     <link href="/yschool/css/yschool.css" rel="stylesheet"/>
 
     <link rel="shortcut icon" href="/yschool/img/arimalogo-favicon.png"/>
@@ -38,7 +38,8 @@
 
 </h:head>
 
-<h:body style="background-color: rgb(255,250,250);">
+<h:body style="background-color: rgb(255,250,250); padding-top: 60px;">
+    <!-- padding-top: 60px; for navbar-fix-top hiding contents: bootstrap3.0.3 bug-->
 
     <p:idleMonitor timeout="10000"
                    onidle="PF('idleDialog').show()" onactive="PF('idleDialog').hide()"/>
@@ -50,79 +51,50 @@
     <div id="ybody-header">
         <ui:insert name="ybody-hader">
 
-
-            <header class="navbar navbar-fixed-top bs-docs-nav ynavbar-dark" role="banner" >
-
-                <div class="container">
-                    <div class="navbar-header">
-
-                        <!--<a class="navbar-brand" href="/yschool/faces/home/myHome.xhtml">-->
-                        <!--ySchool-->
-                        <!--</a>-->
-                    </div>
-                    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a class="navbar-brand ynavbar-dark" href="/yschool/faces/home/myHome.xhtml">
-                                    ySchool
-                                </a>
-                            </li>
-                            <li></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <form class="navbar-form navbar-left" role="search" action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search"
-                                           style="background: rgb(255, 255, 240);"/>
-
-                                    <div class="input-group-btn">
-                                        <!--<button type="button" class="btn btn-default" tabindex="-1">-->
-                                        <!--<span class="caret"></span>-->
-                                        <!--</button>-->
-                                        <button class="btn btn-default dropdown-toggle" tabindex="-1"
-                                                data-toggle="dropdown" type="button">
-                                            <!--style="background-color:rgb(70,20,100);">-->
-                                            <!--<span class="caret"></span>--> More
-                                            <span class="sr-only"> Toggle Dropdown  </span>
-                                        </button>
-                                        <ul class="dropdown-menu pull-right" role="menu">
-                                            <li>
-                                                <select class="form-control">
-                                                    <option>Students</option>
-                                                    <option>Staffs</option>
-                                                    <option>Subjects</option>
-                                                    <option>Classroom</option>
-                                                </select>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <button type="button" class="btn btn-default">
-                                                    <span class="glyphicon glyphicon-search"></span>
-                                                    Search
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </form>
-                            <li class="dropdown active">
-                                <a href="#" class="dropdown-toggle  ynavbar-dark" data-toggle="dropdown">Welcome to ySchool <b
-                                        class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Sign In</a></li>
-                                    <li><a href="#">Settings</a></li>
-                                    <li><a href="#">Updates</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Sign Out</a></li>
-                                </ul>
-                            </li>
-                            <li class="active"><a href="#" class="ynavbar-dark">Help</a></li>
-                        </ul>
-                    </nav>
+             <nav class="navbar navbar-fixed-top ynavbar-dark" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/yschool/faces/home/myHome.xhtml">
+                        ySchool
+                    </a>
                 </div>
-            </header>
 
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form class="navbar-form" role="search" action="">
+                                <div class="input-group">
+                                <input type="text" class="form-control" id="navbar-dark-top-search"
+                                       placeholder="Search for anything in  ySchool, hit enter..."/>
+
+                                <span class="input-group-addon glyphicon glyphicon-search" id="navbar-dark-top-search-addon"></span>
+                                </div>
+                            </form>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle navbar-topmenu" data-toggle="dropdown">Welcome to ySchool
+                                <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sign In</a></li>
+                                <li><a href="#">Settings</a></li>
+                                <li><a href="#">Updates</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Sign Out</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" class="navbar-topmenu">Help</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- /.navbar-collapse -->
         </ui:insert>
     </div>
 

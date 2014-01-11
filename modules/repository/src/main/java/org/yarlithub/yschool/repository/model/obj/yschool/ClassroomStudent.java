@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
-import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.StudentClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroomStudent;
 
 
@@ -35,7 +35,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IClassroomStuden
 public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity, IClassroomStudent {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977436L;
+	private static final long serialVersionUID = -558977432L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -51,7 +51,7 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 	/** Field mapping. */
 	private Integer id = 0; // init for hibernate bug workaround
 	/** Field mapping. */
-	private Set<StudentClassroomSubject> studentClassroomSubjects = new HashSet<StudentClassroomSubject>();
+	private Set<StudentClassroomModule> studentClassroomModules = new HashSet<StudentClassroomModule>();
 
 	/** Field mapping. */
 	private Student studentIdstudent;
@@ -149,34 +149,34 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 	}
 
     /**
-     * Return the value associated with the column: studentClassroomSubject.
-	 * @return A Set&lt;StudentClassroomSubject&gt; object (this.studentClassroomSubject)
+     * Return the value associated with the column: studentClassroomModule.
+	 * @return A Set&lt;StudentClassroomModule&gt; object (this.studentClassroomModule)
 	 */
  	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "classroomStudentIdclassroomStudent"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( name = "idclassroom_student", nullable = false  )
-	public Set<StudentClassroomSubject> getStudentClassroomSubjects() {
-		return this.studentClassroomSubjects;
+	public Set<StudentClassroomModule> getStudentClassroomModules() {
+		return this.studentClassroomModules;
 		
 	}
 	
 	/**
-	 * Adds a bi-directional link of type StudentClassroomSubject to the studentClassroomSubjects set.
-	 * @param studentClassroomSubject item to add
+	 * Adds a bi-directional link of type StudentClassroomModule to the studentClassroomModules set.
+	 * @param studentClassroomModule item to add
 	 */
-	public void addStudentClassroomSubject(StudentClassroomSubject studentClassroomSubject) {
-		studentClassroomSubject.setClassroomStudentIdclassroomStudent(this);
-		this.studentClassroomSubjects.add(studentClassroomSubject);
+	public void addStudentClassroomModule(StudentClassroomModule studentClassroomModule) {
+		studentClassroomModule.setClassroomStudentIdclassroomStudent(this);
+		this.studentClassroomModules.add(studentClassroomModule);
 	}
 
   
     /**  
-     * Set the value related to the column: studentClassroomSubject.
-	 * @param studentClassroomSubject the studentClassroomSubject value you wish to set
+     * Set the value related to the column: studentClassroomModule.
+	 * @param studentClassroomModule the studentClassroomModule value you wish to set
 	 */
-	public void setStudentClassroomSubjects(final Set<StudentClassroomSubject> studentClassroomSubject) {
-		this.studentClassroomSubjects = studentClassroomSubject;
+	public void setStudentClassroomModules(final Set<StudentClassroomModule> studentClassroomModule) {
+		this.studentClassroomModules = studentClassroomModule;
 	}
 
     /**
@@ -215,8 +215,8 @@ public class ClassroomStudent implements Cloneable, Serializable, IPojoGenEntity
 
 		copy.setClassroomIdclassroom(this.getClassroomIdclassroom());
 		copy.setId(this.getId());
-		if (this.getStudentClassroomSubjects() != null) {
-			copy.getStudentClassroomSubjects().addAll(this.getStudentClassroomSubjects());
+		if (this.getStudentClassroomModules() != null) {
+			copy.getStudentClassroomModules().addAll(this.getStudentClassroomModules());
 		}
 		copy.setStudentIdstudent(this.getStudentIdstudent());
 		return copy;

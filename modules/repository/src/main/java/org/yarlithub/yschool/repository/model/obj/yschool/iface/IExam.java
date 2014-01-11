@@ -1,7 +1,7 @@
 package org.yarlithub.yschool.repository.model.obj.yschool.iface;
 import java.util.Date;
 import java.util.Set;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamSync;
 import org.yarlithub.yschool.repository.model.obj.yschool.ExamType;
 import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
@@ -18,18 +18,18 @@ public interface IExam {
 
 
     /**
-     * Return the value associated with the column: classroomSubjectIdclassroomSubject.
-	 * @return A ClassroomSubject object (this.classroomSubjectIdclassroomSubject)
+     * Return the value associated with the column: classroomModuleIdclassroomModule.
+	 * @return A ClassroomModule object (this.classroomModuleIdclassroomModule)
 	 */
-	ClassroomSubject getClassroomSubjectIdclassroomSubject();
+	ClassroomModule getClassroomModuleIdclassroomModule();
 	
 
   
     /**  
-     * Set the value related to the column: classroomSubjectIdclassroomSubject.
-	 * @param classroomSubjectIdclassroomSubject the classroomSubjectIdclassroomSubject value you wish to set
+     * Set the value related to the column: classroomModuleIdclassroomModule.
+	 * @param classroomModuleIdclassroomModule the classroomModuleIdclassroomModule value you wish to set
 	 */
-	void setClassroomSubjectIdclassroomSubject(final ClassroomSubject classroomSubjectIdclassroomSubject);
+	void setClassroomModuleIdclassroomModule(final ClassroomModule classroomModuleIdclassroomModule);
 
     /**
      * Return the value associated with the column: date.

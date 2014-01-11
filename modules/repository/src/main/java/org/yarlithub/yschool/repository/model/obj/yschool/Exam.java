@@ -50,7 +50,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 	
 
 	/** Field mapping. */
-	private ClassroomSubject classroomSubjectIdclassroomSubject;
+	private ClassroomModule classroomModuleIdclassroomModule;
 	/** Field mapping. */
 	private Date date;
 	/** Field mapping. */
@@ -113,26 +113,26 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
  
 
     /**
-     * Return the value associated with the column: classroomSubjectIdclassroomSubject.
-	 * @return A ClassroomSubject object (this.classroomSubjectIdclassroomSubject)
+     * Return the value associated with the column: classroomModuleIdclassroomModule.
+	 * @return A ClassroomModule object (this.classroomModuleIdclassroomModule)
 	 */
 	@ManyToOne( cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY )
 	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = true )
-	@JoinColumn(name = "classroom_subject_idclassroom_subject", nullable = true )
-	public ClassroomSubject getClassroomSubjectIdclassroomSubject() {
-		return this.classroomSubjectIdclassroomSubject;
+	@JoinColumn(name = "classroom_module_idclassroom_module", nullable = true )
+	public ClassroomModule getClassroomModuleIdclassroomModule() {
+		return this.classroomModuleIdclassroomModule;
 		
 	}
 	
 
   
     /**  
-     * Set the value related to the column: classroomSubjectIdclassroomSubject.
-	 * @param classroomSubjectIdclassroomSubject the classroomSubjectIdclassroomSubject value you wish to set
+     * Set the value related to the column: classroomModuleIdclassroomModule.
+	 * @param classroomModuleIdclassroomModule the classroomModuleIdclassroomModule value you wish to set
 	 */
-	public void setClassroomSubjectIdclassroomSubject(final ClassroomSubject classroomSubjectIdclassroomSubject) {
-		this.classroomSubjectIdclassroomSubject = classroomSubjectIdclassroomSubject;
+	public void setClassroomModuleIdclassroomModule(final ClassroomModule classroomModuleIdclassroomModule) {
+		this.classroomModuleIdclassroomModule = classroomModuleIdclassroomModule;
 	}
 
     /**
@@ -356,7 +356,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		
         final Exam copy = (Exam)super.clone();
 
-		copy.setClassroomSubjectIdclassroomSubject(this.getClassroomSubjectIdclassroomSubject());
+		copy.setClassroomModuleIdclassroomModule(this.getClassroomModuleIdclassroomModule());
 		copy.setDate(this.getDate());
 		if (this.getExamSyncs() != null) {
 			copy.getExamSyncs().addAll(this.getExamSyncs());
@@ -433,7 +433,7 @@ public class Exam implements Cloneable, Serializable, IPojoGenEntity, IExam {
 		
 		boolean result = true;
 		result = result && (((this.getId() == null) && ( that.getId() == null)) || (this.getId() != null  && this.getId().equals(that.getId())));
-		result = result && (((getClassroomSubjectIdclassroomSubject() == null) && (that.getClassroomSubjectIdclassroomSubject() == null)) || (getClassroomSubjectIdclassroomSubject() != null && getClassroomSubjectIdclassroomSubject().getId().equals(that.getClassroomSubjectIdclassroomSubject().getId())));	
+		result = result && (((getClassroomModuleIdclassroomModule() == null) && (that.getClassroomModuleIdclassroomModule() == null)) || (getClassroomModuleIdclassroomModule() != null && getClassroomModuleIdclassroomModule().getId().equals(that.getClassroomModuleIdclassroomModule().getId())));	
 		result = result && (((getDate() == null) && (that.getDate() == null)) || (getDate() != null && getDate().equals(that.getDate())));
 		result = result && (((getExamTypeIdexamType() == null) && (that.getExamTypeIdexamType() == null)) || (getExamTypeIdexamType() != null && getExamTypeIdexamType().getId().equals(that.getExamTypeIdexamType().getId())));	
 		result = result && (((getModifiedTime() == null) && (that.getModifiedTime() == null)) || (getModifiedTime() != null && getModifiedTime().equals(that.getModifiedTime())));

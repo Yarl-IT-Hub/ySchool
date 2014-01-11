@@ -95,28 +95,28 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 		return (ClassroomHasStaffHasRoleDao) getBean("classroomHasStaffHasRoleDaoImpl"); 
 	}
 	/**
+	 * Returns a ClassroomModuleDao instance.
+	 * 
+	 * @return a ClassroomModuleDao instance
+	 */
+	public static ClassroomModuleDao getClassroomModuleDao() {
+		return (ClassroomModuleDao) getBean("classroomModuleDaoImpl"); 
+	}
+	/**
+	 * Returns a ClassroomModuleHasStaffHasRoleDao instance.
+	 * 
+	 * @return a ClassroomModuleHasStaffHasRoleDao instance
+	 */
+	public static ClassroomModuleHasStaffHasRoleDao getClassroomModuleHasStaffHasRoleDao() {
+		return (ClassroomModuleHasStaffHasRoleDao) getBean("classroomModuleHasStaffHasRoleDaoImpl"); 
+	}
+	/**
 	 * Returns a ClassroomStudentDao instance.
 	 * 
 	 * @return a ClassroomStudentDao instance
 	 */
 	public static ClassroomStudentDao getClassroomStudentDao() {
 		return (ClassroomStudentDao) getBean("classroomStudentDaoImpl"); 
-	}
-	/**
-	 * Returns a ClassroomSubjectDao instance.
-	 * 
-	 * @return a ClassroomSubjectDao instance
-	 */
-	public static ClassroomSubjectDao getClassroomSubjectDao() {
-		return (ClassroomSubjectDao) getBean("classroomSubjectDaoImpl"); 
-	}
-	/**
-	 * Returns a ClassroomSubjectHasStaffHasRoleDao instance.
-	 * 
-	 * @return a ClassroomSubjectHasStaffHasRoleDao instance
-	 */
-	public static ClassroomSubjectHasStaffHasRoleDao getClassroomSubjectHasStaffHasRoleDao() {
-		return (ClassroomSubjectHasStaffHasRoleDao) getBean("classroomSubjectHasStaffHasRoleDaoImpl"); 
 	}
 	/**
 	 * Returns a DivisionDao instance.
@@ -165,6 +165,14 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 	 */
 	public static MarksDao getMarksDao() {
 		return (MarksDao) getBean("marksDaoImpl"); 
+	}
+	/**
+	 * Returns a ModuleDao instance.
+	 * 
+	 * @return a ModuleDao instance
+	 */
+	public static ModuleDao getModuleDao() {
+		return (ModuleDao) getBean("moduleDaoImpl"); 
 	}
 	/**
 	 * Returns a ResultsDao instance.
@@ -239,12 +247,12 @@ public class HibernateYschoolDaoFactory implements ApplicationContextAware, Bean
 		return (StudentDao) getBean("studentDaoImpl"); 
 	}
 	/**
-	 * Returns a StudentClassroomSubjectDao instance.
+	 * Returns a StudentClassroomModuleDao instance.
 	 * 
-	 * @return a StudentClassroomSubjectDao instance
+	 * @return a StudentClassroomModuleDao instance
 	 */
-	public static StudentClassroomSubjectDao getStudentClassroomSubjectDao() {
-		return (StudentClassroomSubjectDao) getBean("studentClassroomSubjectDaoImpl"); 
+	public static StudentClassroomModuleDao getStudentClassroomModuleDao() {
+		return (StudentClassroomModuleDao) getBean("studentClassroomModuleDaoImpl"); 
 	}
 	/**
 	 * Returns a StudentGeneralexamProfileDao instance.

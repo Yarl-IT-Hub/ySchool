@@ -15,6 +15,7 @@ import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
  * Time: 11:16 PM
  * To change this template use File | Settings | File Templates.
  */
+//TODO: Database change to subjects and yearwise modules, have to change all according to.
 public class SubjectLoader {
 
     public boolean load(Reader reader) {
@@ -41,8 +42,8 @@ public class SubjectLoader {
             }
 
             Subject subject = YschoolDataPoolFactory.getSubject();
-            subject.setName(subjectName);
-            subject.setIsOptional(isOptionalBool);
+            subject.setSubjectName(subjectName);
+            //subject.setIsOptional(isOptionalBool);
 
             DataLayerYschool.save(subject);
             DataLayerYschool.flushSession();

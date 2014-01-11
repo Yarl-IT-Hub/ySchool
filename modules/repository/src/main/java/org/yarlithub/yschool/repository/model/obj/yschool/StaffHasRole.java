@@ -23,7 +23,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import org.hibernate.proxy.HibernateProxy;
 import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomHasStaffHasRole;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubjectHasStaffHasRole;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModuleHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.SchoolHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.SectionHasStaffHasRole;
 import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStaffHasRole;
@@ -39,7 +39,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.iface.IStaffHasRole;
 public class StaffHasRole implements Cloneable, Serializable, IPojoGenEntity, IStaffHasRole {
 
 	/** Serial Version UID. */
-	private static final long serialVersionUID = -558977413L;
+	private static final long serialVersionUID = -558977412L;
 
 	/** Use a WeakHashMap so entries will be garbage collected once all entities 
 		referring to a saved hash are garbage collected themselves. */
@@ -54,7 +54,7 @@ public class StaffHasRole implements Cloneable, Serializable, IPojoGenEntity, IS
 	private Set<ClassroomHasStaffHasRole> classroomHasStaffHasRoles = new HashSet<ClassroomHasStaffHasRole>();
 
 	/** Field mapping. */
-	private Set<ClassroomSubjectHasStaffHasRole> classroomSubjectHasStaffHasRoles = new HashSet<ClassroomSubjectHasStaffHasRole>();
+	private Set<ClassroomModuleHasStaffHasRole> classroomModuleHasStaffHasRoles = new HashSet<ClassroomModuleHasStaffHasRole>();
 
 	/** Field mapping. */
 	private Date endDate;
@@ -146,34 +146,34 @@ public class StaffHasRole implements Cloneable, Serializable, IPojoGenEntity, IS
 	}
 
     /**
-     * Return the value associated with the column: classroomSubjectHasStaffHasRole.
-	 * @return A Set&lt;ClassroomSubjectHasStaffHasRole&gt; object (this.classroomSubjectHasStaffHasRole)
+     * Return the value associated with the column: classroomModuleHasStaffHasRole.
+	 * @return A Set&lt;ClassroomModuleHasStaffHasRole&gt; object (this.classroomModuleHasStaffHasRole)
 	 */
  	@OneToMany( fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "id.staffHasRoleIdstaffHasRole"  )
  	@org.hibernate.annotations.Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
 	@Basic( optional = false )
 	@Column( name = "idstaff_has_role", nullable = false  )
-	public Set<ClassroomSubjectHasStaffHasRole> getClassroomSubjectHasStaffHasRoles() {
-		return this.classroomSubjectHasStaffHasRoles;
+	public Set<ClassroomModuleHasStaffHasRole> getClassroomModuleHasStaffHasRoles() {
+		return this.classroomModuleHasStaffHasRoles;
 		
 	}
 	
 	/**
-	 * Adds a bi-directional link of type ClassroomSubjectHasStaffHasRole to the classroomSubjectHasStaffHasRoles set.
-	 * @param classroomSubjectHasStaffHasRole item to add
+	 * Adds a bi-directional link of type ClassroomModuleHasStaffHasRole to the classroomModuleHasStaffHasRoles set.
+	 * @param classroomModuleHasStaffHasRole item to add
 	 */
-	public void addClassroomSubjectHasStaffHasRole(ClassroomSubjectHasStaffHasRole classroomSubjectHasStaffHasRole) {
-		classroomSubjectHasStaffHasRole.getId().setStaffHasRoleIdstaffHasRole(this);
-		this.classroomSubjectHasStaffHasRoles.add(classroomSubjectHasStaffHasRole);
+	public void addClassroomModuleHasStaffHasRole(ClassroomModuleHasStaffHasRole classroomModuleHasStaffHasRole) {
+		classroomModuleHasStaffHasRole.getId().setStaffHasRoleIdstaffHasRole(this);
+		this.classroomModuleHasStaffHasRoles.add(classroomModuleHasStaffHasRole);
 	}
 
   
     /**  
-     * Set the value related to the column: classroomSubjectHasStaffHasRole.
-	 * @param classroomSubjectHasStaffHasRole the classroomSubjectHasStaffHasRole value you wish to set
+     * Set the value related to the column: classroomModuleHasStaffHasRole.
+	 * @param classroomModuleHasStaffHasRole the classroomModuleHasStaffHasRole value you wish to set
 	 */
-	public void setClassroomSubjectHasStaffHasRoles(final Set<ClassroomSubjectHasStaffHasRole> classroomSubjectHasStaffHasRole) {
-		this.classroomSubjectHasStaffHasRoles = classroomSubjectHasStaffHasRole;
+	public void setClassroomModuleHasStaffHasRoles(final Set<ClassroomModuleHasStaffHasRole> classroomModuleHasStaffHasRole) {
+		this.classroomModuleHasStaffHasRoles = classroomModuleHasStaffHasRole;
 	}
 
     /**
@@ -371,8 +371,8 @@ public class StaffHasRole implements Cloneable, Serializable, IPojoGenEntity, IS
 		if (this.getClassroomHasStaffHasRoles() != null) {
 			copy.getClassroomHasStaffHasRoles().addAll(this.getClassroomHasStaffHasRoles());
 		}
-		if (this.getClassroomSubjectHasStaffHasRoles() != null) {
-			copy.getClassroomSubjectHasStaffHasRoles().addAll(this.getClassroomSubjectHasStaffHasRoles());
+		if (this.getClassroomModuleHasStaffHasRoles() != null) {
+			copy.getClassroomModuleHasStaffHasRoles().addAll(this.getClassroomModuleHasStaffHasRoles());
 		}
 		copy.setEndDate(this.getEndDate());
 		copy.setId(this.getId());

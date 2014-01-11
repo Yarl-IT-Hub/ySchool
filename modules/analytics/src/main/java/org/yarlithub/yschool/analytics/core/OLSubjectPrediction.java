@@ -1,7 +1,7 @@
 package org.yarlithub.yschool.analytics.core;
 
 import org.primefaces.model.chart.CartesianChartModel;
-import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomSubject;
+import org.yarlithub.yschool.repository.model.obj.yschool.ClassroomModule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,9 @@ import java.util.List;
  * Time: 6:33 PM
  * To change this template use File | Settings | File Templates.
  */
+//TODO: redo due to database change to subject module
 public class OLSubjectPrediction {
-    private ClassroomSubject olSubject;
+    private ClassroomModule olSubject;
     private List<String> predictedGrade = new ArrayList<String>();
     private List<Double> termMarks = new ArrayList<Double>();
     private List<Integer> termMarksLower = new ArrayList<Integer>();
@@ -212,11 +213,11 @@ public class OLSubjectPrediction {
         this.termMarksUpper = termMarksUpper;
     }
 
-    public ClassroomSubject getOlSubject() {
+    public ClassroomModule getOlSubject() {
         return olSubject;
     }
 
-    public void setOlSubject(ClassroomSubject olSubject) {
+    public void setOlSubject(ClassroomModule olSubject) {
         this.olSubject = olSubject;
     }
 
