@@ -1,7 +1,8 @@
 <ui:composition template="/WEB-INF/templates/student-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
     <ui:define name="yhead">
         <title>
             Students Home
@@ -61,6 +62,34 @@
 
 
         </ui:repeat>
+        <div class="col-md-8 col-lg-offset-2">
+             <p>student Search Here.....</p>
+        <h:form>
+            <div class="form-group">
+                <div class="col-md-7">
+                    <h:inputText id="userName" value="#{studentBean.searchKey}" class="form-control">
+                        <p:ajax event="keypress" listener="#{studentBean.viewStudentAjax}" update="suggest_box"></p:ajax>
+                    </h:inputText>
+                </div>
+                <h:commandButton value="Search" styleClass="btn btn-success"   type="submit" action="#{studentBean.viewStudentAjax}">
+
+                </h:commandButton>
+            </div>
+
+            <h:panelGroup id="suggest_box">
+                <ui:fragment rendered="#{studentBean.studentsSearchResultAjax.rowAvailable}">
+                    <ui:repeat value="#{studentBean.studentsSearchResultAjax}" var="student">
+                        <h:form class="col-md-7"> <h:commandLink value="#{student.name}" action="#{studentBean.viewStudentAjax}"
+                                                                 styleClass=" thumbnail" type="submit">
+                        </h:commandLink>  </h:form>
+
+                    </ui:repeat>
+
+                </ui:fragment>
+
+            </h:panelGroup>
+        </h:form>
+        </div>
 
     </ui:define>
 
