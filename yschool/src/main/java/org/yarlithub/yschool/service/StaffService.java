@@ -46,4 +46,11 @@ public class StaffService {
         staffHelper.saveOrUpdate(staff);
         return staff;
     }
-}
+
+    @Transactional
+    public List<Staff> getStaffsNameLike(String regx, int maxNo) {
+        StaffHelper staffHelper = new StaffHelper();
+        return staffHelper.getStaffsNameLike(regx, maxNo);
+    }
+
+    }

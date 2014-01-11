@@ -2,8 +2,9 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
-
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+>
 
     <ui:define name="yhead">
         <title>Staff Home</title>
@@ -31,7 +32,34 @@
                 </Button>
             </a>
         </div>
+        <div class="col-md-8 col-lg-offset-2">
+                <p>Staff Search....</p>
+            <h:form>
+                <div class="form-group">
+                    <div class="col-md-7">
+                        <h:inputText id="staffName" value="#{staffBean.searchKey}" class="form-control">
+                            <p:ajax event="keypress" listener="#{staffBean.viewStaffAjax}" update="suggest_box"></p:ajax>
+                        </h:inputText>
+                    </div>
+                    <h:commandButton value="Search" styleClass="btn btn-success"   type="submit" action="#{staffBean.viewStaffAjax}">
 
+                    </h:commandButton>
+                </div>
+
+                <h:panelGroup id="suggest_box">
+                <ui:fragment rendered="#{staffBean.staffsSearchResultAjax.rowAvailable}">
+                <ui:repeat value="#{staffBean.staffsSearchResultAjax}" var="staff">
+                <h:form class="col-md-7"> <h:commandLink value="#{staff.name}" action="#{staffBean.viewStaffAjax}"
+                styleClass=" thumbnail" type="submit">
+                </h:commandLink>  </h:form>
+
+                </ui:repeat>
+
+                </ui:fragment>
+
+                </h:panelGroup>
+            </h:form>
+        </div>
         <div class="col-md-8">
             <div class="row" id="staff-home-contents">
 
