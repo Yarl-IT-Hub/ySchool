@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.service.StaffService;
-import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -39,9 +38,6 @@ public class StaffBean implements Serializable {
     private StaffService staffService;
     @Autowired
     private StaffController staffController;
-    @ManagedProperty(value = "#{initialDateLoaderUtil}")
-    private InitialDateLoaderUtil initialDateLoaderUtil;
-
 
     public Staff getStaff() {
         return staff;
