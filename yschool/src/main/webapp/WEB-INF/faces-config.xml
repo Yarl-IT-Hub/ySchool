@@ -325,5 +325,15 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         </navigation-case>
     </navigation-rule>
 
+    <!--########Classroom Navigation########-->
+    <!--classroomHome-->
+    <navigation-rule>
+        <from-view-id>/faces/classroom/classroomHome.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>editGrade</from-outcome>
+            <to-view-id>/faces/classroom/classroomGradeEdit.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
 </faces-config>

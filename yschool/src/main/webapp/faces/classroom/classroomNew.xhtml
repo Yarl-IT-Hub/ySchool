@@ -4,7 +4,7 @@
                 xmlns:h="http://java.sun.com/jsf/html">
 
     <ui:define name="yhead">
-        <title>New Grade View</title>
+        <title>Add Grade</title>
     </ui:define>
 
     <ui:define name="classroom-content">
@@ -18,7 +18,7 @@
                         <a href="/yschool/faces/classroom/classroomHome.xhtml">Classrooms</a>
                     </li>
                     <li class="active">
-                        New Grade
+                        Add Grade
                     </li>
                 </ul>
             </div>
@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <!--Add new exam Button-->
                 <a href="/yschool/faces/classroom/classroomNew.xhtml">
-                    <Button class="btn btn-info btn-large">New Grade</Button>
+                    <Button class="btn btn-default">Add Grade</Button>
                 </a>
             </div>
         </div>
@@ -36,24 +36,86 @@
             <div class="col-md-10">
                 <h:form>
 
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="form-group">
-                            <label for="gradesList" class="col-md-4 control-label">Grade</label>
+                    <div class="row">
 
-                            <div class="col-md-8">
+                        <div class="form-group">
+                            <div class="col-md-2 col-md-offset-1 control-label">
+                                <label for="gradesList" class="pull-right">Grade</label>
+
+                            </div>
+                            <div class="col-md-6">
+
                                 <select class="form-control" id="gradesList">
+                                    <!--TODO: display only not assigned grades-->
                                     <option>10</option>
                                     <option>11</option>
                                 </select>
+
+                                <small><p class="text-info pull-right">
+                                    Showing grades whithout classrooms for the year 2014</p>
+                                </small>
                             </div>
                         </div>
-                    </div>
-
-
-                    <div id="divisions-drag-drop">
 
                     </div>
 
+                    <div class="row">
+                        <div id="divisions-select" class="col-md-12">
+                            <div class="form-group">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Select Classrooms.
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--TODO:get divisions fromm db-->
+                                        <div class="col-md-2">
+                                            <a class="thumbnail">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" checked="checked"> 10 A </input>
+                                                    </label>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a class="thumbnail">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> 10 B </input>
+                                                    </label>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a class="thumbnail">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox"> 10 C </input>
+                                                    </label>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end from-group-->
+                        </div>
+                    </div>
+                    <!--divisions panal row ends-->
+                    <div class="form-group">
+                        <div class=" col-md-offset-3">
+                            <a href="/yschool/faces/classroom/classroomHome.xhtml" class="btn btn-default">
+                                Cancel
+                            </a>
+                            <!--TODO:actions-->
+                            <h:commandButton value="Clear All" type="reset"
+                                             class="btn btn-default"/>
+
+                            <h:commandButton type="submit" value="Add This Grade"
+
+                                             class="btn btn-default"/>
+                        </div>
+                    </div>
                 </h:form>
 
             </div>

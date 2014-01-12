@@ -8,7 +8,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 import org.yarlithub.yschool.service.ClassroomService;
 import org.yarlithub.yschool.web.commons.Properties;
 
-
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
@@ -37,14 +36,14 @@ public class ClassroomHomeBean implements Serializable {
     private DataModel<GradeView> gradeDataModel;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         List<Grade> gradeList = classroomService.getGrades();
         Iterator gradeListIterator = gradeList.iterator();
         List<GradeView> gradeViewList = new ArrayList<GradeView>();
-        while (gradeListIterator.hasNext()){
+        while (gradeListIterator.hasNext()) {
             Grade grade = (Grade) gradeListIterator.next();
             DataModel<Classroom> classrooms = new ListDataModel<Classroom>(classroomService.getClassrooms(grade, Properties.getCurrentYear()));
-            GradeView gradeView = new GradeView(classrooms,grade);
+            GradeView gradeView = new GradeView(classrooms, grade);
             gradeViewList.add(gradeView);
         }
         gradeDataModel = new ListDataModel<GradeView>(gradeViewList);
@@ -57,4 +56,9 @@ public class ClassroomHomeBean implements Serializable {
     public void setGradeDataModel(DataModel<GradeView> gradeDataModel) {
         this.gradeDataModel = gradeDataModel;
     }
+
+    public String editGrade() {
+        return "editGrade";
+    }
+
 }

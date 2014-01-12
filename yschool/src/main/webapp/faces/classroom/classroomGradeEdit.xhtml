@@ -1,0 +1,173 @@
+<ui:composition template="/WEB-INF/templates/classroom-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="yhead">
+        <title>Edit Grade</title>
+    </ui:define>
+
+    <ui:define name="classroom-content">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/yschool/faces/home/myHome.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="/yschool/faces/classroom/classroomHome.xhtml">Classrooms</a>
+                    </li>
+                    <li class="active">
+                        Edit Grade
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <!--Add new exam Button-->
+                <a href="/yschool/faces/classroom/classroomNew.xhtml">
+                    <Button class="btn btn-default">Add Grade</Button>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-10">
+                <h:form>
+
+                    <div class="row">
+
+                        <div class="form-group">
+                            <div class="col-md-2 control-label">
+                                <label for="gradesList" class="pull-right">Grade</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="form-control" id="gradesList">
+                                    <!--TODO: display only not assigned grades-->
+                                    <option>10</option>
+                                    <option>11</option>
+                                </select>
+                                <small><p class="text-info pull-right">
+                                    Showing grades whithout classrooms for the year 2014</p>
+                                </small>
+                            </div>
+                            <div class="col-md-4">
+                                <h:commandButton value="Delete this Grade" type="submit"
+                                                 class="btn btn-danger"/>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    These operations are not recommonded.
+                                    Changeing/Deleting a Grade will affect all the classrooms assigned to the Grade, and all related properties.
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="divisions-select" class="col-md-12">
+                            <div class="form-group">
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        Add or Remove Classrooms
+                                    </div>
+                                    <div class="panel-body">
+                                        <!--TODO:get divisions from db-->
+                                        Existing Classrooms
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <a class="thumbnail">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" checked="checked"> 10 A </input>
+                                                        </label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="thumbnail">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" checked="checked"> 10 B </input>
+                                                        </label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="thumbnail">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" checked="checked"> 10 C </input>
+                                                        </label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!--end existing clasrooms row-->
+
+                                        <!--TODO:get divisions from db-->
+                                        Available Classrooms to add
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <a class="thumbnail">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> 10 D </input>
+                                                        </label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="thumbnail">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> 10 E </input>
+                                                        </label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="thumbnail">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox"> 10 F </input>
+                                                        </label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <!--end available classrooms row-->
+                                    </div>
+                                </div>
+                                <!--end panel-->
+                            </div>
+                            <!--end from-group-->
+                        </div>
+                    </div>
+                    <!--divisions panal row ends-->
+
+                    <div class="form-group">
+                        <div class=" col-md-offset-3">
+                            <a href="/yschool/faces/classroom/classroomHome.xhtml" class="btn btn-default">
+                                Cancel
+                            </a>
+                            <!--TODO:actions-->
+                            <h:commandButton value="Reset" type="reset"
+                                             class="btn btn-default"/>
+
+                            <h:commandButton type="submit" value="Save Changes"
+
+                                             class="btn btn-default"/>
+                        </div>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

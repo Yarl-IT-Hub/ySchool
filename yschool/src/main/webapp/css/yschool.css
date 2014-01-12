@@ -1,9 +1,10 @@
-.thumbnail {
+.thumbnail, a.thumbnail {
     background-color: rgb(249, 242, 253);
 }
 
-.thumbnail:hover {
+.thumbnail:hover, a.thumbnail:hover {
     background-color: rgb(230, 204, 244);
+    border-color: rgb(230, 204, 244);
 }
 
 a:hover{

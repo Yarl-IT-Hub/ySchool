@@ -24,7 +24,7 @@
             <div class="col-md-4">
                 <!--Add new exam Button-->
                 <a href="/yschool/faces/classroom/classroomNew.xhtml">
-                    <Button class="btn btn-info btn-lg">New Grade</Button>
+                    <Button class="btn btn-default">Add Grade</Button>
                 </a>
             </div>
         </div>
@@ -39,10 +39,10 @@
                         <h:form>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Grade View #{gradeView.grade.grade}
+                                    Grade #{gradeView.grade.grade}
                                     <div class="pull-right">
                                         <h:commandLink type="submit"
-                                                       styleClass="btn">
+                                                       styleClass="btn btn-sm" action="#{classroomHomeBean.editGrade}">
                                             <span class="glyphicon glyphicon-pencil"></span> Edit
                                         </h:commandLink>
                                     </div>
@@ -55,8 +55,7 @@
 
                                                 <h:commandLink type="submit" styleClass="thumbnail"
                                                                style="text-align: center;text-decoration: none; color:#000000;"
-                                                               value="#{gradeView.grade.grade} #{classroom.divisionIddivision.division}"
-                                                        >
+                                                               value="#{gradeView.grade.grade} #{classroom.divisionIddivision.division}">
                                                     <br/>
                                                     Not Assigned
                                                     <!--TODO: get and display classteacher name-->
@@ -72,7 +71,6 @@
                         </h:form>
                     </ui:fragment>
                 </ui:repeat>
-
 
             </div>
         </div>
