@@ -1,6 +1,8 @@
 package org.yarlithub.yschool.staff.core;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
@@ -30,6 +32,13 @@ public class StaffHelper {
     public Staff saveOrUpdate(Staff staff) {
         dataLayerYschool.saveOrUpdate(staff);
         return staff;
+    }
+    public List<Staff> getStaffsNameLike(String regx, int maxNo) {
+        Criteria staffCR = dataLayerYschool.createCriteria(Staff.class);
+        staffCR.add(Restrictions.like("name", regx, MatchMode.ANYWHERE));
+        staffCR.setMaxResults(maxNo);
+        List<Staff> staffList = staffCR.list();
+        return staffList;
     }
 
 }

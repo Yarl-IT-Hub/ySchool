@@ -3,14 +3,15 @@ package org.yarlithub.yschool.web.staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.service.StaffService;
-import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
+
 
 /**
  * $LastChangedDate$
@@ -27,16 +28,29 @@ public class StaffBean implements Serializable {
     private String name;
     private String fullname;
     private DataModel staffs;
+    private String searchKey = null;
+    private DataModel<Staff>staffsSearchResultAjax;
+    private Staff staff;
     //private UploadedFile photo;
 
 
     @Autowired
     private StaffService staffService;
-    @ManagedProperty(value = "#{initialDateLoaderUtil}")
-    private InitialDateLoaderUtil initialDateLoaderUtil;
+    @Autowired
+    private StaffController staffController;
 
+    public Staff getStaff() {
+        return staff;
+    }
 
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
 
+    public StaffBean() {
+        super();
+        staffsSearchResultAjax = new ListDataModel<Staff>();
+    }
     public String getStaffID() {
         return staffID;
     }
@@ -77,10 +91,33 @@ public class StaffBean implements Serializable {
         }
         return "AddStaffFailed";
     }
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
+
+    public DataModel<Staff> getStaffsSearchResultAjax() {
+        return staffsSearchResultAjax;
+    }
+
+    public void setStaffsSearchResultAjax(DataModel<Staff> staffsSearchResultAjax) {
+        this.staffsSearchResultAjax = staffsSearchResultAjax;
+    }
+    public String viewStaffAjax(){
+        staffsSearchResultAjax = new ListDataModel<Staff>(staffService.getStaffsNameLike(searchKey, 10));
+        setStaff(staffsSearchResultAjax.getRowData());
+        staffController.setStaff(staff);
+        return "viewStaffAjax";
+    }
     public boolean preloadStaff()
     {
         staffs=new ListDataModel(staffService.getStaff());
         this.setStaffs(staffs);
         return  true;
     }
+
 }

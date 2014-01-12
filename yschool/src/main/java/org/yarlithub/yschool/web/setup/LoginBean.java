@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.service.SetupService;
-import org.yarlithub.yschool.web.util.InitialDateLoaderUtil;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -32,8 +31,6 @@ public class LoginBean implements Serializable {
     public String password;
     @Autowired
     private SetupService setupService;
-    @ManagedProperty(value = "#{initialDateLoaderUtil}")
-    private InitialDateLoaderUtil initialDateLoaderUtil;
 
     public LoginBean() {
         logger.info("initiating a new setup bean");
@@ -66,7 +63,4 @@ public class LoginBean implements Serializable {
         return "login";
     }
 
-    public void setInitialDateLoaderUtil(InitialDateLoaderUtil initialDateLoaderUtil) {
-        this.initialDateLoaderUtil = initialDateLoaderUtil;
-    }
 }

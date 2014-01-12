@@ -1,0 +1,103 @@
+<ui:composition template="/WEB-INF/templates/staff-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="yhead">
+        <div>
+            <f:event listener="#{staffSearchBean.preLoad}" type="preRenderView"/>
+
+            <f:metadata>
+                <f:viewParam name="staff" value="{staffBean.staffDataModel}"/>
+            </f:metadata>
+
+        </div>
+        <title>
+           Searching #{staffSearchBean.staff.name}
+        </title>
+    </ui:define>
+    <ui:define name="staff-content">
+
+        <div class="col-md-6">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a>
+                </li>
+                <li class="active">
+                   Staffs
+                </li>
+            </ol>
+        </div>
+
+
+        <div class="col-md-4">
+            <!--Add new student Button-->
+            <a href="/yschool/faces/staff/staffNew.xhtml">
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Staff
+                </Button>
+            </a>
+        </div>
+
+        <div class="col-md-10">
+            <div class="row" id="staff-home-contents">
+
+                    <div class="col-md-3">
+                        <div>
+                            <img src="/yschool/ico/student.png" class="img-circle"></img>
+                        </div>
+                    </div>
+
+                <div class="col-md-7">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label   col-md-4">Staff ID</label>
+                        <div class="col-md-8">
+                            <label class="control-label">#{staffSearchBean.staff.staffid}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label  col-md-4">Name</label>
+                        <div class="col-md-8">
+                            <label class="control-label">#{staffSearchBean.staff.name}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label  col-md-4">Full Name</label>
+                        <div class="col-md-8">
+                            <label class="control-label">#{staffSearchBean.staff.fullName}</label>
+                        </div>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<div class="col-md-offset-4">-->
+
+
+
+                            <!--<h:form>-->
+                                <!--<h:commandButton class="btn btn-default" value="Back"-->
+                                                 <!--type="submit"-->
+                                                 <!--action="{staffViewBean.backToHomeStaff}">-->
+                                <!--</h:commandButton>-->
+
+                            <!--&lt;!&ndash;<h:commandButton value="Edit" action="" type="submit" styleClass="btn btn-default"/>&ndash;&gt;-->
+
+                                <!--<h:commandButton class="btn btn-default" value="Edit"-->
+                                                 <!--type="submit"-->
+                                                 <!--action="{staffViewBean.editStaff}">-->
+                                <!--</h:commandButton>-->
+                            <!--</h:form>-->
+                            <!--<h:commandButton value="Delete" action="#" type="submit" styleClass="btn btn-default"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+                </form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
