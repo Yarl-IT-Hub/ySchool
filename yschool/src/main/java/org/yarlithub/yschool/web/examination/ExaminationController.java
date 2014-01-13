@@ -7,8 +7,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.service.ExaminationService;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 
 
@@ -34,8 +32,8 @@ public class ExaminationController implements Serializable {
         this.exam = exams;
     }
 
-   public void setCurrentExam(Exam exam){
-        this.exam=exam;
-   }
+    public void setCurrentExam(Exam exam) {
+        this.exam = exam;
+    }
 
 }

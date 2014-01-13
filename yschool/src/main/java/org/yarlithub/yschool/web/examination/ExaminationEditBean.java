@@ -203,7 +203,7 @@ public class ExaminationEditBean implements Serializable {
 //    }
 
     public boolean preloadLatestExams() {
-        exams = new ListDataModel(examinationService.listExams(1, 5));
+        exams = new ListDataModel(examinationService.getLatestExams(1, 5));
         this.setExams(exams);
         return true;
     }

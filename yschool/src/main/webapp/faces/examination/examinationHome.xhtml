@@ -1,75 +1,95 @@
 <ui:composition template="/WEB-INF/templates/examinations-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
         >
     <ui:define name="yhead">
         <title>Exams Home</title>
-        <f:event listener="#{examinationHomeBean.preloadLatestExams}" type="preRenderView"/>
     </ui:define>
 
     <ui:define name="examination-content">
 
-        <div class="span6">
-            <!--Breadcrumb to help user "where you are?"-->
-            <ul class="breadcrumb">
-                <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-                </li>
-                <li>
-                    <a href="#">Examination</a>
-                </li>
-            </ul>
-        </div>
-
-        <div class="span3">
-            <!--Examination search bar with filter-->
-            <form class="navbar-search pull-left">
-                <input type="text" class="search-query" placeholder="Search"> </input>
-            </form>
-        </div>
-
-        <div class="span3">
-            <!--Add new exam Button-->
-            <a href="/yschool/faces/examination/examinationNew.xhtml">
-                <Button class="btn btn-info btn-large"> Add New Exam</Button>
-            </a>
-        </div>
-
-
-        <div class="span12">
-            <div class="row-fluid" id="examination-home-contents">
-                <!--style=".well [class*='span']:first-child {margin-left: 15px;}">-->
-                <ul class="thumbnails">
-                <!--empty list to avoid bootstrap first row margin bug-->
-                    <li class="span9">
+        <div class="row">
+            <div class="col-md-8">
+                <!--Breadcrumb to help user "where you are?"-->
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/yschool/faces/home/myHome.xhtml">Home</a>
                     </li>
+                    <li  class="active">
+                        Examination
+                    </li>
+                </ol>
+            </div>
 
+            <div class="col-md-4">
+                <!--Add new exam Button-->
+                <a href="/yschool/faces/examination/examinationNew.xhtml">
+                    <Button class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <p> Add New Exam</p>
+                    </Button>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-10">
+            <div class="row" id="examination-home-contents">
+
+                <ui:fragment rendered="#{!examinationHomeBean.exams.rowAvailable}">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+
+
+                            <div class="alert alert-info">
+                                No Examinations found for the current Year.
+                            </div>
+                            <div class="col-md-12">
+                                You can add new Exam now here<br/>
+                                <a href="/yschool/faces/examination/examinationNew.xhtml">
+                                    <Button class="btn btn-default">
+                                        <span class="glyphicon glyphicon-plus"></span>Add New Exam
+                                    </Button>
+                                </a>
+                            </div>
+                            <div class="col-md-12">
+                                <br/>OR<br/>
+                                Change current year in settings to view previous year exams<br/>
+                                <a href="/yschool/faces/settings/settingsHome.xhtml">
+                                    <Button class="btn btn-default">
+                                        <span class="glyphicon glyphicon-cog"></span>Go to Settings
+                                    </Button>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </ui:fragment>
+
+                <ul class="thumbnails">
                     <ui:repeat value="#{examinationHomeBean.exams}" var="exam">
-                        <li class="thumbnail span9">
+                        <li class="thumbnail col-md-9">
 
-                            <div class="span10">
+                            <div class="col-md-10">
                                 <h5>
 
                                     <h:outputText
-                                            value=" #{exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
+                                            value=" #{exam.classroomModuleIdclassroomModule.classroomIdclassroom.gradeIdgrade.grade}  "/>
                                     <h:outputText
-                                            value="#{exam.classroomSubjectIdclassroomSubject.classroomIdclass.division}     "/>
+                                            value="#{exam.classroomModuleIdclassroomModule.classroomIdclassroom.divisionIddivision.division}     "/>
 
                                     <h:outputText value="Term:  #{exam.term} "/>
                                     <h:outputText value="#{exam.examTypeIdexamType.typeName} "/> on
                                     <h:outputText
-                                            value=" #{exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}"/>
-
+                                            value=" #{exam.classroomModuleIdclassroomModule.moduleIdmodule.subjectIdsubject.subjectName}"/>
 
 
                                 </h5>
                             </div>
 
-                            <div class="box span2">
+                            <div class="box col-md-2">
                                 <h:form>
-                                    <h:commandButton class="btn btn-large" value="View..."
+                                    <h:commandButton class="btn btn-default btn-large" value="View..."
                                                      type="submit"
                                                      action="#{examinationHomeBean.viewExam}">
 

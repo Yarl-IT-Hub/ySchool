@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.analytics.datasync.SyncExamination;
-import org.yarlithub.yschool.examination.core.ExaminationHelper;
 import org.yarlithub.yschool.examination.core.ExaminationCreator;
+import org.yarlithub.yschool.examination.core.ExaminationHelper;
 import org.yarlithub.yschool.examination.core.ExaminationLoader;
 import org.yarlithub.yschool.repository.model.obj.yschool.*;
 
@@ -32,7 +32,6 @@ public class ExaminationService {
     private static final Logger logger = LoggerFactory.getLogger(ExaminationService.class);
 
     /**
-     *
      * @param date      java.util.date
      * @param term      int term 1 or 2 or 3
      * @param examType  int id as in Exam_Type table in yschool database version1.2
@@ -40,7 +39,7 @@ public class ExaminationService {
      * @param division  Char like A/B/C/D/E/F
      * @param subjectid int id as in Subject table
      * @return exam if successfully created a CA exam and inserted entries into related database tables,
-     *  otherwise null.
+     *         otherwise null.
      */
     @Transactional
     public Exam addCAExam(Date date, int term, int examType, int grade, String division, int subjectid) {
@@ -56,8 +55,8 @@ public class ExaminationService {
      * @param grade     int grade
      * @param subjectid int id as in Subject table
      * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division
-     * and if successful and inserted entries into related database tables return list of exams,
-     * otherwise null.
+     *         and if successful and inserted entries into related database tables return list of exams,
+     *         otherwise null.
      */
     @Transactional
     public List<Exam> addTermExam(Date date, int term, int examType, int grade, int subjectid) {
@@ -66,8 +65,13 @@ public class ExaminationService {
         return examList;
     }
 
+    /**
+     * @param start starting number, for pagination.
+     * @param max   maximun size of return list
+     * @return List of exam object if found for current year, else empty list.
+     */
     @Transactional
-    public List<Exam> listExams(int start, int max) {
+    public List<Exam> getLatestExams(int start, int max) {
         ExaminationHelper examinationHelper = new ExaminationHelper();
         List<Exam> exams = examinationHelper.getLatestExams(start, max);
 
@@ -76,16 +80,21 @@ public class ExaminationService {
         while (iterator.hasNext()) {
             Exam exam = iterator.next();
             Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom());
+            Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getGradeIdgrade());
+            Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getDivisionIddivision());
+            Hibernate.initialize(exam.getClassroomModuleIdclassroomModule());
             Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule());
+            Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule().getSubjectIdsubject());
             Hibernate.initialize(exam.getExamTypeIdexamType());
-            Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
-            while (examSyncIterator.hasNext()){
-                Hibernate.initialize(examSyncIterator.next());
-            }
         }
         return exams;
     }
 
+    /**
+     * @param examid
+     * @return List of Marks objects of specified exam, marks considered to be integer between 0 to 100.
+     *         If no marks found return empty list.
+     */
     @Transactional
     public List<Marks> getExamMarks(Integer examid) {
         ExaminationHelper examinationHelper = new ExaminationHelper();
@@ -99,6 +108,11 @@ public class ExaminationService {
         return marksList;
     }
 
+    /**
+     * @param examid
+     * @return List of Result objects of specified exam, results are considered to be chars like A,B,C.
+     *         If no results found return empty list.
+     */
     @Transactional
     public List<Results> getExamResults(Integer examid) {
         ExaminationHelper examinationHelper = new ExaminationHelper();
@@ -109,7 +123,7 @@ public class ExaminationService {
             Results results = resultsIterator.next();
             Hibernate.initialize(results.getStudentIdstudent());
             Iterator<StudentGeneralexamProfile> studentGeneralexamProfileIterator = results.getStudentIdstudent().getStudentGeneralexamProfiles().iterator();
-            while (studentGeneralexamProfileIterator.hasNext()){
+            while (studentGeneralexamProfileIterator.hasNext()) {
                 /*to print islandrank and zscore*/
                 Hibernate.initialize(studentGeneralexamProfileIterator.next());
             }
@@ -117,6 +131,7 @@ public class ExaminationService {
         return resultsList;
     }
 
+    //TODO:handle exceptions.
     @Transactional
     public void uploadMarks(UploadedFile marksFile, int examid) throws IOException {
         ExaminationLoader examinationLoader = new ExaminationLoader();
@@ -134,15 +149,15 @@ public class ExaminationService {
     }
 
     @Transactional
-    public Exam getExambyId(int examid){
-     ExaminationHelper examinationHelper = new ExaminationHelper();
+    public Exam getExambyId(int examid) {
+        ExaminationHelper examinationHelper = new ExaminationHelper();
         Exam exam = examinationHelper.getExambyId(examid);
         Hibernate.initialize(exam.getExamTypeIdexamType());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom());
         Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
-        while (examSyncIterator.hasNext()){
+        while (examSyncIterator.hasNext()) {
             Hibernate.initialize(examSyncIterator.next());
         }
         return exam;

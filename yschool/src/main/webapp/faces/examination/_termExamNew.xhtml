@@ -5,11 +5,11 @@
         xmlns:f="http://java.sun.com/jsf/core">
 
     <fieldset>
-        <div class="control-group span3 offset1">
-            <label class="control-label" for="grade">Grade</label>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="grade">Grade</label>
 
-            <div class="controls">
-                <h:selectOneMenu id="grade"
+            <div class="col-md-8">
+                <h:selectOneMenu id="grade" class="form-control"
                                  value="#{examinationNewBean.grade}">
                     <f:selectItem id="grade6" itemLabel="10" itemValue="10"/>
                     <f:selectItem id="grade7" itemLabel="11" itemValue="11"/>
@@ -21,11 +21,11 @@
     </fieldset>
 
     <fieldset>
-        <div class="control-group span3 offset1">
-            <label class="control-label" for="subject">Subject</label>
+        <div class="form-group">
+            <label class="control-label col-md-4" for="subject">Subject</label>
 
-            <div class="controls">
-                <h:selectOneMenu id="subject"
+            <div class="col-md-8">
+                <h:selectOneMenu id="subject" class="form-control"
                                  value="#{examinationNewBean.subjectid}">
                     <!--have to retrive these from database tables-->
                     <f:selectItem id="subject1" itemLabel="SAIVISM" itemValue="1"/>
@@ -44,18 +44,19 @@
     </fieldset>
 
     <fieldset>
-        <div class="control-group span8 offset2">
-            <div class="controls">
-                <ul class="breadcrumb">
-                    <li>
-                        <h:commandButton value="Cencel" type="reset" class="btn btn-primary btn-large"/>
-                    </li>
-                    <li>
-                        <h:commandButton type="submit" value="Add this Term Exam"
-                                         action="#{examinationNewBean.addTermExam}"
-                                         class="btn btn-primary btn-large"/>
-                    </li>
-                </ul>
+        <div class="form-group">
+            <div class="col-md-offset-4">
+
+                <a href="/yschool/faces/examination/examinationHome.xhtml" class="btn btn-default">
+                    Cancel
+                </a>
+
+                <h:commandButton value="Cencel" type="reset" class="btn btn-default"/>
+
+                <h:commandButton type="submit" value="Add this Term Exam"
+                                 action="#{examinationNewBean.addTermExam}"
+                                 class="btn btn-default"/>
+
             </div>
         </div>
     </fieldset>

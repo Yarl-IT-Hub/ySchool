@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.service.ExaminationService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -19,15 +20,20 @@ import java.io.Serializable;
  */
 
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class ExaminationHomeBean implements Serializable {
     @Autowired
     private ExaminationService examinationService;
     @Autowired
     private ExaminationController examinationController;
-
     private DataModel<Exam> exams;
+
+    @PostConstruct
+    public void init() {
+        exams = new ListDataModel(examinationService.getLatestExams(0, 100));
+        this.setExams(exams);
+    }
 
     public DataModel getExams() {
         return exams;
@@ -37,19 +43,8 @@ public class ExaminationHomeBean implements Serializable {
         this.exams = exams;
     }
 
-    public boolean preloadLatestExams() {
-        exams = new ListDataModel(examinationService.listExams(0, 100));
-        this.setExams(exams);
-        return true;
-    }
-
     public String viewExam() {
         examinationController.setCurrentExam(exams.getRowData());
-//        if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
-//            marks = null;
-//        } else {  //for term and ca exam we have float marks
-//            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
-//        }
         return "ViewExam";
     }
 

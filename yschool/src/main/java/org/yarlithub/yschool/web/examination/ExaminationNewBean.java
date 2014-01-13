@@ -27,7 +27,7 @@ import java.util.List;
  */
 
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class ExaminationNewBean implements Serializable {
     @Autowired
@@ -204,7 +204,7 @@ public class ExaminationNewBean implements Serializable {
     }
 
     public boolean preloadLatestExams() {
-        exams = new ListDataModel(examinationService.listExams(1, 5));
+        exams = new ListDataModel(examinationService.getLatestExams(1, 5));
         this.setExams(exams);
         return true;
     }
