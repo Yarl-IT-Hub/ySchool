@@ -156,6 +156,9 @@ public class ExaminationService {
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom());
+        Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule().getSubjectIdsubject());
+        Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getGradeIdgrade());
+        Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getDivisionIddivision());
         Iterator<ExamSync> examSyncIterator = exam.getExamSyncs().iterator();
         while (examSyncIterator.hasNext()) {
             Hibernate.initialize(examSyncIterator.next());
