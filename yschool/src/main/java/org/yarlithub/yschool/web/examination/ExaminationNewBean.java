@@ -1,21 +1,20 @@
 package org.yarlithub.yschool.web.examination;
 
-import org.apache.myfaces.custom.fileupload.UploadedFile;
+
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Division;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
-import org.yarlithub.yschool.repository.model.obj.yschool.Marks;
-import org.yarlithub.yschool.repository.model.obj.yschool.Results;
+import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
+import org.yarlithub.yschool.repository.model.obj.yschool.Module;
 import org.yarlithub.yschool.service.ExaminationService;
-import org.yarlithub.yschool.web.util.YDateUtils;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import java.io.IOException;
+import javax.faces.event.ValueChangeEvent;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,28 +29,34 @@ import java.util.List;
 @Scope(value = "view")
 @Controller
 public class ExaminationNewBean implements Serializable {
+    public static final Logger logger = Logger.getLogger(ExaminationNewBean.class);
     @Autowired
     private ExaminationService examinationService;
     private String page = "_caExamNew";
     private Date date;
     private int term;
     private int examType;
-    private int grade;
-    private String division;
-    private int subjectid;
-    private int yearInt;
-    private int dateInt;
-    private String monthString;
-    private DataModel exams;
-    private Exam exam;
-    private DataModel<Results> results;
-    private DataModel<Marks> marks;
-
-    private UploadedFile marksFile;
-
+    private int gradeid;
+    private int divisionid;
+    private int moduleid;
+    private List<Grade> availableGrades;
+    private List<Division> availableDivisions;
+    private List<Module> availableModules;
 
     public ExaminationNewBean() {
         setExamType(ExamType.CA_EXAM);
+    }
+
+    @PostConstruct
+    public void init() {
+        logger.info("[ySchool]: Initiating ExaminationNewBean");
+        setAvailableGrades(this.examinationService.getAvailableGrades());
+        setAvailableDivisions(this.examinationService.getAvailableDivisions());
+        setAvailableModules(this.examinationService.getAvailableModules());
+    }
+
+    public void retrieveModules(ValueChangeEvent event) {
+        setAvailableModules(this.examinationService.getAvailableModules(gradeid));
     }
 
     public int getExamType() {
@@ -78,87 +83,52 @@ public class ExaminationNewBean implements Serializable {
         this.date = date;
     }
 
-    public int getYearInt() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(this.exam.getDate());
-        return cal.get(Calendar.YEAR);
-
+    public int getGradeid() {
+        return gradeid;
     }
 
-    public int getDateInt() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(this.exam.getDate());
-        return cal.get(Calendar.DATE);
+    public void setGradeid(int gradeid) {
+        this.gradeid = gradeid;
     }
 
-    public String getMonthString() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(this.exam.getDate());
-        return YDateUtils.getMonthForInt(cal.get(Calendar.MONTH));
+    public int getDivisionid() {
+        return divisionid;
     }
 
-    public String getDivision() {
-        return division;
+    public void setDivisionid(int divisionid) {
+        this.divisionid = divisionid;
     }
 
-    public void setDivision(String division) {
-        this.division = division;
+    public int getModuleid() {
+        return moduleid;
     }
 
-    public int getSubjectid() {
-        return subjectid;
+    public void setModuleid(int moduleid) {
+        this.moduleid = moduleid;
     }
 
-    public void setSubjectid(int subjectid) {
-        this.subjectid = subjectid;
+    public List<Grade> getAvailableGrades() {
+        return availableGrades;
     }
 
-    public int getGrade() {
-        return grade;
+    public void setAvailableGrades(List<Grade> availableGrades) {
+        this.availableGrades = availableGrades;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public List<Division> getAvailableDivisions() {
+        return availableDivisions;
     }
 
-    public DataModel getExams() {
-        return exams;
+    public void setAvailableDivisions(List<Division> availableDivisions) {
+        this.availableDivisions = availableDivisions;
     }
 
-    public void setExams(DataModel exams) {
-        this.exams = exams;
+    public List<Module> getAvailableModules() {
+        return availableModules;
     }
 
-    public Exam getExam() {
-        return exam;
-    }
-
-    public void setExam(Exam exam) {
-        this.exam = exam;
-    }
-
-    public DataModel<Marks> getMarks() {
-        return marks;
-    }
-
-    public void setMarks(DataModel<Marks> marks) {
-        this.marks = marks;
-    }
-
-    public DataModel<Results> getResults() {
-        return results;
-    }
-
-    public void setResults(DataModel<Results> results) {
-        this.results = results;
-    }
-
-    public UploadedFile getMarksFile() {
-        return marksFile;
-    }
-
-    public void setMarksFile(UploadedFile marksFile) {
-        this.marksFile = marksFile;
+    public void setAvailableModules(List<Module> availableModules) {
+        this.availableModules = availableModules;
     }
 
     /**
@@ -184,48 +154,29 @@ public class ExaminationNewBean implements Serializable {
     }
 
     public String addCAExam() {
-        Exam insertedExam = examinationService.addCAExam(date, term, examType, grade, division, subjectid);
+        logger.info("[ySchool]: Adding new CA Exam ");
+        Exam insertedExam = examinationService.addCAExam(date, term, examType, gradeid, divisionid, moduleid);
         if (insertedExam != null) {
+            logger.info("[ySchool]: Adding new CA Exam Success");
             //navigates to home page.(see faces-config.xml)
             return "success";
         }
+        logger.info("[ySchool]: Adding new CA Exam Failed!");
         //shows error page.
         return "failure";
     }
 
     public String addTermExam() {
-        List<Exam> insertedExamList = examinationService.addTermExam(date, term, examType, grade, subjectid);
-        if (insertedExamList!=null) {
+        logger.info("[ySchool]: Adding new Term Exam ");
+        List<Exam> insertedExamList = examinationService.addTermExam(date, term, examType, gradeid, moduleid);
+        if (insertedExamList != null) {
+            logger.info("[ySchool]: Adding new Term Exam Success");
             //navigates to home page.(see faces-config.xml)
             return "NewTermExamSuccess";
         }
+        logger.info("[ySchool]: Adding new Term Exam Failure");
         //shows error page.
         return "NewTermExamFailure";
     }
 
-    public boolean preloadLatestExams() {
-        exams = new ListDataModel(examinationService.getLatestExams(1, 5));
-        this.setExams(exams);
-        return true;
-    }
-
-    public String viewExam() {
-        this.exam = (Exam) exams.getRowData();
-        if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
-            marks = null;
-        } else {  //for term and ca exam we have float marks
-            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
-        }
-        return "ViewExam";
-    }
-
-    public String uploadMarks() throws IOException {
-        examinationService.uploadMarks(marksFile,exam.getId());
-        if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
-            marks = null;
-        } else {  //for term and ca exam we have float marks
-            this.marks = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
-        }
-        return "ViewExam";
-    }
 }

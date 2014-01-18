@@ -31,8 +31,7 @@ public class ExaminationHomeBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        exams = new ListDataModel(examinationService.getLatestExams(0, 100));
-        this.setExams(exams);
+        this.exams = new ListDataModel(examinationService.getLatestExams(0, 100));
     }
 
     public DataModel getExams() {
@@ -44,7 +43,7 @@ public class ExaminationHomeBean implements Serializable {
     }
 
     public String viewExam() {
-        examinationController.setCurrentExam(exams.getRowData());
+        this.examinationController.setCurrentExam(exams.getRowData());
         return "ViewExam";
     }
 

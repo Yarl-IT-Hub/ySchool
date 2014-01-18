@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.analytics.datasync.SyncExamination;
+import org.yarlithub.yschool.classroom.core.ClassroomHelper;
 import org.yarlithub.yschool.examination.core.ExaminationCreator;
 import org.yarlithub.yschool.examination.core.ExaminationHelper;
 import org.yarlithub.yschool.examination.core.ExaminationLoader;
@@ -32,36 +33,36 @@ public class ExaminationService {
     private static final Logger logger = LoggerFactory.getLogger(ExaminationService.class);
 
     /**
-     * @param date      java.util.date
-     * @param term      int term 1 or 2 or 3
-     * @param examType  int id as in Exam_Type table in yschool database version1.2
-     * @param grade     int grade
-     * @param division  Char like A/B/C/D/E/F
-     * @param subjectid int id as in Subject table
+     * @param date       java.util.date
+     * @param term       int term 1 or 2 or 3
+     * @param examType   int id as in Exam_Type table in yschool database version1.2
+     * @param gradeid    Grade
+     * @param divisionid Division
+     * @param moduleid   Module
      * @return exam if successfully created a CA exam and inserted entries into related database tables,
      *         otherwise null.
      */
     @Transactional
-    public Exam addCAExam(Date date, int term, int examType, int grade, String division, int subjectid) {
+    public Exam addCAExam(Date date, int term, int examType, int gradeid, int divisionid, int moduleid) {
         ExaminationCreator examinationCreator = new ExaminationCreator();
-        Exam exam = examinationCreator.addNewCAExam(date, term, examType, grade, division, subjectid);
+        Exam exam = examinationCreator.addNewCAExam(date, term, examType, gradeid, divisionid, moduleid);
         return exam;
     }
 
     /**
-     * @param date      java.util.date
-     * @param term      int term 1 or 2 or 3
-     * @param examType  int id as in Exam_Type table in yschool database version1.2
-     * @param grade     int grade
-     * @param subjectid int id as in Subject table
+     * @param date     java.util.date
+     * @param term     int term 1 or 2 or 3
+     * @param examType int id as in Exam_Type table in yschool database version1.2
+     * @param gradeid  int grade
+     * @param moduleid int id as in Subject table
      * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division
      *         and if successful and inserted entries into related database tables return list of exams,
      *         otherwise null.
      */
     @Transactional
-    public List<Exam> addTermExam(Date date, int term, int examType, int grade, int subjectid) {
+    public List<Exam> addTermExam(Date date, int term, int examType, int gradeid, int moduleid) {
         ExaminationCreator examinationCreator = new ExaminationCreator();
-        List<Exam> examList = examinationCreator.addNewTermExam(date, term, examType, grade, subjectid);
+        List<Exam> examList = examinationCreator.addNewTermExam(date, term, examType, gradeid, moduleid);
         return examList;
     }
 
@@ -164,5 +165,40 @@ public class ExaminationService {
             Hibernate.initialize(examSyncIterator.next());
         }
         return exam;
+    }
+
+    @Transactional
+    public List<Grade> getAvailableGrades() {
+        ClassroomHelper classroomHelper = new ClassroomHelper();
+        return classroomHelper.getAvailableGrades();
+
+    }
+
+    @Transactional
+    public List<Division> getAvailableDivisions() {
+        ClassroomHelper classroomHelper = new ClassroomHelper();
+        return classroomHelper.getAvailableDivisions();
+    }
+
+    @Transactional
+    public List<Module> getAvailableModules() {
+        ClassroomHelper classroomHelper = new ClassroomHelper();
+        List<Module> availableModules = classroomHelper.getAvailableModules();
+        Iterator<Module> moduleIterator = availableModules.iterator();
+        while (moduleIterator.hasNext()) {
+            Hibernate.initialize(moduleIterator.next().getSubjectIdsubject());
+        }
+        return availableModules;
+    }
+
+    @Transactional
+    public List<Module> getAvailableModules(int gradeid) {
+        ClassroomHelper classroomHelper = new ClassroomHelper();
+        List<Module> availableModules = classroomHelper.getAvailableModules(gradeid);
+        Iterator<Module> moduleIterator = availableModules.iterator();
+        while (moduleIterator.hasNext()) {
+            Hibernate.initialize(moduleIterator.next().getSubjectIdsubject());
+        }
+        return availableModules;
     }
 }

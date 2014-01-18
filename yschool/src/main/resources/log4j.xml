@@ -5,7 +5,7 @@
                      xmlns:log4j="http://jakarta.apache.org/log4j/">
 
     <appender name="console" class="org.apache.log4j.ConsoleAppender">
-        <param name="Threshold" value="debug"/>
+        <param name="Threshold" value="info"/>
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern" value="%d %-5p %c{1} - [%t] [%x] %m%n"/>
         </layout>
@@ -20,6 +20,24 @@
     <!--</layout>-->
     <!--</appender>-->
 
+
+    <appender name="trace-out" class="org.apache.log4j.FileAppender">
+        <param name="File" value="out/trace-info.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{1} - [%t] [%x] %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelMatchFilter">
+            <param name="LevelToMatch" value="info"/>
+            <param name="AcceptOnMatch" value="true"/>
+        </filter>
+        <filter class="org.apache.log4j.varia.DenyAllFilter"/>
+    </appender>
+
+    <category name="org.yarlithub.yschool" additivity="false">
+        <priority value="trace" />
+        <appender-ref ref="trace-out" />
+    </category>
+
     <category name="org.yarlithub" additivity="false">
         <priority value="debug"/>
         <!--<appender-ref ref="info" />-->
@@ -32,8 +50,9 @@
     </category>
 
     <root>
-        <priority value="debug"/>
+        <priority value="trace"/>
         <!--<appender-ref ref="info" />-->
+        <appender-ref ref="trace-out"/>
         <appender-ref ref="console"/>
     </root>
 </log4j:configuration>
