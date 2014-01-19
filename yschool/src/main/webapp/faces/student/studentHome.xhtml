@@ -7,12 +7,6 @@
         <title>
             Students Home
         </title>
-
-        <div>
-            <f:event listener="#{studentHomeBean.preloadstudents}" type="preRenderView"/>
-
-        </div>
-
     </ui:define>
 
     <ui:define name="student-content">
@@ -39,31 +33,10 @@
                 </Button>
             </a>
         </div>
-        <!-- end student New -->
-        Change it to only a student specific search stuffs in the middle.
-        No need this lalyout, these are moved to Classrooms.
-        <ui:repeat value="#{studentHomeBean.gradeDataModel}" var="grade">
-            <div class="col-md-10">
-                <h3>
-                    Grade #{grade.grade}
-                </h3>
-                <ui:repeat value="#{grade.classroomDataModel}" var="classroom">
-                    <h:form class="col-md-2">
-                        <h:commandButton value="#{classroom.divisionIddivision.division}"
-                                         action="#{studentHomeBean.viewClassroom}" type="submit"
-                                         styleClass="btn btn-lg">
-                        </h:commandButton>
-                    </h:form>
 
 
-                </ui:repeat>
-
-            </div>
-
-
-        </ui:repeat>
         <div class="col-md-8 col-lg-offset-2">
-             <p>student Search Here.....</p>
+             <p>Search Student Here.....</p>
         <h:form>
             <div class="form-group">
                 <div class="col-md-7">
@@ -71,7 +44,7 @@
                         <p:ajax event="keypress" listener="#{studentBean.viewStudentAjax}" update="suggest_box"></p:ajax>
                     </h:inputText>
                 </div>
-                <h:commandButton value="Search" styleClass="btn btn-success"   type="submit" action="#{studentBean.viewStudentAjax}">
+                <h:commandButton value="Search" styleClass="btn btn-info"   type="submit" action="#{studentBean.viewStudentAjax}">
 
                 </h:commandButton>
             </div>
