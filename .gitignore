@@ -4,6 +4,7 @@
 *.DS_Store
 *.swp
 *.out
+*.log
 Thumbs.db
 *.iml
 *.idea

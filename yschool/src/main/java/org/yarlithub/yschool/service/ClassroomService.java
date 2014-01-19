@@ -42,6 +42,6 @@ public class ClassroomService {
     @Transactional
     public List<Grade> getGrades() {
         ClassroomHelper classroomHelper = new ClassroomHelper();
-        return classroomHelper.getGrades();
+        return classroomHelper.getAvailableGrades();
     }
 }

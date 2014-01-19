@@ -6,67 +6,38 @@
         >
 
     <fieldset>
-        <div class="form-group ">
-            <label class="control-label col-md-4" for="grade">Grade</label>
-
-            <div class="col-md-8">
-                <h:selectOneMenu id="grade" class="form-control"
-                                 value="#{examinationNewBean.grade}" required="true"
-                                 requiredMessage="Grade is required">
-                    <!--have to retrive these from database tables-->
-                    <f:selectItem id="grade10" itemLabel="10" itemValue="10"/>
-                    <f:selectItem id="grade11" itemLabel="11" itemValue="11"/>
-
-                </h:selectOneMenu>
-                <h:message for="grade" errorStyle="color : red"/>
-            </div>
-        </div>
-    </fieldset>
-
-    <fieldset>
         <div class="form-group">
             <label class="control-label col-md-4" for="division">Division</label>
 
             <div class="col-md-8">
                 <h:selectOneMenu id="division" class="form-control"
-                                 value="#{examinationNewBean.division}" required="true"
+                                 value="#{examinationNewBean.divisionid}" required="true"
                                  requiredMessage="Division is required">
-                    <!--have to retrive these from database tables-->
-                    <f:selectItem id="divisiona" itemLabel="A" itemValue="A"/>
-                    <f:selectItem id="divisionb" itemLabel="B" itemValue="B"/>
-                    <f:selectItem id="divisionc" itemLabel="C" itemValue="C"/>
-                    <f:selectItem id="divisiond" itemLabel="D" itemValue="D"/>
-                    <f:selectItem id="divisione" itemLabel="E" itemValue="E"/>
-                    <f:selectItem id="divisionf" itemLabel="F" itemValue="F"/>
+                    <f:selectItems value="#{examinationNewBean.availableDivisions}" var="division"
+                                   itemLabel="#{division.division}" itemValue="#{division.id}"></f:selectItems>
                 </h:selectOneMenu>
                 <h:message for="division" errorStyle="color : red"/>
             </div>
         </div>
     </fieldset>
 
-    <fieldset>
-        <div class="form-group">
-            <label class="control-label col-md-4" for="subject">Subject</label>
 
-            <div class="col-md-8">
-                <h:selectOneMenu id="subject" class="form-control"
-                                 value="#{examinationNewBean.subjectid}" required="true"
-                                 requiredMessage="Grade is required">
-                    <!--have to retrive these from database tables-->
-                    <f:selectItem id="subject1" itemLabel="SAIVISM" itemValue="1"/>
-                    <f:selectItem id="subject2" itemLabel="TAMIL LANGUAGE" itemValue="2"/>
-                    <f:selectItem id="subject3" itemLabel="ENGLISH LANGUAGE" itemValue="3"/>
-                    <f:selectItem id="subject4" itemLabel="MATHEMATICS" itemValue="4"/>
-                    <f:selectItem id="subject5" itemLabel="SCIENCE AND TECHNOLOGY" itemValue="5"/>
-                    <f:selectItem id="subject6" itemLabel="HISTORY" itemValue="6"/>
-                    <f:selectItem id="subject7" itemLabel="BUSSINESS AND ACCOUNTING" itemValue="7"/>
-                    <f:selectItem id="subject8" itemLabel="INFORMATION AND COMMUNICATION TECHNOLOGY" itemValue="8"/>
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label col-md-4" for="subject">Module</label>
 
-                </h:selectOneMenu>
-                <h:message for="subject" errorStyle="color : red"/>
+                <div class="col-md-8">
+                    <h:selectOneMenu id="subject" class="form-control"
+                                     value="#{examinationNewBean.moduleid}" required="true"
+                                     requiredMessage="Grade is required">
+                        <f:selectItems value="#{examinationNewBean.availableModules}" var="module"
+                                       itemLabel="#{module.subjectIdsubject.subjectName}"
+                                       itemValue="#{module.id}"></f:selectItems>
+                    </h:selectOneMenu>
+                    <h:message for="subject" errorStyle="color : red"/>
+                </div>
             </div>
-        </div>
-    </fieldset>
+        </fieldset>
 
 
     <fieldset>

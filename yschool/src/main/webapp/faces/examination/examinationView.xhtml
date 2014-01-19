@@ -6,214 +6,200 @@
                 xmlns:t="http://myfaces.apache.org/tomahawk"
         >
 <ui:define name="yhead">
-    <!--set the current viewing exam to bean from examinationHome page-->
-    <!--<f:metadata>-->
-    <!--<f:viewParam name="examid" value="{examinationViewBean.examid}"/>-->
-    <!--</f:metadata>-->
-    <title>Exams View</title>
-    <f:event listener="#{examinationViewBean.preloadExam}" type="preRenderView"/>
-
-
+    <title>Examination View</title>
 </ui:define>
 
 <ui:define name="examination-content">
 
-<div class="span6">
-    <!--Breadcrumb to help user "where you are?"-->
-    <ul class="breadcrumb">
-        <li>
-            <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider">></span>
-        </li>
-        <li>
-            <a href="/yschool/faces/examination/examinationHome.xhtml">Examination</a> <span
-                class="divider">></span>
-        </li>
-        <li>
-            <a href="#">Exam id: #{examinationViewBean.exam.id}</a>
-        </li>
-    </ul>
+<div class="row">
+    <div class="col-md-8">
+        <ol class="breadcrumb">
+            <li>
+                <a href="/yschool/faces/home/myHome.xhtml">Home</a>
+            </li>
+            <li>
+                <a href="/yschool/faces/examination/examinationHome.xhtml">Examination</a>
+            </li>
+            <li class="active">
+                Exam id: #{examinationViewBean.exam.id}
+            </li>
+        </ol>
+    </div>
+
+    <div class="col-md-4">
+        <!--Add new exam Button-->
+        <a href="/yschool/faces/examination/examinationNew.xhtml">
+            <Button class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+                Add New Exam
+            </Button>
+        </a>
+    </div>
 </div>
 
-<div class="span3">
-    <!--Examination search bar with filter-->
-    <form class="navbar-search pull-left">
-        <input type="text" class="search-query" placeholder="Search"> </input>
-    </form>
-</div>
+<ul class="thumbnails col-md-10">
 
-<div class="span3">
-    <!--Add new exam Button-->
-    <a href="/yschool/faces/examination/examinationNew.xhtml">
-        <Button class="btn btn-info btn-large"> Add New Exam</Button>
-    </a>
-</div>
+<!--Exam details-->
+<li class="thumbnail  col-md-9">
+    <div class="col-md-12">
+        <p class="lead">Exam Details</p>
+        <h5>
+            <h:outputText
+                    value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.gradeIdgrade.grade}  "/>
+            <h:outputText
+                    value="  #{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.divisionIddivision.division} "/>
+            <h:outputText
+                    value="  #{examinationViewBean.exam.classroomModuleIdclassroomModule.moduleIdmodule.subjectIdsubject.subjectName}  "/>
 
-<ul class="thumbnails">
+            <h:outputText
+                    value="  #{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
+            <br/>
+            <h:outputText
+                    value="  #{examinationViewBean.exam.examTypeIdexamType.typeName} "/>
+        </h5>
 
-    <!--avoid bootstrap first list margin bug!-->
-    <li ></li>
+        <h:form id="form_editexam">
 
-    <!--Exam details-->
-    <li class="thumbnail  span9">
-        <div class="span10">
-            <p class="lead">Exam Details</p>
-            <h5>
-                <h:outputText
-                        value="#{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.grade}  "/>
-                <h:outputText
-                        value="  #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.classroomIdclass.division} "/>
-                <h:outputText
-                        value="  #{examinationViewBean.exam.classroomSubjectIdclassroomSubject.subjectIdsubject.name}  "/>
+            <h:commandButton class="btn btn-default pull-right" value="Edit..." action="#{examinationViewBean.editExam}"
+                             type="submit">
 
-                <h:outputText
-                        value="  #{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
+            </h:commandButton>
+
+        </h:form>
+    </div>
+
+
+</li>
+<!--end Exam details-->
+
+<ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
+    <!--upload marks-->
+    <li class="thumbnail  col-md-9">
+        <h:form id="form_marksupload" class="form-horizontal" enctype="multipart/form-data">
+            <div class="well col-md-12">
+                <p class="lead">Upload Results</p>
+                No marks or results entered yet.
                 <br/>
-                <h:outputText
-                        value="  #{examinationViewBean.exam.examTypeIdexamType.typeName} "/>
-            </h5>
-        </div>
-        <div class="box span2">
-            <h:form id="form_editexam">
+                Fill up <a
+                    href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks/REsults Document</a> and upload it here.
 
-                <h:commandButton class="btn btn-large" value="Edit..." action="#{examinationViewBean.editExam}"
-                                 type="submit">
 
+                <t:inputFileUpload id="marks-doc" value="#{examinationViewBean.marksORresultsFile}"/>
+                <h:message for="marks-doc" errorStyle="color : red"/>
+
+
+                <h:commandButton value="Update Marks" styleClass="btn  btn-default pull-right"
+                                 action="#{examinationViewBean.uploadMarks}" type="submit">
                 </h:commandButton>
 
-            </h:form>
-        </div>
-
+            </div>
+        </h:form>
     </li>
-    <!--end Exam details-->
-
-    <ui:fragment rendered="#{!examinationViewBean.marksORresults.rowAvailable}">
-        <!--upload marks-->
-        <li class="thumbnail  span9">
-            <h:form id="form_marksupload" class="form-horizontal" enctype="multipart/form-data">
-                <div class="well span9 offset1">
-                    <p class="lead text-center">Upload Results</p>
-                    No marks or results entered yet.
-                    <br/>
-                    Fill up <a
-                        href="/yschool/spreadsheet-templates/Exam_Marks.xls">ySchool Exam Marks/REsults Document</a> and upload it here.
+    <!--end upload marks-->
+</ui:fragment>
 
 
-                    <t:inputFileUpload id="marks-doc" value="#{examinationViewBean.marksORresultsFile}"/>
-                    <h:message for="marks-doc" errorStyle="color : red"/>
+<ui:fragment rendered="#{examinationViewBean.marksORresults.rowAvailable}">
 
-
-                    <h:commandButton value="Update Marks" styleClass="btn btn-large btn-info pull-right"
-                                     action="#{examinationViewBean.uploadMarks}" type="submit">
-                    </h:commandButton>
-
-                </div>
-            </h:form>
-        </li>
-        <!--end upload marks-->
-    </ui:fragment>
-
-
-    <ui:fragment rendered="#{examinationViewBean.marksORresults.rowAvailable}">
-
-        <!--exam marks or results section-->
-        <li class="thumbnail  span9">
-            <div class="accordion span12" id="accordion1">
-                <div class="accordion-group">
-                    <div class="accordion-heading">
-                        <div class="span10">
-                            <p class="lead">
-                                Students and Results
-                            </p>
-                        </div>
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
-                           href="#collapseOne">
-                            <button class="btn btn-large">View</button>
-                        </a>
+    <!--exam marks or results section-->
+    <li class="thumbnail  col-md-9">
+        <div class="accordion col-md-12" id="accordion1">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <div class="col-md-10">
+                        <p class="lead">
+                            Students and Results
+                        </p>
                     </div>
-                    <div id="collapseOne" class="accordion-body collapse">
-                        <div class="accordion-inner">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
+                       href="#collapseOne">
+                        <button class="btn btn-large">View</button>
+                    </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse">
+                    <div class="accordion-inner">
 
 
-                            <ui:fragment rendered="#{!examinationViewBean.generalExam}">
-                                <!--makrs list-->
-                                <div>
-                                    <h:form>
-                                        <h:dataTable value="#{examinationViewBean.marksORresults}" var="marks"
-                                                     styleClass="table table-hover">
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Addmission No</f:facet>
-                                                #{ marks.studentIdstudent.admissionNo}
-                                            </h:column>
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Name</f:facet>
-                                                #{marks.studentIdstudent.name}
-                                            </h:column>
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Marks</f:facet>
-                                                #{marks.marks}
-                                            </h:column>
-                                            <h:column>
-                                                <h:commandButton value="Edit" styleClass="btn btn-mini"/>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </div>
-                                <!--end makrs list-->
-                            </ui:fragment>
-                            <ui:fragment rendered="#{examinationViewBean.generalExam}">
-                                <!--results list-->
-                                <div>
-                                    <h:form>
-                                        <h:dataTable value="#{examinationViewBean.marksORresults}" var="results"
-                                                     styleClass="table table-hover">
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Addmission No</f:facet>
-                                                #{ results.studentIdstudent.admissionNo}
-                                            </h:column>
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Name</f:facet>
-                                                #{results.studentIdstudent.name}
-                                            </h:column>
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Results</f:facet>
-                                                #{results.results}
-                                            </h:column>
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">Island Rank</f:facet>
-                                                #{examinationViewBean.currentRowIslandRank}
-                                            </h:column>
-                                            <h:column>
-                                                <!-- column header -->
-                                                <f:facet name="header">z Score</f:facet>
-                                                #{examinationViewBean.currentRowZScore}
-                                            </h:column>
-                                            <h:column>
-                                                <h:commandButton value="Edit" styleClass="btn btn-mini"/>
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </div>
-                                <!--end results list-->
-                            </ui:fragment>
+                        <ui:fragment rendered="#{!examinationViewBean.generalExam}">
+                            <!--makrs list-->
+                            <div>
+                                <h:form>
+                                    <h:dataTable value="#{examinationViewBean.marksORresults}" var="marks"
+                                                 styleClass="table table-hover">
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Addmission No</f:facet>
+                                            #{ marks.studentIdstudent.admissionNo}
+                                        </h:column>
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Name</f:facet>
+                                            #{marks.studentIdstudent.name}
+                                        </h:column>
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Marks</f:facet>
+                                            #{marks.marks}
+                                        </h:column>
+                                        <h:column>
+                                            <h:commandButton value="Edit" styleClass="btn btn-mini"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+                            </div>
+                            <!--end makrs list-->
+                        </ui:fragment>
+                        <ui:fragment rendered="#{examinationViewBean.generalExam}">
+                            <!--results list-->
+                            <div>
+                                <h:form>
+                                    <h:dataTable value="#{examinationViewBean.marksORresults}" var="results"
+                                                 styleClass="table table-hover">
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Addmission No</f:facet>
+                                            #{ results.studentIdstudent.admissionNo}
+                                        </h:column>
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Name</f:facet>
+                                            #{results.studentIdstudent.name}
+                                        </h:column>
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Results</f:facet>
+                                            #{results.results}
+                                        </h:column>
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">Island Rank</f:facet>
+                                            #{examinationViewBean.currentRowIslandRank}
+                                        </h:column>
+                                        <h:column>
+                                            <!-- column header -->
+                                            <f:facet name="header">z Score</f:facet>
+                                            #{examinationViewBean.currentRowZScore}
+                                        </h:column>
+                                        <h:column>
+                                            <h:commandButton value="Edit" styleClass="btn btn-mini"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+                            </div>
+                            <!--end results list-->
+                        </ui:fragment>
 
-                        </div>
                     </div>
                 </div>
             </div>
-            <!--end accordion-->
-        </li>
-        <!--end exam marks or results section-->
+        </div>
+        <!--end accordion-->
+    </li>
+    <!--end exam marks or results section-->
 
-        <!--li CLASS datasnyc -->
+    <!--li CLASS datasnyc -->
     <ui:fragment rendered="#{!examinationViewBean.synced}">
-        <li class="thumbnail span9">
+        <li class="thumbnail col-md-9">
             <p class="lead"> CLASS Data Sync</p>
 
             <div class="alert alert-danger">
@@ -224,7 +210,7 @@
                     Make sure you have an active internet connection till synchronization ends.
                 </p>
             </div>
-            <div class="span4 offset4">
+            <div class="col-md-4 col-md-offset-4">
 
                 <a href="/yschool/faces/analytics/analyticsSync.xhtml">
                     <Button class="btn btn-info btn-large">Go to Sync Now</Button>
@@ -234,35 +220,35 @@
             <!--CLASS datasync-->
         </li>
     </ui:fragment>
-        <!--CLASS datasync-->
+    <!--CLASS datasync-->
 
 
-        <!--exam standard check-->
-        <ui:fragment rendered="#{examinationViewBean.comparisonAvailable}">
+    <!--exam standard check-->
+    <ui:fragment rendered="#{examinationViewBean.comparisonAvailable}">
 
-            <li class="thumbnail span9">
+        <li class="thumbnail col-md-9">
 
-                <p class="lead"> CLASS Exam Standard Check</p>
+            <p class="lead"> CLASS Exam Standard Check</p>
 
-                <div class="alert alert-danger">
+            <div class="alert alert-danger">
 
-                    <p>
-                        Check the standard of this exam with CLASS.
-                    </p>
-                </div>
-                <div class="span4 offset4">
-                    <a href="/yschool/faces/analytics/analyticsExaminationHome.xhtml">
-                        <Button class="btn btn-info btn-large">Check Standard</Button>
-                    </a>
+                <p>
+                    Check the standard of this exam with CLASS.
+                </p>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <a href="/yschool/faces/analytics/analyticsExaminationHome.xhtml">
+                    <Button class="btn btn-info btn-large">Check Standard</Button>
+                </a>
 
-                </div>
+            </div>
 
 
-            </li>
-        </ui:fragment>
-        <!--end exam standatd check-->
-
+        </li>
     </ui:fragment>
+    <!--end exam standatd check-->
+
+</ui:fragment>
 
 </ul>
 
