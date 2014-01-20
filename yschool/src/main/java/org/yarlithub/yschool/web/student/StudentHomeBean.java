@@ -7,6 +7,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
@@ -21,7 +22,7 @@ import java.util.List;
  * $LastChangedRevision$
  */
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class StudentHomeBean implements Serializable {
 
@@ -34,7 +35,10 @@ public class StudentHomeBean implements Serializable {
     @Autowired
    private StudentController studentController;
 
-
+    @PostConstruct
+    public void init(){
+        this.preloadstudents();
+    }
 
 
     public DataModel<Grade> getGradeDataModel() {

@@ -33,6 +33,7 @@ public class StudentBean implements Serializable {
     private Student student;
     private String searchKey = null;
     private DataModel<Student>studentsSearchResultAjax;
+    private String page = "studentSearch";
 
     @Autowired
     private StudentService studentService;
@@ -133,12 +134,13 @@ public class StudentBean implements Serializable {
         return "viewStudentAjax";
     }
 
-    public boolean preLoad() {
-
-        this.setStudent(studentController.getStudent());
-        return  true;
+    public String getPage() {
+        return page;
     }
 
+    public void setPage(String page) {
+        this.page = page;
+    }
 
     public String addStudent() {
 
