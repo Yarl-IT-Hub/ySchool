@@ -5,9 +5,6 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html">
     <ui:define name="yhead">
-        <div>
-            <f:event listener="#{studentSearchBean.preLoad}" type="preRenderView"/>
-        </div>
         <title>
             Searching #{studentSearchBean.student.fullName}
         </title>
@@ -109,6 +106,19 @@
 
                             <div class="col-md-8">
                                 <label class="control-label">#{studentSearchBean.student.address}</label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-8 col-lg-offset-4">
+
+                                <h:form>
+                                    <h:commandButton value="Back" action="#{studentSearchBean.backToHome}" type="submit"
+                                                     styleClass="btn btn-default">
+                                    </h:commandButton>
+                                </h:form>
                             </div>
                         </div>
                     </form>

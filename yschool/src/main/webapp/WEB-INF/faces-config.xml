@@ -57,6 +57,13 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/student/studentList.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+
+        <navigation-case>
+            <from-outcome>viewStudentAjax</from-outcome>
+            <to-view-id>/faces/student/searchStudent.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+
     </navigation-rule>
 
     <!--studentNew-->
@@ -125,12 +132,13 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
     </navigation-rule>
 
 
+    <!--studentSearch-->
     <navigation-rule>
         <display-name>studentSearch</display-name>
-        <from-view-id>/faces/student/studentHome.xhtml</from-view-id>
+        <from-view-id>/faces/student/searchStudent.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>viewStudentAjax</from-outcome>
-            <to-view-id>/faces/student/searchStudent.xhtml</to-view-id>
+            <from-outcome>backStudentHome</from-outcome>
+            <to-view-id>/faces/student/studentHome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

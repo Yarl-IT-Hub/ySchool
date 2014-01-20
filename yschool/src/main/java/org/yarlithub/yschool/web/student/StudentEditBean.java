@@ -7,6 +7,7 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 
@@ -16,7 +17,7 @@ import java.io.Serializable;
  * $LastChangedRevision$
  */
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class StudentEditBean implements Serializable {
 
@@ -26,6 +27,10 @@ public class StudentEditBean implements Serializable {
     @Autowired
     private StudentController studentController;
 
+    @PostConstruct
+    public void init(){
+        this.preLoad();
+    }
     public Student getStudent() {
         return student;
     }
