@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.web.student.StudentBean;
+import org.yarlithub.yschool.web.student.StudentNewBean;
 
 import static org.junit.Assert.assertTrue;
 
@@ -23,7 +23,7 @@ public class StudentNewTest {
     @Test
     @Transactional
     public void insertStaffTest() {
-        StudentBean studentBean=new StudentBean();
+        StudentNewBean studentBean=new StudentNewBean();
         studentBean.setName("wow");
         System.out.println(studentBean.getName());
 

@@ -21,7 +21,7 @@ import java.util.Date;
 @ManagedBean
 @Scope(value = "session")
 @Controller
-public class StudentBean implements Serializable {
+public class StudentNewBean implements Serializable {
 
     private String admission_No;
     private String name;
@@ -30,21 +30,11 @@ public class StudentBean implements Serializable {
     private Date dob;
     private String gender;
     private String address;
-    private Student student;
-    private String searchKey = null;
-    private DataModel<Student>studentsSearchResultAjax;
-    private String page = "studentSearch";
+
+
 
     @Autowired
     private StudentService studentService;
-
-    @Autowired
-    private StudentController studentController;
-
-    public StudentBean() {
-        super();
-        studentsSearchResultAjax = new ListDataModel<Student>();
-    }
 
     public String getAdmission_No() {
         return admission_No;
@@ -102,45 +92,7 @@ public class StudentBean implements Serializable {
         this.address = address;
     }
 
-    public Student getStudent() {
-        return student;
-    }
 
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public String getSearchKey() {
-        return searchKey;
-    }
-
-    public void setSearchKey(String searchKey) {
-        this.searchKey = searchKey;
-    }
-
-    public DataModel<Student> getStudentsSearchResultAjax() {
-        return studentsSearchResultAjax;
-    }
-
-    public void setStudentsSearchResultAjax(DataModel<Student> studentsSearchResultAjax) {
-        this.studentsSearchResultAjax = studentsSearchResultAjax;
-    }
-
-
-    public String viewStudentAjax(){
-        studentsSearchResultAjax = new ListDataModel<Student>(studentService.getStudentsNameLike(searchKey,10));
-        setStudent(studentsSearchResultAjax.getRowData());
-        studentController.setStudent(student);
-        return "viewStudentAjax";
-    }
-
-    public String getPage() {
-        return page;
-    }
-
-    public void setPage(String page) {
-        this.page = page;
-    }
 
     public String addStudent() {
 

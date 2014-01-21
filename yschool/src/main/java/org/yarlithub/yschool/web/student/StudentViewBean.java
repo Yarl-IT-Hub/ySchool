@@ -27,8 +27,8 @@ public class StudentViewBean implements Serializable {
     private StudentController studentController;
 
     @PostConstruct
-    public void init(){
-        this.preLoad();
+    public void init() {
+        setStudent(studentController.getStudent());
     }
 
     public Student getStudent() {
@@ -39,23 +39,17 @@ public class StudentViewBean implements Serializable {
         this.student = student;
     }
 
-    public boolean preLoad() {
-
-        setStudent(studentController.getStudent());
-        return  true;
-    }
-
-    public String editStudent(){
+    public String editStudent() {
         studentController.setStudent(student);
         return "EditStudent";
     }
 
-    public String studentDelete(){
+    public String studentDelete() {
         studentService.studentDelete(student);
-        return "deleteStudent";
+        return "StudentHome";
     }
 
-    public String backTo(){
+    public String backTo() {
         return "backStudentList";
     }
 

@@ -13,7 +13,7 @@ public class StudentCreator {
     public boolean addNewStudent(String admission_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
 
         Student student = YschoolDataPoolFactory.getStudent();
-        student.setAddress(admission_No);
+        student.setAdmissionNo(admission_No);
         student.setName(name);
         student.setFullName(fullname);
         student.setNameWtInitial(name_wt_initial);

@@ -27,8 +27,8 @@ public class StudentSearchBean implements Serializable {
     private StudentController studentController;
 
     @PostConstruct
-    public void init(){
-        this.preLoad();
+    public void init() {
+        setStudent(studentController.getStudent());
     }
 
     public Student getStudent() {
@@ -39,13 +39,7 @@ public class StudentSearchBean implements Serializable {
         this.student = student;
     }
 
-    public boolean preLoad() {
-
-        setStudent(studentController.getStudent());
-        return  true;
-    }
-
-    public String backToHome(){
+    public String backToHome() {
         return "backStudentHome";
     }
 }

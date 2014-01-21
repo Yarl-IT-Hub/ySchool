@@ -3,7 +3,6 @@ package org.yarlithub.yschool.web.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;
 
@@ -28,9 +27,11 @@ public class StudentEditBean implements Serializable {
     private StudentController studentController;
 
     @PostConstruct
-    public void init(){
-        this.preLoad();
+    public void init() {
+        setStudent(studentController.getStudent());
+
     }
+
     public Student getStudent() {
         return student;
     }
@@ -39,18 +40,12 @@ public class StudentEditBean implements Serializable {
         this.student = student;
     }
 
-    public boolean preLoad() {
-
-        setStudent(studentController.getStudent());
-        return  true;
-    }
-
-    public String editstudent(){
+    public String editstudent() {
         studentService.saveOrUpdate(student);
         return "editStudent";
     }
 
-    public String backToView(){
+    public String backToView() {
         return "backToView";
     }
 }

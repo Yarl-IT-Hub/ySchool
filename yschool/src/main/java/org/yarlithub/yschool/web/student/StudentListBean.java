@@ -31,8 +31,9 @@ public class StudentListBean implements Serializable {
     private StudentController studentController;
 
     @PostConstruct
-    public void init(){
-        this.preload();
+    public void init() {
+        Classroom classroom = studentController.getClassroom();
+        listStudents = studentController.getStudentList();
     }
 
     public DataModel getListStudents() {
@@ -41,13 +42,6 @@ public class StudentListBean implements Serializable {
 
     public void setListStudents(DataModel listStudents) {
         this.listStudents = listStudents;
-    }
-
-    public boolean preload() {
-
-        Classroom classroom = studentController.getClassroom();
-        listStudents = new ListDataModel(studentService.getClassroomStudent(classroom));
-        return true;
     }
 
     public String viewStudent() {

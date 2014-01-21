@@ -1,7 +1,7 @@
 <ui:composition template="/WEB-INF/templates/student-layout.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+                xmlns:p="http://primefaces.org/ui">
     <ui:define name="yhead">
         <title>
             Students Home
@@ -33,69 +33,72 @@
             </a>
         </div>
 
-        <div class="col-md-8 col-lg-offset-2">
+        <div class="col-md-8">
             <div style="margin-top:20%">
                 <h:form>
                     <div class="form-group">
-                        <div class="col-md-7">
-                            <h:inputText id="userName" value="#{studentBean.searchKey}" class="form-control"
-                                         >
-                            <p:ajax event="keypress"  partialSubmit="suggest_box"></p:ajax>
-                    </h:inputText>
-                </div>
-                <h:commandButton value="Search" styleClass="btn btn-success"   type="submit" action="#{studentBean.viewStudentAjax}"/>
-                        <a class="accordion-toggle" data-toggle="collapse"
-                           href="#collapseOne">
-                            <button class="btn btn-large">View Student by Grade</button>
-                        </a>
-
+                        <div class="col-md-6 col-md-offset-2">
+                            <h:inputText id="userName" value="#{studentHomeBean.searchKey}" class="form-control">
+                                <p:ajax event="keypress" partialSubmit="suggest_box"></p:ajax>
+                            </h:inputText>
+                        </div>
+                        <h:commandButton value="Search" styleClass="btn btn-info" type="submit"
+                                         action="#{studentHomeBean.viewStudentSearch}"/>
                     </div>
                     <h:panelGroup id="suggest_box">
-                    <ui:fragment rendered="#{studentBean.studentsSearchResultAjax.rowAvailable}">
-
-                    <ui:repeat value="#{studentBean.studentsSearchResultAjax}" var="student">
-                     <h:form styleClass="col-md-7"> <h:commandLink value="#{student.name}" action="#{studentBean.viewStudentAjax}"
-                                                                                      styleClass="thumbnail" type="submit">
-                        </h:commandLink> </h:form>
-
-                    </ui:repeat>
-
-                </ui:fragment>
-
-            </h:panelGroup>
-
+                        <ui:fragment rendered="#{studentHomeBean.studentsSearchResultAjax.rowAvailable}">
+                            <ui:repeat value="#{studentHomeBean.studentsSearchResultAjax}" var="student">
+                                <h:form styleClass="col-md-7">
+                                    <h:commandLink value="#{student.name}"
+                                                   action="#{studentNewBean.viewStudentAjax}"
+                                                   type="submit">
+                                    </h:commandLink>
+                                </h:form>
+                            </ui:repeat>
+                        </ui:fragment>
+                    </h:panelGroup>
                 </h:form>
 
 
-                <div class="col-md-8">
-                    <div id="collapseOne" class="accordion-body collapse">
-                        <div class="accordion-inner">
+                <div class="panel panel-default col-md-8 col-md-offset-2">
 
-                            <ui:repeat value="#{studentHomeBean.gradeDataModel}" var="grade">
-                                <h:form>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            Grade #{grade.grade}
-                                        </div>
+                    <a class="accordion-toggle" data-toggle="collapse" href="#student-class-filter">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Filter Student by Classrooms
+                            </div>
+                        </div>
+                    </a>
 
+                    <div id="student-class-filter" class="panel-collapse collapse">
+                        <div class="panel-body">
 
-                                        <div class="panel-body">
-                                            <div>
-                                                <ui:repeat value="#{grade.classroomDataModel}" var="classroom">
-                                                    <div class="col-md-2">
-                                                        <h:commandLink
-                                                                value="#{grade.grade}  #{classroom.divisionIddivision.division}"
-                                                                styleClass="thumbnail"
-                                                                style="text-align: center;text-decoration: none; color:#000000;"
-                                                                action="#{studentHomeBean.viewClassroom}" type="submit" />
+                            <ui:repeat value="#{classroomHomeBean.gradeDataModel}" var="gradeView">
+                                <ui:fragment rendered="#{gradeView.classroomDataModel.rowAvailable}">
 
-                                                                </div>
+                                    <h:form>
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                Grade #{grade.grade}
+                                            </div>
+                                            <div class="panel-body">
+                                                <div>
+                                                    <ui:repeat value="#{gradeView.classroomDataModel}" var="classroom">
+                                                        <div class="thumbnail col-md-2">
 
-                                                </ui:repeat>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox"> #{classroom.gradeIdgrade.grade}  #{classroom.divisionIddivision.division} </input>
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                    </ui:repeat>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </h:form>
+                                    </h:form>
+                                </ui:fragment>
                             </ui:repeat>
                         </div>
                     </div>

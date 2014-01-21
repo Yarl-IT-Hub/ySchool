@@ -47,7 +47,7 @@
                         <label class="control-label col-md-4" for="Admision-No">Admision No.</label>
 
                         <div class="col-md-8">
-                            <h:inputText id="Admision-No" value="#{studentBean.admission_No}" required="true"
+                            <h:inputText id="Admision-No" value="#{studentNewBean.admission_No}" required="true"
                                          requiredMessage="Admision No is required" class="form-control">
                             </h:inputText>
                             <p:watermark for="Admision-No" value="Admision No."/>
@@ -59,7 +59,7 @@
                         <label class="control-label col-md-4" for="name">Name</label>
 
                         <div class="col-md-8">
-                            <h:inputText id="name" value="#{studentBean.name}" required="true"
+                            <h:inputText id="name" value="#{studentNewBean.name}" required="true"
                                          requiredMessage="Name is required" class="form-control">
                             </h:inputText>
                             <p:watermark for="name" value="Name"/>
@@ -71,7 +71,7 @@
                         <label class="control-label col-md-4" for="fullName">Full Name</label>
 
                         <div class="col-md-8">
-                            <h:inputText id="fullName" value="#{studentBean.fullname}" required="true"
+                            <h:inputText id="fullName" value="#{studentNewBean.fullname}" required="true"
                                          requiredMessage="Full Name is required" class="form-control">
                             </h:inputText>
                             <p:watermark for="fullName" value="Full Name"/>
@@ -83,7 +83,7 @@
                         <label class="control-label col-md-4" for="nameWithInitial">Initial</label>
 
                         <div class="col-md-8">
-                            <h:inputText id="initial" value="#{studentBean.name_wt_initial}" required="true"
+                            <h:inputText id="initial" value="#{studentNewBean.name_wt_initial}" required="true"
                                          requiredMessage="Initial is required" class="form-control">
                             </h:inputText>
                             <p:watermark for="initial" value="Initial"/>
@@ -94,7 +94,7 @@
                         <label class="control-label col-md-4" for="popupCal">Date Of Birth</label>
 
                         <div class="col-md-8">
-                            <p:calendar value="#{studentBean.dob}" id="popupCal"
+                            <p:calendar value="#{studentNewBean.dob}" id="popupCal"
                                         requiredMessage="Select a Date"/>
                             <p:message for="popupCal" errorStyle="color : red"/>
 
@@ -107,7 +107,7 @@
 
                         <div class="col-md-8">
                             <h:selectOneMenu id="gender" class="form-control"
-                                             value="#{studentBean.gender}">
+                                             value="#{studentNewBean.gender}">
                                 <f:selectItem id="male" itemLabel="Male" itemValue="Male"/>
                                 <f:selectItem id="female" itemLabel="Female" itemValue="Female"/>
                             </h:selectOneMenu>
@@ -119,7 +119,7 @@
                         <label class="control-label col-md-4" for="Address">Address</label>
 
                         <div class="col-md-8">
-                            <h:inputText id="Address" value="#{studentBean.address}" required="true"
+                            <h:inputText id="Address" value="#{studentNewBean.address}" required="true"
                                          requiredMessage="Address is required" class="form-control">
                             </h:inputText>
                             <p:watermark for="Address" value="Address"/>
@@ -132,7 +132,7 @@
                                          class="btn btn-default"/>
 
                         <h:commandButton type="submit" value="Add This Student"
-                                         action="#{studentBean.addStudent}"
+                                         action="#{studentNewBean.addStudent}"
                                          class="btn btn-default"/>
                         </div>
                     </div>
