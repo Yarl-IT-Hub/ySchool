@@ -44,7 +44,13 @@ public class StudentService {
     @Transactional
     public List<Student> getStudent(){
         StudentHelper studentHelper=new StudentHelper();
-         return studentHelper.listAllStudent();
+         List<Student> studentList= studentHelper.listAllStudent();
+         Iterator<Student> studentIterator = studentList.iterator();
+        while (studentIterator.hasNext()){
+            Student student=studentIterator.next();
+            Hibernate.initialize(student.getStudentGeneralexamProfiles());
+        }
+        return studentList;
     }
 
     @Transactional
@@ -62,7 +68,7 @@ public class StudentService {
     }
 
     @Transactional
-    public Student studentDelete(Student student){
+    public Student deleteStudent(Student student){
         StudentHelper studentHelper=new StudentHelper();
         studentHelper.studentDelete(student);
         return student;

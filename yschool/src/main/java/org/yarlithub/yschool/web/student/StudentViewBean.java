@@ -45,7 +45,7 @@ public class StudentViewBean implements Serializable {
     }
 
     public String studentDelete() {
-        studentService.studentDelete(student);
+        studentService.deleteStudent(student);
         return "StudentHome";
     }
 
