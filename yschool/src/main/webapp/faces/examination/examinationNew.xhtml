@@ -77,16 +77,16 @@
                             <label class="control-label col-md-4" for="type">Exam Type</label>
 
                             <div class="col-md-8">
-                               <span class="btn-group" data-toggle="buttons-radio">
-                                 <h:commandButton class="btn" value="CA Exam"
+                               <div class="btn-group" data-toggle="buttons-radio">
+                                 <h:commandButton type="button" class="btn  btn-default" value="CA Exam"
                                                   action="#{examinationNewBean.setCAExamPage}">
                                      <f:ajax render="exam-details"></f:ajax>
                                  </h:commandButton>
-                                 <h:commandButton class="btn" value="Term Exam"
+                                 <h:commandButton class="btn  btn-default" type="button" value="Term Exam"
                                                  action="#{examinationNewBean.setTermExamPage}">
                                     <f:ajax render="exam-details"></f:ajax>
                                  </h:commandButton>
-                               </span>
+                               </div>
                             </div>
                         </div>
                     </fieldset>

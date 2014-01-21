@@ -7,8 +7,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,7 +17,7 @@ import java.util.Date;
  * $LastChangedRevision$
  */
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class StudentNewBean implements Serializable {
 
@@ -30,9 +28,6 @@ public class StudentNewBean implements Serializable {
     private Date dob;
     private String gender;
     private String address;
-
-
-
     @Autowired
     private StudentService studentService;
 
@@ -92,14 +87,12 @@ public class StudentNewBean implements Serializable {
         this.address = address;
     }
 
-
-
     public String addStudent() {
 
-        boolean setupResult = studentService.addStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
-        if (setupResult) {
+        Student student = studentService.addStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
+        if (student.getId() > 0) {
             return "AddStudentSuccess";
         }
-           return "AddStudentFailed";
+        return "AddStudentFailed";
     }
 }

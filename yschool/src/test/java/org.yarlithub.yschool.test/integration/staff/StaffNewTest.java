@@ -10,13 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.junit.Assert.assertTrue;
 
 /**
- * These tests connects with database ySchool-1.0.5  and transfer data.
+ * Created with IntelliJ IDEA.
+ * User: JayKrish
+ * Date: 1/20/14
+ * Time: 11:00 AM
+ * To change this template use File | Settings | File Templates.
+ */
+/**
+ * These tests connects with ySchool database and transfer data.
  * Before Running tests make sure to import schema and initial data into the database.
  */
 
 @ContextConfiguration(locations = {"/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = false)
+@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 public class StaffNewTest {
 
     @Test

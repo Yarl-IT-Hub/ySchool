@@ -10,7 +10,8 @@ import java.util.Date;
 
 public class StudentCreator {
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
-    public boolean addNewStudent(String admission_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
+
+    public Student addNewStudent(String admission_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
 
         Student student = YschoolDataPoolFactory.getStudent();
         student.setAdmissionNo(admission_No);
@@ -24,8 +25,7 @@ public class StudentCreator {
         //student.setPhoto(photo);
         dataLayerYschool.save(student);
         dataLayerYschool.flushSession();
-        //TODO: save method does not indicates/returns success/failure
-        return true;
+        return student;
     }
 
 }

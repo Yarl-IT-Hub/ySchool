@@ -21,11 +21,23 @@ import java.util.List;
 @Service(value = "studentService")
 public class StudentService {
     private static final Logger logger = LoggerFactory.getLogger(StudentService.class);
+
+    /**
+     * Add new student to yschool database.
+     * @param addmision_No String
+     * @param name String
+     * @param fullname String
+     * @param name_wt_initial  String
+     * @param dob  java.util.date
+     * @param gender String
+     * @param address String
+     * @return org.yarlithub.yschool.repository.model.obj.yschool.Student object with positive student id.
+     */
     @Transactional
-    public boolean addStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
+    public Student addStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
         StudentCreator studentCreator=new StudentCreator();
-        boolean success = studentCreator.addNewStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
-        return success;
+        Student student = studentCreator.addNewStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
+        return student;
     }
 
     @Transactional
