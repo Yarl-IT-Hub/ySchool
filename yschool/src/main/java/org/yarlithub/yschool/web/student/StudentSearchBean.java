@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 
@@ -15,7 +16,7 @@ import java.io.Serializable;
  * $LastChangedRevision$
  */
 @ManagedBean
-@Scope(value = "session")
+@Scope(value = "view")
 @Controller
 public class StudentSearchBean implements Serializable {
 
@@ -25,6 +26,11 @@ public class StudentSearchBean implements Serializable {
     @Autowired
     private StudentController studentController;
 
+    @PostConstruct
+    public void init() {
+        setStudent(studentController.getStudent());
+    }
+
     public Student getStudent() {
         return student;
     }
@@ -33,10 +39,8 @@ public class StudentSearchBean implements Serializable {
         this.student = student;
     }
 
-    public boolean preLoad() {
-
-        setStudent(studentController.getStudent());
-        return  true;
+    public String backToHome() {
+        return "backStudentHome";
     }
 }
 

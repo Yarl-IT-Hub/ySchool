@@ -72,9 +72,9 @@
             <!-- <ui:include src="/faces/analytics/analyticsNonXHTML.xhtml"></ui:include>-->
             <div class="span9">
                 <h:panelGroup id="search-results">
-                    <ui:fragment rendered="{analyticsBean.studentsSearchResult.rowAvailable}">
+                    <ui:fragment rendered="{analyticsBean.studentList.rowAvailable}">
 
-                        <h:dataTable value="#{analyticsBean.studentsSearchResult}" var="results"
+                        <h:dataTable value="#{analyticsBean.studentList}" var="results"
                                      styleClass="table table-hover">
                             <h:column>
                                 <!-- column header -->
