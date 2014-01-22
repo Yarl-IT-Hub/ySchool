@@ -25,12 +25,13 @@ import static org.junit.Assert.assertTrue;
 @ContextConfiguration(locations = {"/applicationContext.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
-public class StaffNewTest {
+public class StaffServiceTest {
 
     @Test
     @Transactional
     public void insertStaffTest() {
         assertTrue(true);
-
     }
+
+
 }
