@@ -29,9 +29,9 @@ public class StaffIntegrationData {
 
 
         staffDataUpdate = Arrays.asList(new Object[][]{
-                {"090200u", "al11kdlaksjf", "dlsakjfdlkaj alkdjfa"},
-                {"sdfs", "alkdl11aksjf", "dlsakjfdlkaj alkdjfa"},
-                {"dfs00u", "alkd11laksjf", "dlsakjfdlkaj alkdjfa"}
+                {"090200uXXX", "al11kdlaksjf", "dlsakjfdlkaj alkdjfa"},
+                {"sdfsXXX", "alkdl11aksjf", "dlsakjfdlkaj alkdjfa"},
+                {"dfs00uXXX", "alkd11laksjf", "dlsakjfdlkaj alkdjfa"}
         });
     }
 }
