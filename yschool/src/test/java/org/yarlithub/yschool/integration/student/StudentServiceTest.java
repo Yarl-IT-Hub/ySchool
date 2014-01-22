@@ -10,15 +10,18 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.integration.testdata.StudentIntegrationData;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
+import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
+import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 import org.yarlithub.yschool.service.StudentService;
 
 import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 //import org.yarlithub.yschool.integration.utils.SpringJUnit4ParameterizedClassRunner;
 //import org.yarlithub.yschool.integration.utils.SpringParameterizedRunner;
@@ -42,12 +45,14 @@ import static org.junit.Assert.assertTrue;
 @Transactional
 public class StudentServiceTest {
 
-    int a = 0;
+    DataLayerYschool dataLayerYschool;
     private StudentService studentService;
 
     @Before
+    @Transactional
     public void setUp() {
         studentService = new StudentService();
+        dataLayerYschool= DataLayerYschoolImpl.getInstance();
     }
 
     @After
@@ -93,6 +98,56 @@ public class StudentServiceTest {
             String updatedName = (String) parameterList[7];
             assertEquals("name not updated!", updatedName, student.getName());
         }
+    }
+
+    @Test
+    @Transactional
+    public void getStudentTest() {
+        List<Student> studentList = studentService.getStudent();
+        assertTrue("error in get student test",studentList.size()>0);
+    }
+
+   @Test
+    @Transactional
+    public void getClassroomStudentsTest(){
+       Classroom classroom = dataLayerYschool.getClassroom(1);
+       List<Student> studentList = studentService.getClassroomStudent(classroom);
+       assertTrue("error in getClassroomStudents!",studentList.size()>0);
+   }
+
+    @Test
+    @Transactional
+    public void deleteStudentTest(){
+        Student studentToDelete;
+        Iterator newStudentDataIterator = StudentIntegrationData.newStudentData.iterator();
+        while (newStudentDataIterator.hasNext()) {
+            Object[] parameterList = (Object[]) newStudentDataIterator.next();
+
+            studentToDelete = StudentServiceTestUtils.addNewStudent(studentService, (String) parameterList[0], (String) parameterList[1],
+                    (String) parameterList[2], (String) parameterList[3], (Date) parameterList[4],
+                    (String) parameterList[5], (String) parameterList[6]);
+
+            studentToDelete=studentService.deleteStudent(studentToDelete);
+            studentToDelete=dataLayerYschool.getStudent(studentToDelete.getId());
+            assertNull("error in deleting student!", studentToDelete);
+        }
+    }
+
+    @Test
+    @Transactional
+    public void getStudentNameLikeTest(){
+
+        Iterator newStudentDataIterator = StudentIntegrationData.newStudentData.iterator();
+        while (newStudentDataIterator.hasNext()) {
+            Object[] parameterList = (Object[]) newStudentDataIterator.next();
+
+            StudentServiceTestUtils.addNewStudent(studentService, (String) parameterList[0], (String) parameterList[1],
+                    (String) parameterList[2], (String) parameterList[3], (Date) parameterList[4],
+                    (String) parameterList[5], (String) parameterList[6]);
+
+        }
+        List<Student> studentList=studentService.getStudentsNameLike("student",100);
+        assertEquals("errror in get student name Like",3,studentList.size());
     }
 
 }

@@ -21,8 +21,8 @@ public class StudentIntegrationData {
         try {
             newStudentData = Arrays.asList(new Object[][]{
                     {"090200u", "student1", "dlsakjfdlkaj alkdjfa", "alkfdalkdsjf", (new SimpleDateFormat("d-MMM-yyyy")).parse("29-Apr-2010"), "male", "Jaffna", "student1"},
-                    {"sdfs", "alkdlaksjf", "dlsakjfdlkaj alkdjfa", "alkfdalkdsjf", (new SimpleDateFormat("d-MMM-yyyy")).parse("29-Apr-2010"), "male", "Jaffna", "alkdlaksjf"},
-                    {"dfs00u", "alkdlaksjf", "dlsakjfdlkaj alkdjfa", "alkfdalkdsjf", (new SimpleDateFormat("d-MMM-yyyy")).parse("29-Apr-2010"), "male", "Jaffna", "alkdlaksjf"}
+                    {"sdfs", "student2", "dlsakjfdlkaj alkdjfa", "alkfdalkdsjf", (new SimpleDateFormat("d-MMM-yyyy")).parse("29-Apr-2010"), "male", "Jaffna", "student2"},
+                    {"dfs00u", "student3", "dlsakjfdlkaj alkdjfa", "alkfdalkdsjf", (new SimpleDateFormat("d-MMM-yyyy")).parse("29-Apr-2010"), "male", "Jaffna", "student3"}
             });
         } catch (ParseException e) {
             e.printStackTrace();

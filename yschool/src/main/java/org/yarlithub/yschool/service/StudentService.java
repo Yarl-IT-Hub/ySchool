@@ -82,7 +82,7 @@ public class StudentService {
     @Transactional
     public Student deleteStudent(Student student){
         StudentHelper studentHelper=new StudentHelper();
-        studentHelper.studentDelete(student);
+        student=studentHelper.studentDelete(student);
         return student;
     }
     @Transactional
