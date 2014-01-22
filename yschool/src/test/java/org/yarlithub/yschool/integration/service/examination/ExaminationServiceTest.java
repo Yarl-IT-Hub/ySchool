@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.examination;
+package org.yarlithub.yschool.integration.service.examination;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.integration.testdata.ExaminationIntegrationData;
+import org.yarlithub.yschool.integration.service.testdata.ExaminationIntegrationData;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
@@ -88,7 +88,7 @@ public class ExaminationServiceTest {
     @Transactional
     public void getLatestExamsTest() {
 
-        Exam examSaved=null;
+        Exam examSaved = null;
         Iterator newCAExamDataIterator = ExaminationIntegrationData.newCAExamData.iterator();
         if (newCAExamDataIterator.hasNext()) {
             Object[] parameterList = (Object[]) newCAExamDataIterator.next();
@@ -98,16 +98,15 @@ public class ExaminationServiceTest {
                     (int) parameterList[5]);
             assertTrue("error!", examSaved.getId() > 0);
         }
-        List<Exam> latestExams = examinationService.getLatestExams(0,1);
-        assertEquals("Error in get latest exams!",examSaved.getId(),latestExams.get(0).getId());
+        List<Exam> latestExams = examinationService.getLatestExams(0, 1);
+        assertEquals("Error in get latest exams!", examSaved.getId(), latestExams.get(0).getId());
     }
-
 
     @Test
     @Transactional
     public void getExambyIdTest() {
 
-        Exam examSaved=null;
+        Exam examSaved = null;
         Iterator newCAExamDataIterator = ExaminationIntegrationData.newCAExamData.iterator();
         while (newCAExamDataIterator.hasNext()) {
             Object[] parameterList = (Object[]) newCAExamDataIterator.next();
@@ -118,7 +117,7 @@ public class ExaminationServiceTest {
             assertTrue("error!", examSaved.getId() > 0);
         }
         Exam exam = examinationService.getExambyId(examSaved.getId());
-        assertTrue("Error in get  exam by  id!",exam.equals(examSaved));
+        assertTrue("Error in get  exam by  id!", exam.equals(examSaved));
     }
 
 }

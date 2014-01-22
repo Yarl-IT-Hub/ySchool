@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.student;
+package org.yarlithub.yschool.integration.service.student;
 
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
 import org.yarlithub.yschool.service.StudentService;

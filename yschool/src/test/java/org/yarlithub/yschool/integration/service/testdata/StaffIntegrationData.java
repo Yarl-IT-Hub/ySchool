@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.testdata;
+package org.yarlithub.yschool.integration.service.testdata;
 
 import java.util.Arrays;
 import java.util.List;

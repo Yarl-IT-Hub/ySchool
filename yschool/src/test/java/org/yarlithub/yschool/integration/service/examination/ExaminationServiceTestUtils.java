@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.examination;
+package org.yarlithub.yschool.integration.service.examination;
 
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.service.ExaminationService;

@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.staff;
+package org.yarlithub.yschool.integration.service.staff;
 
 import org.junit.*;
 import org.junit.runner.RunWith;
@@ -6,7 +6,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.integration.testdata.StaffIntegrationData;
+import org.yarlithub.yschool.integration.service.testdata.StaffIntegrationData;
 import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.service.StaffService;
 

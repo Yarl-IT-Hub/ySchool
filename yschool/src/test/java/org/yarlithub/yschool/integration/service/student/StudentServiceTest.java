@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.student;
+package org.yarlithub.yschool.integration.service.student;
 
 import org.junit.After;
 import org.junit.Before;
@@ -8,7 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
-import org.yarlithub.yschool.integration.testdata.StudentIntegrationData;
+import org.yarlithub.yschool.integration.service.testdata.StudentIntegrationData;
 import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Student;
@@ -16,7 +16,6 @@ import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
 import org.yarlithub.yschool.service.StudentService;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
