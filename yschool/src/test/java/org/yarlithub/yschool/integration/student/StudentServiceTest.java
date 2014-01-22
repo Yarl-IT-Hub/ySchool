@@ -62,7 +62,7 @@ public class StudentServiceTest {
 
     @Test
     @Transactional
-    public void addNewStudentTest() throws ParseException {
+    public void addNewStudentTest() {
 
         Student studentSaved;
         Iterator newStudentDataIterator = StudentIntegrationData.newStudentData.iterator();
