@@ -34,7 +34,7 @@ public class StudentService {
      * @return org.yarlithub.yschool.repository.model.obj.yschool.Student object with positive student id.
      */
     @Transactional
-    public Student addStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
+    public Student addNewStudent(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address) {
         StudentCreator studentCreator=new StudentCreator();
         Student student = studentCreator.addNewStudent(addmision_No, name, fullname, name_wt_initial, dob, gender, address);
         return student;

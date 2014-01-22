@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.integration.student.testdata;
+package org.yarlithub.yschool.integration.testdata;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +12,7 @@ import java.util.List;
  * Time: 9:15 AM
  * To change this template use File | Settings | File Templates.
  */
-public class StudentNewData {
+public class StudentIntegrationData {
 
     public static List newStudentData;
 
@@ -24,9 +24,8 @@ public class StudentNewData {
                     {"dfs00u", "alkdlaksjf", "dlsakjfdlkaj alkdjfa", "alkfdalkdsjf", (new SimpleDateFormat("d-MMM-yyyy")).parse("29-Apr-2010"), "male", "Jaffna", "Jaffna"}
             });
         } catch (ParseException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            e.printStackTrace();
         }
-        ;
 
     }
 

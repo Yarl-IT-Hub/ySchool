@@ -55,7 +55,7 @@ public class StudentNewTestParams {
     private String expected;
     private TestContextManager testContextManager;
 
-//    public  StudentNewTest(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address, String expected) {
+//    public  StudentServiceTest(String addmision_No, String name, String fullname, String name_wt_initial, Date dob, String gender, String address, String expected) {
 //        this.addmision_No = addmision_No;
 //        this.name = name;
 //        this.fullname = fullname;
@@ -112,12 +112,12 @@ public class StudentNewTestParams {
         studentNewBean.setDob(dob);
         studentNewBean.setGender(gender);
         studentNewBean.setAddress(address);
- //       Student actual = studentService.addStudent("090200u","alkdlaksjf","dlsakjfdlkaj alkdjfa", "alkfdalkdsjf",dob,"male","Jaffna");
+ //       Student actual = studentService.addNewStudent("090200u","alkdlaksjf","dlsakjfdlkaj alkdjfa", "alkfdalkdsjf",dob,"male","Jaffna");
         String actual = studentNewBean.addStudent();
         System.out.println(actual);
        assertEquals("error!", "Jaffna", actual);
        // assertEquals("error",studentNewBean.getAddress(),"Jaffna");
-      // Student student= studentService.addStudent("090200u","alkdlaksjf","dlsakjfdlkaj alkdjfa", "alkfdalkdsjf",date,"male","Jaffna");
+      // Student student= studentService.addNewStudent("090200u","alkdlaksjf","dlsakjfdlkaj alkdjfa", "alkfdalkdsjf",date,"male","Jaffna");
 
       //  assertEquals("error",student.getAddress(),"Jaffna");
       //  System.out.println(student.getName());
