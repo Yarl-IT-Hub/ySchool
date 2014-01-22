@@ -24,10 +24,10 @@ public class StaffService {
     private static final Logger logger = LoggerFactory.getLogger(StaffService.class);
 
     @Transactional
-    public boolean addStaff(String staffID, String name, String fullname) {
+    public Staff addStaff(String staffID, String name, String fullname) {
         StaffCreator staffCreator = new StaffCreator();
-        boolean success = staffCreator.addNewStaff(staffID, name, fullname);
-        return success;
+        Staff returendStaff = staffCreator.addNewStaff(staffID, name, fullname);
+        return returendStaff;
         //StaffCreator staffCreator=new StaffCreator();
 
     }
@@ -35,7 +35,6 @@ public class StaffService {
     @Transactional
     public List<Staff> getStaff() {
         StaffHelper staffHelper = new StaffHelper();
-
         return staffHelper.listAllStaffs();
 
     }
