@@ -16,7 +16,7 @@ public class StaffCreator {
 
     DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
-    public boolean addNewStaff(String staffID, String name, String fullname) {
+    public Staff addNewStaff(String staffID, String name, String fullname) {
 
         Staff staff = YschoolDataPoolFactory.getStaff();
         staff.setStaffid(staffID);
@@ -30,7 +30,7 @@ public class StaffCreator {
         dataLayerYschool.save(staff);
         dataLayerYschool.flushSession();
         //TODO: save method does not indicates/returns success/failure
-        return true;
+        return staff;
     }
 
 //    public Staff addNewStaff(Staff staff) {
