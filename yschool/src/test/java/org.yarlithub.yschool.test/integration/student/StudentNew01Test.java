@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestContextManager;
 import org.springframework.test.context.transaction.TransactionConfiguration;
@@ -37,8 +38,10 @@ import static org.junit.Assert.assertEquals;
 @ContextConfiguration(locations = {"/applicationContext.xml"})
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @RunWith(Parameterized.class)
+@Transactional
 public class StudentNew01Test {
 
+    @Autowired
     private StudentService studentService;
     private String addmision_No;
     private String name;
@@ -61,6 +64,7 @@ public class StudentNew01Test {
         this.expected=expected;
     }
 
+
     @Parameterized.Parameters
     public static Collection<Object[]> parameters() throws ParseException {
 
@@ -75,7 +79,6 @@ public class StudentNew01Test {
     public void setUp() throws Exception {
         this.testContextManager = new TestContextManager(getClass());
         this.testContextManager.prepareTestInstance(this);
-        studentService = new StudentService();
 
     }
 
