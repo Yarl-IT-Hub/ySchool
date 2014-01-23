@@ -7,7 +7,6 @@ import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
 import org.yarlithub.yschool.service.StaffService;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import java.io.Serializable;
@@ -85,8 +84,8 @@ public class StaffBean implements Serializable {
 
     public String addStaff()  {
 
-        boolean setupResult = staffService.addStaff(staffID, name, fullname);
-        if (setupResult) {
+        Staff setupResult = staffService.addStaff(staffID, name, fullname);
+        if (setupResult.getId()>0) {
             return "AddStaffSuccess";
         }
         return "AddStaffFailed";

@@ -35,7 +35,7 @@ public class ExaminationService {
     /**
      * @param date       java.util.date
      * @param term       int term 1 or 2 or 3
-     * @param examType   int id as in Exam_Type table in yschool database version1.2
+     * @param examType   int id as in Exam_Type table in yschool database
      * @param gradeid    Grade
      * @param divisionid Division
      * @param moduleid   Module
@@ -52,7 +52,7 @@ public class ExaminationService {
     /**
      * @param date     java.util.date
      * @param term     int term 1 or 2 or 3
-     * @param examType int id as in Exam_Type table in yschool database version1.2
+     * @param examType int id as in Exam_Type table in yschool database
      * @param gradeid  int grade
      * @param moduleid int id as in Subject table
      * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division

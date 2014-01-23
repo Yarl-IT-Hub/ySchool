@@ -89,7 +89,7 @@ public class StudentNewBean implements Serializable {
 
     public String addStudent() {
 
-        Student student = studentService.addStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
+        Student student = studentService.addNewStudent(admission_No, name, fullname, name_wt_initial, dob, gender, address);
         if (student.getId() > 0) {
             return "AddStudentSuccess";
         }
