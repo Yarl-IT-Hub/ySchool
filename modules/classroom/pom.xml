@@ -14,10 +14,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <springVersion>2.5.6</springVersion>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.yarlithub.yschool</groupId>
+            <artifactId>repository</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -39,19 +45,12 @@
             <artifactId>spring-context</artifactId>
             <version>${springVersion}</version>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.6.0</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.yarlithub.yschool</groupId>
-            <artifactId>repository</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
     </dependencies>
 
     <build>
