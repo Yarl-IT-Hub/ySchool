@@ -1,10 +1,13 @@
 package org.yarlithub.yschool.setup.ySchoolSetUp.Loader;
 
-import org.hibernate.SQLQuery;
-import org.yarlithub.yschool.spreadSheetReader.Reader;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
+import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
-import org.yarlithub.yschool.setup.dataAccess.SetUpDBQueries;
+import org.yarlithub.yschool.spreadSheetReader.Reader;
+
+import java.util.List;
 
 
 /**
@@ -16,12 +19,12 @@ import org.yarlithub.yschool.setup.dataAccess.SetUpDBQueries;
  */
 public class ClassroomLoader {
 
-    public boolean load(Reader reader) {
+    public boolean load(Reader reader) throws Exception {
 
         /**
-         * In initialization document 4th scheet is class information.
+         * In initialization document 3th sheet is classroom information.
          */
-        reader.setSheet(3);
+        reader.setSheet(2);
         DataLayerYschool DataLayerYschool = DataLayerYschoolImpl.getInstance();
 
         for (int i = 1; i <= reader.getLastRowNumber(); i++) {
@@ -29,14 +32,17 @@ public class ClassroomLoader {
 
             int grade = reader.getNumericCellValue(0);
             String division = reader.getStringCellValue(1);
-            int year = reader.getNumericCellValue(2);
+            //TODO:get it from system?properties?
+            int year = 2014;
 
-            SQLQuery insertQuery = DataLayerYschool.createSQLQuery(SetUpDBQueries.CLASS_INIT_SQL);
-            insertQuery.setParameter("year", year);
-            insertQuery.setParameter("grade", grade);
-            insertQuery.setParameter("division", division);
-            insertQuery.setParameter("Section_idSection", null);
-            int result = insertQuery.executeUpdate();
+            Grade gradeInstance;
+            Criteria gradeCriteria = DataLayerYschool.createCriteria(Grade.class);
+            gradeCriteria.add(Restrictions.eq("grade", grade));
+            List<Grade> gradeList = gradeCriteria.list();
+            if (gradeList.size() == 1)
+                gradeInstance = (Grade) gradeList.get(0);
+            else
+                throw new Exception("DataloadError: Classrooms row " + i + "col " + 1 + " Grade " + grade + " not found in Grades");
 
         }
         return true;
