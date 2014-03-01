@@ -44,6 +44,11 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/home/myHome.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/faces/home/errorUnknown.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
 

@@ -1,0 +1,47 @@
+<ui:composition template="/WEB-INF/templates/master-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:define name="yhead">
+        <title>ySchool Error Unknown</title>
+
+    </ui:define>
+
+    <ui:define name="ybody-content">
+
+        <div class="row" style="margin-top: 20px;">
+            <ui:include src="/WEB-INF/templates/sidebar.xhtml"></ui:include>
+
+            <div class="col-md-offset-2">
+                <div class="alert alert-danger col-md-10">
+                    <h4> An Error Occured </h4>
+                    <p class="text text-center">
+                        Nothing Serious, but an unknown error occured during your last operation.<br/>
+                        We will be looking on to that.
+                    </p>
+                </div>
+
+                <div class="accordion col-md-10" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
+                               href="#collapseOne">
+                                Till, you can view the technical details here.
+                            </a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                #{errorBean.errorMessage}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <!--row-fluid-->
+
+
+    </ui:define>
+</ui:composition>

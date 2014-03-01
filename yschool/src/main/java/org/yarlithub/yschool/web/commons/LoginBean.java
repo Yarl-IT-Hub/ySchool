@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.web.setup;
+package org.yarlithub.yschool.web.commons;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

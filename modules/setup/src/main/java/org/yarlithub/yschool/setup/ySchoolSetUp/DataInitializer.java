@@ -3,12 +3,9 @@ package org.yarlithub.yschool.setup.ySchoolSetUp;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.yarlithub.yschool.setup.ySchoolSetUp.Loader.*;
 import org.yarlithub.yschool.spreadSheetReader.Reader;
 import org.yarlithub.yschool.spreadSheetReader.ReaderFactory;
-import org.yarlithub.yschool.setup.ySchoolSetUp.Loader.ClassroomLoader;
-import org.yarlithub.yschool.setup.ySchoolSetUp.Loader.StaffLoader;
-import org.yarlithub.yschool.setup.ySchoolSetUp.Loader.StudentLoader;
-import org.yarlithub.yschool.setup.ySchoolSetUp.Loader.SubjectLoader;
 
 import java.io.IOException;
 
@@ -31,22 +28,32 @@ public class DataInitializer {
      */
 
 
-    public boolean initializeySchoolData(UploadedFile uploadedFile) throws IOException {
+    public boolean initializeySchoolData(UploadedFile uploadedFile) throws Exception {
 
         ReaderFactory readerFactory = new ReaderFactory();
         Reader initDocReader = readerFactory.getspreadSheetReader(uploadedFile);
 
-        ClassroomLoader classroomLoader = new ClassroomLoader();
+        GradeLoader gradeLoader = new GradeLoader();
+        gradeLoader.load(initDocReader);
+
+        DivisionLoader divisionLoader=new DivisionLoader();
+        divisionLoader.load(initDocReader);
+
+        ClassroomLoader classroomLoader=new ClassroomLoader();
         classroomLoader.load(initDocReader);
 
-        SubjectLoader subjectLoader = new SubjectLoader();
-        subjectLoader.load(initDocReader);
 
-        StaffLoader staffLoader = new StaffLoader();
-        staffLoader.load(initDocReader);
-
-        StudentLoader studentLoader = new StudentLoader();
-        studentLoader.load(initDocReader);
+//        ClassroomLoader classroomLoader = new ClassroomLoader();
+//        classroomLoader.load(initDocReader);
+//
+//        SubjectLoader subjectLoader = new SubjectLoader();
+//        subjectLoader.load(initDocReader);
+//
+//        StaffLoader staffLoader = new StaffLoader();
+//        staffLoader.load(initDocReader);
+//
+//        StudentLoader studentLoader = new StudentLoader();
+//        studentLoader.load(initDocReader);
 
         //TODO: check and return
         return true;

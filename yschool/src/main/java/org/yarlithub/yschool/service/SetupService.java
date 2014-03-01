@@ -40,7 +40,7 @@ public class SetupService {
      */
     @Transactional
     public boolean ySchoolSetUP(String userName, String usereMail, String password, String schoolName, String schoolAddress,
-                                String schoolZone, String schoolDistrict, String schoolProvience, UploadedFile initFile) throws IOException {
+                                String schoolZone, String schoolDistrict, String schoolProvience, UploadedFile initFile) throws Exception {
         logger.debug("Starting to create a setup {}, {}", userName, password);
 
         /**
