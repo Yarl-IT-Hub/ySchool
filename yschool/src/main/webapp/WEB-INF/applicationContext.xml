@@ -45,7 +45,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost/yschool" />
         <property name="user" value="root"/>
-        <property name="password" value=""/>
+        <property name="password" value="root"/>
         <property name="idleConnectionTestPeriod" value="60"/>
         <property name="maxIdleTime" value="240"/>
         <property name="maxPoolSize" value="20"/>
