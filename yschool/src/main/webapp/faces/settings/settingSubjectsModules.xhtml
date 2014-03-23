@@ -2,25 +2,56 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:define name="settings-content">
+    <ui:define name="settings-content">
 
-    <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
-            </li>
-            <li>
-                <a href="/yschool/faces/settings/settingsHome.xhtml">Settings</a> <span class="divider"></span>
-            </li>
-            <li>
-                <a href="#">Subjects and Modules</a>
-            </li>
-        </ul>
-    </div>
+        <div class="col-md-8">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/settings/settingsHome.xhtml">Settings</a> <span class="divider"></span>
+                </li>
+                <li>
+                    <a href="#">Subjects and Modules</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <!--Add new exam Button-->
+            <a href="/yschool/faces/examination/examinationNew.xhtml">
+                <Button class="btn btn-default">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add New Exam
+                </Button>
+            </a>
+        </div>
 
-    <div class="span9">
-        test settings home.
-    </div>
-</ui:define>
+        <div class="col-md-10">
+            <ul class="thumbnails">
+                <!--Listof Subjects-->
+                <li class="thumbnail col-md-4">
+                    <a href="/yschool/faces/examination/examinationNew.xhtml">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Add New Subject
+                    </a>
+                </li>
+                <!--TODO: get list from db-->
+                <li class="thumbnail col-md-9" style="margin-bottom: 5px">
+                    <a href="/yschool/faces/examination/examinationNew.xhtml">
+                        Science
+                    </a>
+                </li>
+                <li class="thumbnail col-md-9"  style="margin-bottom: 5px">
+                    <a href="/yschool/faces/examination/examinationNew.xhtml">
+                        Maths
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-10">
+        </div>
+    </ui:define>
 
 </ui:composition>
