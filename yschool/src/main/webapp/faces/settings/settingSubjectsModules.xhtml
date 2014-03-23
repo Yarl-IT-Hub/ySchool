@@ -4,27 +4,29 @@
 
     <ui:define name="settings-content">
 
-        <div class="col-md-8">
-            <ul class="breadcrumb">
-                <li>
-                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
-                </li>
-                <li>
-                    <a href="/yschool/faces/settings/settingsHome.xhtml">Settings</a> <span class="divider"></span>
-                </li>
-                <li>
-                    <a href="#">Subjects and Modules</a>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-4">
-            <!--Add new exam Button-->
-            <a href="/yschool/faces/examination/examinationNew.xhtml">
-                <Button class="btn btn-default">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    Add New Exam
-                </Button>
-            </a>
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
+                    </li>
+                    <li>
+                        <a href="/yschool/faces/settings/settingsHome.xhtml">Settings</a> <span class="divider"></span>
+                    </li>
+                    <li>
+                        <a href="#">Subjects and Modules</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <!--Add new exam Button-->
+                <a href="/yschool/faces/examination/examinationNew.xhtml">
+                    <Button class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Gradewise View
+                    </Button>
+                </a>
+            </div>
         </div>
 
         <div class="col-md-10">
@@ -38,19 +40,101 @@
                 </li>
                 <!--TODO: get list from db-->
                 <li class="thumbnail col-md-9" style="margin-bottom: 5px">
-                    <a href="/yschool/faces/examination/examinationNew.xhtml">
-                        Science
-                    </a>
+
+                    <div class="accordion col-md-12" id="accordion1">
+                        <div class="accordion-group">
+                            <div class="col-md-8">
+                                Science
+                            </div>
+                            <a class="accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordion1"
+                               href="#collapseOne">
+                                <button class="btn btn-large pull-right">View Modules</button>
+                            </a>
+
+                            <div id="collapseOne" class="accordion-body collapse">
+                                <div class="accordion-inner">
+
+                                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                                        <div class="col-md-2">
+                                            Garde 9
+                                        </div>
+                                        <div class="col-md-4">
+                                            Science and Technology
+                                        </div>
+                                        <div class="col-md-2">
+                                            Optional
+                                        </div>
+                                        <div class="col-md-2">
+                                            <Button class="btn btn-default pull-right">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                Edit
+                                            </Button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <Button class="btn btn-default pull-left">
+                                                Remove
+                                            </Button>
+                                        </div>
+                                    </div>
+
+                                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                                        <div class="col-md-2">
+                                            Garde 10
+                                        </div>
+                                        <div class="col-md-4">
+                                            Science and Technology
+                                        </div>
+                                        <div class="col-md-2">
+                                            Compulsury
+                                        </div>
+                                        <div class="col-md-2">
+                                            <Button class="btn btn-default pull-right">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                Edit
+                                            </Button>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <Button class="btn btn-default  pull-left">
+                                                Remove
+                                            </Button>
+                                        </div>
+                                    </div>
+
+                                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                                        <div class="col-md-2">
+                                            Garde 11
+                                        </div>
+                                        <div class="col-md-4">
+                                            Science and Technology
+                                        </div>
+                                        <div class="col-md-2">
+                                            Compulsury
+                                        </div>
+                                        <div class="col-md-2">
+                                            <Button class="btn btn-default pull-right">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                Edit
+                                            </Button>
+                                        </div>
+                                        <div class="col-md-2  pull-left">
+                                            <Button class="btn btn-default">
+                                                Remove
+                                            </Button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
-                <li class="thumbnail col-md-9"  style="margin-bottom: 5px">
+                <li class="thumbnail col-md-9" style="margin-bottom: 5px">
                     <a href="/yschool/faces/examination/examinationNew.xhtml">
                         Maths
                     </a>
                 </li>
             </ul>
-        </div>
-
-        <div class="col-md-10">
         </div>
     </ui:define>
 
