@@ -7,7 +7,7 @@
 	<databaseIP>localhost</databaseIP>
     <databaseSchema>yschool</databaseSchema>
 	<databaseUsername>root</databaseUsername>
-	<databasePassword></databasePassword>
+	<databasePassword>root</databasePassword>
     <!--add YOUR_PATH and remove comment bellow-->
     <sourceTarget>F:\PROJECTS\POJOJEN</sourceTarget>
 	<projectName>repository</projectName>

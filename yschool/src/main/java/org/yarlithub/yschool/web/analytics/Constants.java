@@ -21,7 +21,7 @@ public class Constants {
      */
     public static final String CLASS_DB_NAME = "jdbc:mysql://localhost:3306/class";
     public static final String CLASS_DB_USERNAME = "root";
-    public static final String CLASS_DB_PASSWORD = "";
+    public static final String CLASS_DB_PASSWORD = "root";
     public static final String INSERT_STUDENT = "INSERT INTO student (school_no, student_school_id, gender, religion, language, father, mother, siblings) VALUES (?,?,?,?,?,?,?,?)";
     public static final String INSERT_EXAM = "INSERT INTO exam (school_no, date, grade, division, term, subject_idsubject, exam_type_idexam_type) VALUES (?,?,?,?,?,?,?)";
     public static final String SELECT_STUDENTID = "SELECT idstudent FROM student WHERE school_no = ? AND student_school_id = ?";

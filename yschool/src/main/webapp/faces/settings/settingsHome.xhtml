@@ -2,22 +2,70 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<ui:define name="settings-content">
+    <ui:define name="settings-content">
 
-    <div class="span6">
-        <ul class="breadcrumb">
-            <li>
-                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
-            </li>
-            <li>
-                <a href="#">Settings</a>
-            </li>
-        </ul>
-    </div>
+        <div class="col-md-8">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
+                </li>
+                <li>
+                    <a href="#">Settings</a>
+                </li>
+            </ul>
+        </div>
 
-    <div class="span9">
-        test settings home.
-    </div>
-</ui:define>
+        <div class="col-md-10">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="#">
+                            <img src="/yschool/ico/arrangements.png" alt="myschool" align="center" style="min-height:50px;height:50px;"/>
+
+                            <div class="caption">
+                                <h5 align="center">Grades &amp; Divisions</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a href="/yschool/faces/settings/settingSubjectsModules.xhtml">
+                            <img src="/yschool/ico/student.png" alt="myschool" align="center" style="min-height:50px;height:50px;"/>
+
+                            <div class="caption">
+                                <h5 align="center">Subjects &amp; Modules</h5>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="/yschool/ico/staff.png" alt="myschool" align="center" style="min-height:50px;height:50px;"/>
+
+                        <div class="caption">
+                            <h5 align="center">User Accounts</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <a href="#">
+                        <img src="/yschool/ico/staff.png" alt="myschool" align="center" style="min-height:50px;height:50px;"/>
+
+                        <div class="caption">
+                            <h5 align="center">ySchool Updates</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
+    </ui:define>
 
 </ui:composition>
