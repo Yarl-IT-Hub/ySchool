@@ -34,6 +34,18 @@
     <!--<script src="/yschool/js/jquery.mockjax.js" type="text/javascript"></script>-->
     <!--<script src="/yschool/js/bootstrap-typeahead.min.js" type="text/javascript"></script>-->
     <!--Insert header info according to page in ui:define-->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#navbar-dark-top-search').typeahead([
+                {
+                    name: 'navbar-dark-top-search',
+                    local: [ "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" ]
+                }
+            ]);
+        });
+    </script>
+
     <ui:insert name="yhead">
         <title>ySchool</title>
     </ui:insert>
@@ -75,7 +87,7 @@
                         <li>
                             <form class="navbar-form" role="search" action="">
                                 <div class="input-group">
-                                <input type="text" class="form-control" id="navbar-dark-top-search"
+                                <input type="text" class="form-control" id="navbar-dark-top-search" name="navbar-dark-top-search"
                                        placeholder=" Search for anything in  ySchool, hit enter..."/>
 
                                 <span class="input-group-addon glyphicon glyphicon-search" id="navbar-dark-top-search-addon"></span>
@@ -120,7 +132,7 @@
 
     <!--ussing primefaces library's jquery to avoid conflicts with bootstap-->
     <h:outputScript library="primefaces" name="jquery/jquery.js"/>
-    <script src="/yschool/js/bootstrap.min.js" type="text/javascript"></script>
-
+    <!--<script src="/yschool/js/bootstrap.min.js" type="text/javascript"></script>-->
+    <script src="/yschool/js/typeahead.js" type="text/javascript"></script>
 </h:body>
 </html>

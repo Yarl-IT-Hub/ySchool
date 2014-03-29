@@ -96,6 +96,7 @@ public class StudentServiceTest {
             }
             String updatedName = (String) parameterList[7];
             assertEquals("name not updated!", updatedName, student.getName());
+            previousId = student.getId();
         }
     }
 
