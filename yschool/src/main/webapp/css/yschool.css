@@ -47,3 +47,9 @@ a:hover{
     width:200%;
     float:right;
 }
+
+.tt-dropdown-menu{
+    background: rgb(80, 20, 110);
+    width:200%;
+    float:right;
+}

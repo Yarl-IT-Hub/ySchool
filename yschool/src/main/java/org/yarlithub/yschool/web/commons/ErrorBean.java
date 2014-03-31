@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 /**
  * Created with IntelliJ IDEA.
- * User: jayrksih
+ * User: JayKrish
  * Date: 1/29/14
  * Time: 12:17 AM
  * To change this template use File | Settings | File Templates.
