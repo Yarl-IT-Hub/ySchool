@@ -27,8 +27,10 @@ a:hover{
 #navbar-dark-top-search{
     border: 0px none;
     border-radius: 0px;
+    /*width: 200%;*/
     box-shadow: 5px 5px 15px rgb(150, 80, 150) inset;
     background: rgb(80, 20, 110);
+    float:right;
 }
 
 #navbar-dark-top-search-addon{
@@ -43,13 +45,50 @@ a:hover{
     border: 0px none;
     border-radius: 0px;
     box-shadow: 0px 10px 10px rgb(230, 180, 255) inset;
-    background: rgb(255, 255, 240);
-    width:200%;
+    background-color: rgb(255, 255, 240);
     float:right;
 }
 
-.tt-dropdown-menu{
+/*.tt-dropdown-menu{
     background: rgb(80, 20, 110);
     width:200%;
     float:right;
+}*/
+
+.tt-dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    background-clip: padding-box;
+    float:right;
+}
+.tt-suggestion > p {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #333333;
+    white-space: nowrap;
+}
+.tt-suggestion > p:hover,
+.tt-suggestion > p:focus,
+.tt-suggestion.tt-cursor p {
+    color: #ffffff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #428bca;
 }

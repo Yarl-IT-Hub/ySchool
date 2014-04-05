@@ -18,61 +18,40 @@ import java.util.List;
 @Scope(value = "session")
 @Controller
 public class SearchBean {
-    static List<Item> itemArrayList;
+    List<Player> players;
+
+    private Player selectedPlayer1;
+
+    private Player selectedPlayer2;
 
     public SearchBean() {
-         itemArrayList = new ArrayList<Item>();
-        itemArrayList.add(new Item("atest", "valuetest",1));
-        itemArrayList.add(new Item("atest", "valuetest",2));
-        itemArrayList.add(new Item("btest", "valuetest",3));
-
+        players = PlayerConverter.playerDB;
     }
 
-    public List<Item> getItemArrayList() {
-        return itemArrayList;
+    public Player getSelectedPlayer1() {
+        return selectedPlayer1;
     }
 
-    public void setItemArrayList(List<Item> itemArrayList) {
-        this.itemArrayList = itemArrayList;
+    public void setSelectedPlayer1(Player selectedPlayer1) {
+        this.selectedPlayer1 = selectedPlayer1;
     }
 
-    public List<Item> getList(String qu) {
-        return itemArrayList;
+    public Player getSelectedPlayer2() {
+        return selectedPlayer2;
     }
 
-    public class Item {
-        String name;
-        String val;
-        int no;
+    public void setSelectedPlayer2(Player selectedPlayer2) {
+        this.selectedPlayer2 = selectedPlayer2;
+    }
 
-        public Item(String name, String val, int no) {
-            this.name = name;
-            this.val = val;
-            this.no=no;
+    public List<Player> completePlayer(String query) {
+        List<Player> suggestions = new ArrayList<Player>();
+
+        for(Player p : players) {
+            if(p.getName().startsWith(query))
+                suggestions.add(p);
         }
 
-        public int getNo() {
-            return no;
-        }
-
-        public void setNo(int no) {
-            this.no = no;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getVal() {
-            return val;
-        }
-
-        public void setVal(String val) {
-            this.val = val;
-        }
+        return suggestions;
     }
 }
