@@ -57,12 +57,12 @@ public class SearchBean {
 
         List<Student> studentList = commonService.getStudentsNameLike(name, maxNo);
         for(Student student : studentList){
-            resultList.add(new SearchResult(student.getName(), "Student", student.getId()));
+            resultList.add(new SearchResult(student.getFullName(), "Student", student.getId()));
         }
 
         List<Staff> staffList = commonService.getStaffsNameLike(name, maxNo);
         for(Staff staff : staffList){
-            resultList.add(new SearchResult(staff.getName(), "Staff", staff.getId()));
+            resultList.add(new SearchResult(staff.getFullName(), "Staff", staff.getId()));
         }
 
         return resultList;

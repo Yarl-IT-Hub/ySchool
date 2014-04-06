@@ -79,7 +79,7 @@
 
             <nav class="navbar navbar-fixed-top ynavbar-dark" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header col-sm-5">
+                <div class="navbar-header col-sm-4">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span>
@@ -94,10 +94,12 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
-                <ul class="nav navbar-nav col-sm-7">
-                    <li class="col-sm-6" id="navbar-dark-top-search-li">
+                <ul class="nav navbar-nav col-sm-8">
+                    <li class="col-sm-8" id="navbar-dark-top-search-li">
                         <form action="">
-                            <div class="input-group" >
+                            <div class="input-group">
+                                 <span class="input-group-addon glyphicon glyphicon-search"
+                                       id="navbar-dark-top-search-addon"></span>
                                 <!-- <input type="text" class="form-control" id="navbar-dark-top-search"
                                         placeholder=" Search for anything in  ySchool, hit enter..."/>-->
                                 <p:autoComplete size="40" value="#{searchBean.selectedResult}"
@@ -105,14 +107,18 @@
                                                 var="p" itemLabel="#{p.name}" itemValue="#{p}"
                                                 converter="#{searchConverter}" forceSelection="true">
 
-                                    <p:column>
-                                        #{p.name} - #{p.type}
+                                    <p:column style="background-color:rgb(249, 242, 253);border-width: 0px;">
+                                        <div class="col-sm-1">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        </div>
+                                        <div class="col-sm-7" style="color: black;">
+                                            #{p.name}
+                                        </div>
+                                        <div class="pull-right col-sm-4"  style="color:black;font-size:90%;text-align: right">
+                                            #{p.type}
+                                        </div>
                                     </p:column>
-
                                 </p:autoComplete>
-
-                                <span class="input-group-addon glyphicon glyphicon-search"
-                                      id="navbar-dark-top-search-addon"></span>
                             </div>
                         </form>
                     </li>
@@ -131,7 +137,6 @@
                         <a href="#" class="navbar-topmenu">Help</a>
                     </li>
                 </ul>
-
             </nav>
 
         </ui:insert>
