@@ -1,0 +1,238 @@
+<ui:composition template="/WEB-INF/templates/settings-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:define name="settings-content">
+
+<div class="row">
+    <div class="col-md-8">
+        <ul class="breadcrumb">
+            <li>
+                <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
+            </li>
+            <li>
+                <a href="/yschool/faces/settings/settingsHome.xhtml">Settings</a> <span class="divider"></span>
+            </li>
+            <li>
+                <a href="#">Subjects and Modules</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-4">
+        <!--Add new exam Button-->
+        <a href="/yschool/faces/settings/settingsGradeModules.xhtml">
+            <Button class="btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+                Gradewise View
+            </Button>
+        </a>
+    </div>
+</div>
+
+<div class="col-md-10">
+<ul class="thumbnails">
+<!--Listof Subjects-->
+<li class="thumbnail col-md-4">
+    <h:form>
+        <a href="/yschool/faces/examination/examinationNew.xhtml">
+            <span class="glyphicon glyphicon-plus"></span>
+            <h:commandButton type="button" class="btn  btn-default" value="Add New Subject">
+                <!--<f:ajax render="exam-details"></f:ajax>-->
+            </h:commandButton>
+
+        </a>
+
+
+        <h:panelGroup id="inline-new-subject" layout="block">
+            <!--<ui:include src="{examinationNewBean.page}.xhtml"/>-->
+        </h:panelGroup>
+
+    </h:form>
+</li>
+<!--TODO: get list from db-->
+<li class="thumbnail col-md-9" style="margin-bottom: 5px">
+
+    <div class="accordion col-md-12" id="accordionScience">
+        <div class="accordion-group">
+            <div class="col-md-8">
+                Science
+            </div>
+            <a class="accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordionScience"
+               href="#collapseScience">
+                <button class="btn btn-large pull-right">View Modules</button>
+            </a>
+
+            <div id="collapseScience" class="accordion-body collapse">
+                <div class="accordion-inner">
+
+                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                        <div class="col-md-2">
+                            Garde 9
+                        </div>
+                        <div class="col-md-4">
+                            Science and Technology
+                        </div>
+                        <div class="col-md-2">
+                            Optional
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Edit
+                            </Button>
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-left">
+                                Remove
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                        <div class="col-md-2">
+                            Garde 10
+                        </div>
+                        <div class="col-md-4">
+                            Science and Technology
+                        </div>
+                        <div class="col-md-2">
+                            Compulsury
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Edit
+                            </Button>
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default  pull-left">
+                                Remove
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                        <div class="col-md-2">
+                            Garde 11
+                        </div>
+                        <div class="col-md-4">
+                            Science and Technology
+                        </div>
+                        <div class="col-md-2">
+                            Compulsury
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Edit
+                            </Button>
+                        </div>
+                        <div class="col-md-2  pull-left">
+                            <Button class="btn btn-default">
+                                Remove
+                            </Button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+<li class="thumbnail col-md-9" style="margin-bottom: 5px">
+
+    <div class="accordion col-md-12" id="accordionMathematics">
+        <div class="accordion-group">
+            <div class="col-md-8">
+                Mathematics
+            </div>
+            <a class="accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordionMathematics"
+               href="#collapseMathematics">
+                <button class="btn btn-large pull-right">View Modules</button>
+            </a>
+
+            <div id="collapseMathematics" class="accordion-body collapse">
+                <div class="accordion-inner">
+
+                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                        <div class="col-md-2">
+                            Garde 9
+                        </div>
+                        <div class="col-md-4">
+                            Basic Mathamatics
+                        </div>
+                        <div class="col-md-2">
+                            Optional
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Edit
+                            </Button>
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-left">
+                                Remove
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                        <div class="col-md-2">
+                            Garde 10
+                        </div>
+                        <div class="col-md-4">
+                            Mathematics
+                        </div>
+                        <div class="col-md-2">
+                            Compulsury
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Edit
+                            </Button>
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default  pull-left">
+                                Remove
+                            </Button>
+                        </div>
+                    </div>
+
+                    <div class="thumbnail col-md-12" style="margin-top: 5px; margin-bottom: 0px">
+                        <div class="col-md-2">
+                            Garde 11
+                        </div>
+                        <div class="col-md-4">
+                            Applied Mathematics
+                        </div>
+                        <div class="col-md-2">
+                            Compulsury
+                        </div>
+                        <div class="col-md-2">
+                            <Button class="btn btn-default pull-right">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                Edit
+                            </Button>
+                        </div>
+                        <div class="col-md-2  pull-left">
+                            <Button class="btn btn-default">
+                                Remove
+                            </Button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</li>
+</ul>
+</div>
+</ui:define>
+
+</ui:composition>
