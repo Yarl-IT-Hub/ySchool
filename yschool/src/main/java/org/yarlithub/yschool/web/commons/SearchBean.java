@@ -1,7 +1,12 @@
 package org.yarlithub.yschool.web.commons;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.service.CommonService;
+import org.yarlithub.yschool.web.converter.SearchConverter;
 
 import javax.faces.bean.ManagedBean;
 import java.util.ArrayList;
@@ -18,61 +23,48 @@ import java.util.List;
 @Scope(value = "session")
 @Controller
 public class SearchBean {
-    static List<Item> itemArrayList;
 
-    public SearchBean() {
-         itemArrayList = new ArrayList<Item>();
-        itemArrayList.add(new Item("atest", "valuetest",1));
-        itemArrayList.add(new Item("atest", "valuetest",2));
-        itemArrayList.add(new Item("btest", "valuetest",3));
+    @Autowired
+    private CommonService commonService;
+    private SearchResult selectedResult;
 
+    public SearchResult getSelectedResult() {
+        return selectedResult;
     }
 
-    public List<Item> getItemArrayList() {
-        return itemArrayList;
+    public void setSelectedResult(SearchResult selectedResult) {
+        this.selectedResult = selectedResult;
     }
 
-    public void setItemArrayList(List<Item> itemArrayList) {
-        this.itemArrayList = itemArrayList;
+    public List<SearchResult> completeSearch(String query) {
+
+        List<SearchResult> suggestions = new ArrayList<SearchResult>();
+        List<SearchResult> resultList = getSuggestionList(query, 5);
+        SearchConverter.resultList = resultList;
+
+        for(SearchResult sr : resultList) {
+            if(sr.getName().startsWith(query))
+                suggestions.add(sr);
+        }
+
+        return suggestions;
     }
 
-    public List<Item> getList(String qu) {
-        return itemArrayList;
-    }
 
-    public class Item {
-        String name;
-        String val;
-        int no;
+    private ArrayList<SearchResult> getSuggestionList(String name, int maxNo){
 
-        public Item(String name, String val, int no) {
-            this.name = name;
-            this.val = val;
-            this.no=no;
+        ArrayList<SearchResult> resultList = new ArrayList<>();
+
+        List<Student> studentList = commonService.getStudentsNameLike(name, maxNo);
+        for(Student student : studentList){
+            resultList.add(new SearchResult(student.getName(), "Student", student.getId()));
         }
 
-        public int getNo() {
-            return no;
+        List<Staff> staffList = commonService.getStaffsNameLike(name, maxNo);
+        for(Staff staff : staffList){
+            resultList.add(new SearchResult(staff.getName(), "Staff", staff.getId()));
         }
 
-        public void setNo(int no) {
-            this.no = no;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getVal() {
-            return val;
-        }
-
-        public void setVal(String val) {
-            this.val = val;
-        }
+        return resultList;
     }
 }
