@@ -35,7 +35,7 @@
 
 </h:head>
 
-<h:body style="background-color: rgb(255,250,250); padding-top: 60px;">
+<h:body style="background-color: rgb(255,250,250);">
     <!-- padding-top: 60px; for navbar-fix-top hiding contents: bootstrap3.0.3 bug-->
 
     <!--Power server dialog-->
@@ -48,10 +48,11 @@
                        onactive="idleDialog.hide()"/>
 
         <p:dialog id="power-saving-dialog"
+                  showHeader="false"
                   showEffect="size" hideEffect="puff"
-                  style="box-shadow: 0px 10px 10px rgb(230, 180, 25) inset;
+                  style="border:0px;
                   background: rgb(20, 0, 30);
-                  margin-top: 20px"
+                  margin-top: 50px;"
                   widgetVar="idleDialog" modal="true">
 
             <p style="width:1366px; height:1024px;display: table-cell;
@@ -77,7 +78,7 @@
     <div id="ybody-header">
         <ui:insert name="ybody-hader">
 
-            <nav class="navbar navbar-fixed-top ynavbar-dark" role="navigation">
+            <nav class="navbar navbar-static-top affix ynavbar-dark  col-sm-12" role="navigation">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header col-sm-4">
                     <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -97,28 +98,30 @@
                 <ul class="nav navbar-nav col-sm-8">
                     <li class="col-sm-8" id="navbar-dark-top-search-li">
                         <form action="">
-                            <div class="input-group">
-                                 <span class="input-group-addon glyphicon glyphicon-search"
-                                       id="navbar-dark-top-search-addon"></span>
+                            <div class="input-group  pull-right">
                                 <!-- <input type="text" class="form-control" id="navbar-dark-top-search"
                                         placeholder=" Search for anything in  ySchool, hit enter..."/>-->
-                                <p:autoComplete size="40" value="#{searchBean.selectedResult}"
+                                <p:autoComplete size="50" value="#{searchBean.selectedResult}"
                                                 id="customPojo" completeMethod="#{searchBean.completeSearch}"
                                                 var="p" itemLabel="#{p.name}" itemValue="#{p}"
-                                                converter="#{searchConverter}" forceSelection="true">
+                                                converter="#{searchConverter}" forceSelection="true"
+                                         placeholder=" Search anything in ySchool  and hit enter...">
 
                                     <p:column style="background-color:rgb(249, 242, 253);border-width: 0px;">
                                         <div class="col-sm-1">
-                                        <span class="glyphicon glyphicon-user"></span>
+                                            <span class="glyphicon glyphicon-user"></span>
                                         </div>
                                         <div class="col-sm-7" style="color: black;">
                                             #{p.name}
                                         </div>
-                                        <div class="pull-right col-sm-4"  style="color:black;font-size:90%;text-align: right">
+                                        <div class="pull-right col-sm-4"
+                                             style="color:black;font-size:90%;text-align: right">
                                             #{p.type}
                                         </div>
                                     </p:column>
                                 </p:autoComplete>
+                                  <span class="input-group-addon glyphicon glyphicon-search"
+                                        id="navbar-dark-top-search-addon"></span>
                             </div>
                         </form>
                     </li>
@@ -142,7 +145,7 @@
         </ui:insert>
     </div>
 
-    <div id="ybody-content">
+    <div id="ybody-content" style="padding-top: 60px;">
         <ui:insert name="ybody-content">
             Default body content from master template.
         </ui:insert>
