@@ -114,17 +114,18 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
 
                 <ul class="nav navbar-nav col-md-6">
-                    <li>
+                    <li class="col-md-7" id="navbar-dark-top-search-li">
                         <form class="navbar-form" role="search" action="">
-                            <div class="input-group">
+                            <div class="input-group col-md-12">
                                <!-- <input type="text" class="form-control" id="navbar-dark-top-search"
                                        placeholder=" Search for anything in  ySchool, hit enter..."/>-->
-                                <p:autoComplete value="#{searchBean.selectedPlayer2}" id="customPojo" completeMethod="#{searchBean.completePlayer}"
-                                                var="p" itemLabel="#{p.name}" itemValue="#{p}" converter="#{playerConverter}" forceSelection="true">
+                                <p:autoComplete panelStyleClass="affix" size="40"  value="#{searchBean.selectedResult}" id="customPojo" completeMethod="#{searchBean.completeSearch}"
+                                                var="p" itemLabel="#{p.name}" itemValue="#{p}" converter="#{searchConverter}" forceSelection="true">
 
                                     <p:column>
-                                        #{p.name} - #{p.number}
+                                        #{p.name} - #{p.type}
                                     </p:column>
+
                                 </p:autoComplete>
 
                                 <span class="input-group-addon glyphicon glyphicon-search"

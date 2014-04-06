@@ -1,7 +1,12 @@
 package org.yarlithub.yschool.web.commons;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Staff;
+import org.yarlithub.yschool.repository.model.obj.yschool.Student;
+import org.yarlithub.yschool.service.CommonService;
+import org.yarlithub.yschool.web.converter.SearchConverter;
 
 import javax.faces.bean.ManagedBean;
 import java.util.ArrayList;
@@ -18,40 +23,48 @@ import java.util.List;
 @Scope(value = "session")
 @Controller
 public class SearchBean {
-    List<Player> players;
 
-    private Player selectedPlayer1;
+    @Autowired
+    private CommonService commonService;
+    private SearchResult selectedResult;
 
-    private Player selectedPlayer2;
-
-    public SearchBean() {
-        players = PlayerConverter.playerDB;
+    public SearchResult getSelectedResult() {
+        return selectedResult;
     }
 
-    public Player getSelectedPlayer1() {
-        return selectedPlayer1;
+    public void setSelectedResult(SearchResult selectedResult) {
+        this.selectedResult = selectedResult;
     }
 
-    public void setSelectedPlayer1(Player selectedPlayer1) {
-        this.selectedPlayer1 = selectedPlayer1;
-    }
+    public List<SearchResult> completeSearch(String query) {
 
-    public Player getSelectedPlayer2() {
-        return selectedPlayer2;
-    }
+        List<SearchResult> suggestions = new ArrayList<SearchResult>();
+        List<SearchResult> resultList = getSuggestionList(query, 5);
+        SearchConverter.resultList = resultList;
 
-    public void setSelectedPlayer2(Player selectedPlayer2) {
-        this.selectedPlayer2 = selectedPlayer2;
-    }
-
-    public List<Player> completePlayer(String query) {
-        List<Player> suggestions = new ArrayList<Player>();
-
-        for(Player p : players) {
-            if(p.getName().startsWith(query))
-                suggestions.add(p);
+        for(SearchResult sr : resultList) {
+            if(sr.getName().startsWith(query))
+                suggestions.add(sr);
         }
 
         return suggestions;
+    }
+
+
+    private ArrayList<SearchResult> getSuggestionList(String name, int maxNo){
+
+        ArrayList<SearchResult> resultList = new ArrayList<>();
+
+        List<Student> studentList = commonService.getStudentsNameLike(name, maxNo);
+        for(Student student : studentList){
+            resultList.add(new SearchResult(student.getName(), "Student", student.getId()));
+        }
+
+        List<Staff> staffList = commonService.getStaffsNameLike(name, maxNo);
+        for(Staff staff : staffList){
+            resultList.add(new SearchResult(staff.getName(), "Staff", staff.getId()));
+        }
+
+        return resultList;
     }
 }
