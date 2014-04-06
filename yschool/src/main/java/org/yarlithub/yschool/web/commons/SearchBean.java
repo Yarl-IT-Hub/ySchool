@@ -43,7 +43,7 @@ public class SearchBean {
         SearchConverter.resultList = resultList;
 
         for(SearchResult sr : resultList) {
-            if(sr.getName().startsWith(query))
+            if(sr.getName().toLowerCase().startsWith(query))
                 suggestions.add(sr);
         }
 
