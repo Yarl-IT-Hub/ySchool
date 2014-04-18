@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/templates/classroom-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html">
+
+    <ui:define name="yhead">
+        <title>Classroom View</title>
+    </ui:define>
+
+    <ui:define name="classroom-content">
+        <div class="row">
+            <div class="col-md-8">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="/yschool/faces/home/myHome.xhtml">Home</a>
+                    </li>
+                    <li>
+                        <a href="/yschool/faces/classroom/classroomHome.xhtml">Classrooms</a>
+                    </li>
+                    <li class="active">
+                        Add Grade
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <!--Add new exam Button-->
+                <a href="/yschool/faces/classroom/classroomNew.xhtml">
+                    <Button class="btn btn-default">Add Grade</Button>
+                </a>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-10">
+
+
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
