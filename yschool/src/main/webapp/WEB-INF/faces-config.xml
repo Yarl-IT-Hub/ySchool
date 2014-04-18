@@ -347,6 +347,11 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/classroom/classroomGradeEdit.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>viewClassroom</from-outcome>
+            <to-view-id>/faces/classroom/classroomView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>

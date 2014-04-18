@@ -61,4 +61,8 @@ public class ClassroomHomeBean implements Serializable {
         return "editGrade";
     }
 
+    public String viewClassroom() {
+        return "viewClassroom";
+    }
+
 }
