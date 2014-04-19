@@ -1,0 +1,107 @@
+<ui:composition template="/WEB-INF/templates/settings-layout.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:H="http://java.sun.com/jsf/html">
+
+    <ui:define name="settings-content">
+        <div class="row">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="/yschool/faces/home/myHome.xhtml">Home</a> <span class="divider"></span>
+                </li>
+                <li>
+                    <a href="/yschool/faces/settings/settingsHome.xhtml">Settings</a> <span class="divider"></span>
+                </li>
+                <li>
+                    <a href="#">Grades and Divisions</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-lg-11">
+              <ul>
+              <h:form>
+              <li >
+                  <div class="thumbnail col-md-5">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          <h:commandButton type="button" class="btn  btn-default" value="New Grade" action="#{gradeBean.addGrade}"/>
+                  </div>
+                  <div class="col-lg-2"></div>
+                  <div class="thumbnail col-md-5">
+                          <span class="glyphicon glyphicon-plus"></span>
+                          <h:commandButton type="button" class="btn  btn-default" value="New Division">
+                              <!--<f:ajax render="exam-details"></f:ajax>-->
+                          </h:commandButton>
+                  </div>
+              </li>
+
+            <h:dataTable value="#{gradeBean.grades}" var="grad" binding="#{gradeBean.gradeTable}" rendered="#{gradeBean.gradeAdded}">
+            <h:column>
+
+            <li class="thumbnail col-lg-5" style="margin-bottom: 5px">
+                <h:panelGroup layout="block">
+
+                <h:panelGroup rendered="#{gradeBean.gradeUnEditMode}">
+                    <h:form>
+                        <fieldset>
+                            <h:outputText styleClass="col-md-2" value="#{grad.grade}" name="grade" style="margin-right: 10px"></h:outputText>
+                            <h:outputText styleClass="col-md-4" value="#{grad.description}" name="gradeDescription" style="margin-right: 10px"></h:outputText>
+                            <h:commandLink value="Edit" action="#{gradeBean.gradeChangeToEditMode}" name="gradeEdit" styleClass="col-lg-4"></h:commandLink>
+                        </fieldset>
+                    </h:form>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{gradeBean.gradeEditMode}">
+                    <h:form>
+                        <fieldset>
+                            <h:inputText styleClass="col-lg-2" value="#{grad.grade}" name="grade" style="margin-right: 10px"></h:inputText>
+                            <h:inputText styleClass="col-md-4" value="#{grad.description}" name="gradeDescription" style="margin-right: 10px"></h:inputText>
+                            <h:commandLink value="Save" action="#{gradeBean.gradeCompleteEditMode}" name="gradeSave" styleClass="col-lg-1.5" style="margin-right: 15px"></h:commandLink>
+                            <h:commandLink value="Cancel" action="#{gradeBean.gradeCancelEditMode}" name="gradeCancel" styleClass="col-lg-1.5" style="margin-right: 15px"></h:commandLink>
+                            <h:commandLink value="Delete" action="#{gradeBean.gradeDeleteEditMode}" name="gradeDelete" styleClass="col-lg-1.5" style="margin-right: 15px"></h:commandLink>
+                        </fieldset>
+                    </h:form>
+                </h:panelGroup>
+
+                </h:panelGroup>
+            </li>
+            </h:column>
+            </h:dataTable>
+
+                  <li class="col-lg-2"></li>
+                  <li class="thumbnail col-lg-5" style="margin-bottom: 5px">
+                      <h:panelGroup layout="block" id="division">
+
+                          <h:panelGroup rendered="#{settingsGradesDivisionsBean.divisionUnEditMode}">
+                              <h:form>
+                                  <fieldset>
+                                      <h:outputText styleClass="col-md-2" value="#{settingsGradesDivisionsBean.division}" name="division" style="margin-right: 10px"></h:outputText>
+                                      <h:outputText styleClass="col-md-4" value="#{settingsGradesDivisionsBean.division}" name="divisionDescription" style="margin-right: 10px"></h:outputText>
+                                      <h:commandLink value="Edit" action="#{settingsGradesDivisionsBean.divisionChangeToEditMode}" name="divisionEdit" styleClass="col-lg-4"></h:commandLink>
+                                  </fieldset>
+                              </h:form>
+                          </h:panelGroup>
+
+                          <h:panelGroup rendered="#{settingsGradesDivisionsBean.divisionEditMode}">
+                              <h:form>
+                                  <fieldset>
+                                      <h:inputText styleClass="col-lg-2" value="#{settingsGradesDivisionsBean.division}" name="division" style="margin-right: 10px"></h:inputText>
+                                      <h:inputText styleClass="col-md-4" value="#{settingsGradesDivisionsBean.division}" name="divisionDescription" style="margin-right: 10px"></h:inputText>
+                                      <h:commandLink value="Save" action="#{settingsGradesDivisionsBean.divisionCompleteEditMode}" name="divisionSave" styleClass="col-lg-1.5" style="margin-right: 15px"></h:commandLink>
+                                      <h:commandLink value="Cancel" action="#{settingsGradesDivisionsBean.divisionCancelEditMode}" name="divisionCancel" styleClass="col-lg-1.5" style="margin-right: 15px"></h:commandLink>
+                                      <h:commandLink value="Delete" action="#{settingsGradesDivisionsBean.divisionDeleteEditMode}" name="divisionDelete" styleClass="col-lg-1.5" style="margin-right: 15px"></h:commandLink>
+                                  </fieldset>
+                              </h:form>
+                          </h:panelGroup>
+
+                      </h:panelGroup>
+                  </li>
+              </h:form>
+
+            </ul>
+        </div>
+
+
+
+    </ui:define>
+</ui:composition>
