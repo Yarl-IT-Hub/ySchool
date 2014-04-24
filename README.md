@@ -23,10 +23,12 @@ A simple web based school management system.
 2. Install git setup and fork ySchool.
 
 3. Install Maven, go to directory containing ySchool project root in command-prompt/terminal and run
-  * For Windows run 
+  
+ For Windows run 
   *  ```mvn install:install-file -Dfile=ySchool\modules\repository\lib\hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar```
    * ```mvn install:install-file -Dfile=ySchool\modules\analytics\lib\class-analyzer-1.0.3.jar -DgroupId=com.arima.classanalyzer -DartifactId=class-analyzer -Dversion=1.0.3 -Dpackaging=jar```
-   * For Linux run
+
+ For Linux run
    * ```mvn install:install-file -Dfile=ySchool/modules/repository/lib/hbnpojogen-persistence-1.4.4.jar -DgroupId=com.felees -DartifactId=hbnpojogen-persistence -Dversion=1.4.4 -Dpackaging=jar```
    * ```mvn install:install-file -Dfile=ySchool/modules/analytics/lib/class-analyzer-1.0.3.jar -DgroupId=com.arima.classanalyzer -DartifactId=class-analyzer -Dversion=1.0.3 -Dpackaging=jar```
 
