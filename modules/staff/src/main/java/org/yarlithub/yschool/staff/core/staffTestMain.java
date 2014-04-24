@@ -9,7 +9,7 @@ package org.yarlithub.yschool.staff.core;
  */
 public class staffTestMain {
     public static void main(String args[]){
-        StaffHandler staffHandler=new StaffHandler();
-        System.out.println(staffHandler.getTeacher(1,"CT"));
+//        StaffHandler staffHandler=new StaffHandler();
+//        System.out.println(staffHandler.getTeacher(1,"CT"));
     }
 }

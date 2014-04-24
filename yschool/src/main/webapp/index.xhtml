@@ -108,10 +108,10 @@
                                 <!--<label class="control-label col-md-4" for="upwd">Password</label>-->
 
 
-                                <h:inputText id="upwd" value="#{loginBean.password}" required="true"
+                                <h:inputSecret  id="upwd" value="#{loginBean.password}" required="true"
                                              styleClass="form-control col-md-8" requiredMessage=" Password is required">
 
-                                </h:inputText>
+                                </h:inputSecret>
                                 <p:watermark for="upwd" value="Password"/>
                                 <h:message for="upwd" errorStyle="color : red"/>
 
