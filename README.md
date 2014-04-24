@@ -16,8 +16,8 @@ A simple web based school management system.
 ####How to Start####
 
 1. Install WAMP/LAMP server.
-   Import the SQL schema ySchool/data/V1.0.6/ySchool_V1.0.6.sql into mysql server to create yschool database for you.
-   Load the data ySchool/data/1.0.6/yschool-DATASET-V1.0.6.sql
+   Import the SQL schema ySchool/data/v1.0.6/ySchool-1.0.6.sql into mysql server to create yschool database for you.
+   Load the data ySchool/data/v1.0.6/sampledata-1.0.6.sql
    If your mysql user,password is otherthan "root","" then update it in applicationContext.xml in both repository and yschoolweb modules. 
 
 2. Install git setup and fork ySchool.
