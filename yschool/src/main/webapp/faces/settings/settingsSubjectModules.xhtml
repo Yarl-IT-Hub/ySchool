@@ -31,15 +31,16 @@
 </div>
 
 <div class="col-md-10">
-<ul class="thumbnails">
+
 <!--Listof Subjects-->
-<li class="thumbnail col-md-4">
+<div class="row" style="margin-bottom: 5px">
     <h:form>
         <a href="/yschool/faces/examination/examinationNew.xhtml">
-            <span class="glyphicon glyphicon-plus"></span>
-            <h:commandButton type="button" class="btn  btn-default" value="Add New Subject">
+
+            <h:commandLink type="button" class="btn  btn-default">
+                <i class="glyphicon glyphicon-plus"></i>Add New Subject
                 <!--<f:ajax render="exam-details"></f:ajax>-->
-            </h:commandButton>
+            </h:commandLink>
 
         </a>
 
@@ -49,18 +50,18 @@
         </h:panelGroup>
 
     </h:form>
-</li>
+</div>
 <!--TODO: get list from db-->
-<li class="thumbnail col-md-9" style="margin-bottom: 5px">
+<div class="panel panel-default col-md-9" style="margin-bottom: 5px">
 
     <div class="accordion col-md-12" id="accordionScience">
         <div class="accordion-group">
-            <div class="col-md-8">
-                Science
-            </div>
-            <a class="accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordionScience"
+
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionScience"
                href="#collapseScience">
-                <button class="btn btn-large pull-right">View Modules</button>
+                <div class="panel-heading">
+                    Science
+                </div>
             </a>
 
             <div id="collapseScience" class="accordion-body collapse">
@@ -140,17 +141,17 @@
             </div>
         </div>
     </div>
-</li>
-<li class="thumbnail col-md-9" style="margin-bottom: 5px">
+</div>
+<div class="panel panel-default col-md-9" style="margin-bottom: 5px">
 
     <div class="accordion col-md-12" id="accordionMathematics">
         <div class="accordion-group">
-            <div class="col-md-8">
-                Mathematics
-            </div>
-            <a class="accordion-toggle col-md-4" data-toggle="collapse" data-parent="#accordionMathematics"
+
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionMathematics"
                href="#collapseMathematics">
-                <button class="btn btn-large pull-right">View Modules</button>
+                <div class="panel-heading">
+                    Mathematics
+                </div>
             </a>
 
             <div id="collapseMathematics" class="accordion-body collapse">
@@ -230,8 +231,8 @@
             </div>
         </div>
     </div>
-</li>
-</ul>
+</div>
+
 </div>
 </ui:define>
 

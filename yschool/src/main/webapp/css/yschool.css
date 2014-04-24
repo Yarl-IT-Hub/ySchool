@@ -1,10 +1,19 @@
-.thumbnail, a.thumbnail {
+.thumbnail, a.thumbnail,{
     background-color: rgb(249, 242, 253);
 }
 
-.thumbnail:hover, a.thumbnail:hover {
+.thumbnail:hover, a.thumbnail:hover, .panel-heading:hover{
     background-color: rgb(230, 204, 244);
     border-color: rgb(230, 204, 244);
+}
+
+.panel-heading{
+    text-decoration: none;
+    color: #000000;
+}
+
+.thumbnail-no-hover:hover {
+    background-color: rgb(249, 242, 253);
 }
 
 a:hover {
@@ -70,7 +79,7 @@ a:hover {
     color: black;
     border: 0px none;
     border-radius: 0px;
-    box-shadow: 0px 10px 10px rgb(230, 180, 255) inset;
+    box-shadow: 0px 5px 10px rgb(230, 180, 255) inset;
     background-color: rgb(255, 255, 240);
 }
 
