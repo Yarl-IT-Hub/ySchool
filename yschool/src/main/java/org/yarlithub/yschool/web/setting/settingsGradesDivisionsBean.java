@@ -18,6 +18,40 @@ import javax.faces.bean.ManagedBean;
 @Controller
 public class settingsGradesDivisionsBean {
     private boolean gradeEditMode = false;
+    private boolean divisionEditMode = false;
+    private String gradeDescription = "Grade 6";
+    private String divisionDescription = "Division A";
+    private boolean gradeUnEditMode = true;
+    private boolean divisionUnEditMode = true;
+    private String grade = "6";
+    private String division = "A";
+
+    private boolean gradeEditMode1 = false;
+    private boolean divisionEditMode1 = false;
+    private String gradeDescription1 = "Grade 7";
+    private String divisionDescription1 = "Division B";
+    private boolean gradeUnEditMode1 = true;
+    private boolean divisionUnEditMode1 = true;
+    private String grade1 = "7";
+    private String division1 = "B";
+
+
+
+    public String getGradeDescription() {
+        return gradeDescription;
+    }
+
+    public void setGradeDescription(String gradeDescription) {
+        this.gradeDescription = gradeDescription;
+    }
+
+    public String getDivisionDescription() {
+        return divisionDescription;
+    }
+
+    public void setDivisionDescription(String divisionDescription) {
+        this.divisionDescription = divisionDescription;
+    }
 
     public boolean isDivisionEditMode() {
         return divisionEditMode;
@@ -35,11 +69,6 @@ public class settingsGradesDivisionsBean {
         this.divisionUnEditMode = divisionUnEditMode;
     }
 
-    private boolean gradeUnEditMode = true;
-    private boolean divisionEditMode = false;
-    private boolean divisionUnEditMode = true;
-    private String grade = "6";
-
     public String getDivision() {
         return division;
     }
@@ -47,8 +76,6 @@ public class settingsGradesDivisionsBean {
     public void setDivision(String division) {
         this.division = division;
     }
-
-    private String division = "A";
 
     public String getGrade() {
         return grade;
@@ -61,6 +88,22 @@ public class settingsGradesDivisionsBean {
     public settingsGradesDivisionsBean(){
         gradeUnEditMode = true;
         gradeEditMode = false;
+    }
+
+    public boolean isGradeEditMode() {
+        return gradeEditMode;
+    }
+
+    public void setGradeEditMode(boolean gradeEditMode) {
+        this.gradeEditMode = gradeEditMode;
+    }
+
+    public boolean isGradeUnEditMode() {
+        return gradeUnEditMode;
+    }
+
+    public void setGradeUnEditMode(boolean gradeUnEditMode) {
+        this.gradeUnEditMode = gradeUnEditMode;
     }
 
     public void gradeChangeToEditMode(){
@@ -103,19 +146,107 @@ public class settingsGradesDivisionsBean {
         divisionUnEditMode = true;
     }
 
-    public boolean isGradeEditMode() {
-        return gradeEditMode;
+    public void gradeChangeToEditMode1(){
+        gradeEditMode1 = true;
+        gradeUnEditMode1 = false;
     }
 
-    public void setGradeEditMode(boolean gradeEditMode) {
-        this.gradeEditMode = gradeEditMode;
+    public void gradeCompleteEditMode1(){
+        gradeEditMode1 = false;
+        gradeUnEditMode1 = true;
     }
 
-    public boolean isGradeUnEditMode() {
-        return gradeUnEditMode;
+    public void gradeCancelEditMode1(){
+        gradeEditMode1 = false;
+        gradeUnEditMode1 = true;
     }
 
-    public void setGradeUnEditMode(boolean gradeUnEditMode) {
-        this.gradeUnEditMode = gradeUnEditMode;
+    public void gradeDeleteEditMode1(){
+        gradeEditMode1 = false;
+        gradeUnEditMode1 = true;
+    }
+
+    public void divisionChangeToEditMode1(){
+        divisionEditMode1 = true;
+        divisionUnEditMode1 = false;
+    }
+
+    public void divisionCompleteEditMode1(){
+        divisionEditMode1 = false;
+        divisionUnEditMode1 = true;
+    }
+
+    public void divisionCancelEditMode1(){
+        divisionEditMode1 = false;
+        divisionUnEditMode1 = true;
+    }
+
+    public void divisionDeleteEditMode1(){
+        divisionEditMode1 = false;
+        divisionUnEditMode1 = true;
+    }
+
+    public boolean isGradeEditMode1() {
+        return gradeEditMode1;
+    }
+
+    public void setGradeEditMode1(boolean gradeEditMode1) {
+        this.gradeEditMode1 = gradeEditMode1;
+    }
+
+    public boolean isDivisionEditMode1() {
+        return divisionEditMode1;
+    }
+
+    public void setDivisionEditMode1(boolean divisionEditMode1) {
+        this.divisionEditMode1 = divisionEditMode1;
+    }
+
+    public String getGradeDescription1() {
+        return gradeDescription1;
+    }
+
+    public void setGradeDescription1(String gradeDescription1) {
+        this.gradeDescription1 = gradeDescription1;
+    }
+
+    public String getDivisionDescription1() {
+        return divisionDescription1;
+    }
+
+    public void setDivisionDescription1(String divisionDescription1) {
+        this.divisionDescription1 = divisionDescription1;
+    }
+
+    public boolean isGradeUnEditMode1() {
+        return gradeUnEditMode1;
+    }
+
+    public void setGradeUnEditMode1(boolean gradeUnEditMode1) {
+        this.gradeUnEditMode1 = gradeUnEditMode1;
+    }
+
+    public boolean isDivisionUnEditMode1() {
+        return divisionUnEditMode1;
+    }
+
+    public void setDivisionUnEditMode1(boolean divisionUnEditMode1) {
+        this.divisionUnEditMode1 = divisionUnEditMode1;
+    }
+
+    public String getGrade1() {
+        return grade1;
+    }
+
+    public void setGrade1(String grade1) {
+        this.grade1 = grade1;
+    }
+
+    public String getDivision1() {
+        return division1;
+    }
+
+    public void setDivision1(String division1) {
+        this.division1 = division1;
     }
 }
