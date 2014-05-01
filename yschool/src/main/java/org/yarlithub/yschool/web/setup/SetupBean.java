@@ -5,12 +5,10 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.yarlithub.yschool.service.SetupService;
+import org.yarlithub.yschool.service.InitService;
 import org.yarlithub.yschool.web.commons.ErrorBean;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
 /**
@@ -48,7 +46,7 @@ public class SetupBean implements Serializable {
     private String initDocPath;
     private UploadedFile initFile;
     @Autowired
-    private SetupService setupService;
+    private InitService initService;
 
 
     public SetupBean() {
@@ -159,7 +157,7 @@ public class SetupBean implements Serializable {
         try {
             logger.info("Entering into first time ySchool setup");
 
-            setupResult = setupService.ySchoolSetUP(userName, usereMail, password, schoolName, schoolAddress, schoolZone, schoolDistrict,
+            setupResult = initService.ySchoolSetUP(userName, usereMail, password, schoolName, schoolAddress, schoolZone, schoolDistrict,
                     schoolProvience, initFile);
             if (setupResult) {
                 logger.info("Setup Success");

@@ -4,11 +4,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.yarlithub.yschool.service.SetupService;
+import org.yarlithub.yschool.service.InitService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import java.io.Serializable;
 
@@ -30,7 +29,7 @@ public class LoginBean implements Serializable {
     public String userName;
     public String password;
     @Autowired
-    private SetupService setupService;
+    private InitService initService;
 
     public LoginBean() {
         logger.info("initiating a new setup bean");
@@ -59,7 +58,7 @@ public class LoginBean implements Serializable {
                 new FacesMessage(FacesMessage.SEVERITY_INFO, "setting up now.", null));
 
 
-        setupService.logIn(userName, password);
+        initService.logIn(userName, password);
         return "login";
     }
 

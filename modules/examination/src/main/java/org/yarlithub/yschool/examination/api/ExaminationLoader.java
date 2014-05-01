@@ -5,8 +5,8 @@ import org.hibernate.SQLQuery;
 import org.yarlithub.yschool.examination.dataAccess.ExaminationDBQueries;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschool;
 import org.yarlithub.yschool.repository.services.data.DataLayerYschoolImpl;
-import org.yarlithub.yschool.spreadSheetReader.Reader;
-import org.yarlithub.yschool.spreadSheetReader.ReaderFactory;
+import org.yarlithub.yschool.spreadSheetHandler.Reader;
+import org.yarlithub.yschool.spreadSheetHandler.ReaderFactory;
 
 import java.io.IOException;
 

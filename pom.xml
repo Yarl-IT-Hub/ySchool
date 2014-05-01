@@ -21,13 +21,15 @@
 
     <modules>
         <module>modules/repository</module>
-        <module>modules/spreadSheetReader</module>
-        <module>modules/setup</module>
+        <module>modules/spreadSheetHandler</module>
+        <module>modules/init</module>
         <module>modules/student</module>
         <module>modules/staff</module>
         <module>modules/examination</module>
         <module>modules/analytics</module>
         <module>modules/classroom</module>
+        <module>modules/commons</module>
+        <module>modules/module</module>
     </modules>
 
     <dependencies>
