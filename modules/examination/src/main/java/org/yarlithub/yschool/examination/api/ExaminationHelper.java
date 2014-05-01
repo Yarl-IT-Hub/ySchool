@@ -57,7 +57,7 @@ public class ExaminationHelper {
      * @param examId Requested exam id.
      * @return List of org.yarlithub.yschool.repository.model.obj.yschool.Marks
      */
-    public static List<Marks> getExamMarks(Integer examId) {
+    public static List<Marks> getExamMarks(int examId) {
         Exam exam = dataLayerYschool.getExam(examId);
         Criteria marksCriteria = dataLayerYschool.createCriteria(Marks.class);
         marksCriteria.add(Restrictions.eq("examIdexam", exam));
@@ -70,7 +70,7 @@ public class ExaminationHelper {
      * @param examId Requested exam id.
      * @return org.yarlithub.yschool.repository.model.obj.yschool.Results
      */
-    public static List<Results> getExamResults(Integer examId) {
+    public static List<Results> getExamResults(int examId) {
         Exam exam = dataLayerYschool.getExam(examId);
         Criteria resultsCriteria = dataLayerYschool.createCriteria(Results.class);
         resultsCriteria.add(Restrictions.eq("examIdexam", exam));

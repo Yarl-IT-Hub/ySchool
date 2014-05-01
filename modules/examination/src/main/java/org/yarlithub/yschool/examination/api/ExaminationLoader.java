@@ -18,6 +18,12 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class ExaminationLoader {
+    /**
+     *
+     * @param marksFile
+     * @param examId
+     * @throws IOException
+     */
     public static void loadMarks(UploadedFile marksFile, int examId) throws IOException {
         ReaderFactory readerFactory = new ReaderFactory();
         Reader marksDocReader = readerFactory.getspreadSheetReader(marksFile);
