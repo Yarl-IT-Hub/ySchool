@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.examination.core;
+package org.yarlithub.yschool.examination.api;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
@@ -21,7 +21,7 @@ import java.util.*;
 public class ExaminationCreator {
     static Logger log = Logger.getLogger(
             ExaminationCreator.class);
-    DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
+    static DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
     /**
      * @param date       java.util.date
@@ -32,7 +32,7 @@ public class ExaminationCreator {
      * @param moduleid   Module id
      * @return exam object if successfully created a CA exam and inserted entries into related database tables, otherwise null.
      */
-    public Exam addNewCAExam(Date date, int term, int examtype, int gradeid, int divisionid, int moduleid) {
+    public static Exam addNewCAExam(Date date, int term, int examtype, int gradeid, int divisionid, int moduleid) {
 
         Grade grade = dataLayerYschool.getGrade(gradeid);
         Division division = dataLayerYschool.getDivision(divisionid);
@@ -71,7 +71,7 @@ public class ExaminationCreator {
      * @return for each divisions of classroom, checks if the subject is provided and add a term exam entry per class division
      *         and if successful and inserted entries into related database tables return list of exams, otherwise null.
      */
-    public List<Exam> addNewTermExam(Date date, int term, int examtype, int gradeid, int moduleid) {
+    public static List<Exam> addNewTermExam(Date date, int term, int examtype, int gradeid, int moduleid) {
 
         Grade grade = dataLayerYschool.getGrade(gradeid);
         Module module = dataLayerYschool.getModule(moduleid);
@@ -100,7 +100,7 @@ public class ExaminationCreator {
         return null;
     }
 
-    private Exam insertExam(Date date, int term, ExamType examType, ClassroomModule classroomModule) {
+    private static Exam insertExam(Date date, int term, ExamType examType, ClassroomModule classroomModule) {
 
         Exam exam = YschoolDataPoolFactory.getExam();
         exam.setDate(date);
@@ -113,7 +113,7 @@ public class ExaminationCreator {
         return exam;
     }
 
-    private ClassroomModule getClassroomModule(Classroom classroom, Module module) {
+    private static ClassroomModule getClassroomModule(Classroom classroom, Module module) {
 
         Criteria getclassCriteria = dataLayerYschool.createCriteria(ClassroomModule.class);
         getclassCriteria.add(Restrictions.eq("classroomIdclassroom", classroom));
@@ -125,7 +125,7 @@ public class ExaminationCreator {
         return null;
     }
 
-    private Classroom getClassroom(Date date, Grade grade, Division division) {
+    private static Classroom getClassroom(Date date, Grade grade, Division division) {
 
         Criteria getclassCriteria = dataLayerYschool.createCriteria(Classroom.class);
 
@@ -144,7 +144,7 @@ public class ExaminationCreator {
         return null;
     }
 
-    private List<Classroom> getClassrooms(Date date, Grade grade) {
+    private static List<Classroom> getClassrooms(Date date, Grade grade) {
 
         Criteria getclassCriteria = dataLayerYschool.createCriteria(Classroom.class);
         List<Classroom> classroomList = new ArrayList<>();

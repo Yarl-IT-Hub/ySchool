@@ -297,7 +297,7 @@ public class AnalyticsExaminationHomeBean implements Serializable {
     public boolean preloadExam() {
         ExamStandard examStandard = new ExamStandard();
         exam = examinationController.getExam();
-        // exam =examinationService.getExambyId(2);
+        // exam =examinationService.getExamById(2);
         try {
             examStandard = ExamComparator.getExamStandard(11086, this.exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getYear(), this.exam.getClassroomModuleIdclassroomModule().getClassroomIdclassroom().getGradeIdgrade().getGrade(), this.exam.getClassroomModuleIdclassroomModule().getModuleIdmodule().getSubjectIdsubject().getSubjectName());
         } catch (Exception e) {

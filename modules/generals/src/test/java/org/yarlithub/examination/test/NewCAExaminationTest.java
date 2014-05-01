@@ -10,7 +10,7 @@
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //import org.springframework.test.context.transaction.TransactionConfiguration;
 //import org.springframework.transaction.annotation.Transactional;
-//import org.yarlithub.yschool.examination.core.ExaminationCreator;
+//import org.yarlithub.yschool.examination.api.ExaminationCreator;
 //import org.yarlithub.yschool.examination.dataAccess.ExaminationDBQueries;
 //import org.yarlithub.yschool.repository.factories.yschool.YschoolDataPoolFactory;
 //import org.yarlithub.yschool.repository.model.obj.yschool.ClassSubject;

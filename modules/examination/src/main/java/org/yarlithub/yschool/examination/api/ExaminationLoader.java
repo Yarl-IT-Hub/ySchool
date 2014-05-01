@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.examination.core;
+package org.yarlithub.yschool.examination.api;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.hibernate.SQLQuery;
@@ -18,7 +18,7 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class ExaminationLoader {
-    public void loadMarks(UploadedFile marksFile, int examid) throws IOException {
+    public static void loadMarks(UploadedFile marksFile, int examId) throws IOException {
         ReaderFactory readerFactory = new ReaderFactory();
         Reader marksDocReader = readerFactory.getspreadSheetReader(marksFile);
 
@@ -37,7 +37,7 @@ public class ExaminationLoader {
             int studentid= Integer.valueOf(getstudentidQuery.list().get(0).toString());
 
             SQLQuery insertQuery = DataLayerYschool.createSQLQuery(ExaminationDBQueries.INSERT_MARKS);
-            insertQuery.setParameter("idexam", examid);
+            insertQuery.setParameter("idexam", examId);
             insertQuery.setParameter("idstudent", studentid);
             insertQuery.setParameter("marks", marks);
             int result = insertQuery.executeUpdate();
@@ -46,7 +46,7 @@ public class ExaminationLoader {
 
     }
 
-    public void loadResults(UploadedFile resultsFile, int examid)  throws IOException{
+    public static void loadResults(UploadedFile resultsFile, int examId)  throws IOException{
         ReaderFactory readerFactory = new ReaderFactory();
         Reader marksDocReader = readerFactory.getspreadSheetReader(resultsFile);
 
@@ -64,7 +64,7 @@ public class ExaminationLoader {
             int studentid= Integer.valueOf(getstudentidQuery.list().get(0).toString());
 
             SQLQuery insertQuery = DataLayerYschool.createSQLQuery(ExaminationDBQueries.INSERT_RESULTS);
-            insertQuery.setParameter("idexam", examid);
+            insertQuery.setParameter("idexam", examId);
             insertQuery.setParameter("idstudent", studentid);
             insertQuery.setParameter("results", results);
             int result = insertQuery.executeUpdate();

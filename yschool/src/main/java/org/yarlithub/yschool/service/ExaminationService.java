@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.analytics.datasync.SyncExamination;
 import org.yarlithub.yschool.classroom.core.ClassroomHelper;
-import org.yarlithub.yschool.examination.core.ExaminationCreator;
-import org.yarlithub.yschool.examination.core.ExaminationHelper;
-import org.yarlithub.yschool.examination.core.ExaminationLoader;
+import org.yarlithub.yschool.examination.api.ExaminationCreator;
+import org.yarlithub.yschool.examination.api.ExaminationHelper;
+import org.yarlithub.yschool.examination.api.ExaminationLoader;
 import org.yarlithub.yschool.repository.model.obj.yschool.*;
 
 import java.io.IOException;
@@ -44,8 +44,7 @@ public class ExaminationService {
      */
     @Transactional
     public Exam addCAExam(Date date, int term, int examType, int gradeid, int divisionid, int moduleid) {
-        ExaminationCreator examinationCreator = new ExaminationCreator();
-        Exam exam = examinationCreator.addNewCAExam(date, term, examType, gradeid, divisionid, moduleid);
+        Exam exam = ExaminationCreator.addNewCAExam(date, term, examType, gradeid, divisionid, moduleid);
         return exam;
     }
 
@@ -61,8 +60,7 @@ public class ExaminationService {
      */
     @Transactional
     public List<Exam> addTermExam(Date date, int term, int examType, int gradeid, int moduleid) {
-        ExaminationCreator examinationCreator = new ExaminationCreator();
-        List<Exam> examList = examinationCreator.addNewTermExam(date, term, examType, gradeid, moduleid);
+        List<Exam> examList = ExaminationCreator.addNewTermExam(date, term, examType, gradeid, moduleid);
         return examList;
     }
 
@@ -73,8 +71,7 @@ public class ExaminationService {
      */
     @Transactional
     public List<Exam> getLatestExams(int start, int max) {
-        ExaminationHelper examinationHelper = new ExaminationHelper();
-        List<Exam> exams = examinationHelper.getLatestExams(start, max);
+        List<Exam> exams = ExaminationHelper.getLatestExams(start, max);
 
         //Hibernate needs lazy initialization of internal objects
         Iterator<Exam> iterator = exams.iterator();
@@ -98,8 +95,7 @@ public class ExaminationService {
      */
     @Transactional
     public List<Marks> getExamMarks(Integer examid) {
-        ExaminationHelper examinationHelper = new ExaminationHelper();
-        List<Marks> marksList = examinationHelper.getExamMarks(examid);
+        List<Marks> marksList = ExaminationHelper.getExamMarks(examid);
         //Hibernate needs lazy initialization of internal objects
         Iterator<Marks> marksIterator = marksList.iterator();
         while (marksIterator.hasNext()) {
@@ -116,8 +112,7 @@ public class ExaminationService {
      */
     @Transactional
     public List<Results> getExamResults(Integer examid) {
-        ExaminationHelper examinationHelper = new ExaminationHelper();
-        List<Results> resultsList = examinationHelper.getExamResults(examid);
+        List<Results> resultsList = ExaminationHelper.getExamResults(examid);
         //Hibernate needs lazy initialization of internal objects
         Iterator<Results> resultsIterator = resultsList.iterator();
         while (resultsIterator.hasNext()) {
@@ -135,24 +130,21 @@ public class ExaminationService {
     //TODO:handle exceptions.
     @Transactional
     public void uploadMarks(UploadedFile marksFile, int examid) throws IOException {
-        ExaminationLoader examinationLoader = new ExaminationLoader();
-        examinationLoader.loadMarks(marksFile, examid);
+        ExaminationLoader.loadMarks(marksFile, examid);
         SyncExamination syncExamination = new SyncExamination();
         boolean success = syncExamination.addNewSyncExam(examid);
     }
 
     @Transactional
     public void uploadResults(UploadedFile resultsFile, int examid) throws IOException {
-        ExaminationLoader examinationLoader = new ExaminationLoader();
-        examinationLoader.loadResults(resultsFile, examid);
+        ExaminationLoader.loadResults(resultsFile, examid);
         SyncExamination syncExamination = new SyncExamination();
         boolean success = syncExamination.addNewSyncExam(examid);
     }
 
     @Transactional
     public Exam getExambyId(int examid) {
-        ExaminationHelper examinationHelper = new ExaminationHelper();
-        Exam exam = examinationHelper.getExambyId(examid);
+        Exam exam = ExaminationHelper.getExamById(examid);
         Hibernate.initialize(exam.getExamTypeIdexamType());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule());
         Hibernate.initialize(exam.getClassroomModuleIdclassroomModule().getModuleIdmodule());

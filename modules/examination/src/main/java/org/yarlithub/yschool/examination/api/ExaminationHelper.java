@@ -1,4 +1,4 @@
-package org.yarlithub.yschool.examination.core;
+package org.yarlithub.yschool.examination.api;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
@@ -22,18 +22,18 @@ import java.util.List;
 
 public class ExaminationHelper {
 
-    DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
+    static DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
     /**
-     * Returns the Exam specified by id
+     * Returns the Exam specified by id.
      *
-     * @param examid
+     * @param examId
      * @return org.yarlithub.yschool.repository.model.obj.yschool.Exam
      */
-    public Exam  getExambyId(int examid){
-       Exam exam=dataLayerYschool.getExam(examid);
-       return exam;
-   }
+    public static Exam getExamById(int examId) {
+        Exam exam = dataLayerYschool.getExam(examId);
+        return exam;
+    }
 
     /**
      * Retrieve last inserted exam entries as Exam objects ordered by id:autoincrement .
@@ -42,7 +42,7 @@ public class ExaminationHelper {
      * @param max   Maximum objects to retrieve.
      * @return List of latest Exam objects, org.yarlithub.yschool.repository.model.obj.yschool.Marks.
      */
-    public List<Exam> getLatestExams(int first, int max) {
+    public static List<Exam> getLatestExams(int first, int max) {
         Criteria examCriteria = dataLayerYschool.createCriteria(Exam.class);
         examCriteria.addOrder(Order.desc("id"));
         examCriteria.setFirstResult(first);
@@ -54,11 +54,11 @@ public class ExaminationHelper {
     /**
      * Returns Marks list of specified exam id.
      *
-     * @param examid Requested exam id.
+     * @param examId Requested exam id.
      * @return List of org.yarlithub.yschool.repository.model.obj.yschool.Marks
      */
-    public List<Marks> getExamMarks(Integer examid) {
-        Exam exam = dataLayerYschool.getExam(examid);
+    public static List<Marks> getExamMarks(Integer examId) {
+        Exam exam = dataLayerYschool.getExam(examId);
         Criteria marksCriteria = dataLayerYschool.createCriteria(Marks.class);
         marksCriteria.add(Restrictions.eq("examIdexam", exam));
         return marksCriteria.list();
@@ -67,11 +67,11 @@ public class ExaminationHelper {
     /**
      * Returns Results list of specified exam id.
      *
-     * @param examid Requested exam id.
+     * @param examId Requested exam id.
      * @return org.yarlithub.yschool.repository.model.obj.yschool.Results
      */
-    public List<Results> getExamResults(Integer examid) {
-        Exam exam = dataLayerYschool.getExam(examid);
+    public static List<Results> getExamResults(Integer examId) {
+        Exam exam = dataLayerYschool.getExam(examId);
         Criteria resultsCriteria = dataLayerYschool.createCriteria(Results.class);
         resultsCriteria.add(Restrictions.eq("examIdexam", exam));
         return resultsCriteria.list();
