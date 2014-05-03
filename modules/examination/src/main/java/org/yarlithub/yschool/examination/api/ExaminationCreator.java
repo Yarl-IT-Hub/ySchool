@@ -19,8 +19,8 @@ import java.util.*;
  */
 //TODO: have to change according to subject modules database change.
 public class ExaminationCreator {
-    static Logger log = Logger.getLogger(
-            ExaminationCreator.class);
+    static Logger log = Logger.getLogger(ExaminationCreator.class);
+
     static DataLayerYschool dataLayerYschool = DataLayerYschoolImpl.getInstance();
 
     /**

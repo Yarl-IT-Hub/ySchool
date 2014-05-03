@@ -13,12 +13,6 @@ import javax.faces.model.ListDataModel;
 import java.io.Serializable;
 
 
-/**
- * $LastChangedDate$
- * $LastChangedBy$
- * $LastChangedRevision$
- */
-
 @ManagedBean
 @Scope(value = "view")
 @Controller

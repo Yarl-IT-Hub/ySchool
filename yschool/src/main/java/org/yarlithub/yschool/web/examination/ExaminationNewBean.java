@@ -52,11 +52,11 @@ public class ExaminationNewBean implements Serializable {
         logger.info("[ySchool]: Initiating ExaminationNewBean");
         setAvailableGrades(this.examinationService.getAvailableGrades());
         setAvailableDivisions(this.examinationService.getAvailableDivisions());
-        setAvailableModules(this.examinationService.getAvailableModules());
+        setAvailableModules(this.examinationService.getAllModules());
     }
 
     public void retrieveModules(ValueChangeEvent event) {
-        setAvailableModules(this.examinationService.getAvailableModules(gradeid));
+        setAvailableModules(this.examinationService.getModules(gradeid));
     }
 
     public int getExamType() {

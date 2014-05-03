@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yarlithub.yschool.classroom.core.ClassroomHelper;
+import org.yarlithub.yschool.commons.api.CommonsHelper;
 import org.yarlithub.yschool.repository.model.obj.yschool.Classroom;
 import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
 
@@ -41,7 +42,6 @@ public class ClassroomService {
 
     @Transactional
     public List<Grade> getGrades() {
-        ClassroomHelper classroomHelper = new ClassroomHelper();
-        return classroomHelper.getAvailableGrades();
+        return CommonsHelper.getAllGrades();
     }
 }

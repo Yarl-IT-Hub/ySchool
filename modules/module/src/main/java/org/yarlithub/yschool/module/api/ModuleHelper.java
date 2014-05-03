@@ -47,17 +47,18 @@ public class ModuleHelper {
 
     /**
      * Add new module
+     *
      * @param subject
      * @param grade
      * @param isOptional
      * @return
      */
-    public static Module addModule(Subject subject, Grade grade, boolean isOptional){
-        Module module=new Module();
+    public static Module addModule(Subject subject, Grade grade, boolean isOptional) {
+        Module module = new Module();
         module.setGradeIdgrade(grade);
         module.setSubjectIdsubject(subject);
         module.setIsOptional(isOptional);
-        dataLayerYschool.save(module) ;
+        dataLayerYschool.save(module);
         return module;
 
     }

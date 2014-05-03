@@ -10,12 +10,6 @@ import javax.faces.bean.ManagedBean;
 import java.io.Serializable;
 
 
-/**
- * $LastChangedDate$
- * $LastChangedBy$
- * $LastChangedRevision$
- */
-
 @ManagedBean
 @Scope(value = "session")
 @Controller
