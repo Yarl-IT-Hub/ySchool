@@ -39,6 +39,13 @@
         <servlet-name>Faces Servlet</servlet-name>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>ExtensionsFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

@@ -7,6 +7,10 @@
         >
 <ui:define name="yhead">
     <title>Examination View</title>
+    <f:metadata>
+        <f:viewParam name="examId" value="#{examinationViewBean.examId}" />
+        <f:event type="preRenderView" listener="#{examinationViewBean.preloadExam}"/>
+    </f:metadata>
 </ui:define>
 
 <ui:define name="examination-content">
@@ -197,56 +201,6 @@
     </li>
     <!--end exam marks or results section-->
 
-    <!--li CLASS datasnyc -->
-    <ui:fragment rendered="#{!examinationViewBean.synced}">
-        <li class="thumbnail col-md-9">
-            <p class="lead"> CLASS Data Sync</p>
-
-            <div class="alert alert-danger">
-
-                <p>
-                    This Exam marks are not synced with CLASS Server yet. <br/>
-                    Press Sync Now button to synchronize this Exam with CLASS Server. <br/>
-                    Make sure you have an active internet connection till synchronization ends.
-                </p>
-            </div>
-            <div class="col-md-4 col-md-offset-4">
-
-                <a href="/yschool/faces/analytics/analyticsSync.xhtml">
-                    <Button class="btn btn-info btn-large">Go to Sync Now</Button>
-                </a>
-            </div>
-
-            <!--CLASS datasync-->
-        </li>
-    </ui:fragment>
-    <!--CLASS datasync-->
-
-
-    <!--exam standard check-->
-    <ui:fragment rendered="#{examinationViewBean.comparisonAvailable}">
-
-        <li class="thumbnail col-md-9">
-
-            <p class="lead"> CLASS Exam Standard Check</p>
-
-            <div class="alert alert-danger">
-
-                <p>
-                    Check the standard of this exam with CLASS.
-                </p>
-            </div>
-            <div class="col-md-4 col-md-offset-4">
-                <a href="/yschool/faces/analytics/analyticsExaminationHome.xhtml">
-                    <Button class="btn btn-info btn-large">Check Standard</Button>
-                </a>
-
-            </div>
-
-
-        </li>
-    </ui:fragment>
-    <!--end exam standatd check-->
 
 </ui:fragment>
 

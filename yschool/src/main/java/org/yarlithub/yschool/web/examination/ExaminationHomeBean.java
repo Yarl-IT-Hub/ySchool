@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
 import org.yarlithub.yschool.service.ExaminationService;
+import org.yarlithub.yschool.web.util.PageName;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -17,10 +18,9 @@ import java.io.Serializable;
 @Scope(value = "view")
 @Controller
 public class ExaminationHomeBean implements Serializable {
+
     @Autowired
     private ExaminationService examinationService;
-    @Autowired
-    private ExaminationController examinationController;
     private DataModel<Exam> exams;
 
     @PostConstruct
@@ -36,9 +36,7 @@ public class ExaminationHomeBean implements Serializable {
         this.exams = exams;
     }
 
-    public String viewExam() {
-        this.examinationController.setCurrentExam(exams.getRowData());
-        return "ViewExam";
+    public String getExaminationViewPage() {
+        return PageName.EXAMINATION_VIEW;
     }
-
 }

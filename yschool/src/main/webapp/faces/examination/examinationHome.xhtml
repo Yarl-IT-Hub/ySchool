@@ -2,6 +2,7 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
         >
     <ui:define name="yhead">
         <title>Exams Home</title>
@@ -88,13 +89,11 @@
                             </div>
 
                             <div class="box col-md-2">
-                                <h:form>
-                                    <h:commandButton class="btn btn-default btn-large" value="View..."
-                                                     type="submit"
-                                                     action="#{examinationHomeBean.viewExam}">
-
-                                    </h:commandButton>
-                                </h:form>
+                                <!--Use GET to redirect next page-->
+                                    <h:button class="btn btn-default btn-large" value="View..."
+                                                     outcome="#{examinationHomeBean.examinationViewPage}">
+                                        <f:param name="examId" value="#{exam.id}" />
+                                    </h:button>
                             </div>
 
                         </li>
