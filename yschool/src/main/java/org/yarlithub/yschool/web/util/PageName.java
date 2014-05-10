@@ -10,6 +10,5 @@ public class PageName {
      */
     public static final String EXAMINATION_HOME ="examinationHome";
     public static final String EXAMINATION_VIEW ="examinationView";
-    public static final String EXAMINATION_EDIT ="examinationEdit";
     public static final String EXAMINATION_NEW ="examinationNew";
 }

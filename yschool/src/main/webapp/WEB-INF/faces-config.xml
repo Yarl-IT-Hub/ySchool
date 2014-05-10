@@ -190,13 +190,6 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
         </navigation-case>
 
     </navigation-rule>
-
-
-
-
-
-
-
     <!--staffView-->
     <navigation-rule>
         <display-name>staffView</display-name>
@@ -266,35 +259,7 @@ Please don't edit it manually as it cause tracing page navigation more complex.-
             <to-view-id>/faces/examination/examinationView.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
-
     </navigation-rule>
-
-    <!--ExaminationEdit-->
-    <navigation-rule>
-        <display-name>ExaminationEdit</display-name>
-        <from-view-id>/faces/examination/examinationView.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>ViewExam</from-outcome>
-            <to-view-id>/faces/examination/examinationView.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>EditExam</from-outcome>
-            <to-view-id>/faces/examination/examinationEdit.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>AnalyticsSync</from-outcome>
-            <to-view-id>/faces/analytics/analyticsSync.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>CheckStandard</from-outcome>
-            <to-view-id>/faces/analytics/analyticsExaminationHome.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-
 
     <!--########Analytics Navigation########-->
     <navigation-rule>

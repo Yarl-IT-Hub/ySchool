@@ -4,8 +4,12 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.yarlithub.yschool.repository.model.obj.yschool.Division;
 import org.yarlithub.yschool.repository.model.obj.yschool.Exam;
+import org.yarlithub.yschool.repository.model.obj.yschool.Grade;
+import org.yarlithub.yschool.repository.model.obj.yschool.Module;
 import org.yarlithub.yschool.service.ExaminationService;
+import org.yarlithub.yschool.web.util.PageName;
 import org.yarlithub.yschool.web.util.YDateUtils;
 
 import javax.faces.bean.ManagedBean;
@@ -14,6 +18,8 @@ import javax.faces.model.ListDataModel;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -35,6 +41,11 @@ public class ExaminationViewBean implements Serializable {
     private Exam exam;
     private DataModel marksORresults;
     private UploadedFile marksORresultsFile;
+    private boolean editMode = false;
+    //for examination edit
+    private List<Grade> availableGrades;
+    private List<Division> availableDivisions;
+    private List<Module> availableModules;
 
     public int getExamId() {
         return examId;
@@ -95,6 +106,58 @@ public class ExaminationViewBean implements Serializable {
         this.generalExam = generalExam;
     }
 
+    public boolean isEditMode() {
+        return editMode;
+    }
+
+    public void setEditMode(boolean editMode) {
+        this.editMode = editMode;
+    }
+
+    public List<Grade> getAvailableGrades() {
+        return availableGrades;
+    }
+
+    public void setAvailableGrades(List<Grade> availableGrades) {
+        this.availableGrades = availableGrades;
+    }
+
+    public List<Division> getAvailableDivisions() {
+        return availableDivisions;
+    }
+
+    public void setAvailableDivisions(List<Division> availableDivisions) {
+        this.availableDivisions = availableDivisions;
+    }
+
+    public List<Module> getAvailableModules() {
+        return availableModules;
+    }
+
+    public void setAvailableModules(List<Module> availableModules) {
+        this.availableModules = availableModules;
+    }
+
+    /**
+     * Change to edit mode, examination details become editable.
+     */
+    public void editMode(){
+        setAvailableGrades(this.examinationService.getAvailableGrades());
+        setAvailableDivisions(this.examinationService.getAvailableDivisions());
+        setAvailableModules(this.examinationService.getAllModules());
+        setEditMode(true);
+    }
+
+    /**
+     * Change to view mode, examination details become not editable.
+     */
+    public void viewMode(){
+        setEditMode(false);
+    }
+
+    /**
+     * Get exam using id, load marks/results of the exam.
+     */
     public void preloadExam() {
 
         this.setExam(examinationService.getExambyId(examId));
@@ -110,6 +173,11 @@ public class ExaminationViewBean implements Serializable {
         }
     }
 
+    /**
+     * load the spread sheet entries to db.
+     * @return navigation to examination view.
+     * @throws IOException
+     */
     public String uploadMarks() throws IOException {
 
         if (exam.getExamTypeIdexamType().getId() == ExamType.GENERAL_EXAM) {
@@ -120,11 +188,7 @@ public class ExaminationViewBean implements Serializable {
             this.marksORresults = new ListDataModel(examinationService.getExamMarks(this.exam.getId()));
         }
 
-        return "ViewExam";
-    }
-
-    public String editExam() {
-        return "EditExam";
+        return PageName.EXAMINATION_VIEW;
     }
 
 }

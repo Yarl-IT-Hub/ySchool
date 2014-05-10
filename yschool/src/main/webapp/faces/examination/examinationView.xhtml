@@ -3,12 +3,13 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:t="http://myfaces.apache.org/tomahawk"
         >
 <ui:define name="yhead">
     <title>Examination View</title>
     <f:metadata>
-        <f:viewParam name="examId" value="#{examinationViewBean.examId}" />
+        <f:viewParam name="examId" value="#{examinationViewBean.examId}"/>
         <f:event type="preRenderView" listener="#{examinationViewBean.preloadExam}"/>
     </f:metadata>
 </ui:define>
@@ -47,29 +48,180 @@
 <li class="thumbnail  col-md-9">
     <div class="col-md-12">
         <p class="lead">Exam Details</p>
-        <h5>
-            <h:outputText
-                    value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.gradeIdgrade.grade}  "/>
-            <h:outputText
-                    value="  #{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.divisionIddivision.division} "/>
-            <h:outputText
-                    value="  #{examinationViewBean.exam.classroomModuleIdclassroomModule.moduleIdmodule.subjectIdsubject.subjectName}  "/>
 
-            <h:outputText
-                    value="  #{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
-            <br/>
-            <h:outputText
-                    value="  #{examinationViewBean.exam.examTypeIdexamType.typeName} "/>
-        </h5>
+        <h:panelGroup layout="block">
 
-        <h:form id="form_editexam">
+            <h:panelGroup rendered="#{!examinationViewBean.editMode}">
+                <table class="table table-hover">
+                    <tr>
+                        <td>
+                            Type
+                        </td>
+                        <td>
+                            <h:outputText
+                                    value="  #{examinationViewBean.exam.examTypeIdexamType.typeName} "/>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td class="col-sm-3">
+                            Grade
+                        </td>
+                        <td class="col-sm-9">
+                            <h:outputText
+                                    value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.gradeIdgrade.grade}  "/>
+                            <h:outputText
+                                    value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.divisionIddivision.division} "/>
 
-            <h:commandButton class="btn btn-default pull-right" value="Edit..." action="#{examinationViewBean.editExam}"
-                             type="submit">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Module
+                        </td>
+                        <td>
+                            <h:outputText
+                                    value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.moduleIdmodule.subjectIdsubject.subjectName}  "/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Date
+                        </td>
+                        <td>
+                            <h:outputText
+                                    value="#{examinationViewBean.dateInt} #{examinationViewBean.monthString} #{examinationViewBean.yearInt} "/>
+                        </td>
+                    </tr>
+                </table>
+                <h:form>
+                    <h:commandLink type="button" class="btn  btn-default pull-right"
+                                   actionListener="#{examinationViewBean.editMode}"
+                                   name="gradeEdit"><i
+                            class="glyphicon glyphicon-pencil"></i> Edit</h:commandLink>
+                </h:form>
+            </h:panelGroup>
 
-            </h:commandButton>
+            <h:panelGroup rendered="#{examinationViewBean.editMode}">
+                <h:form>
+                    <table class="table table-hover">
+                        <tr>
+                            <td>
+                                Type
+                            </td>
+                            <td>
+                                <h:outputText type="text"
+                                        value="  #{examinationViewBean.exam.examTypeIdexamType.typeName} "/>
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td class="col-sm-3">
+                                Grade
+                            </td>
+                            <td class="col-sm-9">
+                                <div class="col-sm-3" style="padding: 0px">
+                                <h:selectOneMenu id="grade" class="form-control"
+                                                 value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.gradeIdgrade.id}" required="true"
+                                                 requiredMessage="Grade is required">
+                                    <f:selectItems value="#{examinationViewBean.availableGrades}" var="grade"
+                                                   itemLabel="#{grade.grade}"
+                                                   itemValue="#{grade.id}"></f:selectItems>
+                                </h:selectOneMenu>
+                                </div>
+                                <div class="col-sm-9" style="padding: 0px">
+                                <h:selectOneMenu id="division" class="form-control"
+                                                 value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.classroomIdclassroom.divisionIddivision.id}" required="true"
+                                                 requiredMessage="Division is required">
+                                    <f:selectItems value="#{examinationViewBean.availableDivisions}" var="division"
+                                                   itemLabel="#{division.division}"
+                                                   itemValue="#{division.id}"></f:selectItems>
+                                </h:selectOneMenu>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Module
+                            </td>
+                            <td>
 
-        </h:form>
+                                    <h:selectOneMenu id="subject" class="form-control"
+                                                     value="#{examinationViewBean.exam.classroomModuleIdclassroomModule.moduleIdmodule.id}" required="true"
+                                                     requiredMessage="Module is required">
+                                        <f:selectItems value="#{examinationViewBean.availableModules}" var="module"
+                                                       itemLabel="#{module.subjectIdsubject.subjectName}"
+                                                       itemValue="#{module.id}"></f:selectItems>
+                                    </h:selectOneMenu>
+
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Date
+                            </td>
+                            <td>
+                                <p:calendar value="#{examinationViewBean.exam.date}" id="popupCal"
+                                            requiredMessage="Select a Date" showButtonPanel="true" navigator="true"
+                                            effect="slideDown"/>
+                                <p:message for="popupCal" errorStyle="color : red"/>
+                                </td>
+                        </tr>
+                    </table>
+
+                    <button class="btn  btn-danger pull-left"
+                                   data-toggle="modal" data-target="#confirm-remove-exam"><i
+                            class="glyphicon glyphicon-trash"></i> Remove this exam</button>
+                    <!--Remove confirmation model-->
+                    <div class="modal fade" id="confirm-remove-exam" tabindex="-1" role="dialog" aria-labelledby="confirm-remove-exam-label" aria-hidden="true">
+                        <div class="modal-dialog" style="margin-top:10%">
+                            <div class="modal-content">
+                                <div class="modal-header alert-danger">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirm Removing Examination</h4>
+                                </div>
+                                <div class="modal-body">
+                                    You are asking to remove the exam form ySchool. This will remove all the data belongs to this exam.
+                                    <br/>
+                                    Are you sure to continue this operation?
+                                    <br/>
+                                    <div class="col-sm-10">
+                                    <marquee style="color: red" id="deleteing-message-lbl"  behavior="alternate" scrolldelay="5"/>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer alert-danger">
+                                    <button id="delete-exam-cancel-btn" type="button" class="btn btn-success" data-dismiss="modal">Cancel and Back</button>
+                                    <input id="delete-exam-btn" type="button" class="btn btn-danger" value="Continue and Remove" onclick="disable();"></input>
+                                    <script type="text/javascript">
+                                        function disable() // no ';' here
+                                        {
+                                            var btn_con = document.getElementById("delete-exam-btn");
+                                            btn_con.setAttribute("disabled", "true");
+                                            var btn_cancel = document.getElementById("delete-exam-cancel-btn");
+                                            btn_cancel.setAttribute("disabled", "true");
+                                            var del_lbl = document.getElementById("deleteing-message-lbl");
+                                            del_lbl.innerHTML = "Removing examination... please wait";
+                                        }
+                                    </script>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <h:commandLink type="button" style="margin-right: 1%" class="btn  btn-default pull-right"
+                                   actionListener="#{examinationViewBean.viewMode}"><i
+                            class="glyphicon glyphicon-eye-close"></i> Cancel</h:commandLink>
+                    <h:commandLink type="button" style="margin-right: 1%" class="btn  btn-default pull-right"
+                                   actionListener="#{examinationViewBean.viewMode}"><i
+                            class="glyphicon glyphicon-save"></i> Save</h:commandLink>
+                </h:form>
+            </h:panelGroup>
+        </h:panelGroup>
     </div>
 
 
@@ -173,16 +325,6 @@
                                             <!-- column header -->
                                             <f:facet name="header">Results</f:facet>
                                             #{results.results}
-                                        </h:column>
-                                        <h:column>
-                                            <!-- column header -->
-                                            <f:facet name="header">Island Rank</f:facet>
-                                            #{examinationViewBean.currentRowIslandRank}
-                                        </h:column>
-                                        <h:column>
-                                            <!-- column header -->
-                                            <f:facet name="header">z Score</f:facet>
-                                            #{examinationViewBean.currentRowZScore}
                                         </h:column>
                                         <h:column>
                                             <h:commandButton value="Edit" styleClass="btn btn-mini"/>
